@@ -451,7 +451,7 @@ public class UserAdminGUI extends java.awt.Frame {
      */
     private void saveUser() {
         if (this.password.getText().compareTo(this.passwordVerify.getText()) == 0) {
-            if (isNewUser == true) {
+						if (isNewUser) {
                 this.chatGui.adminClient.addUser(this.loginName.getText(), this.password.getText(), this.isAdmin.getState(),
                     this.chatGui.stringToVector(this.activeChannels.getItems()));
             } else {
