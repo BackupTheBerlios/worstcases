@@ -2,6 +2,7 @@
  * Interface für alle Klassen, die einen Downlink benutzen wollen.
  */
 package Util;
+import Util.Commands.Command;
 
 public interface DownlinkOwner {
 

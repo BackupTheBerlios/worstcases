@@ -2,6 +2,7 @@ package Server;
 
 import java.net.Socket;
 import Util.*;
+import Util.Commands.*;
 import java.util.StringTokenizer;
 import java.util.Enumeration;
 
@@ -52,7 +53,7 @@ public class ClientServant implements Util.DownlinkOwner {
    * Verarbeitet eine empfangene Nachricht, bzw.
    * führt den empfangenen Befehl einfach aus.
    */
-  public synchronized void processMsg(Command  msg) {
+  public synchronized void processMsg(Command msg) {
     msg.execute(this);
   }
 
@@ -60,8 +61,8 @@ public class ClientServant implements Util.DownlinkOwner {
    * Meldet den Benutzer beim System an, benutzt dafür eine vom Client
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
-  public void loginUser(String userSet) { // FIXME: an LoginCommand anpassen
-
+  public void loginUser(String name, String password) { 
+    // FIXME: an LoginCommand anpassen:
     this.user = this.userAdministration.loginUser(userSet);
 
     this.user.setClientServant(this);

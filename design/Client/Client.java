@@ -3,6 +3,7 @@ package Client;
 import java.util.Vector;
 import java.net.Socket;
 import Util.*;
+import Util.Commands.*;
 
 
 /**
@@ -14,7 +15,7 @@ public class Client implements Util.DownlinkOwner {
    * betritt den angegebenen Channel
    */
   public void joinChannel(String name) {
-    this.uplink.sendMsg("joinChannel " + name);
+    uplink.sendMsg(new JoinChannelCommand(name));
   }
 
   /**
@@ -33,7 +34,7 @@ public class Client implements Util.DownlinkOwner {
    * meldet einen Gast an
    */
   public void loginAsGuest(String name) {
-    this.uplink.sendMsg("loginGuest " + name);
+    uplink.sendMsg("loginGuest " + name);
   }
 
   /**
@@ -65,8 +66,8 @@ public class Client implements Util.DownlinkOwner {
    * Diese wird dann von allen Teilnehmern im
    * Channel empfangen.
    */
-  public void sendMsgToChannel(String msg) {
-    this.uplink.sendMsg("channelmsg " + msg);
+  public void sendMsgToChannel(String  msg) {
+    uplink.sendMsg(new SendMsgToChannelCommand(msg));
   }
 
   /**
@@ -87,17 +88,17 @@ public class Client implements Util.DownlinkOwner {
   public void startClient() {
 
     try {
-      this.socket = new Socket(this.SERVER_IP, this.SERVER_PORT);
+      socket = new Socket(Client.SERVER_IP, Client.SERVER_PORT);
     } catch (java.io.IOException e) {
       System.out.println(e);
     }
 
-    this.uplink = new Uplink(this.socket);
-    this.downlink = new Downlink(this.socket, this);
+    uplink = new Uplink(socket);
+    downlink = new Downlink(socket, this);
 
-    this.uplink.startUplink();
-    this.downlink.startDownlink();
-    this.downlink.start();
+    uplink.startUplink();
+    downlink.startDownlink();
+    downlink.start();
   }
 
   /**
@@ -121,25 +122,21 @@ public class Client implements Util.DownlinkOwner {
 
   /**
    * die IP - Adresse des Servers
-<<<<<<< Client.java
   */
-  protected final static String SERVER_IP = "localhost" ;
-=======
-   */
-  protected final static String SERVER_IP = "134.169.8.196";
->>>>>>> 1.4
+  protected final static String SERVER_IP = "localhost";
 
   /**
-   * Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels
+   * Vector von Strings, repräsentiert die für den Benutzer freigegebenen 
+   * Channels.
    */
   protected Vector availableChannelList;
 
   /**
-   * speichert ankommende Nachrichten in einem Channel.
-   * Wird von der GUI benutzt und kann als
+   * Speichert ankommende Nachrichten in einem Channel.
+   * Wird vom GUI benutzt und kann als
    * Protokoll der Unterhaltung in dem Channel dienen.
    */
-  public String channelMsgBuffer=new String();
+  public String channelMsgBuffer = new String();
   protected Socket socket;
 
   /**
