@@ -24,6 +24,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         Debug.println("host set to" + this.adminClient.SERVER_IP);
         this.adminClient.gui = this;
         initComponents();
+        loginName.requestFocus();
     }
 
     public synchronized void loginError() {
@@ -212,6 +213,14 @@ public class ChatGui extends java.applet.Applet implements GUI {
             new java.awt.Font("SansSerif", 0, 11));
         loginName.setColumns(20);
         loginName.setForeground(java.awt.Color.black);
+        loginName.addKeyListener(
+            new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        login();
+                    }
+                }
+            });
         gridBagConstraints2 = new java.awt.GridBagConstraints();
         gridBagConstraints2.gridx = 1;
         gridBagConstraints2.gridy = 0;
@@ -223,6 +232,14 @@ public class ChatGui extends java.applet.Applet implements GUI {
         password.setEchoChar('*');
         password.setColumns(20);
         password.setForeground(java.awt.Color.black);
+        password.addKeyListener(
+            new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        login();
+                    }
+                }
+            });
         gridBagConstraints2 = new java.awt.GridBagConstraints();
         gridBagConstraints2.gridx = 1;
         gridBagConstraints2.gridy = 1;
@@ -265,6 +282,14 @@ public class ChatGui extends java.applet.Applet implements GUI {
                     isGuestItemStateChanged(evt);
                 }
             });
+        isGuest.addKeyListener(
+            new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        login();
+                    }
+                }
+            });
         gridBagConstraints2 = new java.awt.GridBagConstraints();
         gridBagConstraints2.gridx = 2;
         gridBagConstraints2.gridy = 0;
@@ -276,6 +301,14 @@ public class ChatGui extends java.applet.Applet implements GUI {
         login.setName("login");
         login.setBackground(java.awt.Color.lightGray);
         login.setForeground(java.awt.Color.black);
+        login.addKeyListener(
+            new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        login();
+                    }
+                }
+            });
         login.addActionListener(
             new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
