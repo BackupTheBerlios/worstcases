@@ -4,10 +4,11 @@ import java.util.Vector;
 import java.net.Socket;
 import Util.*;
 import Util.Commands.*;
+import Util.Debug.Debug;
 
 /** Die Clientapplikation */
 public class Client implements Util.DownlinkOwner {
-    /** betritt den angegebenen Channel */
+    /** Betritt den angegebenen Channel. */
     public void joinChannel(String name) {
         this.sendCommand(
             new JoinChannelCommand(name));
@@ -26,7 +27,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     public void newUserInChannel(String paramName) {
-        System.out.println(paramName + " joined channel");
+        Debug.println("Client: " + paramName + " joined channel");
     }
 
     public void setDownlink(Util.Downlink paramDownlink) { };
@@ -34,7 +35,7 @@ public class Client implements Util.DownlinkOwner {
     public void downlinkError() { };
 
     public void loginError() {
-        System.out.println("login failed: ");
+        Debug.println("Client: login failed: ");
     }
 
 
@@ -49,27 +50,27 @@ public class Client implements Util.DownlinkOwner {
             this.uplink.sendMsg(paramCommand);
         }
         catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(Debug.HIGH, e);
         }
     }
 
-    /** verl‰ﬂt den Channel */
+    /** Verl‰ﬂt den Channel. */
     public void leaveChannel() { }
 
-    /** meldet den Benutzer an */
+    /** Meldet den Benutzer an. */
     public void login(String name, String password) {
         this.sendCommand(
             new LoginCommand(name, password));
     }
 
-    /** meldet einen Gast an */
+    /** Meldet einen Gast an. */
     public void loginAsGuest(String name) {
-        System.out.println("loginGuest " + name);
+        Debug.println("Client: loginGuest " + name);
         this.sendCommand(
             new LoginGuestCommand(name));
     }
 
-    /** meldet den Benutzer ab */
+    /** Meldet den Benutzer ab. */
     public void logout() { }
 
     /**
@@ -79,15 +80,15 @@ public class Client implements Util.DownlinkOwner {
     public void setAvailableChannelList(String channelSet) { }
 
     /**
-     * setzt currentUsers mit den Daten aus dem String userSet.
+     * Setzt currentUsers mit den Daten aus dem String userSet.
      * Der Client erh‰lt die Liste der aktuellen Benutzer in dem betretenen Channel
      */
     public void setCurrentUserInChannelList(String userSet) { }
 
-    /** sendet eine Nachricht an einen Benutzer. 1 zu 1 Kommunikation */
+    /** Sendet eine Nachricht an einen Benutzer. 1 zu 1 Kommunikation */
     public void sendMsgToUser(String name, String msg) { }
 
-    /** sendet eine Nachricht in einen Channel. Diese wird dann von allen Teilnehmern im Channel empfangen. */
+    /** Sendet eine Nachricht in einen Channel. Diese wird dann von allen Teilnehmern im Channel empfangen. */
     public void sendMsgToChannel(String msg) {
         this.sendCommand(
             new SendMsgToChannelCommand(msg));
@@ -108,7 +109,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     public void startClient() {
-        System.out.println("starting client");
+        Debug.println("Client: starting...");
         try {
             socket = new Socket(Client.SERVER_IP, Client.SERVER_PORT);
             uplink = new Util.Uplink(socket);
@@ -117,12 +118,13 @@ public class Client implements Util.DownlinkOwner {
             downlink.startDownlink();
             downlink.start();
         } catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(Debug.HIGH, e);
         }
+        Debug.println("Client: started.");
     }
 
     public void sendMsgFromChannel(String fromName, String msg) {
-        System.out.println(fromName + " sayz:" + msg);
+        Debug.println("Client: " + fromName + " sayz:" + msg);
     }
 
     public void sendMsgFromUser(String fromName,String msg){
