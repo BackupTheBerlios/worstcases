@@ -1,6 +1,9 @@
 package Server;
 
 import java.net.Socket;
+import Util.*;
+import java.util.StringTokenizer;
+import java.util.Enumeration;
 
 /**
 * Diese Klasse kümmert sich um die Anfragen, die von einem Client an den
@@ -9,13 +12,18 @@ import java.net.Socket;
 * noch um diesen Client kümmert und seine Anfragen bearbeitet. In dieser Klasse
 * steckt die meiste Funktionalität des Servers.
 */
-class ClientServant implements Util.DownlinkOwner {
+public class ClientServant implements Util.DownlinkOwner {
 
   /**
    * Konstruktor, der die entsprechenden Attribute setzt.
    */
-  public ClientServant(Socket socket, Server server,
-                       UserAdministration paramUserAdministration) {}
+  public ClientServant(Socket paramSocket, Server paramServer,
+                       UserAdministration paramUserAdministration) {
+  this.socket=paramSocket;
+  this.server=paramServer;
+  this.userAdministration=paramUserAdministration;
+
+  }
 
   public ClientServant() {}
 
@@ -24,15 +32,12 @@ class ClientServant implements Util.DownlinkOwner {
    * die Anfragen seines Clients bearbeiten.
    */
   public void startClientServant() {
-
-    uplink = new Uplink(socket);
-
-    uplink.startUplink();
-
-    downlink = new Downlink(socket, this);
-
-    downlink.startDownlink();
-    downlink.start();
+    this.uplink=new Uplink(this.socket);
+    this.downlink=new Util.Downlink(this.socket,this);
+    this.uplink.startUplink();
+    this.downlink.startDownlink();
+    this.downlink.start();
+    this.uplink.sendMsg("Welcome to the server!");
   }
 
   /**
@@ -46,7 +51,18 @@ class ClientServant implements Util.DownlinkOwner {
    * aufgerufen werden muss, um den "Wunsch" des Clients zu erfüllen.
    */
   public synchronized void processMsg(String msg) {
-    this.loginUser("UserFoo");
+   StringTokenizer tmpTokenizer=new StringTokenizer(msg);
+   String token=tmpTokenizer.nextToken();
+   if(token.compareTo("loginGuest")==0){
+    this.loginGuest(tmpTokenizer.nextToken());
+   }
+   if(token.compareTo("joinChannel")==0){
+    this.joinChannel(tmpTokenizer.nextToken());
+   }
+   if(token.compareTo("channelmsg")==0){
+    this.sendMsgToChannel(tmpTokenizer.nextToken());
+   }
+
   }
 
   /**
@@ -63,7 +79,7 @@ class ClientServant implements Util.DownlinkOwner {
       this.becomeAdminClientServant();
     }
 
-    this.uplink.send(this.user.getAllowedChannelList().toString());
+    this.uplink.sendMsg(this.user.getAllowedChannelList().toString());
   }
 
   /**
@@ -71,10 +87,9 @@ class ClientServant implements Util.DownlinkOwner {
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
   public void loginGuest(String guestSet) {
-
     this.user = this.userAdministration.loginGuest(guestSet);
-
     this.user.setClientServant(this);
+    this.uplink.sendMsg(this.user.getName()+" logged in");
   }
 
   /**
@@ -90,7 +105,8 @@ class ClientServant implements Util.DownlinkOwner {
                              this.userAdministration, this.user);
 
     this.user.setClientServant(tmpAdminClientServant);
-    this.downlink.setClientServant(tmpAdminClientServant);
+    this.downlink.setDownlinkOwner(tmpAdminClientServant);
+
     this.server.addToClientServantList(tmpAdminClientServant);
     this.server.removeFromClientServantList(this);
   }
@@ -107,11 +123,9 @@ class ClientServant implements Util.DownlinkOwner {
    * Lässt den User in den Channel mit dem angegebenen Namen eintreten.
    */
   public void joinChannel(String name) {
-
     Channel tmpChannel = this.user.getFromAllowedChannelByName(name);
-
     this.user.setCurrentChannel(tmpChannel);
-    this.uplink.send(this.user.getCurrentChannel().toString());
+    this.uplink.sendMsg("Channel "+this.user.getCurrentChannel().getName()+" joined!");
   }
 
   /**
@@ -126,13 +140,12 @@ class ClientServant implements Util.DownlinkOwner {
    * Channel.
    */
   public void sendMsgToChannel(String msg) {
-
-    int pos = 0;
-    Channel tmpChannel = this.user.getCurrentChannel();
-    User tmpUser = (User) (tmpChannel.getCurrentUserList().elementAt(pos));
+    Enumeration enum = this.user.getCurrentChannel().getCurrentUserList().elements();
+    while(enum.hasMoreElements()){
+    User tmpUser = (User) (enum.nextElement());
     ClientServant tmpClientServant = tmpUser.getClientServant();
-
-    tmpClientServant.sendMsgFromChannel("hello world");
+    tmpClientServant.sendMsgFromChannel(this.user.getName()+" sayz: "+msg);
+    }
   }
 
   /**
@@ -140,14 +153,14 @@ class ClientServant implements Util.DownlinkOwner {
    * an den Client.
    */
   public void sendMsgFromChannel(String msg) {
-    this.uplink.send("hello world");
+    this.uplink.sendMsg(msg);
   }
 
   /**
    * Sendet eine private Nachricht eines anderen Users an den Client.
    */
   public void sendMsgFromUser(String msg) {
-    this.uplink.send(msg);
+    this.uplink.sendMsg(msg);
   }
 
   /**
@@ -167,11 +180,8 @@ class ClientServant implements Util.DownlinkOwner {
    * Sendet die Daten des betretenen Channel an den Client.
    */
   public void sendChannelData() {
-
     Channel tmpChannel = this.user.getCurrentChannel();
-    String tmpChannelSet = tmpChannel.toString();
-
-    this.uplink.send(tmpChannelSet);
+    this.uplink.sendMsg(tmpChannel.getCurrentUserList().toString());
   }
 
   /**
@@ -181,7 +191,7 @@ class ClientServant implements Util.DownlinkOwner {
 
     String tmpUserSet = this.user.toString();
 
-    this.uplink.send(tmpUserSet);
+    this.uplink.sendMsg(tmpUserSet);
   }
 
   /** @link aggregationByValue
@@ -192,7 +202,7 @@ class ClientServant implements Util.DownlinkOwner {
   /** @link aggregationByValue
    * @clientCardinality 1
    * @supplierCardinality 1*/
-  protected Downlink downlink;
+  protected Util.Downlink downlink;
 
   /**
    * @clientCardinality 0..*

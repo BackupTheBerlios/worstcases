@@ -1,0 +1,40 @@
+package id2iy11cmwzp7iecmwzptms;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:java#Class#Util.Downlink:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@__ref <oiref:java#Class#Util.Uplink:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:java#Class#Util.DownlinkOwner:oiref><oihard>
+@__modelType reference 
+*/
+class reference5 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:java#Class#Util.DownlinkOwner:oiref>=14,0,184,80,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Util.Downlink#downlinkOwner:oiref>=106,130,106,80:oigroup>
+<oigroup:<oiref:java#Class#Util.Uplink:oiref>=233,10,182,147,1:oigroup>
+<oigroup:<oiref:java#Class#Util.Downlink:oiref>=10,130,203,260,1:oigroup>
+*/
+class __positions {
+}

@@ -2,6 +2,7 @@ package Client;
 
 import java.util.Vector;
 import java.net.Socket;
+import Util.*;
 
 /**
  * Die Clientapplikation
@@ -11,7 +12,9 @@ public class Client implements Util.DownlinkOwner {
   /**
    * betritt den angegebenen Channel
    */
-  public void joinChannel(String name) {}
+  public void joinChannel(String name) {
+   this.uplink.sendMsg("joinChannel "+name);
+  }
 
   /**
    * verläßt den Channel
@@ -28,7 +31,10 @@ public class Client implements Util.DownlinkOwner {
   /**
    * meldet einen Gast an
    */
-  public void loginAsGuest(String name) {}
+  public void loginAsGuest(String name) {
+   this.uplink.sendMsg("loginGuest "+name);
+
+  }
 
   /**
    * meldet den Benutzer ab
@@ -59,7 +65,10 @@ public class Client implements Util.DownlinkOwner {
    * Diese wird dann von allen Teilnehmern im
    * Channel empfangen.
    */
-  public void sendMsgToChannel(String msg) {}
+  public void sendMsgToChannel(String msg) {
+   this.uplink.sendMsg("channelmsg "+msg);
+
+  }
 
   /**
    * verarbeitet eine empfangene Nachricht, entscheidet,
@@ -70,6 +79,20 @@ public class Client implements Util.DownlinkOwner {
   public void processMsg(String msg) {
     this.setAvailableChannelList(
       "Mensachat, Virtuelle Konferenz, tubs intern");
+  }
+
+  public void startClient() {
+   try{
+   this.socket=new Socket(this.SERVER_IP,this.SERVER_PORT);
+   }
+   catch(java.io.IOException e){
+    System.out.println(e);
+   }
+   this.uplink=new Uplink(this.socket);
+   this.downlink=new Downlink(this.socket,this);
+   this.uplink.startUplink();
+   this.downlink.startDownlink();
+   this.downlink.start();
   }
 
   /**
@@ -89,12 +112,12 @@ public class Client implements Util.DownlinkOwner {
   /**
   * der Port des Servers
   */
-  protected final static int SERVER_PORT = 2000;
+  protected final static int SERVER_PORT = 1500;
 
   /**
    * die IP - Adresse des Servers
   */
-  protected final static String SERVER_IP = "192.168.0.15";
+  protected final static String SERVER_IP = "0.0.0.0";
 
   /**
    * Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels

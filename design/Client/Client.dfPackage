@@ -1,0 +1,59 @@
+package id1jz3ccmoxh5dycmoxoi0c;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:java#Class#Client.Client:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:java#Class#Client.AdminClient:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id4lct0cmoxh5dycmoxntq6.diagram:oiref><oihard>
+@automatic 
+*/
+class link {
+}/**
+@__ref <oiref:java#Class#Client.Testclient:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}}/**
+enthält die Klassen der Client- und AdminClientapplikation
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options option.boundingbox = false
+option.printheader = false
+option.printfooter = false
+option.fittopage = true
+option.papersize = A4 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:java#Class#Client.AdminClient:oiref>=71,494,278,283,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#lnkUplink:oiref>=204,194,407,194:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#lnkDownlink:oiref>=204,162,394,117:oigroup>
+<oigroup:<oiref:java#Class#Client.Client:oiref>=68,59,273,391,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#downlink:oiref>=341,116,414,116:oigroup>
+<oigroup:<oiref:java#Extends#Client.AdminClient#Client.Client:oiref>=206,494,206,450:oigroup>
+<oigroup:<oiref:java#Class#Client.Testclient:oiref>=469,642,153,62,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#uplink:oiref>=341,330,403,330:oigroup>
+
+
+
+*/
+class __positions {
+}

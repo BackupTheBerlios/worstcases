@@ -2,6 +2,7 @@ package Util;
 
 import java.net.Socket;
 import java.util.Vector;
+import java.io.*;
 
 
 /**
@@ -12,7 +13,7 @@ import java.util.Vector;
  * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von
  * seinem Client zu empfangen.
  */
-class Downlink extends Thread {
+public class Downlink extends Thread {
 
   /**
    * Konstruktor.
@@ -21,7 +22,7 @@ class Downlink extends Thread {
    */
   public Downlink(Socket socket, DownlinkOwner owner) {
     this.socket = socket;
-    this.owner = owner;
+    this.downlinkOwner = owner;
   }
 
   /**
@@ -33,23 +34,38 @@ class Downlink extends Thread {
    * Der Besitzer des Downlinks, an den die ankommenden Nachrichten
    * weitergeleitet werden sollen.
    */
-  private DownlinkOwner owner;
+  private DownlinkOwner downlinkOwner;
+  private BufferedReader bufferedReader;
+  private boolean stop = false;
 
   /**
    * Wartet auf ankommende Nachrichten und leitet sie an den Besitzer weiter. 
    */
-  public void listen() { //FIXME: Wieso public?
-
-    String msg = "foo";
-
-    owner.processMsg(msg);
-    listen(); //FIXME: Rekursion (-> StackOverflowError?), besser while.
+  private void listen() {
+    String tmpString;
+    while(!stop){
+      try{
+      tmpString=this.bufferedReader.readLine();
+      System.out.println("#"+tmpString+"# received!");
+    downlinkOwner.processMsg(tmpString);
+      }
+      catch(java.io.IOException e){
+       System.out.println(e);
+      }
+    }
   }
 
   /**
    * ÷ffnet den Input - Stream, danach ist der Downlink betriebsbereit.
    */
-  public void startDownlink() {}
+  public void startDownlink() {
+    try{
+    this.bufferedReader=new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+    }
+    catch(java.io.IOException e){
+        System.out.println(e);
+    }
+  }
 
   /**
    * Startet den Thread.
@@ -61,9 +77,21 @@ class Downlink extends Thread {
   /**
    * Schlieﬂt den Input - Stream
    */
-  public void stopDownlink() {}
+  public void stopDownlink() {
+       try{
+        this.bufferedReader.close();
+    }
+    catch(java.io.IOException e){
+        System.out.println(e);
+    }
 
-  public void start() {
-    run();
   }
+
+  public DownlinkOwner getDownlinkOwner(){
+          return downlinkOwner;
+      }
+
+  public void setDownlinkOwner(DownlinkOwner downlinkOwner){
+          this.downlinkOwner = downlinkOwner;
+      }
 }

@@ -1,6 +1,7 @@
 package Util;
 
 import java.net.Socket;
+import java.io.*;
 
 /**
  * Versendet Nachrichten über einen Socket an einen Downlink.
@@ -19,22 +20,42 @@ public class Uplink {
    * Konstruktor.
    * @param socket der zu benutzende Socket.
    */
-  public Uplink(Socket socket) {}
+  public Uplink(Socket paramSocket) {
+  this.socket=paramSocket;
+
+  }
 
   /**
    * Über diesen Socket werden die Nachrichten versendet.
    */
   private Socket socket;
+  private BufferedWriter bufferedWriter;
 
   /**
    * Öffnet den Output-Stream.
    */
-  public void startUplink() {}
+  public void startUplink() {
+   try{
+   this.bufferedWriter=new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+   }
+   catch(java.io.IOException e){
+    System.out.println(e);
+   }
+
+  }
 
   /**
    * Schließt den Output-Stream.
    */
-  public void stopUplink() {}
+  public void stopUplink() {
+    try{
+  this.bufferedWriter.close();
+    }
+    catch(java.io.IOException e){
+        System.out.println(e);
+    }
+
+  }
 
   /**
    * Sendet eine Nachricht über den Socket. Sie wird am anderen Ende des
@@ -43,7 +64,15 @@ public class Uplink {
    * @param msg Die zu versendende Nachricht.
    * @see Dowlink
    */
-  // FIXME: In Client.Uplink hieß diese Methode sendMsg(String msg) ->
-  // alle Client-Klassen durchgehen und zu send(String msg) korrigieren! 
-  public void send(String msg) {}
+  public void sendMsg(String msg) {
+    try{
+   this.bufferedWriter.write(msg+"\n");
+   this.bufferedWriter.flush();
+   System.out.println("#"+msg+"# sent!");
+    }
+    catch (java.io.IOException e){
+     System.out.println(e);
+    }
+
+  }
 }
