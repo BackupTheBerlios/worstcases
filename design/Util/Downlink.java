@@ -8,8 +8,8 @@ import java.util.Vector;
  * Empfängt über einen Socket Nachrichten von einem Uplink.
  * Diese Klasse ist die empfangende Hälfte eines Kommunikationskanals. Die 
  * andere Hälfte, die das Senden von Nachrichten übernimmt, ist der Uplink.
- * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten an
- * seinen Client zu senden.
+ * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von
+ * seinem Client zu empfangen.
  */
 class Downlink extends Thread {
 
