@@ -2,11 +2,13 @@ package Util;
 
 import java.util.Vector;
 import java.util.Enumeration;
+import Util.Debug.Debug;
 
-/** Klasse mit Sortieralgorithmen */
-public class Sort {
+/** Klasse mit Hilfsalgorithmen */
+public class Helper {
     /** Hilfsmethode für quicksort() */
     private static Vector quicksortHelp(Vector list, int l, int m) {
+        //Standard - Implementation
         int i, j;
         boolean down;
         String w;
@@ -39,13 +41,30 @@ public class Sort {
 
     /** sortiert einen Vector von Strings */
     public static Vector quicksort(Vector list) {
-        if ((list != null) && (list.size()!=0)) {
-            return (quicksortHelp(list, 0, list.size() - 1));
+        Vector tmpVector = vectorCopy(list);
+        if ((tmpVector != null) && (tmpVector.size() != 0)) {
+            return (quicksortHelp(tmpVector, 0, tmpVector.size() - 1));
         }
         else {
             return (
                 new Vector());
         }
+    }
+
+    /** gibt eine Kopie des Vector zurück */
+    public static Vector vectorCopy(Vector vector) {
+        Enumeration enum = vector.elements();
+        Vector copyVector = new Vector();
+        try {
+            while (enum.hasMoreElements()) {
+                copyVector.addElement(enum.nextElement());
+            }
+        }
+        //tritt evtl. auf, falls aus vector während der Schleife Elemente entfernt werden
+        catch (java.util.NoSuchElementException e) {
+            Debug.println(Debug.HIGH, "copyVector: error while copying: " + e);
+        }
+        return copyVector;
     }
 
     public static void main(String[] args) {
