@@ -297,6 +297,14 @@ public class Client implements Util.DownlinkOwner {
     }
   }
 
+  public String getServerIP() {
+    return SERVER_IP;
+  }
+
+  public void setServerIP(String serverIP) {
+    SERVER_IP = serverIP;
+  }
+
   /**
    * Der Uplink, über ihn werden Nachrichten gesendet.
    * @directed
@@ -317,7 +325,7 @@ public class Client implements Util.DownlinkOwner {
   protected int SERVER_PORT = 1500;
 
   /** Die IP-Adresse des Servers. */
-  public String SERVER_IP = "localhost";
+  protected String SERVER_IP = "localhost";
 
   /**
    * Speichert ankommende Nachrichten in einem Channel. Wird vom GUI benutzt

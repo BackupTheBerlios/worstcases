@@ -19,9 +19,9 @@ import Util.Debug.Debug;
 public class ChatGui extends java.applet.Applet {
     /** initialisiert die GUI */
     public void init() {
-        this.adminClient.SERVER_IP = this.getCodeBase().getHost();
+        this.adminClient.setServerIP(this.getCodeBase().getHost());
 	//adminClient.SERVER_IP = "134.169.42.3";
-        Debug.println("host set to" + this.adminClient.SERVER_IP);
+        Debug.println("host set to" + this.adminClient.getServerIP());
         Debug.println(Debug.MEDIUM, this + "this codebase: " + this.getCodeBase());
         this.adminClient.gui = this;
         initComponents();
@@ -201,7 +201,7 @@ public class ChatGui extends java.applet.Applet {
         isGuest = new java.awt.Checkbox();
         login = new java.awt.Button();
         chatpanel = new java.awt.Panel();
-        chatText = new java.awt.TextArea("",20,70,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY); //FIXME: nur zum testen
+        chatText = new java.awt.TextArea("",chatTextRows,chatTextColumns,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY);
         msg = new java.awt.TextField();
         sendMsg = new java.awt.Button();
         channelChoice = new java.awt.Choice();
@@ -441,6 +441,12 @@ public class ChatGui extends java.applet.Applet {
         userList.setName("userList");
         userList.setBackground(java.awt.Color.white);
         userList.setForeground(java.awt.Color.black);
+        userList.addItemListener(
+            new java.awt.event.ItemListener() {
+                public void itemStateChanged(java.awt.event.ItemEvent e) {
+                    msg.requestFocus();
+                }
+            });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
         gridBagConstraints3.gridx = 2;
         gridBagConstraints3.gridy = 3;
@@ -645,6 +651,8 @@ public class ChatGui extends java.applet.Applet {
     ChannelAdminGUI channelAdminGUI = new ChannelAdminGUI(this);
     UserAdminGUI userAdminGUI = new UserAdminGUI(this);
     private LogText logText = new LogText();
-    public static final String PRODUCT_NAME = "jConvention";
+    public static final String PRODUCT_NAME = "Juliet";
     private boolean cardFlipped = false;
+    private int chatTextColumns = 70;
+    private int chatTextRows = 20;
 }
