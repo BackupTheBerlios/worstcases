@@ -4,11 +4,11 @@ import Client.AdminClient;
 import Server.AdminClientServant;
 
 /**
-* fordert vom AdminClientServant die komplette Userliste an
+* Fordert vom AdminClientServant die komplette Userliste an.
 */
 public class GetUserListCommand implements Command {
 
-    /**führt AdminClientServant.sendUserList() aus*/
+    /**Führt AdminClientServant.sendUserList() aus.*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).sendUserList();

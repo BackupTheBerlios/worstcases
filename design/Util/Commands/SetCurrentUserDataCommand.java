@@ -4,12 +4,12 @@ import Client.Client;
 import java.util.Vector;
 
 /**
-*setzt bei einem Client Informationen über den aktuellen Benutzer
+*Setzt bei einem Client Informationen über den aktuellen Benutzer.
 */
 
 public class SetCurrentUserDataCommand implements Command {
     /**
-    *setzt die Attribute
+    *Setzt die Attribute.
      */
     public SetCurrentUserDataCommand(String paramUserName,Vector paramChannelNames) {
         this.userName=paramUserName;
@@ -18,10 +18,10 @@ public class SetCurrentUserDataCommand implements Command {
 
     /** Der Benutzername. */
     String userName;
-    /**Liste der Channelnamen, die der Benutzer betreten darf*/
+    /**Liste der Channelnamen, die der Benutzer betreten darf.*/
     Vector channelNames;
 
-    /**ruft Client.setCurrentUserData auf*/
+    /**Ruft Client.setCurrentUserData auf.*/
     public void execute(Object target) {
         if (target instanceof Client) {
             ((Client)target).setCurrentUserData(userName,channelNames);

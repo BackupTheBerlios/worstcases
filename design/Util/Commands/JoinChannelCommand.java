@@ -3,13 +3,13 @@ package Util.Commands;
 import Server.ClientServant;
 
 /**
-* wird von einem Client gesendet
-* betritt einen Channel
+* Wird von einem Client gesendet,
+* user betritt damit betritt einen Channel.
 */
 
 public class JoinChannelCommand implements Command {
     /**
-     * setzt den Channelnamen
+     * Setzt den Channelnamen.
      */
     public JoinChannelCommand(String paramName) {
       this.name=paramName;
@@ -18,7 +18,7 @@ public class JoinChannelCommand implements Command {
     /** Der Channel-Name. */
     String name;
 
-    /**ruft beim ClientServant joinChannel() auf*/
+    /**Ruft beim ClientServant joinChannel() auf.*/
 
     public void execute(Object target) {
         if (target instanceof ClientServant) {

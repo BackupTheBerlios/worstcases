@@ -4,8 +4,8 @@ import Server.ClientServant;
 
 
 /**
-* wird von einem Client gesendet,
-* sendet eine Nachricht an einen Benutzer
+* Wird von einem Client gesendet,
+* sendet eine Nachricht an einen Benutzer.
 */
 
 public class SendMsgToUserCommand implements Command {
@@ -14,13 +14,13 @@ public class SendMsgToUserCommand implements Command {
       this.name=paramName;
     }
 
-    /**die Nachricht*/
+    /**Die Nachricht.*/
     String msg;
     
-    /**der Empfänger*/
+    /**Der Empfänger.*/
     String name;
 
-    /** ruft beim ClientServant sendMsgToUser() auf*/
+    /** Ruft beim ClientServant sendMsgToUser() auf.*/
     public void execute(Object target) {
         if (target instanceof ClientServant) {
             ((ClientServant)target).sendMsgToUser(name,msg);

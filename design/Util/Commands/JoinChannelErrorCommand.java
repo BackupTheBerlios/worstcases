@@ -5,12 +5,12 @@ package Util.Commands;
 import Client.Client;
 
 /**
-* wird von einem ClientServant gesendet, falls ein joinChannel() Aufruf
-* fehlschlägt
+* Wird von einem ClientServant gesendet, falls ein joinChannel() Aufruf
+* fehlschlägt.
 */
 
 public class JoinChannelErrorCommand implements Command {
-    /**führt beim Client joinChannelError() auf*/
+    /**Führt beim Client joinChannelError() auf.*/
     public void execute(Object target) {
         if (target instanceof Client) {
             ((Client)target).joinChannelError();

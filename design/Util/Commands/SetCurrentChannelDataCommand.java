@@ -4,12 +4,12 @@ import Client.Client;
 import java.util.Vector;
 
 /**
-* setzt bei einem Client Informationen über den momentan besuchten Channel
+* Setzt bei einem Client Informationen über den momentan besuchten Channel.
 */
 
 public class SetCurrentChannelDataCommand implements Command {
     /**
-     *setzt die Attribute
+     *Setzt die Attribute.
      */
     public SetCurrentChannelDataCommand(String paramChannelName,Vector paramUserNames) {
         this.channelName=paramChannelName;
@@ -18,10 +18,10 @@ public class SetCurrentChannelDataCommand implements Command {
 
     /** Der Channelname. */
     String channelName;
-    /**die Namen derjenigen Benutzer, die sich momentan im Channel aufhalten*/
+    /**Die Namen derjenigen Benutzer, die sich momentan im Channel aufhalten.*/
     Vector userNames;
 
-    /**ruft Client.setCurrentChannelData() auf*/
+    /**Ruft Client.setCurrentChannelData() auf.*/
     public void execute(Object target) {
         if (target instanceof Client) {
             ((Client)target).setCurrentChannelData(channelName,userNames);

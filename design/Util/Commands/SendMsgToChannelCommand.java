@@ -4,8 +4,8 @@ import Server.ClientServant;
 
 
 /**
-* wird von einem Client gesendet,
-* sendet eine Nachricht in den besuchten Channel
+* Wird von einem Client gesendet,
+* sendet eine Nachricht in den besuchten Channel.
 */
 
 public class SendMsgToChannelCommand implements Command {
@@ -13,10 +13,10 @@ public class SendMsgToChannelCommand implements Command {
       this.msg=paramMsg;
     }
 
-    /**die Nachricht*/
+    /**Die Nachricht.*/
     String msg;
 
-    /** ruft beim ClientServant sendMsgToChannel() auf*/
+    /** Ruft beim ClientServant sendMsgToChannel() auf.*/
     public void execute(Object target) {
         if (target instanceof ClientServant) {
             ((ClientServant)target).sendMsgToChannel(msg);

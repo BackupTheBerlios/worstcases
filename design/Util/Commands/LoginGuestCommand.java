@@ -3,7 +3,7 @@ package Util.Commands;
 import Server.ClientServant;
 
 /**
-* meldet einen Gast an, wird von einem Client gesendet
+* Meldet einen Gast an, wird von einem Client gesendet.
 */
 
 
@@ -21,7 +21,7 @@ public class LoginGuestCommand implements Command {
     String name;
 
 
-    /**ruft beim ClientServant loginAsGuest() auf*/
+    /**Ruft beim ClientServant loginAsGuest() auf.*/
     public void execute(Object target) {
         if (target instanceof ClientServant) {
             ((ClientServant)target).loginAsGuest(name);

@@ -24,7 +24,7 @@ public class LoginCommand implements Command {
     /** Das Kennwort. */
     String password;
 
-    /**ruft beim ClientServant loginUser() auf*/
+    /**Ruft beim ClientServant loginUser() auf.*/
     public void execute(Object target) {
         if (target instanceof ClientServant) {
             ((ClientServant)target).loginUser(name, password);

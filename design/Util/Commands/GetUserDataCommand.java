@@ -4,11 +4,11 @@ import Client.AdminClient;
 import Server.AdminClientServant;
 
 /**
-* fordert vom AdminClientServant einen Userdatensatz an
+* Fordert vom AdminClientServant einen Userdatensatz an.
 */
 public class GetUserDataCommand implements Command {
     /**
-     * setzt die Attribute
+     * Setzt die Attribute.
      */
     public GetUserDataCommand(String paramUserName) {
         this.userName=paramUserName;
@@ -17,7 +17,7 @@ public class GetUserDataCommand implements Command {
     /** Der Benutzername. */
     String userName;
 
-    /**führt AdminClientServant.sendUser() aus*/
+    /**Führt AdminClientServant.sendUser() aus.*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).sendUser(userName);
