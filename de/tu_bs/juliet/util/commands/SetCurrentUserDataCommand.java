@@ -21,7 +21,7 @@
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-package de.tu_bs.juliet.util.Commands;
+package de.tu_bs.juliet.util.commands;
 
 import Client.Client;
 import java.util.Vector;
