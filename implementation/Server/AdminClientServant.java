@@ -68,15 +68,15 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                         enum = (
                             new Vector()).elements();
                     }
+                    while (enum.hasMoreElements()) {
+                        tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
+                    }
                 }
                 // Channel ist für Gäste freigegeben, erlaube alle Benutzer
                 else {
-                    enum = this.userAdministration.getUserNames().elements();
+                    tmpChannel.setAllowedUserList(this.userAdministration.getUserEnum());
                 }
                 // füge die Benutzerobjekte hinzu
-                while (enum.hasMoreElements()) {
-                    tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
-                }
                 this.channelAdministration.addToChannelList(tmpChannel);
                 this.dataBaseIO.saveToDisk();
         }
@@ -208,13 +208,12 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             }
             while (enum.hasMoreElements()) {
                 tmpChannels.addElement(this.channelAdministration.getFromChannelListByName((String)enum.nextElement()));
-						}
+            }
             //jeder User darf auch die Channels betreten, die für Gäste freigegeben sind
-						enum=this.channelAdministration.getFreeForGuestEnum();
-						while(enum.hasMoreElements()){
-						 tmpChannels.addElement((Channel)enum.nextElement());
-						}
-
+            enum = this.channelAdministration.getFreeForGuestEnum();
+            while (enum.hasMoreElements()) {
+                tmpChannels.addElement((Channel)enum.nextElement());
+            }
             if (!paramIsAdmin) {
                 this.userAdministration.editUser(oldName, newName, newPassword, paramIsAdmin, tmpChannels.elements());
             }
