@@ -412,7 +412,7 @@ public class ChannelAdminGUI extends java.awt.Frame {
           this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
         }
         this.chatGui.adminClient.getChannelList();
-        this.chatGui.setUserData("", false, new Vector(), new Vector());
+        this.chatGui.setChannelData("", false, new Vector(), new Vector());
 
       } else {
           chatGui.displayError("Die Länge des Channelnamen überschreitet 50 Zeichen.\nDie Daten wurden nicht gespeichert.");

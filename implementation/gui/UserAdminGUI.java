@@ -419,6 +419,7 @@ public class UserAdminGUI extends java.awt.Frame {
     private void deleteUser() {
         String name = this.userList.getSelectedItem();
         this.chatGui.adminClient.deleteUser(name);
+        this.chatGui.adminClient.getUserList();
         this.newUser();
     }
 
