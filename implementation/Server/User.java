@@ -237,11 +237,7 @@ class User {
         if (paramChannel != null) {
             // nur Channel aufnehmen, die noch nicht in der Liste stehen
 						if (!this.allowedChannelList.contains(paramChannel)) {
-              ClientServant tmpClientServant=this.getClientServant();
-                if (tmpClientServant != null) {
-                    tmpClientServant.sendErrorMsg("Channel " + paramChannel.getName() + " darf betreten werden!");
-                }
-                this.allowedChannelList.addElement(paramChannel);
+								this.allowedChannelList.addElement(paramChannel);
                 this.informClient();
                 paramChannel.addToAllowedUserList(this);
             }
@@ -256,14 +252,14 @@ class User {
         if (paramChannel != null) {
             // removeElement() gibt true zurück, falls das Element wirklich entfernt wurde, d.h. existent war
             if (this.allowedChannelList.removeElement(paramChannel)) {
-                ClientServant tmpClientServant = this.getClientServant();
-                if (tmpClientServant != null) {
-                    tmpClientServant.sendErrorMsg("Channel " + paramChannel.getName() + " darf nicht mehr betreten werden!");
-                }
-                paramChannel.removeFromAllowedUserList(this);
+								paramChannel.removeFromAllowedUserList(this);
                 // wenn der betretene Channel nicht mehr erlaubt ist, currentChannel auf null setzen
                 if (paramChannel == this.currentChannel) {
-                    this.setCurrentChannel(null);
+										this.setCurrentChannel(null);
+										ClientServant tmpClientServant=this.getClientServant();
+										if(tmpClientServant!=null){
+                     tmpClientServant.sendErrorMsg("Der aktuelle Channel darf nicht mehr betreten werden.\nDaher wird ins Foyer gewechselt.");
+										}
                 }
                 this.informClient();
             }
@@ -294,12 +290,12 @@ class User {
                 this.currentChannel = null;
             }
             this.currentChannel = paramChannel;
-            if (paramChannel != null) {
-                paramChannel.addToCurrentUserList(this);
+						if (paramChannel != null) {
                 if (tmpClientServant != null) {
                     tmpClientServant.sendMsgToChannel("betritt den Channel");
-                }
-            }
+								}
+                paramChannel.addToCurrentUserList(this);
+						}
             this.informClient();
             Debug.println(Debug.LOW, "User: " + this.getName() + ": setCurrentChannel to: " + paramChannel);
         }

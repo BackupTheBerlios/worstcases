@@ -208,7 +208,7 @@ class DataBaseIO {
       while (enum.hasMoreElements()) {
         tmpBufferedWriter
           .write(this.channelToString((Channel) (enum.nextElement()))
-                 + "\r\n");
+                 + "\n");
       }
 
       tmpBufferedWriter.close();

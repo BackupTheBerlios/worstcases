@@ -55,12 +55,6 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void setCurrentChannelData(String name, Vector userNames) {
-        // leert das ChatTextFeld, wenn serverseitig der aktuelle Channel verändert wurde
-        if (this.channelChoice.getSelectedItem().compareTo(name) != 0) {
-          this.chatText.setText("");
-        }
-        // setzt die Channelauswahl auf den neuen Channelnamen
-        this.channelChoice.select(name);
         String selectedUser = new String();
         if (this.userList.getSelectedItem() != null) {
           selectedUser = this.userList.getSelectedItem();
@@ -96,12 +90,13 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void setUserList(Vector userNames) {
-        this.userAdminGUI.userList.removeAll();
+	this.userAdminGUI.userList.removeAll();
         Enumeration enum = userNames.elements();
         while (enum.hasMoreElements()) {
             this.userAdminGUI.userList.add((String)enum.nextElement());
         }
         this.userAdminGUI.userList.select(0);
+
     }
 
     public synchronized void setChannelData(String channelName, boolean isAllowedForGuest, Vector userNames,
@@ -155,7 +150,8 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void setCurrentUserData(String name, boolean isAdmin, Vector channelNames, String currentChannelName) {
-        Enumeration enum;
+        String oldSelectedChannelName = this.channelChoice.getSelectedItem();
+	Enumeration enum;
         String tmpName;
         this.channelChoice.removeAll();
         if (channelNames != null) {
@@ -181,7 +177,12 @@ public class ChatGui extends java.applet.Applet {
             this.userAdmin.setEnabled(false);
         }
         if (currentChannelName != null) {
-            this.channelChoice.select(currentChannelName);
+          // leert das ChatTextFeld, wenn serverseitig der aktuelle Channel verändert wurde
+          if (oldSelectedChannelName.compareTo(currentChannelName) != 0) {
+            this.chatText.setText("");
+	  }
+          // setzt die Channelauswahl auf den aktuellen Channelnamen
+          this.channelChoice.select(currentChannelName);
         }
         else {
             this.adminClient.joinChannel("Foyer");
@@ -551,14 +552,24 @@ public class ChatGui extends java.applet.Applet {
     } //GEN-END:initComponents
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_logoutMouseClicked
+        this.logout();   
+    } //GEN-LAST:event_logoutMouseClicked
+
+    private void logout() {
         this.adminClient.logout();
+	this.clearGui();
+    }
+
+    public void clearGui() {
         cardFlipped = false;
         cardLayout.first(mainpanel);
         chatText.setText("");
         msg.setText("");
+	this.channelAdminGUI.setVisible(false);
+	this.userAdminGUI.setVisible(false);
+	this.logText.setVisible(false);
         this.adminClient.clearChannelMsgBuffer();
-
-    } //GEN-LAST:event_logoutMouseClicked
+    }
 
     private void channelMsgBufferActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_channelMsgBufferMouseClicked
         logText.logTextArea.setText("");
@@ -586,8 +597,8 @@ public class ChatGui extends java.applet.Applet {
     } //GEN-LAST:event_channelAdminMouseClicked
 
     private void channelChoiceItemStateChanged(java.awt.event.ItemEvent evt) { //GEN-FIRST:event_channelChoiceItemStateChanged
-        this.adminClient.joinChannel(this.channelChoice.getSelectedItem());
         this.chatText.setText("");
+        this.adminClient.joinChannel(this.channelChoice.getSelectedItem());
     } //GEN-LAST:event_channelChoiceItemStateChanged
 
     private void sendMsgActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_sendMsgMouseClicked

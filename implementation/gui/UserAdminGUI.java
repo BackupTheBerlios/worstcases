@@ -446,27 +446,32 @@ public class UserAdminGUI extends java.awt.Frame {
      * Passwort und die Wiederholung übereinstimmen, sonst wird ein neuer Frame mit einer Fehlermeldung geöffnet.
      */
     private void saveUser() {
-      if (this.loginName.getText().length() <= maxLength) {
-        if (this.password.getText().compareTo(this.passwordVerify.getText()) == 0) {
-            if (isNewUser) {
-                this.chatGui.adminClient.addUser(this.loginName.getText(), this.password.getText(), this.isAdmin.getState(),
-                    this.chatGui.stringToVector(this.activeChannels.getItems()));
-            } else {
-                this.chatGui.adminClient.editUser(this.chatGui.adminClient.getTmpOldUserName(), this.loginName.getText(), this.password.getText(),
-                    this.isAdmin.getState(), this.chatGui.stringToVector(this.activeChannels.getItems()));
-            }
-            this.chatGui.adminClient.getUserData(this.loginName.getText());
-            this.chatGui.setUserData("", "", false,
-                new Vector(),
-                new Vector());
-            this.chatGui.adminClient.getUserList();
+      if (this.loginName.getText().indexOf("#") == -1 && this.password.getText().indexOf("#") == -1) { 
+        if (this.loginName.getText().length() <= maxLength) {
+          if (this.password.getText().compareTo(this.passwordVerify.getText()) == 0) {
+              if (isNewUser) {
+                  this.chatGui.adminClient.addUser(this.loginName.getText(), this.password.getText(), this.isAdmin.getState(),
+                      this.chatGui.stringToVector(this.activeChannels.getItems()));
+              } else {
+                  this.chatGui.adminClient.editUser(this.chatGui.adminClient.getTmpOldUserName(), this.loginName.getText(), this.password.getText(),
+                      this.isAdmin.getState(), this.chatGui.stringToVector(this.activeChannels.getItems()));
+              }
+	      this.isNewUser = false;
+              this.chatGui.setUserData("", "", false,
+                  new Vector(),
+                  new Vector());
+              this.chatGui.adminClient.getUserList();
+          } else {
+              chatGui.displayError("Passwort und Wiederholung stimmen nicht überein.\nDie Daten wurden nicht gespeichert.");
+              this.passwordVerify.requestFocus();
+          }
         } else {
-            chatGui.displayError("Passwort und Wiederholung stimmen nicht überein.\nDie Daten wurden nicht gespeichert.");
-            this.passwordVerify.requestFocus();
-        }
-      } else {
             chatGui.displayError("Die Länge des Loginnamen überschreitet 20 Zeichen.\nDie Daten wurden nicht gespeichert.");
             this.loginName.requestFocus();
+        }
+      } else {
+          chatGui.displayError("Loginname respektive Password enthalten das Zeichen \"#\".\nDa dieses für die zugrundeliegende Datenbank reserviert ist,\nwurden die Daten nicht gespeichert.");
+          this.loginName.requestFocus();
       }
     }
 

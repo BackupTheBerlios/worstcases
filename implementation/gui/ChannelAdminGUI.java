@@ -405,17 +405,23 @@ public class ChannelAdminGUI extends java.awt.Frame {
      * welcher dieser Fälle zutrifft.
      */
     private void saveChannel() {
-      if (this.channelName.getText().length() <= maxLength) {
-        if (isNewChannel) {
-          this.chatGui.adminClient.addChannel(this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
-        } else {
-          this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
-        }
-        this.chatGui.adminClient.getChannelList();
-        this.chatGui.setChannelData("", false, new Vector(), new Vector());
+      if (this.channelName.getText().indexOf("#") == -1) {
+        if (this.channelName.getText().length() <= maxLength) {
+          if (isNewChannel) {
+            this.chatGui.adminClient.addChannel(this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+          } else {
+            this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+          }
+          this.isNewChannel = false;
+          this.chatGui.adminClient.getChannelList();
+          this.chatGui.setChannelData("", false, new Vector(), new Vector());
 
+        } else {
+            chatGui.displayError("Die Länge des Channelnamen überschreitet 50 Zeichen.\nDie Daten wurden nicht gespeichert.");
+            this.channelName.requestFocus();
+        }
       } else {
-          chatGui.displayError("Die Länge des Channelnamen überschreitet 50 Zeichen.\nDie Daten wurden nicht gespeichert.");
+          chatGui.displayError("Der Channelname enthält das Zeichen \"#\".\nDa dieses für die zugrundeliegende Datenbank reserviert ist,\nwurden die Daten nicht gespeichert.");
           this.channelName.requestFocus();
       }
     }

@@ -104,24 +104,36 @@ class UserAdministration {
      */
     public synchronized void editUser(String oldName, String newName, String newPassword, boolean paramIsAdmin,
         Enumeration allowedChannelEnum) {
-						if ((oldName != null) && (newName != null) && newName.compareTo("")!=0) {
-                // Wenn oldName und newUser nicht null sind...
-                User tmpUser = this.getFromUserListByName(oldName);
-                // Das "alte" Userobjekt wird geladen.
-                Debug.println(Debug.MEDIUM, "UserAdministration: changing: " + tmpUser);
-                if (tmpUser != null) { // Wenn das Userobjekt existiert, dann
-                    tmpUser.setName(newName); // werden die alten Attribute
-                    tmpUser.setPassword(newPassword); // name, password, isAdmin und
-                    tmpUser.setIsAdmin(paramIsAdmin); // allowedChannelList mit den neuen
-                    tmpUser.setAllowedChannelList(allowedChannelEnum); // Werten überschrieben
-                }
-                Debug.println(Debug.MEDIUM, "UserAdministration: changed: " + tmpUser);
-                //Client über Veränderungen informieren
-                ClientServant tmpClientServant = tmpUser.getClientServant();
-                if (tmpClientServant != null) {
-                    tmpClientServant.sendErrorMsg("Benutzerdaten haben sich geändert!\n" + tmpUser);
-                }
-            }
+            if ((oldName != null) && (newName != null) && newPassword != null && newName.compareTo("") != 0 &&
+                newPassword.compareTo("") != 0) {
+                    // Wenn oldName und newUser nicht null sind...
+                    User tmpUser = this.getFromUserListByName(oldName);
+                    // Das "alte" Userobjekt wird geladen.
+                    if (tmpUser != null) { // Wenn das Userobjekt existiert, dann
+                        if (oldName.compareTo(newName) == 0 | this.getFromUserListByName(newName) == null) {
+                            Debug.println(Debug.MEDIUM, "UserAdministration: changing: " + tmpUser);
+                            tmpUser.setName(newName); // werden die alten Attribute
+                            tmpUser.setPassword(newPassword); // name, password, isAdmin und
+                            tmpUser.setIsAdmin(paramIsAdmin); // allowedChannelList mit den neuen
+                            tmpUser.setAllowedChannelList(allowedChannelEnum); // Werten überschrieben
+                            Debug.println(Debug.MEDIUM, "UserAdministration: changed: " + tmpUser);
+                            //Client über Veränderungen informieren
+                            ClientServant tmpClientServant = tmpUser.getClientServant();
+                            if (tmpClientServant != null) {
+                                tmpClientServant.sendErrorMsg("Benutzerdaten haben sich geändert!\n" + tmpUser);
+                            }
+												}
+												else{
+                         Debug.println("UserAdministration: editUser: error: "+newName+" existent");
+												}
+										}
+										else{
+										 Debug.println("UserAdministration: editUser error: oldName:"+oldName+" not found!");
+										}
+						}
+						else{
+						 Debug.println(Debug.HIGH,"UserAdministration: editUser error: wrong parameter!");
+						}
     }
 
     /** Fügt einen Benutzer mittels user.setUserAdministration() zur UserList hinzu. */

@@ -46,11 +46,10 @@ public class Client implements Util.DownlinkOwner {
 
     if (uplink != null) {
       this.uplink.stopUplink();
-
       this.uplink = null;
     }
-
     this.setDownlink(null);
+    this.gui.clearGui();
   }
 
   /** Der Name des Benutzers des Clients. */
@@ -171,7 +170,10 @@ public class Client implements Util.DownlinkOwner {
   protected synchronized final void sendCommand(Command paramCommand) {
 
     try {
-      this.uplink.sendMsg(paramCommand);
+      Uplink tmpUplink = this.uplink;
+      if (tmpUplink != null) {
+        this.uplink.sendMsg(paramCommand);
+      }
     } catch (java.io.IOException e) {
       Debug.println(Debug.HIGH, "Client: " + e);
       this.stopClient();

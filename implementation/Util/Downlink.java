@@ -73,9 +73,8 @@ public class Downlink extends Thread {
         // beim owner das Command ausführen
         if (owner != null) {
           owner.processMsg(tmpCommand);
-        }
-
-        // pausieren
+				}
+				// pausieren
         this.sleep(Downlink.LISTEN_DELAY);
       } catch (Exception e) {
         Debug.println(Debug.HIGH, "Downlink: error while listening :" + e);
@@ -83,7 +82,10 @@ public class Downlink extends Thread {
 
         if (owner != null) {
           owner.downlinkError();
-        }
+				}
+				else{
+         this.stop=true;
+				}
       }
     }
   }

@@ -58,7 +58,7 @@ public class ClientServant implements Util.DownlinkOwner {
      * @see Util.DownlinkOwner
      */
     public final void downlinkError() {
-        Debug.println(Debug.HIGH, "ClientServant: downlink error");
+        Debug.println(Debug.HIGH, "ClientServant: downlink error: stopping clientServant");
         this.stopClientServant();
     }
 

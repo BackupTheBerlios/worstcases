@@ -25,18 +25,20 @@ public class LogText extends java.awt.Frame {
      */
     private void initComponents() {
         logTextArea = new java.awt.TextArea("",logTextRows,logTextColumns,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY);
+        okButton = new java.awt.Button();
+        clearButton = new java.awt.Button();
         setLayout(
             new java.awt.GridBagLayout());
         setTitle(ChatGui.PRODUCT_NAME + " - Protokoll");
         setBackground(new java.awt.Color(204, 204, 204));
         setResizable(false);
-        java.awt.GridBagConstraints gridBagConstraints1;
         addWindowListener(
             new java.awt.event.WindowAdapter() {
                 public void windowClosing(java.awt.event.WindowEvent evt) {
                     exitForm(evt);
                 }
             });
+        java.awt.GridBagConstraints gridBagConstraints1;
         logTextArea.setBackground(java.awt.Color.white);
         logTextArea.setName("logTextArea");
         logTextArea.setEditable(false);
@@ -44,15 +46,63 @@ public class LogText extends java.awt.Frame {
             new java.awt.Font("SansSerif", 0, 11));
         logTextArea.setForeground(java.awt.Color.black);
         gridBagConstraints1 = new java.awt.GridBagConstraints();
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridwidth = 2;
+        gridBagConstraints1.gridheight = 1;
         add(logTextArea, gridBagConstraints1);
+        okButton.setFont(
+            new java.awt.Font("SansSerif", 0, 11));
+        okButton.setLabel("OK");
+        okButton.setName("channelMsgBuffer");
+        okButton.setBackground(java.awt.Color.lightGray);
+        okButton.setForeground(java.awt.Color.black);
+        okButton.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    okButtonActionPerformed(e);
+                }
+            });
+        gridBagConstraints1.gridx = 1;
+        gridBagConstraints1.gridy = 1;
+        gridBagConstraints1.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
+	add(okButton, gridBagConstraints1);
+        clearButton.setFont(
+            new java.awt.Font("SansSerif", 0, 11));
+        clearButton.setLabel("Löschen");
+        clearButton.setName("channelMsgBuffer");
+        clearButton.setBackground(java.awt.Color.lightGray);
+        clearButton.setForeground(java.awt.Color.black);
+        clearButton.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    clearButtonActionPerformed(e);
+                }
+            });
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 1;
+        gridBagConstraints1.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints1.anchor = java.awt.GridBagConstraints.WEST;
+	add(clearButton, gridBagConstraints1);
+    }
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent e) {
+      this.logTextArea.setText("");
+    }
+    
+    private void okButtonActionPerformed(java.awt.event.ActionEvent e) {
+      this.setVisible(false);
     }
 
     /** Schließen des Applikationsframes */
     private void exitForm(java.awt.event.WindowEvent evt) {
-        this.setVisible(false);
+      this.setVisible(false);
     }
 
     // Variables declaration - do not modify
+    java.awt.Button okButton;
+    java.awt.Button clearButton;    
     java.awt.TextArea logTextArea;
     // End of variables declaration
     private int logTextRows = 20;
