@@ -17,6 +17,7 @@ public class Server {
      * Diese Methode initialisiert den Server, indem neue Referenzen von channelAdministration, userAdministration, 
      * clientServantWatchDog und dataBaseIO erzeugt werden. Ausserdem werden die Benutzer- und Channeldaten geladen 
      * und ein ClientServantDog gestartet, um inaktive Clients aus dem System zu entfernen.
+     * Ruft listen() auf.
      */
     public void startServer() throws java.io.FileNotFoundException, java.io.IOException {
         this.channelAdministration = new ChannelAdministration();
@@ -25,7 +26,6 @@ public class Server {
         this.dataBaseIO.loadFromDisk();
         this.clientServantWatchDog=new ClientServantWatchDog(this);
         this.clientServantWatchDog.start();
-
         this.listen();
     }
 
@@ -34,6 +34,7 @@ public class Server {
     /** 
      * Stoppt den Server, indem die ClientServants durch eine Schleife mit der Methode removeFromClientServant
      * aus der ClientServantList enfernt werden.
+     * Setzt stop=true, um die Listen - Methode zu beenden.
      */
     public void stopServer() {
         this.stop=true;
@@ -45,8 +46,7 @@ public class Server {
     }
 
     /** 
-     * Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants und gibt die
-     * Anzahl der noch vorhandenen ClientServants aus.
+     * Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants.
      */
     public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
         if (this.clientServantList.removeElement(paramClientServant)) {
@@ -56,15 +56,18 @@ public class Server {
         }
     }
 
+    /**Gibt eine Aufzählung der aktiven ClientServants zurück*/
     public Enumeration getClientServantEnum(){
      return this.clientServantList.elements();
     }
  
-    /** In listen wird zuerst eine neue Referenz von ServerSocket angelegt.
+    /** In listen() wird zuerst ein neuer ServerSocket angelegt.
      *  In einer Schleife werden, solange der Thread nicht gestoppt wurde, bei ankommenden Verbindungenswünschen von Clients
      *  neue Clientservants erstellt, diese zur Liste der Servants hinzugefügt und gestartet.
      *  Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
      *  Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese durch try und catch abgefangen.
+     * Schleifendurchlauf, solange stop==true.
+     * Benutzt ClientServant.startClientServant() und addToClientServantList()
      */
     private void listen() {
         try {
@@ -95,7 +98,9 @@ public class Server {
 
     }
 
-    /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu. */
+    /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
+      * Benutzt ClientServant.setServer()
+      */
     public synchronized void addToClientServantList(ClientServant paramClientServant) {
         if (!this.clientServantList.contains(paramClientServant)) {
             this.clientServantList.addElement(paramClientServant);
@@ -105,6 +110,8 @@ public class Server {
         }
     }
 
+
+    /**Gibt die aktive ChannelAdministration zurück*/
     public ChannelAdministration getChannelAdministration() {
         return channelAdministration;
     }
@@ -129,6 +136,8 @@ public class Server {
      */
     private int LISTEN_QUEUE_LENGTH = 10;
     private ServerSocket serverSocket;
+
+    /**Flag, welches angibt, ob listen() weiter auf Verbindungen warten soll*/
     private boolean stop=false;
 
     /**

@@ -14,6 +14,7 @@ class DataBaseIO {
     
     /** 
      * Konstruktor, der die Attribute für die ChannelAdministration und UserAdministration setzt.
+     * Benutzt setChannelAdministration() und setUserAdministration().
      */
     public DataBaseIO(UserAdministration paramUserAdministration,ChannelAdministration paramChannelAdministration){
      this.setChannelAdministration(paramChannelAdministration);
@@ -21,8 +22,9 @@ class DataBaseIO {
     }
 
     /**
-     * konvertiert den Namen, das Password, das isAdmin - Flag und
-     * die Namen der für den Benutzer erlaubten Channels eines Userobjekts in einen String, wird von saveToDisk() verwendet
+     * Konvertiert den Namen, das Password, das isAdmin - Flag und
+     * die Namen der für den Benutzer erlaubten Channels eines Userobjekts in einen String, wird von saveToDisk() verwendet,
+     * Format des Strings: "name#password#true#channel1#channel2#channel3"
      */
     private String userToString(User paramUser) {
         String tmpString = paramUser.getName() + "#" + paramUser.getPassword() + "#" + paramUser.isAdmin();
@@ -35,8 +37,9 @@ class DataBaseIO {
     }
 
     /**
-     * konvertiert den von userToString() erzeugten String in ein Userobjekt,
-     * setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden
+     * Konvertiert den von userToString() erzeugten String in ein Userobjekt,
+     * setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden.
+     * Benutzt channelAdministration.getFromChannelListByName() und user.setAllowedChannelList().
      */
 
     private User stringToUser(String userSet) {
@@ -56,15 +59,17 @@ class DataBaseIO {
     }
 
     /**
-     * konvertiert den Namen und das isAllowedForGuests - Flag
-     * eines Channelobjekts in einen String, wird von saveToDisk() verwendet
+     * Konvertiert den Namen und das isAllowedForGuests - Flag
+     * eines Channelobjekts in einen String, wird von saveToDisk() verwendet.
+     * Format des Strings: "name#true"
      */
     private String channelToString(Channel paramChannel) {
         String tmpString = paramChannel.getName() + "#" + paramChannel.isAllowedForGuest();
         return tmpString;
     }
 
-    /** konvertiert den von channelToString() erzeugten String in ein Channelobjekt */
+    /** konvertiert den von channelToString() erzeugten String in ein Channelobjekt
+      */
     private Channel stringToChannel(String channelSet) {
         StringTokenizer tmpTokenizer = new StringTokenizer(channelSet, "#", false);
         String name = tmpTokenizer.nextToken();
@@ -77,7 +82,8 @@ class DataBaseIO {
 
     /**
      * Lädt die Benutzer- und Channeldaten aus userDBFile und channelDBFile
-     * mittels stringToUser(),stringToChannel und doLinks()
+     * mittels stringToUser(),stringToChannel,channelAdministration.setChannelList() und
+     * userAdministration.setUserList().
      */
     public synchronized void loadFromDisk() throws java.io.FileNotFoundException, java.io.IOException {
         String tmpString;
@@ -112,7 +118,8 @@ class DataBaseIO {
 
     /**
      * Speichert die Benutzer- und Channeldaten der aktuellen User(keine Gäste)- und Channelobjekte im System
-     * in userDBFile und channelDBFile mittels userToString(), channelToString()
+     * in userDBFile und channelDBFile mittels userToString(), channelToString().
+     * Benutzt channelAdministration.getChannelEnum() und userAdministration.getUserEnum()
      */
     public synchronized void saveToDisk() throws java.io.IOException {
         BufferedWriter tmpBufferedWriter = new BufferedWriter(
@@ -141,7 +148,7 @@ class DataBaseIO {
     }
 
     /**
-     * 
+     *  Setzt channelAdministration und benutzt channelAdministration.setDataBaseIO().
      */
     public void setChannelAdministration(ChannelAdministration paramChannelAdministration) {
         if (this.channelAdministration != paramChannelAdministration) {
@@ -156,6 +163,10 @@ class DataBaseIO {
             }
         }
     }
+
+    /*
+     * Setzt userAdministration und benutzt userAdministration.setDataBaseIO().
+     */
 
     public void setUserAdministration(UserAdministration paramUserAdministration) {
         if (this.userAdministration != paramUserAdministration) {
