@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Enumeration;
 import Util.Debug.Debug;
 
+
 /**
  * Diese Klasse ist der Chat-Server. Der Server horcht an seinem
  * Port, und wenn ein Client eine Verbindungsanfrage stellt, startet er einen
@@ -13,169 +14,201 @@ import Util.Debug.Debug;
  * Server wieder an, an seinem Port zu horchen und wartet auf neue Client-Verbindungswünsche.
  */
 public class Server {
-    /**
-     * Diese Methode initialisiert den Server, indem neue Referenzen von channelAdministration, userAdministration,
-     * clientServantWatchDog und dataBaseIO erzeugt werden. Ausserdem werden die Benutzer- und Channeldaten geladen
-     * und ein ClientServantDog gestartet, um inaktive Clients aus dem System zu entfernen. Ruft listen() auf.
-     */
-    public void startServer() {
-        this.channelAdministration = new ChannelAdministration();
-        this.userAdministration = new UserAdministration(this.channelAdministration);
-        this.dataBaseIO = new DataBaseIO(this.userAdministration, this.channelAdministration);
-        this.clientServantWatchDog = new ClientServantWatchDog(this);
+
+  /**
+   * Diese Methode initialisiert den Server, indem neue Referenzen von channelAdministration, userAdministration,
+   * clientServantWatchDog und dataBaseIO erzeugt werden. Ausserdem werden die Benutzer- und Channeldaten geladen
+   * und ein ClientServantDog gestartet, um inaktive Clients aus dem System zu entfernen. Ruft listen() auf.
+   */
+  public void startServer() {
+
+    this.channelAdministration = new ChannelAdministration();
+    this.userAdministration =
+      new UserAdministration(this.channelAdministration);
+    this.dataBaseIO = new DataBaseIO(this.userAdministration,
+                                     this.channelAdministration);
+    this.clientServantWatchDog = new ClientServantWatchDog(this);
+
+    try {
+      this.dataBaseIO.loadFromDisk();
+
+      // wird nur ausgeführt, falls loadFromDisk() keine Exception wirft
+      this.clientServantWatchDog.start();
+      this.listen();
+    } catch (java.io.FileNotFoundException e) {
+      Debug.println(Debug.HIGH,
+                    this + ": DataBase IO could not load database:" + e);
+    } catch (java.io.IOException e) {
+      Debug.println(Debug.HIGH,
+                    this + ": DataBase IO could not load database:" + e);
+    }
+
+    Debug.println(Debug.MEDIUM, this + ": started");
+  }
+
+  private ClientServantWatchDog clientServantWatchDog;
+
+  /**
+   * Stoppt den Server, indem die ClientServants durch eine Schleife mit der Methode removeFromClientServant
+   * aus der ClientServantList enfernt werden. Setzt stop=true, um die Listen-Methode zu beenden.
+   */
+  public void stopServer() {
+
+    this.dataBaseIO.saveToDisk();
+
+    this.stop = true;
+    this.clientServantWatchDog.stop = true;
+
+    Enumeration enum = this.getClientServantEnum();
+
+    while (enum.hasMoreElements()) {
+      this.removeFromClientServantList((ClientServant) enum.nextElement());
+    }
+
+    Debug.println(Debug.MEDIUM, this + ": Server stopped");
+  }
+
+  /** Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants. */
+  public void removeFromClientServantList(ClientServant paramClientServant) {
+
+    if (paramClientServant != null) {
+      if (this.clientServantList.removeElement(paramClientServant)) {
+        paramClientServant.setServer(null);
+        Debug.println(Debug.MEDIUM,
+                      this + ": removed: " + paramClientServant);
+        Debug.println(Debug.MEDIUM,
+                      this + ": " + this.clientServantList.size()
+                      + " ClientServants active");
+      }
+    }
+  }
+
+  /** Gibt eine Aufzählung der aktiven ClientServants zurück. */
+  public Enumeration getClientServantEnum() {
+    return Util.Helper.vectorCopy(this.clientServantList).elements();
+  }
+
+  public DataBaseIO getDataBaseIO() {
+    return this.dataBaseIO;
+  }
+
+  /**
+   * In listen() wird zuerst ein neuer ServerSocket angelegt. In einer Schleife werden, solange der Thread nicht gestoppt
+   * wurde, bei ankommenden Verbindungenswünschen von Clients
+   * neue Clientservants erstellt, diese zur Liste der Servants hinzugefügt und gestartet.
+   * Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
+   * Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese durch try und catch abgefangen.
+   * Schleifendurchlauf, solange stop==true. Benutzt ClientServant.startClientServant() und addToClientServantList().
+   */
+  private void listen() {
+
+    try {
+      this.serverSocket = new ServerSocket(this.SERVER_PORT,
+                                           this.LISTEN_QUEUE_LENGTH);
+
+      Debug.println(Debug.MEDIUM,
+                    this + ": Server started on "
+                    + this.serverSocket.getInetAddress() + ":"
+                    + this.serverSocket.getLocalPort());
+
+      while (!stop) {
         try {
-            this.dataBaseIO.loadFromDisk();
-            // wird nur ausgeführt, falls loadFromDisk() keine Exception wirft
-            this.clientServantWatchDog.start();
-            this.listen();
-        }
-        catch (java.io.FileNotFoundException e) {
-            Debug.println(Debug.HIGH, this + ": DataBase IO could not load database:" + e);
-        }
-        catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, this + ": DataBase IO could not load database:" + e);
-        }
-        Debug.println(Debug.MEDIUM, this + ": started");
-    }
+          Socket tmpSocket = serverSocket.accept();
 
-    private ClientServantWatchDog clientServantWatchDog;
+          Debug.println(Debug.MEDIUM,
+                        this + ": incoming connection from "
+                        + tmpSocket.getInetAddress() + ":"
+                        + tmpSocket.getPort());
 
-    /**
-     * Stoppt den Server, indem die ClientServants durch eine Schleife mit der Methode removeFromClientServant
-     * aus der ClientServantList enfernt werden. Setzt stop=true, um die Listen-Methode zu beenden.
-     */
-    public void stopServer() {
-        this.dataBaseIO.saveToDisk();
-        this.stop = true;
-        this.clientServantWatchDog.stop = true;
-        Enumeration enum = this.getClientServantEnum();
-        while (enum.hasMoreElements()) {
-            this.removeFromClientServantList((ClientServant)enum.nextElement());
-        }
-        Debug.println(Debug.MEDIUM, this + ": Server stopped");
-    }
+          ClientServant tmpClientServant = new ClientServant(tmpSocket, this,
+                                             userAdministration);
 
-    /** Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants. */
-    public void removeFromClientServantList(ClientServant paramClientServant) {
-        if (paramClientServant != null) {
-            if (this.clientServantList.removeElement(paramClientServant)) {
-                paramClientServant.setServer(null);
-                Debug.println(Debug.MEDIUM, this + ": removed: " + paramClientServant);
-                Debug.println(Debug.MEDIUM, this + ": " + this.clientServantList.size() + " ClientServants active");
-            }
-        }
-    }
-
-    /** Gibt eine Aufzählung der aktiven ClientServants zurück. */
-    public Enumeration getClientServantEnum() {
-        return Util.Helper.vectorCopy(this.clientServantList).elements();
-    }
-
-    public DataBaseIO getDataBaseIO() {
-        return this.dataBaseIO;
-    }
-
-    /**
-     * In listen() wird zuerst ein neuer ServerSocket angelegt. In einer Schleife werden, solange der Thread nicht gestoppt
-     * wurde, bei ankommenden Verbindungenswünschen von Clients
-     * neue Clientservants erstellt, diese zur Liste der Servants hinzugefügt und gestartet.
-     * Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
-     * Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese durch try und catch abgefangen.
-     * Schleifendurchlauf, solange stop==true. Benutzt ClientServant.startClientServant() und addToClientServantList().
-     */
-    private void listen() {
-        try {
-            this.serverSocket = new ServerSocket(this.SERVER_PORT, this.LISTEN_QUEUE_LENGTH);
-            Debug.println(Debug.MEDIUM, this + ": Server started on " + this.serverSocket.getInetAddress() + ":" +
-                this.serverSocket.getLocalPort());
-                while (!stop) {
-                    try {
-                        Socket tmpSocket = serverSocket.accept();
-                        Debug.println(Debug.MEDIUM, this + ": incoming connection from " + tmpSocket.getInetAddress() + ":" +
-                            tmpSocket.getPort());
-                            ClientServant tmpClientServant = new ClientServant(tmpSocket, this, userAdministration);
-                        this.addToClientServantList(tmpClientServant);
-                        tmpClientServant.startClientServant();
-                    } catch (java.io.IOException e) {
-                        Debug.println(this + ": error while listening: " + e);
-                    }
-            }
+          this.addToClientServantList(tmpClientServant);
+          tmpClientServant.startClientServant();
         } catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, this + ": error opening socket:" + e);
+          Debug.println(this + ": error while listening: " + e);
         }
-        try {
-            this.serverSocket.close();
-            Debug.println(Debug.MEDIUM, this + ": ServerSocket closed");
-        } catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, this + ": error closing serverSocket: " + e);
-        }
+      }
+    } catch (java.io.IOException e) {
+      Debug.println(Debug.HIGH, this + ": error opening socket:" + e);
     }
 
-    /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu. Benutzt ClientServant.setServer(). */
-    public void addToClientServantList(ClientServant paramClientServant) {
-        if (paramClientServant != null) {
-            if (!this.clientServantList.contains(paramClientServant)) {
-                this.clientServantList.addElement(paramClientServant);
-                paramClientServant.setServer(this);
-                Debug.println(Debug.MEDIUM, this + ": added: " + paramClientServant);
-                Debug.println(Debug.MEDIUM, this + ": " + this.clientServantList.size() + " ClientServants active");
-            }
-        }
+    try {
+      this.serverSocket.close();
+      Debug.println(Debug.MEDIUM, this + ": ServerSocket closed");
+    } catch (java.io.IOException e) {
+      Debug.println(Debug.HIGH, this + ": error closing serverSocket: " + e);
     }
+  }
 
-    /** Gibt die aktive ChannelAdministration zurück. */
-    public ChannelAdministration getChannelAdministration() {
-        return channelAdministration;
+  /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu. Benutzt ClientServant.setServer(). */
+  public void addToClientServantList(ClientServant paramClientServant) {
+
+    if (paramClientServant != null) {
+      if (!this.clientServantList.contains(paramClientServant)) {
+        this.clientServantList.addElement(paramClientServant);
+        paramClientServant.setServer(this);
+        Debug.println(Debug.MEDIUM, this + ": added: " + paramClientServant);
+        Debug.println(Debug.MEDIUM,
+                      this + ": " + this.clientServantList.size()
+                      + " ClientServants active");
+      }
     }
+  }
 
-    /**
-     * Eine Liste der aktiven ClientServants des Servers.
-     * @link aggregation
-     *     @associates <{ClientServant}>
-     * @clientCardinality 1
-     * @supplierCardinality 0..
-     */
-    private Vector clientServantList = new Vector();
+  /** Gibt die aktive ChannelAdministration zurück. */
+  public ChannelAdministration getChannelAdministration() {
+    return channelAdministration;
+  }
 
-    /** Der Port, auf dem der Server sein ServerSocket öffnet und auf Anfragen der Clients horcht. */
-    private int SERVER_PORT = 1500;
+  /**
+   * Eine Liste der aktiven ClientServants des Servers.
+   * @link aggregation
+   *     @associates <{ClientServant}>
+   * @clientCardinality 1
+   * @supplierCardinality 0..
+   */
+  private Vector clientServantList = new Vector();
 
-    /**
-     * Die Länge der Warteschlange, in der Verbindungswünsche von Clients
-     * zwischengespeichert werden, die nicht sofort verarbeitet werden können.
-     * Verbindungswünsche, die nicht mehr in die Warteschlange  passen, werden
-     * automatisch abgewiesen (siehe auch java.net.ServerSocket).
-     */
-    private int LISTEN_QUEUE_LENGTH = 10;
+  /** Der Port, auf dem der Server sein ServerSocket öffnet und auf Anfragen der Clients horcht. */
+  private int SERVER_PORT = 1500;
 
-    /** Der ServerSocket. */
-    private ServerSocket serverSocket;
+  /**
+   * Die Länge der Warteschlange, in der Verbindungswünsche von Clients
+   * zwischengespeichert werden, die nicht sofort verarbeitet werden können.
+   * Verbindungswünsche, die nicht mehr in die Warteschlange  passen, werden
+   * automatisch abgewiesen (siehe auch java.net.ServerSocket).
+   */
+  private int LISTEN_QUEUE_LENGTH = 10;
 
-    /** Flag, welches angibt, ob listen() weiter auf Verbindungen warten soll. */
-    private boolean stop = false;
+  /** Der ServerSocket. */
+  private ServerSocket serverSocket;
 
-    /**
-     * Die Datenbank, in der die Informationen über User und Channel gespeichert
-     * werden. Von dort werden sie beim Start des Servers ausgelesen.
-     * @link aggregation
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     */
-    private DataBaseIO dataBaseIO;
+  /** Flag, welches angibt, ob listen() weiter auf Verbindungen warten soll. */
+  private boolean stop = false;
 
-    /**
-     * Die Benutzerverwaltung.
-     * @link aggregation
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     */
-    private UserAdministration userAdministration;
+  /**
+   * Die Datenbank, in der die Informationen über User und Channel gespeichert
+   * werden. Von dort werden sie beim Start des Servers ausgelesen.
+   * @link aggregation
+   * @clientCardinality 1
+   * @supplierCardinality 1
+   */
+  private DataBaseIO dataBaseIO;
 
-    /**
-     * Die channelverwaltung.
-     * @link aggregation
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     */
-    private ChannelAdministration channelAdministration;
+  /**
+   * Die Benutzerverwaltung.
+   * @link aggregation
+   * @clientCardinality 1
+   * @supplierCardinality 1
+   */
+  private UserAdministration userAdministration;
+
+  /**
+   * Die channelverwaltung.
+   * @link aggregation
+   * @clientCardinality 1
+   * @supplierCardinality 1
+   */
+  private ChannelAdministration channelAdministration;
 }
