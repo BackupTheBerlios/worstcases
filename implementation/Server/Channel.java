@@ -44,7 +44,6 @@ class Channel {
      * user.removeFromAllowedChannelList(this)
      */
     public synchronized void setAllowedForGuest(boolean b) {
-        ClientServant tmpClientServant;
         boolean oldValue = this.isAllowedForGuest();
         this.allowedForGuest = b;
         if (oldValue != b) {
@@ -57,10 +56,6 @@ class Channel {
                     tmpUser = (User)enum.nextElement();
                     if (tmpUser.isGuest()) {
                         tmpUser.removeFromAllowedChannelList(this);
-                        tmpClientServant = tmpUser.getClientServant();
-                        if (tmpClientServant != null) {
-                            tmpClientServant.sendErrorMsg("Channel " + this.getName() + " nicht mehr für Gäste freigegeben!");
-                        }
                     }
                 }
             }
@@ -129,10 +124,15 @@ class Channel {
      * das entsprechende User-Objekt.
      */
     public void addToAllowedUserList(User paramUser) {
+        ClientServant tmpClientServant;
         if (paramUser != null) {
             if (!this.allowedUserList.contains(paramUser)) {
                 this.allowedUserList.addElement(paramUser);
                 paramUser.addToAllowedChannelList(this);
+                tmpClientServant = paramUser.getClientServant();
+                if (tmpClientServant != null) {
+                    tmpClientServant.sendErrorMsg("Channel " + this.getName() + " freigegeben!");
+                }
             }
         }
     }
@@ -142,10 +142,15 @@ class Channel {
      * Benachrichtigt mittels User.removeFromAllowedChannelList() das entsprechende User-Objekt.
      */
     public void removeFromAllowedUserList(User paramUser) {
+        ClientServant tmpClientServant;
         if (paramUser != null) {
             // removeElement() gibt true zurück, falls paramUser entfernt wurde
             if (this.allowedUserList.removeElement(paramUser)) {
                 paramUser.removeFromAllowedChannelList(this);
+                tmpClientServant = paramUser.getClientServant();
+                if (tmpClientServant != null) {
+                    tmpClientServant.sendErrorMsg("Channel " + this.getName() + " freigegeben!");
+                }
             }
         }
     }
