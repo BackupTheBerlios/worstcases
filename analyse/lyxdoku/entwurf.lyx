@@ -216,9 +216,9 @@ kation, da grafische Oberflächen i.A.
 Bemerkungen
 \layout Standard
 
-Um die geforderte Verwendung eines CASE-Tools (hier TogetherJ 4.2) nicht
- ad absurdum zu führen, beschränken wir uns in der Darstellung in diesem
- Dokument auf wichtige Details der entworfenen Struktur.
+Um die sinnvolle Verwendung eines CASE-Tools (hier TogetherJ 4.2) nicht ad
+ absurdum zu führen, beschränken wir uns in der Darstellung in diesem Dokument
+ auf wichtige Details der entworfenen Struktur.
  Der komplette Umfang des Entwurfes wird aus den von TogetherJ erstellten
  Dateien ersichtlich, die auf unserer Homepage 
 \begin_inset LatexCommand \url{http://www.tu-bs.de/~y0013570}
@@ -249,8 +249,8 @@ Dieses Aktivitätsdiagramm veranschaulicht, wie eine Chat-Sitzung beispielhaft
 
 Der Benutzer startet den Chat-Client und meldet sich mit seinen Benutzerdaten
  an.
- Ab nun kümmert sich ein ClientServant um ihn, indem er zuerst diese Benutzerdat
-en überprüft.
+ Von nun an kümmert sich ein ClientServant um ihn, indem er zuerst diese
+ Benutzerdaten überprüft.
  Sind sie korrekt, sendet er eine Liste der verfügbaren Channel an den Benutzer.
  Dieser sucht sich nun den Channel aus, den er betreten möchte, woraufhin
  ihm sein ClientServant eine Liste der in diesem Channel anwesenden Benutzer
@@ -861,8 +861,8 @@ stopClientServant() Stoppt den ClientServant.
 AdminClientServant
 \layout Standard
 
-Diese vom ClientServant vererbte Klasse kümmert sich um die Anfragen, die
- von einem Client an den Server gestellt werden.
+Diese vom ClientServant abgeleitete Klasse kümmert sich um die Anfragen,
+ die von einem Client an den Server gestellt werden.
  Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
  AdminClientServant statt von einem normalen ClientServant "bedient".
  Ein AdminClientServant funktioniert genauso wie ein ClientServant, kann
@@ -1162,7 +1162,7 @@ maxUsers Maximale Anzahl von eingeloggten Benutzern im System.
 
 private\SpecialChar ~
 int\SpecialChar ~
-numCurrentUsers Anzahl der eingeloggten Benutzer(registrierte
+numCurrentUsers Anzahl der eingeloggten Benutzer (registrierte
  und Gäste) im System.
 \layout Paragraph
 
@@ -2037,7 +2037,7 @@ Channel löschen
 Anhang
 \layout Subsection
 
-Liste der Abbildungen:
+Liste der Abbildungen
 \layout Standard
 
 
@@ -2057,13 +2057,13 @@ CASE: Computer Aided Software Engineering
 Channel: Konferenzraum, thematisch abgegrenzter Kommunikationsbereich
 \layout Itemize
 
-Chat: textbasierte Kommunikation über ein Netzwerk
+Chat: Textbasierte Kommunikation über ein Netzwerk
 \layout Itemize
 
 GUI: Graphical User Interface, eine grafische Oberfläche für den Benutzer
 \layout Itemize
 
-JAVA: objektorientierte Programmiersprache von SUN
+JAVA: Objektorientierte Programmiersprache von SUN
 \layout Itemize
 
 UML: Unified Modelling Language von der OMG (Object Management Group)
