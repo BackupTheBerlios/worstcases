@@ -14,6 +14,9 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      */
     public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server paramServer,
         ChannelAdministration paramChannelAdministration, UserAdministration paramUserAdministration, User paramUser) {
+
+
+
             this.setDownlink(paramDownlink);
             this.uplink = paramUplink;
             this.setServer(paramServer);
@@ -22,6 +25,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             this.setUser(paramUser);
             System.out.println("AdminClient started");
     }
+
 
     /**
      * Sendet eine Liste aller Channelnamen. Benutzt sendCommand() und erzeugt ein neues SetChannelListCommand - Objekt.
