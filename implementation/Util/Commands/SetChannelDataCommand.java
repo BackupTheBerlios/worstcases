@@ -5,10 +5,16 @@ import java.util.Vector;
 
 /**
  * Wird von einem AdminClientServant als Antwort auf ein GetChannelDataRequestCommand()
- * gesendet, enthält die Channeldaten des entsprechenden Channels. Ruft beim AdminClient setChannelDataRequest() auf
+ * gesendet, enthält die Channeldaten des entsprechenden Channels. Ruft beim AdminClient 
+ * setChannelDataRequest() auf
  */
+
 public class SetChannelDataCommand implements Command {
-    /** Setzt die entsprechenden Attribute. */
+    /** Setzt die entsprechenden Attribute. Der Name des Channels (paramChannelName, Ist der
+       * Channel für Gäste zugänglich? (paramIsAllowedForGuest), Liste der Benutzer, die den
+       * Channel betreten dürfen (paramUserNames).
+       */
+
     public SetChannelDataCommand(String paramChannelName, boolean paramIsAllowedForGuest, Vector paramUserNames) {
         this.channelName = paramChannelName;
         this.isAllowedForGuest = paramIsAllowedForGuest;
@@ -28,6 +34,6 @@ public class SetChannelDataCommand implements Command {
     public void execute(Object target) {
         if (target instanceof AdminClient) {
             ((AdminClient)target).setChannelData(channelName, isAllowedForGuest, userNames);
-        } // XXX: else Exception auslösen?
+        } 
     }
 }

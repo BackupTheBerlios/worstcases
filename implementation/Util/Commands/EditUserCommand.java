@@ -6,14 +6,19 @@ import java.util.Vector;
 import Server.AdminClientServant;
 
 /**
- * Wird von einem AdminClient erzeugt,
- * Ändert einen bestehenden User und
- * ruft editUser beim AdminClientServant auf.
+ * Wird von einem AdminClient erzeugt, um Benutzerdaten eines Benutzers zu 
+ * verändern, indem die Methode editUser der Klasse AdminClientServant
+ * ausgeführt wird.
  */
 
 public class EditUserCommand implements Command {
 
-    /**Setzt die Attribute.*/
+    /**Setzt die neuen Attribute des Benutzers. paramOldName ist der alte Name des Benutzers,
+       * der zur Identifizierung benötigt wird. Es kann der Benutzername, das Passwort, sowie
+       * die Channels, auf die der entsprechende Benutzer Zugriff hat, verändert werden. Außer-
+       * können dem Benutzer Administrationsrechte gegeben, bzw. entzogen werden.
+       */
+
     public EditUserCommand(String paramOldName, String paramName, String paramPassword,boolean paramIsAdmin, Vector paramAllowedChannelNames) {
         this.oldName=paramOldName;
         this.name = paramName;
@@ -36,7 +41,9 @@ public class EditUserCommand implements Command {
     /**Liste der Namen der Channels, die der Benutzer betreten darf.*/
     private Vector allowedChannelNames;
 
-    /**Führt adminClientServant.editUser() mit den Attributen des Commands aus.*/
+    /**Führt adminClientServant.editUser() mit den Attributen des Commands aus, also
+       * die Methode editUser der Klasse adminClientServant.
+       */
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).editUser(oldName, name, password, isAdmin, allowedChannelNames);

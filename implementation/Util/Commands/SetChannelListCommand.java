@@ -4,7 +4,8 @@ import Client.AdminClient;
 import java.util.Vector;
 
 /**
-* Setzt beim AdminClient die Namensliste aller verfügbaren Channels.
+* Setzt beim AdminClient die Namensliste aller verfügbaren Channels, mit der Methode
+* setChannelList.
 */
 
 public class SetChannelListCommand implements Command {
@@ -16,9 +17,11 @@ public class SetChannelListCommand implements Command {
     }
 
     /**Namensliste aller Channels.*/
+
     Vector channelNames = new Vector();
 
     /**Führt beim AdminClient setChannelList() aus.*/
+
     public void execute(Object target) {
         if (target instanceof AdminClient) {
             ((AdminClient)target).setChannelList(channelNames);

@@ -3,28 +3,33 @@ package Util.Commands;
 import Server.ClientServant;
 
 /**
-* Meldet einen Gast an, wird von einem Client gesendet.
-*/
+* Dieses Command wird von einem Client gesendet, um einen Gast anzumelden.*/
 
 
 public class LoginGuestCommand implements Command {
+
     /**
-     * Konstruktor. Erzeugt einen Login-Befehl mit den zur Anmeldung eines
-     * Users am Server benötigten Daten. Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
-     * @param name der Benutzername.
+     * Der Konstruktor erzeugt einen Login-Befehl mit den zur Anmeldung eines
+     * Users am Server benötigten Daten (hier nur den Namen des Gastes. 
+     * Dieser Befehl kann nur von einem ClientServant durch die Methode
+     * loginAsGuest  verarbeitet werden.
+
+     * @param name der Benutzername, den der Gast benutzen möchte.
      */
+
     public LoginGuestCommand(String paramName) {
         this.name = paramName;
     }
 
-    /** Der Benutzername. */
+    /** Der Benutzername des Gastes. */
     String name;
 
 
     /**Ruft beim ClientServant loginAsGuest() auf.*/
+
     public void execute(Object target) {
         if (target instanceof ClientServant) {
             ((ClientServant)target).loginAsGuest(name);
-        } // XXX: else Exception auslösen?
-    }
+        }     
+   }
 }

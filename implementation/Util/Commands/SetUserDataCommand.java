@@ -11,8 +11,11 @@ import java.util.Vector;
 
 public class SetUserDataCommand implements Command {
     /**
-     * Setzt die Attribute.
+     * Setzt die Attribute. Benutzername (paramUserName), Passwort des Benutzers
+     * (paramUserPassword), Administrationsrechte? (paramIsAdmin), Liste der
+     * Channels, die der Benutzer betreten darf (paramChannelNames).
      */
+
     public SetUserDataCommand(String paramUserName,String paramUserPassword,boolean paramIsAdmin,Vector paramChannelNames) {
         this.userName=paramUserName;
 	this.password=paramUserPassword;
@@ -22,8 +25,10 @@ public class SetUserDataCommand implements Command {
 
     /** Der Benutzername. */
     String userName;
+
     /** Das Passwort.*/
     String password;
+
     /**Admin-Status.*/
     boolean isAdmin=false;
     
@@ -31,9 +36,10 @@ public class SetUserDataCommand implements Command {
     Vector channelNames;
 
     /**Führt AdminClient.setUserDataRequest() aus.*/
+
     public void execute(Object target) {
         if (target instanceof AdminClient) {
             ((AdminClient)target).setUserData(userName,password,isAdmin,channelNames);
-        } // XXX: else Exception auslösen?
+        } 
     }
 }

@@ -6,14 +6,17 @@ import Client.Client;
 
 /**
 * Wird von einem ClientServant gesendet, falls ein joinChannel() Aufruf
-* fehlschlägt.
+* fehlschlägt, also falls es nicht möglich ist, den Channel zu betreten, z.Bspl.
+* wenn der Benutzer den Channel nicht betreten darf.
 */
 
 public class JoinChannelErrorCommand implements Command {
-    /**Führt beim Client joinChannelError() auf.*/
+
+    /**Führt beim Client joinChannelError() auf. */
     public void execute(Object target) {
+
         if (target instanceof Client) {
             ((Client)target).joinChannelError();
-        } // XXX: else Exception auslösen?
+        } 
     }
 }
