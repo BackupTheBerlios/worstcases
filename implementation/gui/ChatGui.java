@@ -56,6 +56,10 @@ public class ChatGui extends java.applet.Applet {
 
     public synchronized void setCurrentChannelData(String name, Vector userNames) {
         this.channelChoice.select(name);
+        String selectedUser = new String();
+        if (this.userList.getSelectedItem() != null) {
+          selectedUser = this.userList.getSelectedItem();
+        }
         this.userList.removeAll();
         Enumeration enum;
         if (userNames != null) {
@@ -67,10 +71,14 @@ public class ChatGui extends java.applet.Applet {
         }
         this.userList.add("Alle");
         while (enum.hasMoreElements()) {
-            this.userList.select(0);
             this.userList.add((String)enum.nextElement());
         }
         this.userList.select(0);
+        for (int i = 0; i < userList.getItemCount(); i++) {
+          if (userList.getItem(i).compareTo(selectedUser)==0) {
+            this.userList.select(i);
+          }
+        }
     }
 
     public synchronized void setChannelList(Vector channelNames) {
@@ -132,12 +140,12 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void sendMsgFromChannel(String fromName, String msg) {
-        this.chatText.append(fromName + ": " + msg + "\n");
+        this.chatText.append(Util.Helper.wordWrap(fromName + ": " + msg + "\n", chatText.getColumns()));
         this.chatText.setCaretPosition(this.chatText.getText().length());
     }
 
     public synchronized void sendMsgFromUser(String fromName, String msg) {
-        this.chatText.append(fromName + " flüstert: " + msg + "\n");
+        this.chatText.append(Util.Helper.wordWrap(fromName + " flüstert: " + msg + "\n", chatText.getColumns()));
         this.chatText.setCaretPosition(this.chatText.getText().length());
     }
 
@@ -582,7 +590,7 @@ public class ChatGui extends java.applet.Applet {
         }
         else {
             this.adminClient.sendMsgToUser(this.userList.getSelectedItem(), this.msg.getText());
-            this.chatText.append("Flüstern an " + this.userList.getSelectedItem() + ": " + this.msg.getText() + "\n");
+            this.chatText.append(Util.Helper.wordWrap("Flüstern an " + this.userList.getSelectedItem() + ": " + this.msg.getText() + "\n", chatText.getColumns()));
             this.userList.select(0);
         }
         this.msg.setText("");
