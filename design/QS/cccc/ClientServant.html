@@ -1,0 +1,246 @@
+<HTML><HEAD><TITLE>
+Detailed report on module ClientServant
+</TITLE>
+</HEAD>
+<BODY>
+<H1><A NAME="summary">Detailed report on module ClientServant</A></H1>
+<TABLE BORDER WIDTH=100%>
+<TR>
+<TH BGCOLOR="AQUA" WIDTH=70%>Metric</TH><TH BGCOLOR="AQUA" WIDTH=10%>Tag</TH><TH BGCOLOR="AQUA" WIDTH=10%>Overall</TH><TH BGCOLOR="AQUA" WIDTH=10%>Per Function</TH></TR>
+<TR>
+<TD>Lines of Code</TD><TD>LOC</TD><TD ALIGN=RIGHT>   101</TD><TD ALIGN=RIGHT>******</TD></TR>
+<TR>
+<TD>McCabe's Cyclomatic Number</TD><TD>MVG</TD><TD ALIGN=RIGHT>     5</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>******</STRONG></TD></TR>
+<TR>
+<TD>Lines of Comment</TD><TD>COM</TD><TD ALIGN=RIGHT>    83</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
+<TR>
+<TD>LOC/COM</TD><TD>L_C</TD><TD ALIGN=RIGHT> 1.217</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>MVG/COM</TD><TD>M_C</TD><TD ALIGN=RIGHT> 0.060</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Weighted Methods per Class ( &nbsp;weighting = unity&nbsp;)</TD><TD>WMC1</TD><TD ALIGN=RIGHT>    17</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Weighted Methods per Class ( &nbsp;weighting = visible&nbsp;)</TD><TD>WMCv</TD><TD ALIGN=RIGHT>     0</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Depth of Inheritance Tree</TD><TD>DIT</TD><TD ALIGN=RIGHT>     1</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Number of Children</TD><TD>NOC</TD><TD ALIGN=RIGHT>     1</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Coupling between objects</TD><TD>CBO</TD><TD ALIGN=RIGHT>    11</TD><TD>&nbsp;</TD></TR>
+<TR>
+<TD>Information Flow measure ( &nbsp;inclusive&nbsp;)</TD><TD>IF4</TD><TD ALIGN=RIGHT BGCOLOR="YELLOW"><EM>   576</EM></TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
+<TR>
+<TD>Information Flow measure ( &nbsp;visible&nbsp;)</TD><TD>IF4v</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>   576</STRONG></TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
+<TR>
+<TD>Information Flow measure ( &nbsp;concrete&nbsp;)</TD><TD>IF4c</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
+</TABLE>
+<H2><A NAME="modext">Definitions and Declarations</A></H2>
+<TABLE BORDER WIDTH=100%><TR>
+<TD WIDTH=50%>Description</TD><TH BGCOLOR="AQUA" WIDTH=10%>LOC</TH><TH BGCOLOR="AQUA" WIDTH=10%>MVG</TH><TH BGCOLOR="AQUA" WIDTH=10%>COM</TH><TH BGCOLOR="AQUA" WIDTH=10%>L_C</TH><TH BGCOLOR="AQUA" WIDTH=10%>M_C</TH><TR>
+<TD>definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        15">Server/ClientServant.java:15</A></CODE><BR>
+</TD>
+<TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>    26</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR><TD HEIGHT=12 COLSPAN=6></TD></TR>
+</TR></TABLE>
+<H2><A NAME="proc">Functions</A></H2>
+<TABLE BORDER WIDTH=100%><TR>
+<TD WIDTH=50%>Function prototype</TD><TH BGCOLOR="AQUA" WIDTH=10%>LOC</TH><TH BGCOLOR="AQUA" WIDTH=10%>MVG</TH><TH BGCOLOR="AQUA" WIDTH=10%>COM</TH><TH BGCOLOR="AQUA" WIDTH=10%>L_C</TH><TH BGCOLOR="AQUA" WIDTH=10%>M_C</TH><TR>
+<TD>ClientServant( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        28">Server/ClientServant.java:28</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>ClientServant( &nbsp;Socket, &nbsp;Server, &nbsp;UserAdministration&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        20">Server/ClientServant.java:20</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     6</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>becomeAdminClientServant( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       100">Server/ClientServant.java:100</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>    10</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     5</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>joinChannel( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       125">Server/ClientServant.java:125</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     5</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>leaveChannel( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       134">Server/ClientServant.java:134</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>loginGuest( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        89">Server/ClientServant.java:89</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     5</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>loginUser( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        72">Server/ClientServant.java:72</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>logoutUser( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       117">Server/ClientServant.java:117</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>processMsg( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        53">Server/ClientServant.java:53</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>    13</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     5</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendChannelData( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       182">Server/ClientServant.java:182</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendMsgFromChannel( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       155">Server/ClientServant.java:155</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendMsgFromUser( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       162">Server/ClientServant.java:162</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendMsgToChannel( &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       142">Server/ClientServant.java:142</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendMsgToUser( &nbsp;String, &nbsp;String&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       169">Server/ClientServant.java:169</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     7</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>sendUserData( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       190">Server/ClientServant.java:190</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>startClientServant( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        34">Server/ClientServant.java:34</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR>
+<TD>stopClientServant( &nbsp;&nbsp;)<BR>
+definition &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        46">Server/ClientServant.java:46</A></CODE><BR>
+<BR>
+</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TR><TD HEIGHT=12 COLSPAN=6></TD></TR>
+</TR></TABLE>
+<H2><A NAME="structdet">Relationships</A></H2>
+<TABLE BORDER WIDTH=100%>
+<TR><TH WIDTH=50%>Clients</TH><TH WIDTH=50%>Suppliers</TH></TR>
+<TR>
+<TD WIDTH=50%>
+AdminClientServant [CV] <BR>
+extends &nbsp;
+<CODE><A HREF="cccc_src.html#Server/AdminClientServant.java:        11">Server/AdminClientServant.java:11</A></CODE><BR>
+<BR>
+<BR>
+Server [V] <BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/Server.java:        53">Server/Server.java:53</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/Server.java:        80">Server/Server.java:80</A></CODE><BR>
+<BR>
+<BR>
+User [V] <BR>
+return type &nbsp;
+<CODE><A HREF="cccc_src.html#Server/User.java:        52">Server/User.java:52</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/User.java:        56">Server/User.java:56</A></CODE><BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/User.java:       118">Server/User.java:118</A></CODE><BR>
+<BR>
+<BR>
+&nbsp;
+</TD>
+<TD WIDTH=50%>
+Downlink [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       205">Server/ClientServant.java:205</A></CODE><BR>
+<BR>
+<BR>
+DownlinkOwner [CV] <BR>
+implements &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        15">Server/ClientServant.java:15</A></CODE><BR>
+<BR>
+<BR>
+Server [V] <BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        20">Server/ClientServant.java:20</A></CODE><BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       225">Server/ClientServant.java:225</A></CODE><BR>
+<BR>
+<BR>
+Socket [V] <BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        20">Server/ClientServant.java:20</A></CODE><BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       219">Server/ClientServant.java:219</A></CODE><BR>
+<BR>
+<BR>
+String [V] <BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        53">Server/ClientServant.java:53</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        72">Server/ClientServant.java:72</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        89">Server/ClientServant.java:89</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       125">Server/ClientServant.java:125</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       142">Server/ClientServant.java:142</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       155">Server/ClientServant.java:155</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       162">Server/ClientServant.java:162</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       169">Server/ClientServant.java:169</A></CODE><BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       169">Server/ClientServant.java:169</A></CODE><BR>
+<BR>
+<BR>
+Uplink [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       200">Server/ClientServant.java:200</A></CODE><BR>
+<BR>
+<BR>
+User [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       218">Server/ClientServant.java:218</A></CODE><BR>
+<BR>
+<BR>
+UserAdministration [V] <BR>
+normal parameter &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:        21">Server/ClientServant.java:21</A></CODE><BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       211">Server/ClientServant.java:211</A></CODE><BR>
+<BR>
+<BR>
+&nbsp;
+</TD>
+</TR></TABLE>
+</BODY></HTML>

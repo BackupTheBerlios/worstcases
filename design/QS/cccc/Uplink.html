@@ -8,13 +8,13 @@ Detailed report on module Uplink
 <TR>
 <TH BGCOLOR="AQUA" WIDTH=70%>Metric</TH><TH BGCOLOR="AQUA" WIDTH=10%>Tag</TH><TH BGCOLOR="AQUA" WIDTH=10%>Overall</TH><TH BGCOLOR="AQUA" WIDTH=10%>Per Function</TH></TR>
 <TR>
-<TD>Lines of Code</TD><TD>LOC</TD><TD ALIGN=RIGHT>     7</TD><TD ALIGN=RIGHT>******</TD></TR>
+<TD>Lines of Code</TD><TD>LOC</TD><TD ALIGN=RIGHT>    33</TD><TD ALIGN=RIGHT>******</TD></TR>
 <TR>
 <TD>McCabe's Cyclomatic Number</TD><TD>MVG</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>******</TD></TR>
 <TR>
-<TD>Lines of Comment</TD><TD>COM</TD><TD ALIGN=RIGHT>    33</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
+<TD>Lines of Comment</TD><TD>COM</TD><TD ALIGN=RIGHT>    31</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
 <TR>
-<TD>LOC/COM</TD><TD>L_C</TD><TD ALIGN=RIGHT>------</TD><TD>&nbsp;</TD></TR>
+<TD>LOC/COM</TD><TD>L_C</TD><TD ALIGN=RIGHT> 1.065</TD><TD>&nbsp;</TD></TR>
 <TR>
 <TD>MVG/COM</TD><TD>M_C</TD><TD ALIGN=RIGHT>------</TD><TD>&nbsp;</TD></TR>
 <TR>
@@ -26,11 +26,11 @@ Detailed report on module Uplink
 <TR>
 <TD>Number of Children</TD><TD>NOC</TD><TD ALIGN=RIGHT>     0</TD><TD>&nbsp;</TD></TR>
 <TR>
-<TD>Coupling between objects</TD><TD>CBO</TD><TD ALIGN=RIGHT>     2</TD><TD>&nbsp;</TD></TR>
+<TD>Coupling between objects</TD><TD>CBO</TD><TD ALIGN=RIGHT>     5</TD><TD>&nbsp;</TD></TR>
 <TR>
-<TD>Information Flow measure ( &nbsp;inclusive&nbsp;)</TD><TD>IF4</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>********</TD></TR>
+<TD>Information Flow measure ( &nbsp;inclusive&nbsp;)</TD><TD>IF4</TD><TD ALIGN=RIGHT>    36</TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
 <TR>
-<TD>Information Flow measure ( &nbsp;visible&nbsp;)</TD><TD>IF4v</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>********</TD></TR>
+<TD>Information Flow measure ( &nbsp;visible&nbsp;)</TD><TD>IF4v</TD><TD ALIGN=RIGHT BGCOLOR="YELLOW"><EM>    36</EM></TD><TD ALIGN=RIGHT BGCOLOR="RED"><STRONG>********</STRONG></TD></TR>
 <TR>
 <TD>Information Flow measure ( &nbsp;concrete&nbsp;)</TD><TD>IF4c</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>********</TD></TR>
 </TABLE>
@@ -38,9 +38,9 @@ Detailed report on module Uplink
 <TABLE BORDER WIDTH=100%><TR>
 <TD WIDTH=50%>Description</TD><TH BGCOLOR="AQUA" WIDTH=10%>LOC</TH><TH BGCOLOR="AQUA" WIDTH=10%>MVG</TH><TH BGCOLOR="AQUA" WIDTH=10%>COM</TH><TH BGCOLOR="AQUA" WIDTH=10%>L_C</TH><TH BGCOLOR="AQUA" WIDTH=10%>M_C</TH><TR>
 <TD>definition &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        16">Uplink.java:16</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        17">Util/Uplink.java:17</A></CODE><BR>
 </TD>
-<TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>    14</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+<TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>    14</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
 <TR><TD HEIGHT=12 COLSPAN=6></TD></TR>
 </TR></TABLE>
 <H2><A NAME="proc">Functions</A></H2>
@@ -48,27 +48,27 @@ Detailed report on module Uplink
 <TD WIDTH=50%>Function prototype</TD><TH BGCOLOR="AQUA" WIDTH=10%>LOC</TH><TH BGCOLOR="AQUA" WIDTH=10%>MVG</TH><TH BGCOLOR="AQUA" WIDTH=10%>COM</TH><TH BGCOLOR="AQUA" WIDTH=10%>L_C</TH><TH BGCOLOR="AQUA" WIDTH=10%>M_C</TH><TR>
 <TD>Uplink( &nbsp;Socket&nbsp;)<BR>
 definition &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        22">Uplink.java:22</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        23">Util/Uplink.java:23</A></CODE><BR>
 <BR>
-</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     4</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
 <TR>
-<TD>send( &nbsp;String&nbsp;)<BR>
+<TD>sendMsg( &nbsp;String&nbsp;)<BR>
 definition &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        48">Uplink.java:48</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        67">Util/Uplink.java:67</A></CODE><BR>
 <BR>
-</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     9</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+</TD><TD ALIGN=RIGHT>    10</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     7</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
 <TR>
 <TD>startUplink( &nbsp;&nbsp;)<BR>
 definition &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        32">Uplink.java:32</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        37">Util/Uplink.java:37</A></CODE><BR>
 <BR>
-</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+</TD><TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
 <TR>
 <TD>stopUplink( &nbsp;&nbsp;)<BR>
 definition &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        37">Uplink.java:37</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        50">Util/Uplink.java:50</A></CODE><BR>
 <BR>
-</TD><TD ALIGN=RIGHT>     1</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
+</TD><TD ALIGN=RIGHT>     8</TD><TD ALIGN=RIGHT>     0</TD><TD ALIGN=RIGHT>     3</TD><TD ALIGN=RIGHT>------</TD><TD ALIGN=RIGHT>------</TD></TR>
 <TR><TD HEIGHT=12 COLSPAN=6></TD></TR>
 </TR></TABLE>
 <H2><A NAME="structdet">Relationships</A></H2>
@@ -76,19 +76,34 @@ definition &nbsp;
 <TR><TH WIDTH=50%>Clients</TH><TH WIDTH=50%>Suppliers</TH></TR>
 <TR>
 <TD WIDTH=50%>
+Client [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Client/Client.java:       103">Client/Client.java:103</A></CODE><BR>
+<BR>
+<BR>
+ClientServant [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Server/ClientServant.java:       200">Server/ClientServant.java:200</A></CODE><BR>
+<BR>
+<BR>
 &nbsp;
 </TD>
 <TD WIDTH=50%>
+BufferedWriter [V] <BR>
+member variable &nbsp;
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        32">Util/Uplink.java:32</A></CODE><BR>
+<BR>
+<BR>
 Socket [V] <BR>
 normal parameter &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        22">Uplink.java:22</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        23">Util/Uplink.java:23</A></CODE><BR>
 member variable &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        27">Uplink.java:27</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        31">Util/Uplink.java:31</A></CODE><BR>
 <BR>
 <BR>
 String [V] <BR>
 normal parameter &nbsp;
-<CODE><A HREF="cccc_src.html#Uplink.java:        48">Uplink.java:48</A></CODE><BR>
+<CODE><A HREF="cccc_src.html#Util/Uplink.java:        67">Util/Uplink.java:67</A></CODE><BR>
 <BR>
 <BR>
 &nbsp;

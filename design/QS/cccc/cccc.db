@@ -1,10 +1,40 @@
+CCCC_Module@AdminClient@class@
+CCCC_ModExt@AdminClient@class@Client/AdminClient.java@10@definition@?????@LOC:6 COM:15 MVG:0@?@d@
+CCCC_Module@AdminClientServant@class@
+CCCC_ModExt@AdminClientServant@class@Server/AdminClientServant.java@11@definition@?????@LOC:3 COM:7 MVG:0@?@d@
+CCCC_Module@BufferedReader@@
+CCCC_Module@BufferedWriter@@
+CCCC_Module@Channel@class@
+CCCC_ModExt@Channel@class@Server/Channel.java@19@definition@?????@LOC:9 COM:30 MVG:0@?@d@
+CCCC_Module@ChannelAdministration@class@
+CCCC_ModExt@ChannelAdministration@class@Server/ChannelAdministration.java@9@definition@?????@LOC:4 COM:13 MVG:0@?@d@
+CCCC_Module@Client@class@
+CCCC_ModExt@Client@class@Client/Client.java@10@definition@?????@LOC:10 COM:30 MVG:0@?@d@
+CCCC_Module@ClientServant@class@
+CCCC_ModExt@ClientServant@class@Server/ClientServant.java@15@definition@?????@LOC:8 COM:26 MVG:0@?@d@
+CCCC_Module@DataBaseIO@class@
+CCCC_ModExt@DataBaseIO@class@Server/DataBaseIO.java@12@definition@?????@LOC:6 COM:19 MVG:0@?@d@
 CCCC_Module@Downlink@class@
-CCCC_ModExt@Downlink@class@Downlink.java@14@definition@?????@LOC:3 COM:10 MVG:0@?@d@
+CCCC_ModExt@Downlink@class@Util/Downlink.java@16@definition@?????@LOC:6 COM:15 MVG:0@?@d@
+CCCC_Module@DownlinkOwner@@
+CCCC_Module@Server@class@
+CCCC_ModExt@Server@class@Server/Server.java@17@definition@?????@LOC:9 COM:37 MVG:0@?@d@
+CCCC_Module@ServerSocket@@
+CCCC_Module@Servertest@class@
+CCCC_ModExt@Servertest@class@Server/Servertest.java@5@definition@?????@LOC:2 COM:0 MVG:0@?@d@
 CCCC_Module@Socket@@
 CCCC_Module@String@@
+CCCC_Module@String[]@@
+CCCC_Module@Testclient@class@
+CCCC_ModExt@Testclient@class@Client/Testclient.java@5@definition@?????@LOC:2 COM:0 MVG:0@?@d@
 CCCC_Module@Thread@@
 CCCC_Module@Uplink@class@
-CCCC_ModExt@Uplink@class@Uplink.java@16@definition@?????@LOC:3 COM:14 MVG:0@?@d@
+CCCC_ModExt@Uplink@class@Util/Uplink.java@17@definition@?????@LOC:4 COM:14 MVG:0@?@d@
+CCCC_Module@User@class@
+CCCC_ModExt@User@class@Server/User.java@10@definition@?????@LOC:12 COM:29 MVG:0@?@d@
+CCCC_Module@UserAdministration@class@
+CCCC_ModExt@UserAdministration@class@Server/UserAdministration.java@9@definition@?????@LOC:7 COM:19 MVG:0@?@d@
+CCCC_Module@Vector@@
 CCCC_Module@@@
 CCCC_Module@char@builtin@
 CCCC_ModExt@char@builtin@<nofile>@0@builtin definition@d?????@@0@d@
@@ -18,39 +48,468 @@ CCCC_Module@long@builtin@
 CCCC_ModExt@long@builtin@<nofile>@0@builtin definition@d?????@@0@d@
 CCCC_Module@void@builtin@
 CCCC_ModExt@void@builtin@<nofile>@0@builtin definition@d?????@@0@d@
-CCCC_Member@Downlink@Downlink@@(Socket)@
-CCCC_MemExt@Downlink@Downlink@@(Socket)@Downlink.java@20@definition@????0@LOC:3 COM:4 MVG:0@?@d@
-CCCC_Member@Downlink@getMsg@String@()@
-CCCC_MemExt@Downlink@getMsg@String@()@Downlink.java@39@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@AdminClient@addChannel@void@(String)@
+CCCC_MemExt@AdminClient@addChannel@void@(String)@Client/AdminClient.java@15@definition@????0@LOC:2 COM:4 MVG:0@?@d@
+CCCC_Member@AdminClient@addUser@void@(String)@
+CCCC_MemExt@AdminClient@addUser@void@(String)@Client/AdminClient.java@35@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClient@deleteChannel@void@(String)@
+CCCC_MemExt@AdminClient@deleteChannel@void@(String)@Client/AdminClient.java@21@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClient@deleteUser@void@(String)@
+CCCC_MemExt@AdminClient@deleteUser@void@(String)@Client/AdminClient.java@41@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClient@editChannel@void@(String,String)@
+CCCC_MemExt@AdminClient@editChannel@void@(String,String)@Client/AdminClient.java@29@definition@????0@LOC:2 COM:5 MVG:0@?@d@
+CCCC_Member@AdminClient@editUser@void@(String,String)@
+CCCC_MemExt@AdminClient@editUser@void@(String,String)@Client/AdminClient.java@47@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClient@processMsg@void@(String)@
+CCCC_MemExt@AdminClient@processMsg@void@(String)@Client/AdminClient.java@56@definition@????0@LOC:2 COM:6 MVG:0@?@d@
+CCCC_Member@AdminClientServant@AdminClientServant@@(Socket,Server,ChannelAdministration,UserAdministration,User)@
+CCCC_MemExt@AdminClientServant@AdminClientServant@@(Socket,Server,ChannelAdministration,UserAdministration,User)@Server/AdminClientServant.java@15@definition@????0@LOC:5 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@addChannel@void@(String)@
+CCCC_MemExt@AdminClientServant@addChannel@void@(String)@Server/AdminClientServant.java@40@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@addUser@void@(String)@
+CCCC_MemExt@AdminClientServant@addUser@void@(String)@Server/AdminClientServant.java@64@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@deleteChannel@void@(String)@
+CCCC_MemExt@AdminClientServant@deleteChannel@void@(String)@Server/AdminClientServant.java@48@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@deleteUser@void@(String)@
+CCCC_MemExt@AdminClientServant@deleteUser@void@(String)@Server/AdminClientServant.java@72@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@editChannel@void@(String,String)@
+CCCC_MemExt@AdminClientServant@editChannel@void@(String,String)@Server/AdminClientServant.java@56@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@editUser@void@(String,String)@
+CCCC_MemExt@AdminClientServant@editUser@void@(String,String)@Server/AdminClientServant.java@83@definition@????0@LOC:4 COM:6 MVG:0@?@d@
+CCCC_Member@AdminClientServant@processMsg@void@(String)@
+CCCC_MemExt@AdminClientServant@processMsg@void@(String)@Server/AdminClientServant.java@113@definition@????0@LOC:4 COM:5 MVG:0@?@d@
+CCCC_Member@AdminClientServant@sendChannel@void@(String)@
+CCCC_MemExt@AdminClientServant@sendChannel@void@(String)@Server/AdminClientServant.java@101@definition@????0@LOC:4 COM:4 MVG:0@?@d@
+CCCC_Member@AdminClientServant@sendChannelList@void@()@
+CCCC_MemExt@AdminClientServant@sendChannelList@void@()@Server/AdminClientServant.java@24@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@AdminClientServant@sendUser@void@(String)@
+CCCC_MemExt@AdminClientServant@sendUser@void@(String)@Server/AdminClientServant.java@92@definition@????0@LOC:4 COM:4 MVG:0@?@d@
+CCCC_Member@AdminClientServant@sendUserList@void@()@
+CCCC_MemExt@AdminClientServant@sendUserList@void@()@Server/AdminClientServant.java@32@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@Channel@Channel@@()@
+CCCC_MemExt@Channel@Channel@@()@Server/Channel.java@24@definition@????0@LOC:1 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@Channel@@(String)@
+CCCC_MemExt@Channel@Channel@@(String)@Server/Channel.java@20@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@addToCurrentUserList@void@(User)@
+CCCC_MemExt@Channel@addToCurrentUserList@void@(User)@Server/Channel.java@43@definition@????0@LOC:9 COM:3 MVG:1@?@d@
+CCCC_Member@Channel@getAllowedUserList@Vector@()@
+CCCC_MemExt@Channel@getAllowedUserList@Vector@()@Server/Channel.java@67@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@getCurrentUserList@Vector@()@
+CCCC_MemExt@Channel@getCurrentUserList@Vector@()@Server/Channel.java@28@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@getName@String@()@
+CCCC_MemExt@Channel@getName@String@()@Server/Channel.java@77@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@removeFromCurrentUserList@void@(User)@
+CCCC_MemExt@Channel@removeFromCurrentUserList@void@(User)@Server/Channel.java@58@definition@????0@LOC:7 COM:3 MVG:0@?@d@
+CCCC_Member@Channel@setAllowedUser@void@(Vector)@
+CCCC_MemExt@Channel@setAllowedUser@void@(Vector)@Server/Channel.java@73@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@setCurrentUserList@void@(Vector)@
+CCCC_MemExt@Channel@setCurrentUserList@void@(Vector)@Server/Channel.java@34@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Channel@setName@void@(String)@
+CCCC_MemExt@Channel@setName@void@(String)@Server/Channel.java@81@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@ChannelAdministration@@(DataBaseIO)@
+CCCC_MemExt@ChannelAdministration@ChannelAdministration@@(DataBaseIO)@Server/ChannelAdministration.java@10@definition@????0@LOC:2 COM:0 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@addToChannelList@void@(Channel)@
+CCCC_MemExt@ChannelAdministration@addToChannelList@void@(Channel)@Server/ChannelAdministration.java@23@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@editChannel@void@(String,String)@
+CCCC_MemExt@ChannelAdministration@editChannel@void@(String,String)@Server/ChannelAdministration.java@48@definition@????0@LOC:2 COM:5 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@getByName@Channel@(String)@
+CCCC_MemExt@ChannelAdministration@getByName@Channel@(String)@Server/ChannelAdministration.java@16@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@getChannelList@Vector@()@
+CCCC_MemExt@ChannelAdministration@getChannelList@Vector@()@Server/ChannelAdministration.java@39@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@getFreeForGuestList@Vector@()@
+CCCC_MemExt@ChannelAdministration@getFreeForGuestList@Vector@()@Server/ChannelAdministration.java@53@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@removeFromChannelList@void@(Channel)@
+CCCC_MemExt@ChannelAdministration@removeFromChannelList@void@(Channel)@Server/ChannelAdministration.java@29@definition@????0@LOC:5 COM:3 MVG:0@?@d@
+CCCC_Member@ChannelAdministration@setChannelList@void@(Vector)@
+CCCC_MemExt@ChannelAdministration@setChannelList@void@(Vector)@Server/ChannelAdministration.java@35@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Client@joinChannel@void@(String)@
+CCCC_MemExt@Client@joinChannel@void@(String)@Client/Client.java@15@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@Client@leaveChannel@void@()@
+CCCC_MemExt@Client@leaveChannel@void@()@Client/Client.java@22@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@Client@login@void@(String,String)@
+CCCC_MemExt@Client@login@void@(String,String)@Client/Client.java@27@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@Client@loginAsGuest@void@(String)@
+CCCC_MemExt@Client@loginAsGuest@void@(String)@Client/Client.java@34@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@Client@logout@void@()@
+CCCC_MemExt@Client@logout@void@()@Client/Client.java@42@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@Client@processMsg@void@(String)@
+CCCC_MemExt@Client@processMsg@void@(String)@Client/Client.java@79@definition@????0@LOC:4 COM:6 MVG:0@?@d@
+CCCC_Member@Client@sendMsgToChannel@void@(String)@
+CCCC_MemExt@Client@sendMsgToChannel@void@(String)@Client/Client.java@68@definition@????0@LOC:3 COM:5 MVG:0@?@d@
+CCCC_Member@Client@sendMsgToUser@void@(String,String)@
+CCCC_MemExt@Client@sendMsgToUser@void@(String,String)@Client/Client.java@61@definition@????0@LOC:1 COM:4 MVG:0@?@d@
+CCCC_Member@Client@setAvailableChannelList@void@(String)@
+CCCC_MemExt@Client@setAvailableChannelList@void@(String)@Client/Client.java@48@definition@????0@LOC:1 COM:4 MVG:0@?@d@
+CCCC_Member@Client@setCurrentUserInChannelList@void@(String)@
+CCCC_MemExt@Client@setCurrentUserInChannelList@void@(String)@Client/Client.java@55@definition@????0@LOC:1 COM:5 MVG:0@?@d@
+CCCC_Member@Client@startClient@void@()@
+CCCC_MemExt@Client@startClient@void@()@Client/Client.java@84@definition@????0@LOC:13 COM:0 MVG:0@?@d@
+CCCC_Member@ClientServant@ClientServant@@()@
+CCCC_MemExt@ClientServant@ClientServant@@()@Server/ClientServant.java@28@definition@????0@LOC:1 COM:0 MVG:0@?@d@
+CCCC_Member@ClientServant@ClientServant@@(Socket,Server,UserAdministration)@
+CCCC_MemExt@ClientServant@ClientServant@@(Socket,Server,UserAdministration)@Server/ClientServant.java@20@definition@????0@LOC:6 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@becomeAdminClientServant@void@()@
+CCCC_MemExt@ClientServant@becomeAdminClientServant@void@()@Server/ClientServant.java@100@definition@????0@LOC:10 COM:5 MVG:0@?@d@
+CCCC_Member@ClientServant@joinChannel@void@(String)@
+CCCC_MemExt@ClientServant@joinChannel@void@(String)@Server/ClientServant.java@125@definition@????0@LOC:5 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@leaveChannel@void@()@
+CCCC_MemExt@ClientServant@leaveChannel@void@()@Server/ClientServant.java@134@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@loginGuest@void@(String)@
+CCCC_MemExt@ClientServant@loginGuest@void@(String)@Server/ClientServant.java@89@definition@????0@LOC:5 COM:4 MVG:0@?@d@
+CCCC_Member@ClientServant@loginUser@void@(String)@
+CCCC_MemExt@ClientServant@loginUser@void@(String)@Server/ClientServant.java@72@definition@????0@LOC:8 COM:4 MVG:1@?@d@
+CCCC_Member@ClientServant@logoutUser@void@()@
+CCCC_MemExt@ClientServant@logoutUser@void@()@Server/ClientServant.java@117@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@processMsg@void@(String)@
+CCCC_MemExt@ClientServant@processMsg@void@(String)@Server/ClientServant.java@53@definition@????0@LOC:13 COM:5 MVG:3@?@d@
+CCCC_Member@ClientServant@sendChannelData@void@()@
+CCCC_MemExt@ClientServant@sendChannelData@void@()@Server/ClientServant.java@182@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@sendMsgFromChannel@void@(String)@
+CCCC_MemExt@ClientServant@sendMsgFromChannel@void@(String)@Server/ClientServant.java@155@definition@????0@LOC:3 COM:4 MVG:0@?@d@
+CCCC_Member@ClientServant@sendMsgFromUser@void@(String)@
+CCCC_MemExt@ClientServant@sendMsgFromUser@void@(String)@Server/ClientServant.java@162@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@sendMsgToChannel@void@(String)@
+CCCC_MemExt@ClientServant@sendMsgToChannel@void@(String)@Server/ClientServant.java@142@definition@????0@LOC:8 COM:4 MVG:1@?@d@
+CCCC_Member@ClientServant@sendMsgToUser@void@(String,String)@
+CCCC_MemExt@ClientServant@sendMsgToUser@void@(String,String)@Server/ClientServant.java@169@definition@????0@LOC:7 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@sendUserData@void@()@
+CCCC_MemExt@ClientServant@sendUserData@void@()@Server/ClientServant.java@190@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@ClientServant@startClientServant@void@()@
+CCCC_MemExt@ClientServant@startClientServant@void@()@Server/ClientServant.java@34@definition@????0@LOC:8 COM:4 MVG:0@?@d@
+CCCC_Member@ClientServant@stopClientServant@void@()@
+CCCC_MemExt@ClientServant@stopClientServant@void@()@Server/ClientServant.java@46@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@DataBaseIO@doLinks@void@()@
+CCCC_MemExt@DataBaseIO@doLinks@void@()@Server/DataBaseIO.java@38@definition@????2@LOC:2 COM:10 MVG:0@?@d@
+CCCC_Member@DataBaseIO@getChannelAdministration@ChannelAdministration@()@
+CCCC_MemExt@DataBaseIO@getChannelAdministration@ChannelAdministration@()@Server/DataBaseIO.java@49@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@DataBaseIO@getUserAdministration@UserAdministration@()@
+CCCC_MemExt@DataBaseIO@getUserAdministration@UserAdministration@()@Server/DataBaseIO.java@57@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@DataBaseIO@loadFromDisk@void@()@
+CCCC_MemExt@DataBaseIO@loadFromDisk@void@()@Server/DataBaseIO.java@17@definition@????0@LOC:8 COM:3 MVG:0@?@d@
+CCCC_Member@DataBaseIO@saveToDisk@void@()@
+CCCC_MemExt@DataBaseIO@saveToDisk@void@()@Server/DataBaseIO.java@31@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@DataBaseIO@setChannelAdministration@void@(ChannelAdministration)@
+CCCC_MemExt@DataBaseIO@setChannelAdministration@void@(ChannelAdministration)@Server/DataBaseIO.java@53@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@DataBaseIO@setUserAdministration@void@(UserAdministration)@
+CCCC_MemExt@DataBaseIO@setUserAdministration@void@(UserAdministration)@Server/DataBaseIO.java@61@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Downlink@Downlink@@(Socket,DownlinkOwner)@
+CCCC_MemExt@Downlink@Downlink@@(Socket,DownlinkOwner)@Util/Downlink.java@23@definition@????0@LOC:4 COM:5 MVG:0@?@d@
+CCCC_Member@Downlink@getDownlinkOwner@DownlinkOwner@()@
+CCCC_MemExt@Downlink@getDownlinkOwner@DownlinkOwner@()@Util/Downlink.java@90@definition@????0@LOC:3 COM:0 MVG:0@?@d@
 CCCC_Member@Downlink@listen@void@()@
-CCCC_MemExt@Downlink@listen@void@()@Downlink.java@32@definition@????0@LOC:4 COM:5 MVG:0@?@d@
+CCCC_MemExt@Downlink@listen@void@()@Util/Downlink.java@44@definition@????2@LOC:13 COM:3 MVG:1@?@d@
 CCCC_Member@Downlink@run@void@()@
-CCCC_MemExt@Downlink@run@void@()@Downlink.java@48@definition@????0@LOC:3 COM:0 MVG:0@?@d@
-CCCC_Member@Downlink@start@void@()@
-CCCC_MemExt@Downlink@start@void@()@Downlink.java@57@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_MemExt@Downlink@run@void@()@Util/Downlink.java@73@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@Downlink@setDownlinkOwner@void@(DownlinkOwner)@
+CCCC_MemExt@Downlink@setDownlinkOwner@void@(DownlinkOwner)@Util/Downlink.java@94@definition@????0@LOC:3 COM:0 MVG:0@?@d@
 CCCC_Member@Downlink@startDownlink@void@()@
-CCCC_MemExt@Downlink@startDownlink@void@()@Downlink.java@46@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_MemExt@Downlink@startDownlink@void@()@Util/Downlink.java@61@definition@????0@LOC:8 COM:3 MVG:0@?@d@
 CCCC_Member@Downlink@stopDownlink@void@()@
-CCCC_MemExt@Downlink@stopDownlink@void@()@Downlink.java@55@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_MemExt@Downlink@stopDownlink@void@()@Util/Downlink.java@80@definition@????0@LOC:8 COM:3 MVG:0@?@d@
+CCCC_Member@DownlinkOwner@processMsg@void@(String)@
+CCCC_MemExt@DownlinkOwner@processMsg@void@(String)@Util/DownlinkOwner.java@10@declaration@????0@LOC:1 COM:4 MVG:0@?@D@
+CCCC_Member@Server@addToClientServantList@void@(ClientServant)@
+CCCC_MemExt@Server@addToClientServantList@void@(ClientServant)@Server/Server.java@80@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@Server@getChannelAdministration@ChannelAdministration@()@
+CCCC_MemExt@Server@getChannelAdministration@ChannelAdministration@()@Server/Server.java@84@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Server@listen@void@()@
+CCCC_MemExt@Server@listen@void@()@Server/Server.java@66@definition@????2@LOC:10 COM:4 MVG:0@?@d@
+CCCC_Member@Server@removeFromClientServantList@void@(ClientServant)@
+CCCC_MemExt@Server@removeFromClientServantList@void@(ClientServant)@Server/Server.java@53@definition@????0@LOC:5 COM:4 MVG:0@?@d@
+CCCC_Member@Server@startServer@void@()@
+CCCC_MemExt@Server@startServer@void@()@Server/Server.java@23@definition@????0@LOC:16 COM:4 MVG:0@?@d@
+CCCC_Member@Server@stopServer@void@()@
+CCCC_MemExt@Server@stopServer@void@()@Server/Server.java@43@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@Servertest@main@void@(String[])@
+CCCC_MemExt@Servertest@main@void@(String[])@Server/Servertest.java@6@definition@????0@LOC:4 COM:0 MVG:0@?@d@
+CCCC_Member@Testclient@main@void@(String[])@
+CCCC_MemExt@Testclient@main@void@(String[])@Client/Testclient.java@6@definition@????0@LOC:6 COM:0 MVG:0@?@d@
 CCCC_Member@Uplink@Uplink@@(Socket)@
-CCCC_MemExt@Uplink@Uplink@@(Socket)@Uplink.java@22@definition@????0@LOC:1 COM:4 MVG:0@?@d@
-CCCC_Member@Uplink@send@void@(String)@
-CCCC_MemExt@Uplink@send@void@(String)@Uplink.java@48@definition@????0@LOC:1 COM:9 MVG:0@?@d@
+CCCC_MemExt@Uplink@Uplink@@(Socket)@Util/Uplink.java@23@definition@????0@LOC:3 COM:4 MVG:0@?@d@
+CCCC_Member@Uplink@sendMsg@void@(String)@
+CCCC_MemExt@Uplink@sendMsg@void@(String)@Util/Uplink.java@67@definition@????0@LOC:10 COM:7 MVG:0@?@d@
 CCCC_Member@Uplink@startUplink@void@()@
-CCCC_MemExt@Uplink@startUplink@void@()@Uplink.java@32@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_MemExt@Uplink@startUplink@void@()@Util/Uplink.java@37@definition@????0@LOC:8 COM:3 MVG:0@?@d@
 CCCC_Member@Uplink@stopUplink@void@()@
-CCCC_MemExt@Uplink@stopUplink@void@()@Uplink.java@37@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_MemExt@Uplink@stopUplink@void@()@Util/Uplink.java@50@definition@????0@LOC:8 COM:3 MVG:0@?@d@
+CCCC_Member@User@User@@(String)@
+CCCC_MemExt@User@User@@(String)@Server/User.java@15@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@User@getAllowedChannelList@Vector@()@
+CCCC_MemExt@User@getAllowedChannelList@Vector@()@Server/User.java@72@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@getClientServant@ClientServant@()@
+CCCC_MemExt@User@getClientServant@ClientServant@()@Server/User.java@52@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@getCurrentChannel@Channel@()@
+CCCC_MemExt@User@getCurrentChannel@Channel@()@Server/User.java@34@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@getFromAllowedChannelByName@Channel@(String)@
+CCCC_MemExt@User@getFromAllowedChannelByName@Channel@(String)@Server/User.java@48@definition@????0@LOC:3 COM:4 MVG:0@?@d@
+CCCC_Member@User@getName@String@()@
+CCCC_MemExt@User@getName@String@()@Server/User.java@80@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@isAdmin@boolean@()@
+CCCC_MemExt@User@isAdmin@boolean@()@Server/User.java@19@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@isGuest@boolean@()@
+CCCC_MemExt@User@isGuest@boolean@()@Server/User.java@64@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@isLoggedIn@boolean@()@
+CCCC_MemExt@User@isLoggedIn@boolean@()@Server/User.java@23@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@setAllowedChannel@void@(Vector)@
+CCCC_MemExt@User@setAllowedChannel@void@(Vector)@Server/User.java@76@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@setClientServant@void@(ClientServant)@
+CCCC_MemExt@User@setClientServant@void@(ClientServant)@Server/User.java@56@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@setCurrentChannel@void@(Channel)@
+CCCC_MemExt@User@setCurrentChannel@void@(Channel)@Server/User.java@38@definition@????0@LOC:4 COM:0 MVG:0@?@d@
+CCCC_Member@User@setIsGuest@void@(boolean)@
+CCCC_MemExt@User@setIsGuest@void@(boolean)@Server/User.java@68@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@User@setLoggedIn@void@(boolean)@
+CCCC_MemExt@User@setLoggedIn@void@(boolean)@Server/User.java@27@definition@????0@LOC:6 COM:0 MVG:2@?@d@
+CCCC_Member@User@toString@String@()@
+CCCC_MemExt@User@toString@String@()@Server/User.java@60@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@UserAdministration@UserAdministration@@(DataBaseIO,ChannelAdministration)@
+CCCC_MemExt@UserAdministration@UserAdministration@@(DataBaseIO,ChannelAdministration)@Server/UserAdministration.java@10@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@UserAdministration@addToUserList@void@(User)@
+CCCC_MemExt@UserAdministration@addToUserList@void@(User)@Server/UserAdministration.java@37@definition@????0@LOC:2 COM:3 MVG:0@?@d@
+CCCC_Member@UserAdministration@getFromUserListByName@User@(String)@
+CCCC_MemExt@UserAdministration@getFromUserListByName@User@(String)@Server/UserAdministration.java@51@definition@????0@LOC:3 COM:3 MVG:0@?@d@
+CCCC_Member@UserAdministration@getUserList@Vector@()@
+CCCC_MemExt@UserAdministration@getUserList@Vector@()@Server/UserAdministration.java@55@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@UserAdministration@loginGuest@User@(String)@
+CCCC_MemExt@UserAdministration@loginGuest@User@(String)@Server/UserAdministration.java@28@definition@????0@LOC:5 COM:5 MVG:0@?@d@
+CCCC_Member@UserAdministration@loginUser@User@(String)@
+CCCC_MemExt@UserAdministration@loginUser@User@(String)@Server/UserAdministration.java@19@definition@????0@LOC:3 COM:5 MVG:0@?@d@
+CCCC_Member@UserAdministration@removeFromUserList@void@(User)@
+CCCC_MemExt@UserAdministration@removeFromUserList@void@(User)@Server/UserAdministration.java@43@definition@????0@LOC:4 COM:3 MVG:0@?@d@
+CCCC_Member@UserAdministration@setUserList@void@(Vector)@
+CCCC_MemExt@UserAdministration@setUserList@void@(Vector)@Server/UserAdministration.java@59@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_UseRel@Client@AdminClient@
+CCCC_UseExt@Client@AdminClient@Client/AdminClient.java@10@extends@????0@*@?@I@
+CCCC_UseRel@String@AdminClient@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@15@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@21@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@29@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@29@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@35@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@41@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@47@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@47@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@56@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@62@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@String@AdminClient@Client/AdminClient.java@67@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Vector@AdminClient@
+CCCC_UseExt@Vector@AdminClient@Client/AdminClient.java@72@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@Vector@AdminClient@Client/AdminClient.java@77@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ChannelAdministration@AdminClientServant@
+CCCC_UseExt@ChannelAdministration@AdminClientServant@Server/AdminClientServant.java@16@normal parameter@????0@*@?@p@
+CCCC_UseExt@ChannelAdministration@AdminClientServant@Server/AdminClientServant.java@122@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ClientServant@AdminClientServant@
+CCCC_UseExt@ClientServant@AdminClientServant@Server/AdminClientServant.java@11@extends@????0@*@?@I@
+CCCC_UseRel@DownlinkOwner@AdminClientServant@
+CCCC_UseExt@DownlinkOwner@AdminClientServant@Server/AdminClientServant.java@11@implements@????0@*@?@I@
+CCCC_UseRel@Server@AdminClientServant@
+CCCC_UseExt@Server@AdminClientServant@Server/AdminClientServant.java@15@normal parameter@????0@*@?@p@
+CCCC_UseRel@Socket@AdminClientServant@
+CCCC_UseExt@Socket@AdminClientServant@Server/AdminClientServant.java@15@normal parameter@????0@*@?@p@
+CCCC_UseRel@String@AdminClientServant@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@40@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@48@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@56@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@56@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@64@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@72@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@83@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@83@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@92@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@101@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@AdminClientServant@Server/AdminClientServant.java@113@normal parameter@????0@*@?@p@
+CCCC_UseRel@User@AdminClientServant@
+CCCC_UseExt@User@AdminClientServant@Server/AdminClientServant.java@18@normal parameter@????0@*@?@p@
+CCCC_UseRel@UserAdministration@AdminClientServant@
+CCCC_UseExt@UserAdministration@AdminClientServant@Server/AdminClientServant.java@17@normal parameter@????0@*@?@p@
+CCCC_UseRel@ChannelAdministration@Channel@
+CCCC_UseExt@ChannelAdministration@Channel@Server/Channel.java@112@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@Channel@
+CCCC_UseExt@String@Channel@Server/Channel.java@20@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Channel@Server/Channel.java@77@return type@????0@*@?@p@
+CCCC_UseExt@String@Channel@Server/Channel.java@81@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Channel@Server/Channel.java@113@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@User@Channel@
+CCCC_UseExt@User@Channel@Server/Channel.java@43@normal parameter@????0@*@?@p@
+CCCC_UseExt@User@Channel@Server/Channel.java@58@normal parameter@????0@*@?@p@
+CCCC_UseRel@Vector@Channel@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@28@return type@????0@*@?@p@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@34@normal parameter@????0@*@?@p@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@67@return type@????0@*@?@p@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@73@normal parameter@????0@*@?@p@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@92@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@Vector@Channel@Server/Channel.java@101@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Channel@ChannelAdministration@
+CCCC_UseExt@Channel@ChannelAdministration@Server/ChannelAdministration.java@16@return type@????0@*@?@p@
+CCCC_UseExt@Channel@ChannelAdministration@Server/ChannelAdministration.java@23@normal parameter@????0@*@?@p@
+CCCC_UseExt@Channel@ChannelAdministration@Server/ChannelAdministration.java@29@normal parameter@????0@*@?@p@
+CCCC_UseRel@DataBaseIO@ChannelAdministration@
+CCCC_UseExt@DataBaseIO@ChannelAdministration@Server/ChannelAdministration.java@10@normal parameter@????0@*@?@p@
+CCCC_UseExt@DataBaseIO@ChannelAdministration@Server/ChannelAdministration.java@69@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@ChannelAdministration@
+CCCC_UseExt@String@ChannelAdministration@Server/ChannelAdministration.java@16@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ChannelAdministration@Server/ChannelAdministration.java@48@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ChannelAdministration@Server/ChannelAdministration.java@48@normal parameter@????0@*@?@p@
+CCCC_UseRel@Vector@ChannelAdministration@
+CCCC_UseExt@Vector@ChannelAdministration@Server/ChannelAdministration.java@35@normal parameter@????0@*@?@p@
+CCCC_UseExt@Vector@ChannelAdministration@Server/ChannelAdministration.java@39@return type@????0@*@?@p@
+CCCC_UseExt@Vector@ChannelAdministration@Server/ChannelAdministration.java@53@return type@????0@*@?@p@
+CCCC_UseExt@Vector@ChannelAdministration@Server/ChannelAdministration.java@63@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Downlink@Client@
+CCCC_UseExt@Downlink@Client@Client/Client.java@110@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@DownlinkOwner@Client@
+CCCC_UseExt@DownlinkOwner@Client@Client/Client.java@10@implements@????0@*@?@I@
+CCCC_UseRel@Socket@Client@
+CCCC_UseExt@Socket@Client@Client/Client.java@133@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@Client@
+CCCC_UseExt@String@Client@Client/Client.java@15@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@27@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@27@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@34@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@48@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@55@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@61@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@61@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@68@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@79@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@Client@Client/Client.java@120@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Uplink@Client@
+CCCC_UseExt@Uplink@Client@Client/Client.java@103@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Vector@Client@
+CCCC_UseExt@Vector@Client@Client/Client.java@125@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@Vector@Client@Client/Client.java@132@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@Vector@Client@Client/Client.java@138@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Downlink@ClientServant@
+CCCC_UseExt@Downlink@ClientServant@Server/ClientServant.java@205@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@DownlinkOwner@ClientServant@
+CCCC_UseExt@DownlinkOwner@ClientServant@Server/ClientServant.java@15@implements@????0@*@?@I@
+CCCC_UseRel@Server@ClientServant@
+CCCC_UseExt@Server@ClientServant@Server/ClientServant.java@20@normal parameter@????0@*@?@p@
+CCCC_UseExt@Server@ClientServant@Server/ClientServant.java@225@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Socket@ClientServant@
+CCCC_UseExt@Socket@ClientServant@Server/ClientServant.java@20@normal parameter@????0@*@?@p@
+CCCC_UseExt@Socket@ClientServant@Server/ClientServant.java@219@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@ClientServant@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@53@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@72@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@89@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@125@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@142@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@155@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@162@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@169@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@ClientServant@Server/ClientServant.java@169@normal parameter@????0@*@?@p@
+CCCC_UseRel@Uplink@ClientServant@
+CCCC_UseExt@Uplink@ClientServant@Server/ClientServant.java@200@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@User@ClientServant@
+CCCC_UseExt@User@ClientServant@Server/ClientServant.java@218@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@UserAdministration@ClientServant@
+CCCC_UseExt@UserAdministration@ClientServant@Server/ClientServant.java@21@normal parameter@????0@*@?@p@
+CCCC_UseExt@UserAdministration@ClientServant@Server/ClientServant.java@211@member variable@????1@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ChannelAdministration@DataBaseIO@
+CCCC_UseExt@ChannelAdministration@DataBaseIO@Server/DataBaseIO.java@49@return type@????0@*@?@p@
+CCCC_UseExt@ChannelAdministration@DataBaseIO@Server/DataBaseIO.java@53@normal parameter@????0@*@?@p@
+CCCC_UseExt@ChannelAdministration@DataBaseIO@Server/DataBaseIO.java@75@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@DataBaseIO@
+CCCC_UseExt@String@DataBaseIO@Server/DataBaseIO.java@80@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@String@DataBaseIO@Server/DataBaseIO.java@85@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@UserAdministration@DataBaseIO@
+CCCC_UseExt@UserAdministration@DataBaseIO@Server/DataBaseIO.java@57@return type@????0@*@?@p@
+CCCC_UseExt@UserAdministration@DataBaseIO@Server/DataBaseIO.java@61@normal parameter@????0@*@?@p@
+CCCC_UseExt@UserAdministration@DataBaseIO@Server/DataBaseIO.java@69@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@BufferedReader@Downlink@
+CCCC_UseExt@BufferedReader@Downlink@Util/Downlink.java@38@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@DownlinkOwner@Downlink@
+CCCC_UseExt@DownlinkOwner@Downlink@Util/Downlink.java@23@normal parameter@????0@*@?@p@
+CCCC_UseExt@DownlinkOwner@Downlink@Util/Downlink.java@37@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@DownlinkOwner@Downlink@Util/Downlink.java@90@return type@????0@*@?@p@
+CCCC_UseExt@DownlinkOwner@Downlink@Util/Downlink.java@94@normal parameter@????0@*@?@p@
 CCCC_UseRel@Socket@Downlink@
-CCCC_UseExt@Socket@Downlink@Downlink.java@20@normal parameter@????0@*@?@p@
-CCCC_UseExt@Socket@Downlink@Downlink.java@27@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
-CCCC_UseRel@String@Downlink@
-CCCC_UseExt@String@Downlink@Downlink.java@39@return type@????0@*@?@p@
+CCCC_UseExt@Socket@Downlink@Util/Downlink.java@23@normal parameter@????0@*@?@p@
+CCCC_UseExt@Socket@Downlink@Util/Downlink.java@31@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
 CCCC_UseRel@Thread@Downlink@
-CCCC_UseExt@Thread@Downlink@Downlink.java@14@extends@????0@*@?@I@
+CCCC_UseExt@Thread@Downlink@Util/Downlink.java@16@extends@????0@*@?@I@
+CCCC_UseRel@String@DownlinkOwner@
+CCCC_UseExt@String@DownlinkOwner@Util/DownlinkOwner.java@10@normal parameter@????0@*@?@p@
+CCCC_UseRel@ChannelAdministration@Server@
+CCCC_UseExt@ChannelAdministration@Server@Server/Server.java@84@return type@????0@*@?@p@
+CCCC_UseExt@ChannelAdministration@Server@Server/Server.java@132@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ClientServant@Server@
+CCCC_UseExt@ClientServant@Server@Server/Server.java@53@normal parameter@????0@*@?@p@
+CCCC_UseExt@ClientServant@Server@Server/Server.java@80@normal parameter@????0@*@?@p@
+CCCC_UseRel@DataBaseIO@Server@
+CCCC_UseExt@DataBaseIO@Server@Server/Server.java@122@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ServerSocket@Server@
+CCCC_UseExt@ServerSocket@Server@Server/Server.java@113@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@UserAdministration@Server@
+CCCC_UseExt@UserAdministration@Server@Server/Server.java@127@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Vector@Server@
+CCCC_UseExt@Vector@Server@Server/Server.java@95@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String[]@Servertest@
+CCCC_UseExt@String[]@Servertest@Server/Servertest.java@6@normal parameter@????0@*@?@p@
+CCCC_UseRel@String[]@Testclient@
+CCCC_UseExt@String[]@Testclient@Client/Testclient.java@6@normal parameter@????0@*@?@p@
+CCCC_UseRel@BufferedWriter@Uplink@
+CCCC_UseExt@BufferedWriter@Uplink@Util/Uplink.java@32@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
 CCCC_UseRel@Socket@Uplink@
-CCCC_UseExt@Socket@Uplink@Uplink.java@22@normal parameter@????0@*@?@p@
-CCCC_UseExt@Socket@Uplink@Uplink.java@27@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@Socket@Uplink@Util/Uplink.java@23@normal parameter@????0@*@?@p@
+CCCC_UseExt@Socket@Uplink@Util/Uplink.java@31@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
 CCCC_UseRel@String@Uplink@
-CCCC_UseExt@String@Uplink@Uplink.java@48@normal parameter@????0@*@?@p@
-CCCC_RejExt@Downlink.java@1@<file scope items>@?????@LOC:3 COM:0 MVG:0@?@r@
-CCCC_RejExt@Uplink.java@1@<file scope items>@?????@LOC:2 COM:0 MVG:0@?@r@
+CCCC_UseExt@String@Uplink@Util/Uplink.java@67@normal parameter@????0@*@?@p@
+CCCC_UseRel@Channel@User@
+CCCC_UseExt@Channel@User@Server/User.java@34@return type@????0@*@?@p@
+CCCC_UseExt@Channel@User@Server/User.java@38@normal parameter@????0@*@?@p@
+CCCC_UseExt@Channel@User@Server/User.java@48@return type@????0@*@?@p@
+CCCC_UseExt@Channel@User@Server/User.java@89@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ClientServant@User@
+CCCC_UseExt@ClientServant@User@Server/User.java@52@return type@????0@*@?@p@
+CCCC_UseExt@ClientServant@User@Server/User.java@56@normal parameter@????0@*@?@p@
+CCCC_UseExt@ClientServant@User@Server/User.java@118@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@User@
+CCCC_UseExt@String@User@Server/User.java@15@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@User@Server/User.java@48@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@User@Server/User.java@60@return type@????0@*@?@p@
+CCCC_UseExt@String@User@Server/User.java@80@return type@????0@*@?@p@
+CCCC_UseExt@String@User@Server/User.java@101@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseExt@String@User@Server/User.java@102@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@UserAdministration@User@
+CCCC_UseExt@UserAdministration@User@Server/User.java@124@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@Vector@User@
+CCCC_UseExt@Vector@User@Server/User.java@72@return type@????0@*@?@p@
+CCCC_UseExt@Vector@User@Server/User.java@76@normal parameter@????0@*@?@p@
+CCCC_UseExt@Vector@User@Server/User.java@95@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@ChannelAdministration@UserAdministration@
+CCCC_UseExt@ChannelAdministration@UserAdministration@Server/UserAdministration.java@10@normal parameter@????0@*@?@p@
+CCCC_UseExt@ChannelAdministration@UserAdministration@Server/UserAdministration.java@88@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@DataBaseIO@UserAdministration@
+CCCC_UseExt@DataBaseIO@UserAdministration@Server/UserAdministration.java@10@normal parameter@????0@*@?@p@
+CCCC_UseExt@DataBaseIO@UserAdministration@Server/UserAdministration.java@87@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@UserAdministration@
+CCCC_UseExt@String@UserAdministration@Server/UserAdministration.java@19@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@UserAdministration@Server/UserAdministration.java@28@normal parameter@????0@*@?@p@
+CCCC_UseExt@String@UserAdministration@Server/UserAdministration.java@51@normal parameter@????0@*@?@p@
+CCCC_UseRel@User@UserAdministration@
+CCCC_UseExt@User@UserAdministration@Server/UserAdministration.java@19@return type@????0@*@?@p@
+CCCC_UseExt@User@UserAdministration@Server/UserAdministration.java@28@return type@????0@*@?@p@
+CCCC_UseExt@User@UserAdministration@Server/UserAdministration.java@37@normal parameter@????0@*@?@p@
+CCCC_UseExt@User@UserAdministration@Server/UserAdministration.java@43@normal parameter@????0@*@?@p@
+CCCC_UseExt@User@UserAdministration@Server/UserAdministration.java@51@return type@????0@*@?@p@
+CCCC_UseRel@Vector@UserAdministration@
+CCCC_UseExt@Vector@UserAdministration@Server/UserAdministration.java@55@return type@????0@*@?@p@
+CCCC_UseExt@Vector@UserAdministration@Server/UserAdministration.java@59@normal parameter@????0@*@?@p@
+CCCC_UseExt@Vector@UserAdministration@Server/UserAdministration.java@71@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_RejExt@Server/AdminClientServant.java@1@<file scope items>@?????@LOC:3 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/Channel.java@1@<file scope items>@?????@LOC:4 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/ChannelAdministration.java@1@<file scope items>@?????@LOC:3 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/ClientServant.java@1@<file scope items>@?????@LOC:5 COM:0 MVG:0@?@r@
+CCCC_RejExt@Server/DataBaseIO.java@1@<file scope items>@?????@LOC:3 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/Server.java@1@<file scope items>@?????@LOC:5 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/Servertest.java@1@<file scope items>@?????@LOC:2 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/User.java@1@<file scope items>@?????@LOC:3 COM:1 MVG:0@?@r@
+CCCC_RejExt@Server/UserAdministration.java@1@<file scope items>@?????@LOC:3 COM:1 MVG:0@?@r@
+CCCC_RejExt@Client/AdminClient.java@1@<file scope items>@?????@LOC:4 COM:1 MVG:0@?@r@
+CCCC_RejExt@Client/Client.java@1@<file scope items>@?????@LOC:4 COM:0 MVG:0@?@r@
+CCCC_RejExt@Client/Testclient.java@1@<file scope items>@?????@LOC:2 COM:1 MVG:0@?@r@
+CCCC_RejExt@Util/Downlink.java@1@<file scope items>@?????@LOC:4 COM:0 MVG:0@?@r@
+CCCC_RejExt@Util/DownlinkOwner.java@1@<file scope items>@?????@LOC:4 COM:3 MVG:0@?@r@
+CCCC_RejExt@Util/Uplink.java@1@<file scope items>@?????@LOC:3 COM:0 MVG:0@?@r@
