@@ -33,7 +33,6 @@ class DataBaseIO {
         while (enum.hasMoreElements()) {
             tmpString = tmpString + "#" + ((Channel)(enum.nextElement())).getName();
         }
-        Debug.println(tmpString);
         return tmpString;
     }
 
@@ -55,8 +54,7 @@ class DataBaseIO {
         }
         User tmpUser = new User(name, password, false, isAdmin,this.userAdministration);
         tmpUser.setAllowedChannelList(tmpChannelList.elements());
-        Debug.println(tmpUser);
-        return tmpUser;
+            return tmpUser;
     }
 
     /**
@@ -77,7 +75,7 @@ class DataBaseIO {
         boolean allowedForGuests = (
             new Boolean(tmpTokenizer.nextToken())).booleanValue();
         Channel tmpChannel = new Channel(name, allowedForGuests);
-        Debug.println(tmpChannel);
+
         return tmpChannel;
     }
 
@@ -99,22 +97,26 @@ class DataBaseIO {
         }
         this.channelAdministration.setChannelList(tmpList.elements());
         tmpBufferedReader.close();
+        Debug.println(Debug.MEDIUM,"channeldb loaded");
 
-        Debug.println("channeldb loaded");
-
-        tmpList = new Vector();
+        Vector tmpList2 = new Vector();
         tmpBufferedReader = new BufferedReader(
             new FileReader(
             new File(this.userDBFile)));
         tmpString = tmpBufferedReader.readLine();
         while (tmpString != null) {
-            tmpList.addElement(this.stringToUser(tmpString));
+            tmpList2.addElement(this.stringToUser(tmpString));
             tmpString = tmpBufferedReader.readLine();
         }
-        this.userAdministration.setUserList(tmpList.elements());
+        this.userAdministration.setUserList(tmpList2.elements());
         tmpBufferedReader.close();
 
-        Debug.println("userdb loaded");
+        Debug.println(Debug.MEDIUM,"userdb loaded");
+        Debug.println(Debug.LOW,this+": loaded the following data: ");
+        Debug.println(Debug.LOW,tmpList);
+        Debug.println(Debug.LOW,tmpList2);
+
+
     }
 
     /**
@@ -203,8 +205,8 @@ class DataBaseIO {
     private ChannelAdministration channelAdministration;
 
     /** Dateiname der Channeldatenbank. */
-    private final static String channelDBFile = "channel.db";
+    private final static String channelDBFile = "C:\\channel.db";
 
     /** Dateiname der Benutzerdatenbank. */
-    private final static String userDBFile = "user.db";
+    private final static String userDBFile = "C:\\user.db";
 }

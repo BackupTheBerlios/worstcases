@@ -30,7 +30,7 @@ public class Debug {
    * Debug-Nachrichten werden ausgegeben.
    * Der Wert Debug.OFF stellt Debug-Nachrichten ab.
    */
-  private static int level = MEDIUM;
+  private static int level = HIGH;
 
   /**
    * Stellt den Debug-Level ein.

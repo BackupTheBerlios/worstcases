@@ -90,7 +90,7 @@ class Channel {
      * Setzt allowedUserList auf die in enumAllowedUser übergebenen Werte
      * Benutzt addToAllowedUserList() und removeFromAllowedUserList().
      */
-    public synchronized void setAllowedUserList(Enumeration enumAllowedUser) {
+    public void setAllowedUserList(Enumeration enumAllowedUser) {
         Enumeration enum = enumAllowedUser;
         if (enum == null) {
             enum = (
@@ -120,7 +120,7 @@ class Channel {
      * Fügt einen Benutzer zur Liste der berechtigten Benutzer hinzu. Benachrichtigt mittels User.addToAllowedChannelList()
      * das entsprechende User-Objekt.
      */
-    public synchronized void addToAllowedUserList(User paramUser) {
+    public void addToAllowedUserList(User paramUser) {
         if (paramUser != null) {
             if (!this.allowedUserList.contains(paramUser)) {
                 this.allowedUserList.addElement(paramUser);
@@ -133,7 +133,7 @@ class Channel {
      * Entfernt einen Benutzer aus der Liste der berechtigten Benutzer.
      * Benachrichtigt mittels User.removeFromAllowedChannelList() das entsprechende User-Objekt.
      */
-    public synchronized void removeFromAllowedUserList(User paramUser) {
+    public void removeFromAllowedUserList(User paramUser) {
         if (this.allowedUserList.removeElement(paramUser)) {
             paramUser.removeFromAllowedChannelList(this);
         }
@@ -163,7 +163,7 @@ class Channel {
      * Setzt CurrentUserList auf die in enumCurrentUser übergebenen Werte.
      * Benutzt addToCurrentUserList() und removeFromCurrentUserList().
      */
-    public synchronized void setCurrentUserList(Enumeration enumCurrentUser) {
+    public void setCurrentUserList(Enumeration enumCurrentUser) {
         Enumeration enum = enumCurrentUser;
         if (enumCurrentUser == null) {
             enum = (
@@ -193,7 +193,7 @@ class Channel {
      * Fügt einen User zu den im Channel befindlichen Usern hinzu. Benachrichtigt den User mittels User.setCurrentChannel().
      * Ruft dann informCurrentUsers() auf.
      */
-    public synchronized void addToCurrentUserList(User paramUser) {
+    public void addToCurrentUserList(User paramUser) {
         if (!this.currentUserList.contains(paramUser)) {
             this.currentUserList.addElement(paramUser);
             paramUser.setCurrentChannel(this);
@@ -205,7 +205,7 @@ class Channel {
      * Entfernt einen User aus den im Channel befindlichen Usern. Benachrichtigt den User mittels User.setCurrentChannel(null).
      * Ruft dann informCurrentUsers() auf.
      */
-    public synchronized void removeFromCurrentUserList(User paramUser) {
+    public void removeFromCurrentUserList(User paramUser) {
         if (this.currentUserList.removeElement(paramUser)) {
             paramUser.setCurrentChannel(null);
             this.informCurrentUsers();
@@ -213,14 +213,14 @@ class Channel {
     }
 
     /** Entfernt das Channelobjekt aus dem System. Benutzt setCurrentUserList(null) und setAllowedUserList(null). */
-    public synchronized void removeYou() {
+    public  void removeYou() {
         this.setCurrentUserList(null);
         this.setAllowedUserList(null);
     }
 
     /** Dient dem debugging. */
     public String toString() {
-        String tmpString = "Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user:";
+        String tmpString =" Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user: ";
         Enumeration enum = this.getAllowedUserEnum();
         while (enum.hasMoreElements()) {
             tmpString = tmpString + ((User)enum.nextElement()).getName() + " ";
@@ -243,6 +243,7 @@ class Channel {
                 tmpClientServant.sendCurrentChannelData();
             }
         }
+        Debug.println(Debug.LOW,this.getName()+": informed current users");
     }
 
     /** Der Name des Channels. */

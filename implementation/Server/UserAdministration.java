@@ -103,12 +103,14 @@ class UserAdministration {
         tmpUser.setAllowedChannelList(newUser.getAllowedChannelEnum());
 
       }
+      newUser.removeYou();
     }
 
     /** Fügt einen Benutzer mittels user.setUserAdministration() zur UserList hinzu. */
     public synchronized void addToUserList(User paramUser) {
-        if (this.getFromUserListByName(paramUser.getName())==null) {
+        if (paramUser!=null && this.getFromUserListByName(paramUser.getName())==null) {
             this.userList.addElement(paramUser);
+
             paramUser.setUserAdministration(this);
         }
     }

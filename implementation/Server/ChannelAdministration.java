@@ -65,6 +65,7 @@ class ChannelAdministration {
      * @param paramChannel das Channelobjekt, das gelöscht werden soll
      */
     public synchronized void removeFromChannelList(Channel paramChannel) {
+        if(paramChannel!=null)
         if (this.channelList.removeElement(paramChannel)) {
             paramChannel.removeYou();
         }
@@ -75,7 +76,7 @@ class ChannelAdministration {
      * @param paramChannel das Channelobjekt, das hinzugefügt werden soll
      */
     public synchronized void addToChannelList(Channel paramChannel) {
-        if (this.getFromChannelListByName(paramChannel.getName()) == null) {
+        if (paramChannel!=null && this.getFromChannelListByName(paramChannel.getName()) == null) {
             this.channelList.addElement(paramChannel);
         }
     }
@@ -93,6 +94,7 @@ class ChannelAdministration {
             tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
             tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
         }
+        newChannel.removeYou();
     }
 
     /**
@@ -120,6 +122,8 @@ class ChannelAdministration {
      * @supplierCardinality 0..
      */
     private Vector channelList = new Vector();
+
+    public static final String FOYERNAME="Foyer";
 
     /**
      * "Datenbank", in der die Channel-Daten gespeichert sind.
