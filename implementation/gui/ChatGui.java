@@ -276,10 +276,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         login.setName("login");
         login.setBackground(java.awt.Color.lightGray);
         login.setForeground(java.awt.Color.black);
-        login.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    loginMouseClicked(evt);
+        login.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    loginActionPerformed(e);
                 }
             });
         gridBagConstraints2 = new java.awt.GridBagConstraints();
@@ -330,10 +330,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         sendMsg.setName("sendMsg");
         sendMsg.setBackground(java.awt.Color.lightGray);
         sendMsg.setForeground(java.awt.Color.black);
-        sendMsg.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    sendMsgMouseClicked(evt);
+        sendMsg.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    sendMsgActionPerformed(e);
                 }
             });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -402,10 +402,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         logout.setName("logout");
         logout.setBackground(java.awt.Color.lightGray);
         logout.setForeground(java.awt.Color.black);
-        logout.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    logoutMouseClicked(evt);
+        logout.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    logoutActionPerformed(e);
                 }
             });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -420,10 +420,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         channelMsgBuffer.setName("channelMsgBuffer");
         channelMsgBuffer.setBackground(java.awt.Color.lightGray);
         channelMsgBuffer.setForeground(java.awt.Color.black);
-        channelMsgBuffer.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    channelMsgBufferMouseClicked(evt);
+        channelMsgBuffer.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    channelMsgBufferActionPerformed(e);
                 }
             });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -439,10 +439,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         channelAdmin.setEnabled(false);
         channelAdmin.setBackground(java.awt.Color.lightGray);
         channelAdmin.setForeground(java.awt.Color.black);
-        channelAdmin.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    channelAdminMouseClicked(evt);
+        channelAdmin.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    channelAdminActionPerformed(e);
                 }
             });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -458,10 +458,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
         userAdmin.setEnabled(false);
         userAdmin.setBackground(java.awt.Color.lightGray);
         userAdmin.setForeground(java.awt.Color.black);
-        userAdmin.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    userAdminMouseClicked(evt);
+        userAdmin.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    userAdminActionPerformed(e);
                 }
             });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -475,12 +475,12 @@ public class ChatGui extends java.applet.Applet implements GUI {
         add(mainpanel, gridBagConstraints1);
     } //GEN-END:initComponents
 
-    private void logoutMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_logoutMouseClicked
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_logoutMouseClicked
         this.adminClient.logout(); // Methode funzt noch nicht
         cardLayout.first(mainpanel);
     } //GEN-LAST:event_logoutMouseClicked
 
-    private void channelMsgBufferMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_channelMsgBufferMouseClicked
+    private void channelMsgBufferActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_channelMsgBufferMouseClicked
         logText.logTextArea.setText("");
         Enumeration enum = this.adminClient.getChannelMsgBuffer().elements();
         while (enum.hasMoreElements()) {
@@ -489,7 +489,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         logText.show();
     } //GEN-LAST:event_channelMsgBufferMouseClicked
 
-    private void userAdminMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_userAdminMouseClicked
+    private void userAdminActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_userAdminMouseClicked
         if (userAdmin.isEnabled()) {
             this.userAdminGUI.show();
             this.adminClient.getUserList();
@@ -497,7 +497,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         }
     } //GEN-LAST:event_userAdminMouseClicked
 
-    private void channelAdminMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_channelAdminMouseClicked
+    private void channelAdminActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_channelAdminMouseClicked
         if (channelAdmin.isEnabled()) {
             this.channelAdminGUI.show();
             this.adminClient.getChannelList();
@@ -509,7 +509,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         this.adminClient.joinChannel(this.channelChoice.getSelectedItem());
     } //GEN-LAST:event_channelChoiceItemStateChanged
 
-    private void sendMsgMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_sendMsgMouseClicked
+    private void sendMsgActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_sendMsgMouseClicked
         if (this.userList.getSelectedItem().compareTo("Alle") == 0) {
             this.adminClient.sendMsgToChannel(this.msg.getText());
         }
@@ -521,7 +521,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         this.msg.requestFocus();
     } //GEN-LAST:event_sendMsgMouseClicked
 
-    private void loginMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_loginMouseClicked
+    private void login() {
         this.adminClient.startClient();
         if (isGuest.getState()) {
             this.adminClient.loginAsGuest(this.loginName.getText());
@@ -530,7 +530,15 @@ public class ChatGui extends java.applet.Applet implements GUI {
             this.adminClient.login(this.loginName.getText(), this.password.getText());
         }
         cardLayout.next(mainpanel);
+    }
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_loginMouseClicked
+        this.login();
     } //GEN-LAST:event_loginMouseClicked
+
+    private void loginPanelKeyTyped(java.awt.event.KeyEvent evt) {
+        System.out.println("key: " + evt.getKeyCode());
+    }
 
     private void isGuestItemStateChanged(java.awt.event.ItemEvent evt) { //GEN-FIRST:event_isGuestItemStateChanged
         if (isGuest.getState()) {
