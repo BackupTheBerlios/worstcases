@@ -1,0 +1,34 @@
+Installationsanleitung für das Juliet-Chatsystem
+
+0. Dateien in juliet.zip
+- installation.txt - dieser Text ;)
+
+- Verzeichnis html:
+ - JulietClient.jar - das Clientapplet
+ - applet.html - die Hauptseite zum Start des Applets
+ - weitere Dateien für die HTML - Dokumente
+
+- Verzeichnis server:
+ - JulietServer.jar - die Serverapplikation
+ - user.db - enthält die Daten der angelegten Benutzer
+ - channel.db - enthält die Daten der angelegten Channels
+
+- Verzeichnis src:
+ - enthält den Java-Quellcode
+
+
+1. System-Vorraussetzungen
+
+- ein Webserver, um das Client-Applet zur Verfügung zu stellen
+- das JRE 1.3 (oder höher), um den Chatserver zu starten
+- ein Webbrowser oder Appletviewer
+- der Chatserver und das Client-Applet müssen auf demselben Rechner bereitgestellt
+  werden, da das Client-Applet versucht, mit dem Rechner Kontakt aufzunehmen, von dem
+  es geladen wurde
+ 
+2. Installation
+
+Das Verzeichnis "server" enthält alle für den Chatserver benötigten Dateien und kann
+an eine gewünschte Stelle kopiert werden. Der Chatserver wird mittels "java -jar
+JulietServer.jar" gestartet.
+Der Webserver muß nun nur noch das Verzeichnis "html" zur Verfügung stellen.
