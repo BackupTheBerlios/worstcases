@@ -37,7 +37,7 @@ class Downlink extends Thread {
   }
 
   public String getMsg() {
-    return msg;
+    return "foo";
   }
 
   /**
@@ -46,7 +46,7 @@ class Downlink extends Thread {
   public void startDownlink() {}
 
   public void run() {
-    this.listen();
+    listen();
   }
 
   /**

@@ -1,0 +1,56 @@
+CCCC_Module@Downlink@class@
+CCCC_ModExt@Downlink@class@Downlink.java@14@definition@?????@LOC:3 COM:10 MVG:0@?@d@
+CCCC_Module@Socket@@
+CCCC_Module@String@@
+CCCC_Module@Thread@@
+CCCC_Module@Uplink@class@
+CCCC_ModExt@Uplink@class@Uplink.java@16@definition@?????@LOC:3 COM:14 MVG:0@?@d@
+CCCC_Module@@@
+CCCC_Module@char@builtin@
+CCCC_ModExt@char@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Module@double@builtin@
+CCCC_ModExt@double@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Module@float@builtin@
+CCCC_ModExt@float@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Module@int@builtin@
+CCCC_ModExt@int@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Module@long@builtin@
+CCCC_ModExt@long@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Module@void@builtin@
+CCCC_ModExt@void@builtin@<nofile>@0@builtin definition@d?????@@0@d@
+CCCC_Member@Downlink@Downlink@@(Socket)@
+CCCC_MemExt@Downlink@Downlink@@(Socket)@Downlink.java@20@definition@????0@LOC:3 COM:4 MVG:0@?@d@
+CCCC_Member@Downlink@getMsg@String@()@
+CCCC_MemExt@Downlink@getMsg@String@()@Downlink.java@39@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Downlink@listen@void@()@
+CCCC_MemExt@Downlink@listen@void@()@Downlink.java@32@definition@????0@LOC:4 COM:5 MVG:0@?@d@
+CCCC_Member@Downlink@run@void@()@
+CCCC_MemExt@Downlink@run@void@()@Downlink.java@48@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Downlink@start@void@()@
+CCCC_MemExt@Downlink@start@void@()@Downlink.java@57@definition@????0@LOC:3 COM:0 MVG:0@?@d@
+CCCC_Member@Downlink@startDownlink@void@()@
+CCCC_MemExt@Downlink@startDownlink@void@()@Downlink.java@46@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@Downlink@stopDownlink@void@()@
+CCCC_MemExt@Downlink@stopDownlink@void@()@Downlink.java@55@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@Uplink@Uplink@@(Socket)@
+CCCC_MemExt@Uplink@Uplink@@(Socket)@Uplink.java@22@definition@????0@LOC:1 COM:4 MVG:0@?@d@
+CCCC_Member@Uplink@send@void@(String)@
+CCCC_MemExt@Uplink@send@void@(String)@Uplink.java@48@definition@????0@LOC:1 COM:9 MVG:0@?@d@
+CCCC_Member@Uplink@startUplink@void@()@
+CCCC_MemExt@Uplink@startUplink@void@()@Uplink.java@32@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_Member@Uplink@stopUplink@void@()@
+CCCC_MemExt@Uplink@stopUplink@void@()@Uplink.java@37@definition@????0@LOC:1 COM:3 MVG:0@?@d@
+CCCC_UseRel@Socket@Downlink@
+CCCC_UseExt@Socket@Downlink@Downlink.java@20@normal parameter@????0@*@?@p@
+CCCC_UseExt@Socket@Downlink@Downlink.java@27@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@Downlink@
+CCCC_UseExt@String@Downlink@Downlink.java@39@return type@????0@*@?@p@
+CCCC_UseRel@Thread@Downlink@
+CCCC_UseExt@Thread@Downlink@Downlink.java@14@extends@????0@*@?@I@
+CCCC_UseRel@Socket@Uplink@
+CCCC_UseExt@Socket@Uplink@Uplink.java@22@normal parameter@????0@*@?@p@
+CCCC_UseExt@Socket@Uplink@Uplink.java@27@member variable@????2@LOC:0 COM:0 MVG:0@?@h@
+CCCC_UseRel@String@Uplink@
+CCCC_UseExt@String@Uplink@Uplink.java@48@normal parameter@????0@*@?@p@
+CCCC_RejExt@Downlink.java@1@<file scope items>@?????@LOC:3 COM:0 MVG:0@?@r@
+CCCC_RejExt@Uplink.java@1@<file scope items>@?????@LOC:2 COM:0 MVG:0@?@r@
