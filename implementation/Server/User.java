@@ -334,9 +334,7 @@ class User {
     public void removeYou() {
         this.setIsLoggedIn(false);
         this.setAllowedChannelList(null);
-        if (this.userAdministration != null) {
-            this.userAdministration.removeFromUserList(this);
-        }
+        this.setUserAdministration(null);
         Debug.println(Debug.LOW, this.getName() + ": has been removed");
     }
 
