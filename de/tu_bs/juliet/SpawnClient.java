@@ -31,13 +31,13 @@ import de.tu_bs.juliet.client.AdminClient;
  */
 public class SpawnClient extends Thread {
 
-  // Zahl der gewünschten Clients
+  /** Zahl der gewünschten Clients. */
   public int numClients = 20;
   
-  // Dauer der "Schlafphase" des Threads
+  /** Dauer der "Schlafphase" des Threads. */
   public long sleepDelay = 1000;
 
-  // run-Methode des Threads
+  /** run-Methode des Threads. */
   public void run() {
     
     AdminClient[] arr = new AdminClient[numClients];
