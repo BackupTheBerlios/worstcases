@@ -17,17 +17,30 @@ package ClientGUI;
  */
 public class ChatGUI extends java.applet.Applet {
 
+    /** Liefert Informationen über das Applet an einen Browser.*/
+    public String getAppletInfo() {
+      return "Virtuelle Konferenz von den WorstCases"; //XXX
+    }
+    
     /** Initializes the applet chat */
     public void init () {
         initComponents ();
         channelChoice.add("Foyer");
         channelChoice.add("Mensa");
-        channelChoice.show(); //XXX deprecated
+        //channelChoice.show(); //XXX deprecated
         
         
         userList.add("Alle");
         userList.add("Malte");
         userList.add("Foo");
+        
+        for (int i=0; i<20; i++) {
+            chatTextArea.append(". \n");
+        }
+        
+        chatTextArea.setRows(30);
+
+        this.validate();
     }
 
     /** This method is called from within the init() method to
@@ -40,10 +53,10 @@ public class ChatGUI extends java.applet.Applet {
         chatTextArea = new java.awt.TextArea();
         inputTextField = new java.awt.TextField();
         userList = new java.awt.List();
-        exitButton = new java.awt.Button();
         channelPanel = new java.awt.Panel();
         channelLabel = new java.awt.Label();
         channelChoice = new java.awt.Choice();
+        exitButton = new java.awt.Button();
         sendButton = new java.awt.Button();
         label1 = new java.awt.Label();
         setLayout(new java.awt.CardLayout());
@@ -61,9 +74,11 @@ public class ChatGUI extends java.applet.Applet {
           chatTextArea.setFont(new java.awt.Font ("Dialog", 0, 11));
           chatTextArea.setForeground(java.awt.Color.black);
           chatTextArea.setText("Willkommen zur Virtuellen Konferenz des Instituts f\u00fcr Computergrafik");
+          chatTextArea.setRows(20);
           gridBagConstraints1 = new java.awt.GridBagConstraints();
           gridBagConstraints1.gridx = 0;
           gridBagConstraints1.gridy = 1;
+          gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
           gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTH;
           chatPanel.add(chatTextArea, gridBagConstraints1);
           
@@ -105,25 +120,8 @@ public class ChatGUI extends java.applet.Applet {
           chatPanel.add(userList, gridBagConstraints1);
           
           
-        exitButton.setFont(new java.awt.Font ("Dialog", 0, 11));
-          exitButton.setLabel("Abmelden");
-          exitButton.setName("exitButton");
-          exitButton.setBackground(new java.awt.Color (153, 153, 153));
-          exitButton.setForeground(java.awt.Color.black);
-          exitButton.addActionListener(new java.awt.event.ActionListener() {
-              public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  button2ActionPerformed(evt);
-              }
-          }
-          );
-          gridBagConstraints1 = new java.awt.GridBagConstraints();
-          gridBagConstraints1.gridx = 0;
-          gridBagConstraints1.gridy = 4;
-          gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
-          chatPanel.add(exitButton, gridBagConstraints1);
-          
-          
-        channelPanel.setFont(new java.awt.Font ("Dialog", 0, 11));
+        channelPanel.setLayout(new java.awt.FlowLayout(0, 5, 5));
+          channelPanel.setFont(new java.awt.Font ("Dialog", 0, 11));
           channelPanel.setName("channelPanel");
           channelPanel.setBackground(new java.awt.Color (153, 153, 153));
           channelPanel.setForeground(java.awt.Color.black);
@@ -140,6 +138,14 @@ public class ChatGUI extends java.applet.Applet {
             channelChoice.setBackground(new java.awt.Color (153, 153, 153));
             channelChoice.setForeground(java.awt.Color.black);
             channelPanel.add(channelChoice);
+            
+            
+          exitButton.setFont(new java.awt.Font ("Dialog", 0, 11));
+            exitButton.setLabel("Abmelden");
+            exitButton.setName("exitButton");
+            exitButton.setBackground(new java.awt.Color (153, 153, 153));
+            exitButton.setForeground(java.awt.Color.black);
+            channelPanel.add(exitButton);
             
             gridBagConstraints1 = new java.awt.GridBagConstraints();
           gridBagConstraints1.gridx = 0;
@@ -204,10 +210,10 @@ public class ChatGUI extends java.applet.Applet {
   private java.awt.TextArea chatTextArea;
   private java.awt.TextField inputTextField;
   private java.awt.List userList;
-  private java.awt.Button exitButton;
   private java.awt.Panel channelPanel;
   private java.awt.Label channelLabel;
   private java.awt.Choice channelChoice;
+  private java.awt.Button exitButton;
   private java.awt.Button sendButton;
   private java.awt.Label label1;
   // End of variables declaration//GEN-END:variables
