@@ -76,7 +76,7 @@ public class Downlink extends Thread {
         }
 
         // pausieren
-        this.sleep(this.LISTEN_DELAY);
+        this.sleep(Downlink.LISTEN_DELAY);
       } catch (Exception e) {
         Debug.println(Debug.HIGH, "Downlink: error while listening :" + e);
         e.printStackTrace();
