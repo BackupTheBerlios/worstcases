@@ -121,7 +121,10 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 		 * die den Channel betreten dürfen
      */
     public void editChannel(String oldName, String newName, boolean paramAllowedForGuest, Vector allowedUserNames) {
-				if ((oldName != null) && (newName != null) && (newName.compareTo("") != 0) && this.channelAdministration.getFromChannelListByName(newName)==null) {
+				if ((oldName != null) && (newName != null) && (newName.compareTo("") != 0)) {
+					if((this.channelAdministration.getFromChannelListByName(newName)==null) |
+						 (oldName.compareTo(newName)==0)){
+
 					//Foyer darf nicht verändert werden
             if (oldName.compareTo(this.channelAdministration.FOYERNAME) != 0) {
                 Channel tmpChannel = new Channel(newName, paramAllowedForGuest);
@@ -145,7 +148,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                     tmpChannel.setAllowedUserList(this.userAdministration.getUserEnum());
                 }
                 this.channelAdministration.editChannel(oldName, tmpChannel);
-                this.dataBaseIO.saveToDisk();
+								this.dataBaseIO.saveToDisk();
+						}
             }
         }
     }
@@ -223,7 +227,9 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
         Vector allowedChannelNames) {
             // "faule" Auswertung!
             if ((newName != null) && (newPassword != null) && (newName.compareTo("") != 0) &&
-								(newPassword.compareTo("") != 0) && this.userAdministration.getFromUserListByName(newName)==null) {
+								(newPassword.compareTo("") != 0)) {
+								if(this.userAdministration.getFromUserListByName(newName)==null|oldName.compareTo(newName)==0){
+
                     User tmpUser = new User(newName, newPassword, false, paramIsAdmin, this.userAdministration);
 										/* gewährt Zugriff auf alle Channel,
 										 *die für Gäste freigegeben sind
@@ -248,7 +254,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                         tmpUser.setAllowedChannelList(this.channelAdministration.getChannelEnum());
                     }
                     this.userAdministration.editUser(oldName, tmpUser);
-                    this.dataBaseIO.saveToDisk();
+										this.dataBaseIO.saveToDisk();
+								}
             }
     }
 
