@@ -53,18 +53,17 @@ public class UserAdminGUI extends java.applet.Applet {
         label2.setText("Passwort");
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 1;
+        gridBagConstraints1.gridx = 4;
+        gridBagConstraints1.gridy = 3;
         gridBagConstraints1.gridwidth = 3;
-        gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
         add(label2, gridBagConstraints1);
         
         
         textField1.setBackground(java.awt.Color.white);
         textField1.setName("loginField");
         textField1.setFont(new java.awt.Font ("Dialog", 0, 11));
-        textField1.setForeground(new java.awt.Color (0, 0, 0));
+        textField1.setForeground(java.awt.Color.black);
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField1ActionPerformed(evt);
@@ -73,10 +72,11 @@ public class UserAdminGUI extends java.applet.Applet {
         );
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 3;
-        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridx = 7;
+        gridBagConstraints1.gridy = 2;
         gridBagConstraints1.gridwidth = 8;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 0, 0, 10);
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(textField1, gridBagConstraints1);
         
@@ -88,11 +88,10 @@ public class UserAdminGUI extends java.applet.Applet {
         label3.setText("Wiederholung");
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 2;
+        gridBagConstraints1.gridx = 4;
+        gridBagConstraints1.gridy = 4;
         gridBagConstraints1.gridwidth = 3;
-        gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
         add(label3, gridBagConstraints1);
         
         
@@ -103,19 +102,18 @@ public class UserAdminGUI extends java.applet.Applet {
         label1.setText("Login Name");
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridx = 4;
+        gridBagConstraints1.gridy = 2;
         gridBagConstraints1.gridwidth = 3;
-        gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints1.insets = new java.awt.Insets(1, 0, 0, 0);
-        gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
         add(label1, gridBagConstraints1);
         
         
         list1.setFont(new java.awt.Font ("Dialog", 0, 11));
         list1.setName("userList");
         list1.setBackground(java.awt.Color.white);
-        list1.setForeground(new java.awt.Color (0, 0, 0));
+        list1.setForeground(java.awt.Color.black);
         list1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 list1ActionPerformed(evt);
@@ -124,26 +122,29 @@ public class UserAdminGUI extends java.applet.Applet {
         );
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 11;
-        gridBagConstraints1.gridy = 1;
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 2;
         gridBagConstraints1.gridwidth = 4;
-        gridBagConstraints1.gridheight = 13;
+        gridBagConstraints1.gridheight = 11;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints1.ipadx = 3;
-        gridBagConstraints1.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
+        gridBagConstraints1.weightx = 0.5;
+        gridBagConstraints1.weighty = 1.0;
         add(list1, gridBagConstraints1);
         
         
         textField3.setBackground(java.awt.Color.white);
         textField3.setName("passwordField");
         textField3.setFont(new java.awt.Font ("Dialog", 0, 11));
-        textField3.setForeground(new java.awt.Color (0, 0, 0));
+        textField3.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 3;
-        gridBagConstraints1.gridy = 1;
+        gridBagConstraints1.gridx = 7;
+        gridBagConstraints1.gridy = 3;
         gridBagConstraints1.gridwidth = 8;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 0, 0, 10);
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(textField3, gridBagConstraints1);
         
@@ -151,7 +152,7 @@ public class UserAdminGUI extends java.applet.Applet {
         textField4.setBackground(java.awt.Color.white);
         textField4.setName("passwordVerifyField");
         textField4.setFont(new java.awt.Font ("Dialog", 0, 11));
-        textField4.setForeground(new java.awt.Color (0, 0, 0));
+        textField4.setForeground(java.awt.Color.black);
         textField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField4ActionPerformed(evt);
@@ -160,10 +161,11 @@ public class UserAdminGUI extends java.applet.Applet {
         );
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 3;
-        gridBagConstraints1.gridy = 2;
+        gridBagConstraints1.gridx = 7;
+        gridBagConstraints1.gridy = 4;
         gridBagConstraints1.gridwidth = 8;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 0, 0, 10);
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(textField4, gridBagConstraints1);
         
@@ -175,9 +177,10 @@ public class UserAdminGUI extends java.applet.Applet {
         checkbox2.setLabel(" ist Admin");
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 3;
-        gridBagConstraints1.gridy = 3;
+        gridBagConstraints1.gridx = 7;
+        gridBagConstraints1.gridy = 5;
         gridBagConstraints1.gridwidth = 8;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 0, 0, 10);
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.WEST;
         add(checkbox2, gridBagConstraints1);
         
@@ -190,11 +193,11 @@ public class UserAdminGUI extends java.applet.Applet {
         label4.setAlignment(java.awt.Label.CENTER);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 11;
-        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 1;
         gridBagConstraints1.gridwidth = 4;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints1.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
         add(label4, gridBagConstraints1);
         
         
@@ -202,14 +205,16 @@ public class UserAdminGUI extends java.applet.Applet {
         list3.setMultipleMode(true);
         list3.setName("passiveChannelList");
         list3.setBackground(java.awt.Color.white);
-        list3.setForeground(new java.awt.Color (0, 0, 0));
+        list3.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 6;
+        gridBagConstraints1.gridx = 4;
+        gridBagConstraints1.gridy = 7;
         gridBagConstraints1.gridwidth = 5;
         gridBagConstraints1.gridheight = 8;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 0, 10, 15);
+        gridBagConstraints1.weightx = 1.0;
         add(list3, gridBagConstraints1);
         
         
@@ -220,8 +225,8 @@ public class UserAdminGUI extends java.applet.Applet {
         button1.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 5;
-        gridBagConstraints1.gridy = 8;
+        gridBagConstraints1.gridx = 9;
+        gridBagConstraints1.gridy = 9;
         add(button1, gridBagConstraints1);
         
         
@@ -232,8 +237,8 @@ public class UserAdminGUI extends java.applet.Applet {
         button2.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 5;
-        gridBagConstraints1.gridy = 10;
+        gridBagConstraints1.gridx = 9;
+        gridBagConstraints1.gridy = 11;
         add(button2, gridBagConstraints1);
         
         
@@ -241,14 +246,16 @@ public class UserAdminGUI extends java.applet.Applet {
         list2.setMultipleMode(true);
         list2.setName("activeChannelList");
         list2.setBackground(java.awt.Color.white);
-        list2.setForeground(new java.awt.Color (0, 0, 0));
+        list2.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 6;
-        gridBagConstraints1.gridy = 6;
+        gridBagConstraints1.gridx = 10;
+        gridBagConstraints1.gridy = 7;
         gridBagConstraints1.gridwidth = 5;
         gridBagConstraints1.gridheight = 8;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints1.insets = new java.awt.Insets(0, 15, 10, 10);
+        gridBagConstraints1.weightx = 1.0;
         add(list2, gridBagConstraints1);
         
         
@@ -260,9 +267,10 @@ public class UserAdminGUI extends java.applet.Applet {
         label5.setAlignment(java.awt.Label.CENTER);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 5;
+        gridBagConstraints1.gridx = 4;
+        gridBagConstraints1.gridy = 6;
         gridBagConstraints1.gridwidth = 5;
+        gridBagConstraints1.insets = new java.awt.Insets(15, 0, 0, 10);
         add(label5, gridBagConstraints1);
         
         
@@ -274,9 +282,10 @@ public class UserAdminGUI extends java.applet.Applet {
         label6.setAlignment(java.awt.Label.CENTER);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 6;
-        gridBagConstraints1.gridy = 5;
+        gridBagConstraints1.gridx = 10;
+        gridBagConstraints1.gridy = 6;
         gridBagConstraints1.gridwidth = 5;
+        gridBagConstraints1.insets = new java.awt.Insets(15, 0, 0, 10);
         add(label6, gridBagConstraints1);
         
         
@@ -287,11 +296,11 @@ public class UserAdminGUI extends java.applet.Applet {
         button3.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 11;
-        gridBagConstraints1.gridy = 14;
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 13;
         gridBagConstraints1.gridwidth = 4;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints1.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
         add(button3, gridBagConstraints1);
         
         
@@ -302,11 +311,11 @@ public class UserAdminGUI extends java.applet.Applet {
         button4.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 11;
-        gridBagConstraints1.gridy = 15;
+        gridBagConstraints1.gridx = 0;
+        gridBagConstraints1.gridy = 14;
         gridBagConstraints1.gridwidth = 4;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints1.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints1.insets = new java.awt.Insets(0, 10, 10, 30);
         add(button4, gridBagConstraints1);
         
         
@@ -318,9 +327,11 @@ public class UserAdminGUI extends java.applet.Applet {
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
-        gridBagConstraints1.gridy = 15;
-        gridBagConstraints1.gridwidth = 3;
+        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridwidth = 5;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(10, 10, 15, 0);
+        gridBagConstraints1.weightx = 1.0;
         add(button5, gridBagConstraints1);
         
         
@@ -331,10 +342,12 @@ public class UserAdminGUI extends java.applet.Applet {
         button6.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 3;
-        gridBagConstraints1.gridy = 15;
-        gridBagConstraints1.gridwidth = 3;
+        gridBagConstraints1.gridx = 5;
+        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridwidth = 5;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(10, 0, 15, 0);
+        gridBagConstraints1.weightx = 1.0;
         add(button6, gridBagConstraints1);
         
         
@@ -345,10 +358,12 @@ public class UserAdminGUI extends java.applet.Applet {
         button7.setForeground(java.awt.Color.black);
         
         gridBagConstraints1 = new java.awt.GridBagConstraints();
-        gridBagConstraints1.gridx = 6;
-        gridBagConstraints1.gridy = 15;
-        gridBagConstraints1.gridwidth = 4;
+        gridBagConstraints1.gridx = 10;
+        gridBagConstraints1.gridy = 0;
+        gridBagConstraints1.gridwidth = 5;
         gridBagConstraints1.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints1.insets = new java.awt.Insets(10, 0, 15, 10);
+        gridBagConstraints1.weightx = 1.0;
         add(button7, gridBagConstraints1);
         
     }//GEN-END:initComponents
