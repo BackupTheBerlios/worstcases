@@ -1,7 +1,7 @@
 package Util.Commands;
 
 import Client.AdminClient;
-import Server.ClientServant;
+import Server.AdminClientServant;
 
 /**
 * fordert vom AdminClientServant die komplette Userliste an
