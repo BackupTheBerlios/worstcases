@@ -8,7 +8,7 @@ class JulietServer {
 
     public static void main( String[] args ) {
 
-        Debug.setLevel( Debug.OFF );
+        Debug.setLevel( Debug.LOW );
 
         Server testserver = new Server();
 
