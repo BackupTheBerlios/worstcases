@@ -1,5 +1,5 @@
 #!/bin/sh
-# Entfernt überflüssige Kommentare von TogetherJ und Jindent.
+# Entfernt überflüssige Kommentare von TogetherJ, Jindent und Forte.
 for i in *.java
 do cp $i $i-tmp
 done
