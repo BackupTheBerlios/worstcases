@@ -4,6 +4,7 @@ import java.util.Vector;
 import java.net.Socket;
 import Util.*;
 import Util.Commands.*;
+import Util.Debug.Debug;
 
 /** Die Clientapplikation */
 public class Client implements Util.DownlinkOwner {
@@ -26,7 +27,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     public void newUserInChannel(String paramName) {
-        System.out.println(paramName + " joined channel");
+        Debug.println("Client: " + paramName + " joined channel");
     }
 
     public void setDownlink(Util.Downlink paramDownlink) { };
@@ -34,7 +35,7 @@ public class Client implements Util.DownlinkOwner {
     public void downlinkError() { };
 
     public void loginError() {
-        System.out.println("login failed: ");
+        Debug.println("Client: login failed: ");
     }
 
 
@@ -49,7 +50,7 @@ public class Client implements Util.DownlinkOwner {
             this.uplink.sendMsg(paramCommand);
         }
         catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(Debug.HIGH, e);
         }
     }
 
@@ -64,7 +65,7 @@ public class Client implements Util.DownlinkOwner {
 
     /** meldet einen Gast an */
     public void loginAsGuest(String name) {
-        System.out.println("loginGuest " + name);
+        Debug.println("Client: loginGuest " + name);
         this.sendCommand(
             new LoginGuestCommand(name));
     }
@@ -108,7 +109,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     public void startClient() {
-        System.out.println("starting client");
+        Debug.println("Client: starting client");
         try {
             socket = new Socket(Client.SERVER_IP, Client.SERVER_PORT);
             uplink = new Util.Uplink(socket);
@@ -117,12 +118,12 @@ public class Client implements Util.DownlinkOwner {
             downlink.startDownlink();
             downlink.start();
         } catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(Debug.HIGH, e);
         }
     }
 
     public void sendMsgFromChannel(String fromName, String msg) {
-        System.out.println(fromName + " sayz:" + msg);
+        Debug.println("Client: " + fromName + " sayz:" + msg);
     }
 
     public void sendMsgFromUser(String fromName,String msg){
