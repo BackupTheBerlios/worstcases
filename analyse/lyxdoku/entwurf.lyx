@@ -59,6 +59,8 @@ flags 11
 
 \newline 
  Virtuelle Konferenz
+\lang american
+16
 \layout Standard
 
 
@@ -212,10 +214,36 @@ TogetherJ in der Version 4.2 unterstützt keine bidirektionalen Assoziationen.
  bidirektional.
 \layout Section
 
-Aktivitätsdiagramme
+Aktivitätsdiagramm
 \layout Standard
 
-Ein Beispielverlauf einer Benutzeraktivität
+Dieses Aktivitätsdiagramm veranschaulicht, wie eine Chat-Sitzung beispielhaft
+ ablaufen könnte.
+ Das Diagramm soll nur einen groben Überblick über die prinzipiellen Abläufe
+ im System vermitteln und ist deswegen stark vereinfacht und informell.
+\layout Standard
+
+Der Benutzer startet den Chat-Client und meldet sich mit seinen Benutzerdaten
+ an.
+ Ab nun kümmert sich ein ClientServant um ihn, indem er zuerst diese Benutzerdat
+en überprüft.
+ Sind sie korrekt, sendet er eine Liste der verfügbaren Channel an den Benutzer.
+ Dieser sucht sich nun den Channel aus, den er betreten möchte, woraufhin
+ ihm sein ClientServant eine Liste der in diesem Channel anwesenden Benutzer
+ sendet.
+\layout Standard
+
+Der Benutzer kann nun mit dem eigentlichen Chatten loslegen, indem er beispielsw
+eise eine Begrüßungsnachricht an alle Benutzer in diesem Channel schickt,
+ die vom ClientServant weiter verteilt wird.
+ Anschließend lässt er noch einem einzelnen Benutzer eine private Nachricht
+ zukommen, deren Zustellung auch der ClientServant in die Wege leitet.
+ Anschließend meldet sich der Benutzer wieder ab, und die Chat-Sitzung ist
+ beendet.
+\layout Standard
+
+Die meisten Aktivitäten in diesem Diagramm entsprechen jeweils einer Methode
+ der Klassen Client und ClientServant.
 \layout Standard
 
 \begin_float fig 
