@@ -24,7 +24,7 @@ public class Uplink {
     /** Über diesen Socket werden die Nachrichten versendet. */
     private Socket socket;
 
-    /**Output - Stream für Objekte*/
+    /**Output-Stream für Objekte.*/
     private ObjectOutputStream objectOutputStream;
 
     /** Öffnet den Output-Stream. */
@@ -51,7 +51,7 @@ public class Uplink {
      * @see Downlink
      */
     public synchronized void sendMsg(Command msg) throws java.io.IOException {
-        objectOutputStream.writeObject(msg); // FIXME: Dummy
+        objectOutputStream.writeObject(msg);
         objectOutputStream.flush();
         System.out.println("sending " + msg);
     }

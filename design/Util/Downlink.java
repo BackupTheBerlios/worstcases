@@ -12,7 +12,7 @@ import Util.Commands.*;
  * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von seinem Client zu empfangen.
  */
 public class Downlink extends Thread {
-    /**Zeit zwischen zwei Listen() - Schleifendurchläufen in Millisekunden*/
+    /**Zeit zwischen zwei Listen()-Schleifendurchläufen in Millisekunden.*/
     private int LISTEN_DELAY = 100;
 
     /**
@@ -31,10 +31,10 @@ public class Downlink extends Thread {
     /** Der Besitzer des Downlinks, an den die ankommenden Nachrichten weitergeleitet werden sollen. */
     private DownlinkOwner downlinkOwner;
 
-    /** InputStream für Objekte*/
+    /** InputStream für Objekte.*/
     private ObjectInputStream objectInputStream;
 
-    /** wird auf true gesetzt, wenn der Thread beendet werden soll*/
+    /** Wird auf true gesetzt, wenn der Thread beendet werden soll.*/
     private boolean stop = false;
 
     /** Wartet auf ankommende Nachrichten mit objectInputStream.readObject() und leitet sie an den Besitzer weiter.
@@ -79,8 +79,8 @@ public class Downlink extends Thread {
         listen();
     }
 
-    /** Schließt den Input - Stream
-      * Benutzt setDownlinkOwner(null);
+    /** Schließt den Input-Stream.
+      * Benutzt setDownlinkOwner(null).
       */
     private void stopDownlink() {
         this.stop = true;
@@ -97,14 +97,14 @@ public class Downlink extends Thread {
     }
 
 
-    /**Gibt den DownlinkOwner zurück*/
+    /**Gibt den DownlinkOwner zurück.*/
     public DownlinkOwner getDownlinkOwner() {
         return downlinkOwner;
     }
 
     /**
-     * setDownlinkOwner(null) bewirkt stopDownlink()
-     * Benachrichtigt die betroffenen Objekte mittels setDownlink()
+     * aufruf von setDownlinkOwner(null) bewirkt stopDownlink().
+     * Benachrichtigt die betroffenen Objekte mittels setDownlink().
      */
     public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
         if (this.downlinkOwner != paramDownlinkOwner) {

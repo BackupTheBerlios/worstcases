@@ -5,7 +5,7 @@ import java.util.Enumeration;
 
 
 /** 
- * Die Klasse UserAdministration stellt Methoden zur Benutzerverwaltung zur Verfügung.
+ * Stellt Methoden zur Verwaltung der Benutzer zur Verfügung.
  * Neben der Abwicklung des User-Login und des Guest-Login, können User hinzugefügt,
  * bearbeitet und gelöscht werden. Außerdem gibt es Methoden, um sich alle oder einzelne 
  * User anzeigen zu lassen, sowie einige Methoden, welche die Counter-Attribute für die

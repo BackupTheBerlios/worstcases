@@ -2,13 +2,13 @@ package Util.Commands;
 
 import Server.AdminClientServant;
 
-/** Wird von einem AdminClient erzeugt.
- *  Löscht einen Channel, indem deleteChannel() beim
- *  AdminClientServant ausgeführt wird
+/** Wird von einem AdminClient erzeugt,
+ *  löscht einen Channel, indem deleteChannel() beim
+ *  AdminClientServant ausgeführt wird.
  */
 
 public class DeleteChannelCommand implements Command {
-    /** setzt den Namen
+    /** Setzt den Namen.
      */
     public DeleteChannelCommand(String paramName) {
         this.name = paramName;
@@ -17,7 +17,7 @@ public class DeleteChannelCommand implements Command {
     /** Der Channelname. */
     String name;
 
-    /**ruft beim AdminClientServant deleteChannel() auf*/
+    /**Ruft beim AdminClientServant deleteChannel() auf.*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).deleteChannel(name);

@@ -2,7 +2,7 @@ package Util.Debug;
 
 /**
  * Klasse zur Ausgabe von Debug-Nachrichten. Gegenüber dem üblichen
- * <pre>System.out.println("Gaaaaanz wichtiger Fehler!");</pre> 
+ * <pre>System.out.println("Wichtiger Fehler!");</pre> 
  * haben so ausgegebene Nachrichten u.a. folgende Vorteile:
  * <ul>
  * <li>sie können im Code bleiben, müssen nicht auskommentiert werden</li>
@@ -13,9 +13,16 @@ package Util.Debug;
  */
 public class Debug {
 
+  /** Stellt die Ausgabe von Debug-Nachrichten ab. */
   public final static int OFF = 0;
+  
+  /** Niedrige Priorität. */
   public final static int LOW = 1;
+  
+  /** Mittlere Priorität. */
   public final static int MEDIUM = 2;
+  
+  /** Hohe Priorität. */
   public final static int HIGH = 3;
 
   /**

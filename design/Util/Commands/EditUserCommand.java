@@ -6,14 +6,14 @@ import java.util.Vector;
 import Server.AdminClientServant;
 
 /**
- * Wird von einem AdminClient erzeugt
- * Ändert einen bestehenden User
- * ruft editUser beim AdminClientServant auf
+ * Wird von einem AdminClient erzeugt,
+ * Ändert einen bestehenden User und
+ * ruft editUser beim AdminClientServant auf.
  */
 
 public class EditUserCommand implements Command {
 
-    /**setzt die Attribute*/
+    /**Setzt die Attribute.*/
     public EditUserCommand(String paramOldName, String paramName, String paramPassword,boolean paramIsAdmin, Vector paramAllowedChannelNames) {
         this.oldName=paramOldName;
         this.name = paramName;
@@ -21,22 +21,22 @@ public class EditUserCommand implements Command {
         this.isAdmin = paramIsAdmin;
         this.allowedChannelNames = paramAllowedChannelNames;
     }
-    /**Alter Name des Users*/
+    /**Der alte Name des Users.*/
     private String oldName;
 
-    /**name des Users*/
+    /**Name des Users.*/
     private String name;
 
-    /**Passwort des Users*/
+    /**Passwort des Users.*/
     private String password;
 
-    /**Admin - Status des Users*/
+    /**Admin-Status des Users.*/
     private boolean isAdmin = false;
 
-    /**Liste der Namen der Channels, die der Benutzer betreten darf*/
+    /**Liste der Namen der Channels, die der Benutzer betreten darf.*/
     private Vector allowedChannelNames;
 
-    /**führt adminClientServant.editUser() mit den Attributen des Commands aus*/
+    /**Führt adminClientServant.editUser() mit den Attributen des Commands aus.*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).editUser(oldName, name, password, isAdmin, allowedChannelNames);

@@ -3,7 +3,7 @@ package Server;
 import java.util.Vector;
 import java.util.Enumeration;
 
-/** Stellt wichtige Methoden zur Administration der Channel
+/** Stellt Methoden zur Administration der Channel
   * zur Verfügung.
   * So können unter anderem Channel hinzugefügt, bearbeitet und
   * gelöscht werden.

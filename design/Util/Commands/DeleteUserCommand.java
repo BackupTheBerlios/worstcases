@@ -2,12 +2,12 @@ package Util.Commands;
 
 import Server.AdminClientServant;
 
-/** wird von einem AdminClient gesendet
- *löscht einen User
+/** Wird von einem AdminClient gesendet,
+ *löscht einen User.
  */
 
 public class DeleteUserCommand implements Command {
-    /** setzt den Namen
+    /** Setzt den Namen.
      */
     public DeleteUserCommand(String paramName) {
         this.name = paramName;
@@ -16,7 +16,7 @@ public class DeleteUserCommand implements Command {
     /** Der Benutzername. */
     String name;
 
-    /**ruft beim AdminClientServant deleteUser() auf*/
+    /**Ruft beim AdminClientServant deleteUser() auf.*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).deleteUser(name);

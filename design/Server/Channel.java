@@ -4,7 +4,7 @@ import java.util.Vector;
 import java.util.Enumeration;
 
 /**
- * Ein Channeldatensatz: Eine Instanz dieser Klasse kann wichtige Channeldaten wie beispielsweise
+ * Ein Channeldatensatz. Eine Instanz dieser Klasse kann wichtige Channeldaten wie beispielsweise
  * berechtigte User oder im Channel befindliche User speichern.
  * Außerdem stehen Methoden zur Verfügung, mit denen Listen der berechtigten
  * bzw. im Raum befindlichen User abgefragt und übergeben werden können.
