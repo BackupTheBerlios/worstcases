@@ -49,6 +49,8 @@ public class Downlink extends Thread {
    */
   private void listen() {
 
+    Debug.println(this + ": starting...");
+    
     Command tmpCommand;
     DownlinkOwner owner = this.downlinkOwner;
 
