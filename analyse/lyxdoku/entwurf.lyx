@@ -21,7 +21,7 @@
 \end_preamble
 \language german
 \inputencoding latin1
-\fontscheme default
+\fontscheme times
 \graphics default
 \float_placement !hp
 \paperfontsize default
