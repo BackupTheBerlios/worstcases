@@ -5,7 +5,8 @@ import java.util.Vector;
 
 
 /**
- * Empfängt über einen Socket Nachrichten von einem Uplink.
+ * Empfängt über einen Socket Nachrichten von einem Uplink und leitet
+ * sie an ihren Besitzer weiter.
  * Diese Klasse ist die empfangende Hälfte eines Kommunikationskanals. Die 
  * andere Hälfte, die das Senden von Nachrichten übernimmt, ist der Uplink.
  * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von
@@ -16,9 +17,11 @@ class Downlink extends Thread {
   /**
    * Konstruktor.
    * @param socket der zu benutzende Socket.
+   * @param owner der Besitzer des Downlinks.
    */
-  public Downlink(Socket socket) {
+  public Downlink(Socket socket, Object owner) {
     this.socket = socket;
+    this.owner = owner;
   }
 
   /**
@@ -27,17 +30,30 @@ class Downlink extends Thread {
   private Socket socket;
 
   /**
-   * Wartet auf ankommende Nachrichten.
+   * Der Besitzer des Downlinks, an den die ankommenden Nachrichten
+   * weitergeleitet werden sollen.
+   */
+  private Object owner;
+
+  /**
+   * Wartet auf ankommende Nachrichten und leitet sie an den Besitzer weiter. 
    */
   public void listen() { //FIXME: Wieso public?
 
     String msg = "foo";
 
-    listen(); //FIXME: Rekursion, besser while.
-  }
-
-  public String getMsg() {
-    return "foo";
+    /* Wenn der Besitzer dieses Downlinks ein Client (oder ein
+     * davon abgeleiteter ClientServant) ist, werden empfangene Nachrichten
+     * an seine Methode processMsg() übergeben.
+     *
+     * Das ist eigentlich übler Missbrauch des Reflection-APIs (siehe
+     * http://www.artima.com/designtechniques/rtci.html).
+     */
+    if (owner instanceof Client) { //XXX
+      Client client = (Client) owner; // Performance-Problem?
+      client.processMsg(msg);
+    }
+    listen(); //FIXME: Rekursion (-> StackOverflowError?), besser while.
   }
 
   /**
@@ -45,6 +61,9 @@ class Downlink extends Thread {
    */
   public void startDownlink() {}
 
+  /**
+   * Startet den Thread.
+   */
   public void run() {
     listen();
   }
