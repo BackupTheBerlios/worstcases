@@ -95,9 +95,8 @@ public class ChatGui extends java.applet.Applet {
    */
   public void displayError(String msg) {
 
-    ErrorMessage errormessage = new ErrorMessage();
+    ErrorMessage errormessage = new ErrorMessage(msg);
 
-    errormessage.messageArea.setText(msg);
     errormessage.show();
   }
 

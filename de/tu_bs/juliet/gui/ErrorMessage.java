@@ -30,13 +30,29 @@ public class ErrorMessage extends java.awt.Frame {
   /** OK-Button zum Schlieﬂen des Fensters. */
   private java.awt.Button okButton;
   /** Zum Anzeigen der Fehlermeldung. */
-  java.awt.TextArea messageArea;
+  private java.awt.TextArea messageArea;
 
   /** Konstruktor, initalisiert die grafischen Komponenten. */
   public ErrorMessage() {
     initComponents();
     pack();
   }
+
+    /**
+     * Konstrukor.
+     * @param msg die anzuzeigende Fehlermeldung
+     */
+    public ErrorMessage(String msg) {
+	this();
+	setMessage(msg);
+    }
+
+    /**
+     * Setzt die auszugebende Fehlermeldung.
+     */
+    public void setMessage(String msg) {
+	messageArea.setText(msg);
+    }
 
   /**
    * Diese Methode wird vom Konstruktor aufgerufen, um die grafische
@@ -52,7 +68,7 @@ public class ErrorMessage extends java.awt.Frame {
 
     java.awt.GridBagConstraints gridBagConstraints1;
 
-    setResizable(false);
+    //setResizable(false);
     setFont(new java.awt.Font("SansSerif", 0, 12));
     setTitle(ChatGui.PRODUCT_NAME + " - Fehler aufgetreten");
     addWindowListener(new java.awt.event.WindowAdapter() {
@@ -91,6 +107,7 @@ public class ErrorMessage extends java.awt.Frame {
     gridBagConstraints1.insets = new java.awt.Insets(15, 15, 10, 15);
 
     add(messageArea, gridBagConstraints1);
+    setSize(300, 180);
   }
 
   /** Nach Klick auf den okButton wird der Error-Message-Frame geschlossen */
