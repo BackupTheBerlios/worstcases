@@ -121,7 +121,7 @@ public class UserAdminGUI extends java.awt.Frame {
         userList.setName("userList");
         userList.setBackground(java.awt.Color.white);
         userList.setForeground(java.awt.Color.black);
-        userList.addItemListener(
+        userList.addItemListener( //FIXME: zum Testen, sollte imo in der final nicht mehr gehen
             new java.awt.event.ItemListener() {
                 public void itemStateChanged(java.awt.event.ItemEvent evt) {
                  editUser();
@@ -315,7 +315,7 @@ public class UserAdminGUI extends java.awt.Frame {
             new java.awt.Color(204, 204, 204));
         copyUser.setForeground(java.awt.Color.black);
         copyUser.setForeground(java.awt.Color.black);
-        editUser.addActionListener(
+        copyUser.addActionListener(
             new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     copyUser();
@@ -451,8 +451,9 @@ public class UserAdminGUI extends java.awt.Frame {
      * Passwort und die Wiederholung übereinstimmen, sonst wird ein neuer Frame mit einer Fehlermeldung geöffnet.
      */
     private void saveUser() {
+      if (this.loginName.getText().length() <= maxLength) {
         if (this.password.getText().compareTo(this.passwordVerify.getText()) == 0) {
-						if (isNewUser) {
+            if (isNewUser) {
                 this.chatGui.adminClient.addUser(this.loginName.getText(), this.password.getText(), this.isAdmin.getState(),
                     this.chatGui.stringToVector(this.activeChannels.getItems()));
             } else {
@@ -468,6 +469,10 @@ public class UserAdminGUI extends java.awt.Frame {
             chatGui.displayError("Passwort und Wiederholung stimmen nicht überein.\nDie Daten wurden nicht gespeichert.");
             this.passwordVerify.requestFocus();
         }
+      } else {
+            chatGui.displayError("Die Länge des Loginnamen überschreitet 20 Zeichen.\nDie Daten wurden nicht gespeichert.");
+            this.loginName.requestFocus();
+      }
     }
 
     /**
@@ -509,4 +514,5 @@ public class UserAdminGUI extends java.awt.Frame {
     java.awt.Button deleteUser;
     // End of variables declaration//GEN-END:variables
     private boolean isNewUser = true;
+    private int maxLength = 20;
 }

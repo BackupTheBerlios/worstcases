@@ -122,10 +122,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         editChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         editChannel.setForeground(java.awt.Color.black);
-        editChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    editChannelMouseClicked(evt);
+        editChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    editChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -143,10 +143,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         newChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         newChannel.setForeground(java.awt.Color.black);
-        newChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    newChannelMouseClicked(evt);
+        newChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    newChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -164,10 +164,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         copyChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         copyChannel.setForeground(java.awt.Color.black);
-        copyChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    copyChannelMouseClicked(evt);
+        copyChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    copyChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -185,10 +185,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         saveChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         saveChannel.setForeground(java.awt.Color.black);
-        saveChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    saveChannelMouseClicked(evt);
+        saveChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    saveChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -206,10 +206,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         deleteChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         deleteChannel.setForeground(java.awt.Color.black);
-        deleteChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    deleteChannelMouseClicked(evt);
+        deleteChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    deleteChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -257,10 +257,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         addToChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         addToChannel.setForeground(java.awt.Color.black);
-        addToChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    addToChannelMouseClicked(evt);
+        addToChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    addToChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -276,10 +276,10 @@ public class ChannelAdminGUI extends java.awt.Frame {
         removeFromChannel.setBackground(
             new java.awt.Color(204, 204, 204));
         removeFromChannel.setForeground(java.awt.Color.black);
-        removeFromChannel.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    removeFromChannelMouseClicked(evt);
+        removeFromChannel.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    removeFromChannel();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -338,83 +338,84 @@ public class ChannelAdminGUI extends java.awt.Frame {
      * Diese Methode entfernt den/die ausgewählten Benutzer aus der Liste der diesem
      * Channel zugeordneten Benutzer und fügt sie der Liste der nicht zugeordneten hinzu.
      */
-    private void removeFromChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_removeFromChannelMouseClicked
+    private void removeFromChannel() {
       String[] tmpString = this.activeUsers.getSelectedItems();
       for (int i=0;i<tmpString.length;i++){
        this.activeUsers.remove(tmpString[i]);
        this.passiveUsers.add(tmpString[i]);
       }
-    } //GEN-LAST:event_removeFromChannelMouseClicked
+    }
 
     /**
-     * Diese Methode fügt den/die ausgewählten Benutzer zur Liste der diesem Channel 
+     * Diese Methode fügt den/die ausgewählten Benutzer zur Liste der diesem Channel
      * zugeordneten Benutzer hinzu und entfernt ihn/sie aus der Liste der nicht zugeordneten.
      */
-    private void addToChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_addToChannelMouseClicked
+    private void addToChannel() {
       String[] tmpString = this.passiveUsers.getSelectedItems();
       for (int i=0;i<tmpString.length;i++){
        this.passiveUsers.remove(tmpString[i]);
        this.activeUsers.add(tmpString[i]);
       }
-    } //GEN-LAST:event_addToChannelMouseClicked
+    }
 
     /**
      * Diese Methode entfernt den in channelList ausgewählten Channel und fordert über den
-     * AdminClient die neue Version der Channelliste an. Zusätzlich werden mittels 
-     * newChannelMouseClicked() die Felder der grafischen Oberfläche geleert.
+     * AdminClient die neue Version der Channelliste an. Zusätzlich werden mittels
+     * newChannel() die Felder der grafischen Oberfläche geleert.
      */
-    private void deleteChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_deleteChannelMouseClicked
+    private void deleteChannel() {
       String name=this.channelList.getSelectedItem();
       this.chatGui.adminClient.deleteChannel(name);
       this.chatGui.adminClient.getChannelList();
-      this.newChannelMouseClicked(evt);
-    } //GEN-LAST:event_deleteChannelMouseClicked
+      this.newChannel();
+    }
 
     /**
      * Diese Methode ermöglicht die Verwendung von angezeigten Channeldaten für das Anlegen
      * eines neuen Channels.
      */
-    private void copyChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_copyChannelMouseClicked
+    private void copyChannel() {
       isNewChannel=true; //Attribut wird für das Speichern benötigt
       this.channelName.setText(this.channelName.getText() + " [Kopie]");
-    } //GEN-LAST:event_copyChannelMouseClicked
+    }
 
     /**
      * Diese Methode ermöglicht das Editieren eines vorhandenen Channels und wird außerdem
      * verwendet, um sich die Channeldaten anzeigen zu lassen.
      */
-    private void editChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_editChannelMouseClicked
+    private void editChannel() {
       isNewChannel=false; //Attribut wird für das Speichern benötigt
         String name = this.channelList.getSelectedItem();
         this.chatGui.adminClient.getChannelData(name);
-    } //GEN-LAST:event_editChannelMouseClicked
+    }
+
+    /**
+     * Diese Methode dient dazu, einen neuen Channel beginnend mit leeren Feldern anzulegen.
+     * Hierzu werden die Felder auf ihre Default-Werte gesetzt und isNewChannel gesetzt.
+     */
+    private void newChannel() {
+      isNewChannel=true;
+      Vector tmpVector = this.chatGui.stringToVector( this.chatGui.userAdminGUI.userList.getItems());
+      this.chatGui.setChannelData("",false,new Vector(),tmpVector);
+    }
 
     /**
      * Diese Methode dient dem Speichern von geänderten respektive neu angelegten Channels mit
      * den aktuell sichtbaren Daten. Das Attribut isNewChannel dient hierbei dazu festzustellen,
      * welcher dieser Fälle zutrifft.
      */
-    private void saveChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_saveChannelMouseClicked
-      if (isNewChannel==true) {
-        this.chatGui.adminClient.addChannel(this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+    private void saveChannel() {
+      if (this.channelName.getText().length() <= maxLength) {
+        if (isNewChannel==true) {
+          this.chatGui.adminClient.addChannel(this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+        } else {
+          this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+        }
+        this.chatGui.adminClient.getChannelList();
       } else {
-        this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
+          chatGui.displayError("Die Länge des Channelnamen überschreitet 50 Zeichen.\nDie Daten wurden nicht gespeichert.");
+          this.channelName.requestFocus();
       }
-      this.chatGui.adminClient.getChannelList();
-    } //GEN-LAST:event_saveChannelMouseClicked
-    
-    /**
-     * Diese Methode dient dazu, einen neuen Channel beginnend mit leeren Feldern anzulegen.
-     * Hierzu werden die Felder auf ihre Default-Werte gesetzt und isNewChannel gesetzt.
-     */
-    private void newChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_newChannelMouseClicked
-      newChannel();
-    } //GEN-LAST:event_newChannelMouseClicked
-
-    private void newChannel() {
-      isNewChannel=true;
-      Vector tmpVector = this.chatGui.stringToVector( this.chatGui.userAdminGUI.userList.getItems());
-      this.chatGui.setChannelData("",false,new Vector(),tmpVector);
     }
 
     /** Schließen des Applikationsframes */
@@ -441,4 +442,5 @@ public class ChannelAdminGUI extends java.awt.Frame {
     java.awt.Checkbox allowedForGuests;
     // End of variables declaration//GEN-END:variables
     private boolean isNewChannel = true;
+    private int maxLength = 50;
  }
