@@ -20,7 +20,7 @@ public class SpawnClient extends Thread {
                 arr[i].sendMsgToChannel("hello");
             }
             try {
-                this.sleep(sleepDelay);
+                SpawnClient.sleep(sleepDelay);
             }
             catch (java.lang.InterruptedException e) {
                 System.out.println(e);
