@@ -20,15 +20,15 @@ public class Helper {
         while (!tmpVector.isEmpty()) {
             tmpToken = (String)tmpVector.firstElement();
             tmpVector.removeElementAt(0);
-            if (tmpRow.length() + tmpToken.length() + 1 <= rowLength) {
-                tmpRow = tmpRow + " " + tmpToken;
+            if ((tmpRow.length() + tmpToken.length() + 1) <= rowLength) {
+								tmpRow = tmpRow  + tmpToken+ " ";
             }
             else {
 								tmpString = tmpString  + tmpRow +"\n";
-                tmpRow = tmpToken;
+								tmpRow = tmpToken+" ";
             }
         }
-        tmpString = tmpString + tmpRow;
+				tmpString = tmpString + tmpRow;
         return tmpString;
     }
 
