@@ -12,11 +12,15 @@ import java.util.Enumeration;
  * wieder entfernt werden, wenn sie den Channel betreten bzw. verlassen.
  */
 class Channel {
+    /** Konstruktur, der die entsprechenden Attribute setzt */
     public Channel(String paramName, boolean paramAllowedForGuests) {
         this.name = paramName;
         this.allowedForGuest = paramAllowedForGuests;
     }
 
+    /** Namensliste der aktuellen Benutzer wird zurückgegeben
+      * Benutzt getCurrentUserEnum() und User.getName()
+      */
     public Vector getCurrentUserNames(){
      Vector tmpVector=new Vector();
      Enumeration enum=this.getCurrentUserEnum();
@@ -27,6 +31,9 @@ class Channel {
      return tmpVector;
     }
 
+    /** Namensliste der berechtigten Benutzer wird zurückgegeben
+      * Benutzt getAllowedUserEnum() und User.getName()
+      */
     public Vector getAllowedUserNames(){
      Vector tmpVector=new Vector();
      Enumeration enum=this.getAllowedUserEnum();
@@ -36,7 +43,10 @@ class Channel {
      return tmpVector;
     }
 
-
+    /** fügt den Benutzer zur Liste der berechtigten Benutzer hinzu
+      * Benachrichtigt mittels User.addToAllowedChannelList()
+      * das entsprechende User-Objekt
+      */
     public void addToAllowedUserList(User paramUser) {
         if (!this.allowedUserList.contains(paramUser)) {
             this.allowedUserList.addElement(paramUser);
@@ -44,21 +54,32 @@ class Channel {
         }
     }
 
+    /** entfernt den Benutzer aus der Liste der berechtigten Benutzer
+      * Benachrichtigt mittels User.removeFromAllowedChannelList()
+      * das entsprechende User-Objekt
+      */
     public void removeFromAllowedUserList(User paramUser) {
         if (this.allowedUserList.removeElement(paramUser)) {
             paramUser.removeFromAllowedChannelList(this);
         }
     }
 
+    /** entfernt das Channelobjekt aus dem System
+      * Benutzt setCurrentUserList(null) und setAllowedUserList(null)
+      */
     public void removeYou() {
         this.setCurrentUserList(null);
         this.setAllowedUserList(null);
     }
 
+    /** liefert eine Aufzählung der aktuellen Benutzer zurück*/
     public Enumeration getCurrentUserEnum() {
         return currentUserList.elements();
     }
 
+    /** setzt CurrentUserList auf die in EnumCurrentUser übergebenen Werte
+      * Benutzt addToCurrentUserList() und removeFromCurrentUserList()
+      */
     public void setCurrentUserList(Enumeration EnumCurrentUser) {
         Vector tmpList = new Vector();
         User tmpUser;
@@ -76,7 +97,9 @@ class Channel {
         }
     }
 
-    /** Fügt einen User zu den im Channel befindlichen Usern hinzu. */
+    /** Fügt einen User zu den im Channel befindlichen Usern hinzu.
+      * Benachrichtigt den User mittels User.setCurrentChannel()
+      */
     public void addToCurrentUserList(User paramUser) {
         if (!this.currentUserList.contains(paramUser)) {
             this.currentUserList.addElement(paramUser);
@@ -84,7 +107,9 @@ class Channel {
         }
     }
 
-    /** Entfernt einen User von den im Channel befindlichen Usern. */
+    /** Entfernt einen User aus den im Channel befindlichen Usern.
+      * Benachrichtigt den User mittels User.setCurrentChannel(null)
+      */
     public void removeFromCurrentUserList(User paramUser) {
         if (this.currentUserList.removeElement(paramUser)) {
             paramUser.setCurrentChannel(null);
