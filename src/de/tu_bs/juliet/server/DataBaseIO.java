@@ -43,12 +43,12 @@ class DataBaseIO {
     private ChannelAdministration channelAdministration;
 
     /** Dateiname der Channeldatenbank. */
-    private String channelDBFile = "de/tu_bs/juliet/channel.db";
+    private String channelDBFile = "channel.db";
 
     private UserAdministration userAdministration;
 
     /** Dateiname der Benutzerdatenbank. */
-    private String userDBFile = "de/tu_bs/juliet/user.db";
+    private String userDBFile = "user.db";
 
     /**
      *  Konstruktor, der die Attribute für die ChannelAdministration und
