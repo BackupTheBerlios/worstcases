@@ -23,15 +23,18 @@ häufiger die Rede sein wird, taucht bei dieser Methode natürlich nicht mehr
 auf.</p>
 
 <h2>SSH installieren</h2>
-SSH <a href="ftp://ftp.ssh.com/pub/ssh/SSHWin-2.4.0-pl2.exe">runterladen</a> und
+<a href="ftp://ftp.ssh.com/pub/ssh/SSHWin-2.4.0-pl2.exe">SSH runterladen</a> und
 installieren. Das ist eine Evaluations-Version, die 30 Tage benutzbar ist.
 
 <h2>Öffentlichen SSH-Schlüssel erzeugen</h2>
-In einem DOS-Prompt <pre>ssh-keygen2</pre> eingeben, bei Frage nach Passwort keins
+<p>In einem DOS-Prompt <pre>ssh-keygen2</pre> eingeben, bei Frage nach Passwort keins
 eingeben, sondern einfach Return drücken. Dabei wird eine Datei
 "id_dsa_1024_a.pub" oder so erzeugt, die brauchen wir im nächsten Schritt -
-allerdings in _einer_ Zeile! Also mit einem Editor eine Zeile draus machen
-und abspeichern.
+allerdings in <i>einer</i> Zeile! Also mit einem Editor eine Zeile draus machen
+und abspeichern.</p>
+
+<p>Eventuell kann es so garnicht funktionieren, weil BerliOS mit Schlüsseln
+von SSH2 vielleicht nichts anfangen kann.</p>
 
 <h2>Öffentlichen SSH-Schlüssel hochladen</h2>
 <p>Bei <a href="http://developer.berlios.de">BerliOS</a> per "Login via SSL"
@@ -41,9 +44,9 @@ aus der Datei "id_dsa_1024_a.pub" in das Formular kopieren und abschicken. Wenn
 BerliOS behauptet, dass gerade 14 Keys hochgeladen wurden, war der Schlüssel
 nicht einzeilig, also nochmal richtig eingeben.</p>
 
-<p>Jetzt etwa 6 Stunden warten, bis BerliOS diesen Key importiert hat.
+<p>Jetzt etwa 6 Stunden warten, bis BerliOS diesen Schlüssel importiert hat.
 Zwischendurch kann schonmal die erste Methode benutzt werden, bei der man
-ständig das Kennwort eingeben muss:</p>
+allerdings ständig das Kennwort eingeben muss.</p>
 
 <h2>SSH konfigurieren</h2>
 Auf <pre>Start -> Programme -> SSH Secure Shell -> Secure File Transfer (?)
@@ -73,7 +76,7 @@ importiert hat,<br> diesen Eintrag auf "Public Key" setzen!!!)</td>
 <p>Die Warnung wegen des SSH1-Protokolls mit Ja bestätigen.</p>
 
 <p>Wenn es keine Fehlermeldung gibt, bist Du jetzt auf dem BerliOS-Rechner unter
-Linux eingeloggt und kannst die Sitzung mit <pre>exit</pre> beenden: SSH-Test
+Linux angemeldet und Dich mit <pre>exit</pre> wieder abmelden: SSH-Test
 erfolgreich.</p>
 
 <h2>WinCVs konfigurieren</h2>
@@ -111,7 +114,7 @@ In WinCVS auf <pre>Create -> Checkout Module</pre> und folgendes eingeben:
 <table border="1">
   <tr>
     <td>Enter the module name and path on the server</td>
-    <td>. (einen Punkt)</td>
+    <td>. (ein Punkt)</td>
   </tr>
 </table>
 
@@ -130,12 +133,13 @@ starten, links in der Navigation die ensprechende(n) Datei(en) auswählen und auf
 in unser Repository bei BerliOS ein, und alle kriegen bei ihrem nächsten cvs
 update diese Änderung.
 
-<h2>Neues Version aus Repository holen</h2>
-Bevor Du große Änderungen am Code vornimmst, solltest Du Dir erstmal eine
+<h2>Neue Version aus Repository holen</h2>
+Bevor Du große Änderungen am Code vornimmst, solltest Du Dir immer erst  eine
 aktuelle Kopie besorgen: Zu aktualisierendes Verzeichnis in WinCVS auswählen und
-auf <pre>Modify -> Update Selection</pre> klicken.</body>
+auf <pre>Modify -> Update Selection</pre> klicken.
 
 <h2>Geht immer noch nicht?</h2>
 Argh. Entweder <a href="m.knoerr@tu-bs.de">Malte fragen</a>, oder doch lieber
 gleich Linux benutzen, da ist das irgendwie tausend Mal einfacher ;-)
+</body>
 </html>
