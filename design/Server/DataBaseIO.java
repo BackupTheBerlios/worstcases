@@ -11,7 +11,10 @@ import java.util.StringTokenizer;
  * relationalen Beziehungen zwischen User- und Channeldatenbank gesetzt werden.
  */
 class DataBaseIO {
-
+    
+    /** 
+     * Konstruktor, der die Attribute für die ChannelAdministration und UserAdministration setzt.
+     */
     public DataBaseIO(UserAdministration paramUserAdministration,ChannelAdministration paramChannelAdministration){
      this.setChannelAdministration(paramChannelAdministration);
      this.setUserAdministration(paramUserAdministration);
@@ -35,6 +38,7 @@ class DataBaseIO {
      * konvertiert den von userToString() erzeugten String in ein Userobjekt,
      * setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden
      */
+
     private User stringToUser(String userSet) {
         StringTokenizer tmpTokenizer = new StringTokenizer(userSet, "#", false);
         String name = tmpTokenizer.nextToken();
@@ -136,6 +140,9 @@ class DataBaseIO {
         System.out.println("user data written to disk");
     }
 
+    /**
+     * 
+     */
     public void setChannelAdministration(ChannelAdministration paramChannelAdministration) {
         if (this.channelAdministration != paramChannelAdministration) {
             if (this.channelAdministration != null) {

@@ -13,7 +13,11 @@ import java.util.Enumeration;
  */
 public class Server {
 
-    /** Startet den Server, danach ist er vollständig betriebsbereit und kann Verbindungswünsche von Clients behandeln. */
+    /** 
+     * Diese Methode initialisiert den Server, indem neue Referenzen von channelAdministration, userAdministration, 
+     * clientServantWatchDog und dataBaseIO erzeugt werden. Ausserdem werden die Benutzer- und Channeldaten geladen 
+     * und ein ClientServantDog gestartet, um inaktive Clients aus dem System zu entfernen.
+     */
     public void startServer() throws java.io.FileNotFoundException, java.io.IOException {
         this.channelAdministration = new ChannelAdministration();
         this.userAdministration = new UserAdministration(this.channelAdministration);
@@ -27,7 +31,10 @@ public class Server {
 
     private ClientServantWatchDog clientServantWatchDog;
 
-    /** Stoppt den Server, alle mit ihm verbundenen Clients werden abgemeldet. */
+    /** 
+     * Stoppt den Server, indem die ClientServants durch eine Schleife mit der Methode removeFromClientServant
+     * aus der ClientServantList enfernt werden.
+     */
     public void stopServer() {
         this.stop=true;
         Enumeration enum = this.clientServantList.elements();
@@ -37,7 +44,10 @@ public class Server {
         System.out.println("Server stopped");
     }
 
-    /** entfernt einen ClientServant aus der Liste der aktiven ClientServants. */
+    /** 
+     * Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants und gibt die
+     * Anzahl der noch vorhandenen ClientServants aus.
+     */
     public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
         if (this.clientServantList.removeElement(paramClientServant)) {
             paramClientServant.setServer(null);
@@ -49,8 +59,13 @@ public class Server {
     public Enumeration getClientServantEnum(){
      return this.clientServantList.elements();
     }
-
-    /** Wartet auf ankommendene Verbindungswünsche der Clients und leitet diese jeweils an einen neuen ClientObserver weiter. */
+ 
+    /** In listen wird zuerst eine neue Referenz von ServerSocket angelegt.
+     *  In einer Schleife werden, solange der Thread nicht gestoppt wurde, bei ankommenden Verbindungenswünschen von Clients
+     *  neue Clientservants erstellt, diese zur Liste der Servants hinzugefügt und gestartet.
+     *  Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
+     *  Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese durch try und catch abgefangen.
+     */
     private void listen() {
         try {
             this.serverSocket = new ServerSocket(this.SERVER_PORT, this.LISTEN_QUEUE_LENGTH);
