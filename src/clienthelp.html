@@ -1,112 +1,136 @@
-<HTML>
-<HEAD>
-	<TITLE>juliet - Online Handbuch</TITLE>
-</HEAD>
-<BODY BACKGROUND="background.gif" text=#C0C0C0 link=#C0C0C0 vlink=#C0C0C0 alink=#C0C0C0>
+<html>
+<head>
+	<title>Juliet - Online Handbuch: Clientfunktionen</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Language" content="de"> 
+	<meta name="description" content="Chatserver und -client der Gruppe Worst Cases, entwickelt im Rahmen des SEP 2001 an der TU Braunschweig">
+	<meta name="author" content="WorstCases"> 
+	<meta name="keywords" content="java, chat, client, handbuch, juliet, worstcases, sep2001, tu-bs"> 
+	<meta name="robots" content="index"> 
+</head>
 
-<DIV ALIGN="center">
-	<IMG SRC="logo.gif">
-</DIV>
+<body background="background.gif" text=#C0C0C0 link=#C0C0C0 vlink=#C0C0C0 alink=#C0C0C0>
+	<div align="center">
+	<img src="logo.gif" width="305" height="96" alt="Juliet - Logo" border="0">
+	</div>
+	<h3 align="center">Kapitel 1: Benutzung des Chatclients</h3>
+	<hr>
+	<div align=center>
+    <b>
+		<a href="hilfe.html" target="_self">Inhalt</a> | 
+		<font color="#666666">Zurück</font> | 
+		<a href="adminhelp.html" target="_self">Weiter</a>
+	</b>
+	</div>
 
-<H3 ALIGN="center">Kapitel 1: Benutzung des Chatclients(FAQ)</H3>
-<HR>
-
-
-<DL>
-<DT>
-	<B>1.1 Anmelden.</B>
-</DT>
-<DD>
-<BR>
-<IMG SRC="login.png" ALT="Screenshot des Anmeldefensters">
-</BR>
+	<dl>
+	<dt>
+	<b>1.1 Anmelden</b>
+	</dt>
+	<dd>
+	<br>
+	<img src="login.png" width="375" height="176" alt="Screenshot des Anmeldefensters" border="0">
+	<br>
 	Wenn Sie sich bei Juliet anmelden möchten, geben Sie im Anmeldefenster
-	im Feld "Benutzername" Ihren Benutzernamen an und tragen im Feld
-	"Kennwort" Ihr Kennwort ein, sofern Sie ein Benutzerkonto bei Juliet besitzen.<BR>
-	Besitzen Sie noch kein Benutzerkonto, dann können Sie sich als
-	Gast anmelden, indem Sie sich einen Benutzernamen aussuchen, diesen
-	im Feld "Benutzername" eintragen und die Option "Gast" wählen.<BR>
-	Ist Ihre Anmeldung erfolgreich, so sind Sie angemeldet und gelangen
-	ins Hauptfenster des Chats.<BR>
-</DD>
-<DT>
-	<B>1.2 Das Hauptfenster</B>
-</DT>
+	im Feld "Benutzername" Ihren Benutzernamen und im Feld "Kennwort" Ihr Kennwort ein, 
+	sofern Sie ein Benutzerkonto bei Juliet besitzen. Besitzen Sie noch kein 
+	Benutzerkonto, dann können Sie sich als Gast anmelden, indem Sie sich einen 
+	Benutzernamen aussuchen, diesen	im Feld "Benutzername" eintragen und die 
+	Option "Gast" wählen.<br>
+	Ist Ihre Anmeldung erfolgreich, so gelangen Sie ins Hauptfenster des Chats.
+	<br><br>
+	</dd>
 
+	<dt>
+	<b>1.2 Das Hauptfenster</b>
+	</dt>
+	<dd>
+	<br>
+	<img src="chatten.jpg" width="481" height="340" alt="Screenshot des Chatfensters" border="0">	
+	<br>
+	<ol>
+		<li>Chatfenster</li>
+		<li>Eingabezeile</li>
+		<li>Knopf "Nachricht senden"</li>
+		<li>Benutzerliste</li>
+		<li>Channelauswahl</li>
+		<li>Knopf "Abmelden"</li>
+		<li>Knopf "Protokoll"</li>
+		<li>Knopf "ChannelAdmin" (Administratorfunktion)</li>
+		<li>Knopf "UserAdmin" (Administratorfunktion)</li>
+	</ol>
+	<br>
+	</dd>
 
-<DD>
-<BR>
-<IMG SRC="chatten.jpg" ALT="Screenshot des Chatfensters">
-<BR>
-<OL>
-	<LI>Chatfenster
-	<LI>Eingabezeile
-	<LI>Knopf "Nachricht senden"
-	<LI>Benutzerliste
-	<LI>Channelauswahl
-	<LI>Knopf "Abmelden"
-	<LI>Knopf "Protokoll"
-	<LI>Knopf "ChannelAdmin" (Administratorfunktion)
-	<LI>Knopf "UserAdmin" (Administratorfunktion)
-</OL>
-</DD>
-
-<DT>
-	<B>1.3 Chatten</B>
-</DT>
-<DD>
-	Sie wollen einfach mit den anderen Teilnehmern im Raum chatten?<BR>
+	<dt>
+	<b>1.3 Chatten</B>
+	</dt>
+	<dd>
+	Sie wollen einfach mit den anderen Teilnehmern im Raum chatten?<br>
 	Um eine Nachricht in den Raum zu stellen, geben Sie diese in die 
-	Eingabezeile ein und stellen Sie sicher, das in der Benutzerliste
-	"Alle Benutzer" markiert ist.<BR>
-	Bestätigen Sie danach mit der Eingabetaste oder klicken Sie "Nachricht senden".<BR>
+	Eingabezeile (2) ein und stellen Sie sicher, das in der "Empfänger"-Liste (4)
+	"Alle" markiert ist (Default-Zustand). Bestätigen Sie danach mit der 
+	Eingabetaste oder klicken Sie "Nachricht senden" (3).<br>
 	Ihre Nachricht wird nun im Chatfester angezeigt und kann von 
-	allen Teilnehmern im Raum gelesen werden.
-</DD>
+	allen Teilnehmern im Raum gelesen werden.<br><br>
+	</dd>
 
-<DT>
-	<B>1.4 Channel wechseln</B>
-</DT>
-<DD>
-	Sie möchten gerne in einen anderen Channel wechseln?<BR>
-	Dazu klicken sie einfach auf die Channelauswahl und wählen einen neuen Channel aus.<BR>
-</DD>
+	<dt>
+	<b>1.4 Channel wechseln</b>
+	</dt>
+	<dd>
+	Sie möchten gerne in einen anderen Channel wechseln?<br>
+	Dazu klicken sie einfach auf die Channelauswahl (5) und wählen einen neuen Channel aus.
+	Daraufhin wird der Inhalt des Chatfensters geleert, um anzuzeigen, daß Sie sich im
+	neuen Channel befinden.<br><br>
+	</dd>
 
-<DT>
-	<B>1.5 Flüstern</B>
-</DT>
-<DD>
+	<dt>
+	<b>1.5 Flüstern</b>
+	</dt>
+	<dd>
 	Sie möchten mit einem anderen Teilnehmer im Channel ein Privatgespräch
-	führen, von dem die anderen Teilnehmer nichts mitbekommen sollen?<BR> 
-	Dazu tippen Sie Ihre Nachricht in die Eingabezeile ein, markieren in der 
-	Benutzerliste den Teilnehmer, dem Sie die Nachricht senden möchten und
-	betätigen die Eingabetaste oder klicken auf "Nachricht senden".<BR>
+	führen, von dem die anderen Teilnehmer nichts mitbekommen sollen?<br> 
+	Dazu tippen Sie Ihre Nachricht in die Eingabezeile (2) ein, markieren in der 
+	"Empfänger"-Liste (4) den Teilnehmer, dem Sie die Nachricht senden möchten und
+	betätigen die Eingabetaste oder klicken auf "Nachricht senden".<br>
+	Beachten Sie bitte, dass Ihre nächste Nachricht wieder öffentlich ist, da die 
+	Markierung in der "Empfänger"-Liste auf "Alle" zurückspringt, sobald
+	die Nachricht abgeschickt wurde.<br><br>
+	</dd>
 
-	Beachten Sie bitte, dass Ihre nächste Nachricht wieder öffentlich ist.
-</DD>
-
-<DT>
-	<B>1.6 Chat mitscheiden</B>
-</DT>
-<DD>
-	Sie möchten einen Mitschnitt Ihres geführten Chats haben?<BR> 
-	Dazu klicken Sie auf "Protokoll" und ein Fenster mit dem von Ihnen geführten Gesprächen
-	erscheint.<BR>
+	<dt>
+	<b>1.6 Chat mitscheiden</b>
+	</dt>
+	<dd>
+	Sie möchten einen Mitschnitt Ihres geführten Chats haben?<br> 
+	Dazu klicken Sie auf "Protokoll" und ein Fenster mit dem von Ihnen geführten 
+	Gesprächen erscheint. Diese Funktion beschränkt sich nicht auf den aktuell 
+	betretenen Channel sondern schneidet alle Gespräche mit, die Sie in der
+	aktuellen Sitzung (bzw. nach dem letzten "Löschen" des Mitschnitts) geführt 
+	haben inklusive aller geflüsterten Nachrichten.<br>
 	Den Text in diesem Fenster können Sie einfach mit der Maus markieren, 
-	kopieren und in jeden gängigen Texteditor mit wieder einfügen.
-</DD>
+	kopieren und in jeden gängigen Texteditor wieder einfügen.<br><br>
+	</dd>
 
-
-<DT>
-	<B>1.7 Abmelden</B>
-</DT>
-<DD>
+	<dt>
+	<b>1.7 Abmelden</b>
+	</dt>
+	<dd>
 	Sie haben genug gechattet und wollen sich abmelden?<BR> 
-	Klicken Sie dazu einfach nur auf den Knopf "Abmelden".<BR>
-</DD>
-</DL>
-<div align=center>
-    <a href="hilfe.html" target="_self" name="zurück">zurück</a>
-</div>
-</BODY>
-</HTML>
+	Klicken Sie dazu einfach nur auf den Knopf "Abmelden". Sobald Sie wieder das
+	Anmeldefenster erreicht haben, sind sie erfolgreich abgemeldet.<BR>
+	</dd>
+	</dl>
+	
+	<div align=center>
+    <b>
+		<a href="hilfe.html" target="_self">Inhalt</a> | 
+		<font color="#666666">Zurück</font> | 
+		<a href="adminhelp.html" target="_self">Weiter</a>
+	</b>
+	</div>
+	<hr>
+	<font size=-1><i>(c) 2001 <a href="http://www.tu-bs.de/~y0013570" target="_blank">WorstCases</a></i></font>
+</body>
+</html>

@@ -1,202 +1,211 @@
-<HTML>
-<HEAD>
-	<TITLE>juliet - Online Handbuch</TITLE>
-</HEAD>
-<BODY BACKGROUND="background.gif" text=#C0C0C0>
+<html>
+<head>
+	<title>Juliet - Online Handbuch: Administration</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Language" content="de"> 
+	<meta name="description" content="Chatserver und -client der Gruppe Worst Cases, entwickelt im Rahmen des SEP 2001 an der TU Braunschweig">
+	<meta name="author" content="WorstCases"> 
+	<meta name="keywords" content="java, chat, admin, handbuch, juliet, worstcases, sep2001, tu-bs"> 
+	<meta name="robots" content="index"> 
+</head>
 
-<DIV ALIGN="center">
-	<IMG SRC="logo.gif">
-</DIV>
-
-<H3 ALIGN="center">Kapitel 2: Benutzung der Administratorfunktionen</H3>
-<HR>
-
-
-<DL>
-<DT>
-	<B>2.1 Die Benutzerverwaltung</B>
-</DT>
-<DD>
+<body background="background.gif" text=#C0C0C0 link=#C0C0C0 vlink=#C0C0C0 alink=#C0C0C0>
+	<div align="center">
+	<img src="logo.gif" width="305" height="96" alt="Juliet - Logo" border="0">
+	</div>
+	<h3 align="center">Kapitel 2: Benutzung der Administratorfunktionen</h3>
+	<hr>
+	<div align=center>
+	<b>
+		<a href="hilfe.html" target="_self">Inhalt</a> | 
+		<a href="clienthelp.html" target="_self">Zurück</a> | 
+		<a href="faq.html" target="_self">Weiter</a>
+	</b>
+	</div>
+	<dl>
+	<dt>
+	<b>2.1 Die Benutzerverwaltung</b>
+	</dt>
+	<dd>
 	Mit Hilfe der Benutzerverwaltung haben Sie die Möglichkeit, neue Benutzer anzulegen, 
-	Benutzerdaten zu bearbeiten und existierende Benutzer zu löschen.
-</DD>
+	Benutzerdaten zu bearbeiten und existierende Benutzer zu löschen.<br><br>
+	  <dl>
+		<dt>
+		<b>2.1.1 Das Benutzerverwaltungsfenster</B>
+		</dt>
+		<dd>
+		<br>
+		<img src="useradmin.jpg" width="451" height="316" alt="Screenshot der Useradministration" border="0">
+		<br>
+		<ol>
+			<li>Gesamte Benutzerliste</li>
+			<li>Fenster "Inaktive Channels"</li>
+			<li>Fenster "Aktive Channels"</li>
+			<li>Feld "Login Name"</li>
+			<li>Feld "Passwort"</li>
+			<li>Feld "Wiederholung"</li>
+			<li>Checkbox "Ist Admin"</li>
+			<li>Knopf "Neu"</li>
+			<li>Knopf "Speichern"</li>
+			<li>Knopf "Bearbeiten"</li>
+			<li>Knopf "Kopieren"</li>
+			<li>Knopf "Löschen"</li>
+		</ol>
+		<br>
+		</dd>
 
-<DL>
-<DT>
-	<B>2.1.1 Das Benutzerverwaltungsfenster</B>
-</DT>
-<DD>
+		<dt>
+		<b>2.1.2 Neuen Benutzer anlegen</b>
+		</dt>
+		<dd>
+		Um einen neuen Benutzer anzulegen, klicken Sie zuerst auf "Neu" (8).<br>
+		Tragen Sie dann den Loginnamen und das Passwort für den Benutzer in die
+		entsprechenden Felder ein. In das Feld "Wiederholung" (6) tragen Sie nochmals 
+		das Passwort ein, damit sichergestellt ist, daß Sie bei der ersten Eingabe 
+		keinen Tippfehler begangen haben.<br>
+		Wenn Sie "Ist Admin" (7) aktivieren, dann bekommt der neue Benutzer 
+		Administrationsrechte und hat somit auch Zugriff auf die Benutzer- und 
+		Channelverwaltung.<br>
+		Danach müssen Sie noch festlegen, welche Channels der neue
+		Benutzer betreten darf. Dazu wählen Sie in der Liste "Inaktive Channels" (2)
+		die gewünschten Channel aus und schieben sie mit den dazwischen befindlichen
+		Pfeilknöpfen in die Liste "Aktive Channels" (3). Haben Sie die Channels 
+		ausgewählt und Benutzernamen und Passwort sowie den Administratorstatus 
+		festgelegt, klicken Sie einfach auf "Speichern" (9) um den neuen Benutzer 
+		dauerhaft im System zu speichern.<br>
+		<br>
+		Falls sie viele Benutzer mit relativ identischen Daten (z.B. den gleichen
+		aktiven Channels) einrichten möchten, können Sie sich auch Arbeit 
+		ersparen, indem Sie die Funktion "Kopieren" benutzen:<BR>
+		Dazu wählen Sie aus der "Userliste" (1) einen bereits existierenden Benutzer 
+		aus und klicken auf "Kopieren" (11). Daraufhin werden die Daten des
+		gewählten Benutzers angezeigt, wobei im Feld "Login Name" (4) durch
+		ein nachgestelltes "[Kopie]" deutlich gemacht wird, daß man an einer
+		Kopie arbeitet. Mit den angezeigten Daten läßt sich nun der neue Benutzer 
+		entsprechend den Bedürfnissen modifizieren und mittels "Speichern" (9) 
+		einrichten.<br><br>
+		</dd>
 
-<BR>
-<IMG SRC="useradmin.jpg">
-<BR>
-<OL>
-	<LI>Gesamte Benutzerliste	
-	<LI>Fenster "Inaktive Channels"
-	<LI>Fenster "Aktive Channels"
-	<LI>Feld "Login Name"
-	<LI>Feld "Passwort"
-	<LI>Feld Wiederholung"
-	<LI>Checkbox "Ist Admin"
-	<LI>Knopf "Neu"
-	<LI>Knopf "Speichern"
-	<LI>Knopf "Bearbeiten"
-	<LI>Knopf "Kopieren"
-	<LI>Knopf "Löschen"
-</OL>
-</DD>
+		<dt>
+		<b>2.1.3 Benutzer editieren</b>
+		</dt>
+		<dd>
+		Um Benutzerdaten zu verändern, z.B. das Passwort oder die aktiven 
+		Channels, wählen sie den zu bearbeitenden Benutzer in der "Userliste" (1)
+		aus und klicken auf "Bearbeiten" (10). Die Daten dieses Benutzers befinden 
+		sich nun in den entsprechenden Felden, wo sie geändert werden können.<br>
+		Channels werden mit den Pfeilbuttons zwischen den Listen (2) und (3) 
+		hin und her geschoben. Wenn Sie die Änderungen abgeschlossen haben, klicken 
+		Sie auf "Speichern" (9) um die geänderten Daten dauerhaft zu sichern.<br><br>
+		</dd>
 
-<DT>
-	<B>2.1.2 Neuen Benutzer anlegen</B>
-</DT>
-<DD>
-Um einen neuen Benutzer anzulegen, klicken Sie zuerst auf "Neu".<BR>
-Tragen Sie dann den Loginnamen und Passwort für den Benutzer in die
-entsprechenden Felder ein. In das Feld "Wiederholung" tragen Sie nochmals 
-das Passwort ein, damit sichergestellt ist, das Sie keinen
-Tippfehler bei der ersten Eingabe gemacht haben.<BR> 
-Wenn Sie "Ist Admin" aktivieren, dann bekommt der neue Benutzer Administrationsrechte 
-und hat somit auch Zugriff auf die Benutzer- und Channelverwaltung. Also
-überlegen Sie vorher gut, ob der neue Benutzer auch Administrator sein
-soll :-).<BR>
-Danach müssen Sie noch festlegen, welche Channels der neue
-Benutzer betreten darf. Dazu wählen Sie in der Liste "Inaktive Channels"
-den gewünschten Channel aus und schieben ihn mit den Pfeilknöpfen in
-die Liste "aktive Channels". Haben Sie die Channels ausgewählt und
-Benutzernamen und Paswort, sowie den Administratorstatus festgelegt, 
-klicken Sie einfach auf "Speichern" um den neuen Benutzer dauernd im
-System zu speichern.<BR>
-<BR>
-Sie können sich auch etwas Arbeit ersparen, indem Sie den "Kopieren"-
-Knopf benutzen.<BR>
-Dazu wählen Sie aus der Benutzerliste einen bereits 
-existierenden Benutzer aus, klicken auf "Bearbeiten" und dann auf "Kopieren"
-Die Daten dieses Benutzers in den entsprechenden Feldern können jetzt geändert werden 
-und durch klicken auf "Speichern" gesichert werden.<BR>
-In der Benutzerliste steht nun eine Kopie des bereits existierenden Benutzers.
-Diese wählen Sie in der Benutzerliste aus und klicken erneut auf
-"Bearbeiten". Sie können nun den Benutzernamen und das Passwort, sowie
-die für den neuen Benutzer aktiven Channels, entsprechend ändern.<BR>
-Am Ende müßen sie allerdings die aktualisierten Daten wieder mit
-"Speichern" sichern.
-</DD>
+		<dt>
+		<b>2.1.4 Benutzer löschen</b>
+		</dt>
+		<dd>
+		Wenn Sie einen Benutzer dauerhaft aus dem System entfernen wollen, wählen
+		Sie seinen Namen in der Benutzerliste aus und klicken auf "Löschen".
+		Der Benutzer wird daraufhin sofort komplett aus der Benutzerverwaltung 
+		gelöscht, da wir davon ausgehen, daß der Admin weiß, was er tut.<br><br>
+		</dd>
+	  </dl>
+	</dd>
 
-<DT>
-	<B>2.1.3 Benutzer editieren</B>
-</DT>
-<DD>
-Um Benutzerdaten zu verändern, z.B. das Passwort oder die aktiven 
-Channels, wählen sie den zu bearbeitenden Benutzer in der Benutzerliste
-aus und klicken auf "Bearbeiten".<BR> 
-Die Daten dieses Benutzers befinden sich nun in den entsprechenden 
-Felden, wo sie geändert werden können.<BR>
-Channels werden mit den Pfeilbutton zwischen den Listen verschoben.
-Wenn Sie die Änderungen abgeschlossen haben, klicken Sie auf "Speichern"
-um die geänderten Daten dauerhaft zu sichern.
-</DD>
-
-<DT>
-	<B>2.1.4 Benutzer löschen</B>
-</DT>
-<DD>
-	Wenn Sie einen Benutzer dauerhaft aus dem System entfernen wollen, wählen
-	Sie seinen Namen in der Benutzerliste aus und klicken auf "Löschen".<BR>
-	Der Benutzer ist daraufhin aus der Benutzerverwaltung komplett gelöscht.
-</DD>
-</DL>
-
-<DT>
-	<B>2.2 Die Channelverwaltung</B>
-</DT>
-<DD>
+	<dt>
+	<b>2.2 Die Channelverwaltung</b>
+	</dt>
+	<dd>
 	Mit Hilfe der Channelverwaltung hat ein Administrator die Möglichkeit, neue 
 	Channels anzulegen, existierende Channels zu bearbeiten und existierende
-	Channels zu löschen.
-</DD>
+	Channels zu löschen.<br><br>
+	  <dl>
+		<dt>
+		<b>2.2.1 Das Channelverwaltungsfenster</b>
+		</dt>
+		<dd>
+		<br>
+		<img src="channeladmin.jpg" width="321" height="332" alt="Screenshot der Channeladministration" border="0">
+		<br>
+		<ol>
+			<li>Gesamtliste der Channels</li>
+			<li>Liste "Nicht berechtigte User"</li>
+			<li>Liste "Berechtigte User"</li>
+			<li>Feld "Channelname"</li>
+			<li>Checkbox "öffentlich"</li>
+			<li>Knopf "Neu"</li>
+			<li>Knopf "Speichern"</li>
+			<li>Knopf "Bearbeiten"</li>
+			<li>Knopf "Kopieren"</li>
+			<li>Knopf "Löschen"</li>
+		</ol>
+		<br>
+		</dd>
 
-<DL>
-<DT>
-	<B>2.2.1 Das Channelverwaltungsfenster</B>
-</DT>
-<DD>
-<BR>
-<IMG SRC="channeladmin.jpg">
-<BR>
-<OL>
-	<LI>Gesamtliste der Channels
-	<LI>Liste "Nicht berechtigte Benutzer"
-	<LI>Liste "Berechtigte Benutzer"
-	<LI>Feld "Channelname"
-	<LI>Checkbox "öffentlich"
-	<LI>Knopf "Neu"
-	<LI>Knopf "Speichern"
-	<LI>Knopf "Bearbeiten"
-	<LI>Knopf "Kopieren"
-	<LI>Knopf "Löschen"
-</OL>
-</DD>
+		<dt>
+		<b>2.2.2 Neuen Channel anlegen</b>
+		</dt>
+		<dd>
+		Wenn Sie einen neuen Channel anlegen möchten, klicken Sie einfach auf
+		den Knopf "Neu" (6). Dann tragen sie im Feld "Channelname" (4) den Namen ein, 
+		den der neue Channel haben soll. Aktivieren Sie nun die Checkbox "öffentlich" (5), 
+		können Sie sofort auf "Speichern" (7) klicken, denn wenn diese Checkbox aktiviert 
+		ist, kann jeder Benutzer - und auch Gäste - den Channel benutzen.<BR>
+		Ist die Checkbox allerdings nicht aktiviert, macht es Sinn, dem Channel 
+		Benutzer zuzuweisen, die diesen betreten dürfen. Das Zuweisen erfolgt analog zu 
+		dem Vorgang in der Benutzerverwaltung, indem in der Liste "Nicht berechtigte User" (2)
+		die gewünschten Benutzer ausgewählt und mittels des entsprechenden Pfeilknopfes
+		der Liste "Berechtigte User" (3) hinzugefügt werden. Haben Sie dies abgeschlossen, so
+		klicken Sie auf "Speichern" (7) und der neue Channel ist aktiv.<BR>
+		<BR>
+		Um sich etwas Arbeit beim Zuweisen der Benutzer zu ersparen, können Sie auch 
+		einen bereits existierenden Channel kopieren:<BR>
+		Dazu wählen Sie aus der "Channelliste" (1) einen bereits existierenden Channel 
+		aus und klicken auf "Kopieren" (9). Daraufhin werden die Daten des
+		gewählten Channels angezeigt, wobei im Feld "Channelname" (5) durch
+		ein nachgestelltes "[Kopie]" deutlich gemacht wird, daß man an einer
+		Kopie arbeitet. Diese können Sie nun nach Ihren Wünschen bearbeiten. Wenn Sie 
+		damit fertig sind genügt ein Klick auf "Speichern" (7) und der Channel ist 
+		aktiv.<br> 
+		Diese Funktion ist z.B. sinnvoll, wenn sie eine größere Gruppe von berechtigten 
+		Benutzern eines Channels in den neuen übernehmen möchten.<br><br>
+		</dd>
 
+		<dt>
+		<b>2.2.3 Channel bearbeiten</b>
+		</dt>
+		<dd>
+		Wenn Sie einen Channel bearbeiten möchten, wählen Sie diesen aus
+		der "Channelliste" (1) aus und klicken Sie auf "Bearbeiten" (8).<br>
+		Sie können den Namen des Channels ändern, indem Sie einen neuen eingeben. 
+		Sie können den Channel durch Aktivierung des "öffentlich"-Knopfs (5) für jeden 
+		öffentlich machen, und Sie können die Benutzerlisten durch Auswählen der 
+		Benutzer und anschließendes Klicken der entsprechenden Pfeilknöpfe zwischen 
+		den Listen ändern.<BR>
+		Haben Sie Ihren Bearbeitungswunsch abgeschlossen, so klicken Sie
+		"Speichern" (7) und die Änderungen sind aktiv.<br><br>
+		</dd>
 
-
-<DT>
-	<B>2.2.2 Neuen Channel anlegen</B>
-</DT>
-<DD>
-Wenn Sie einen neuen Channel anlegen möchten, klicken Sie einfach auf
-den Knopf "Neu".<BR> 
-Dann tragen sie im Feld "Channelname" den Namen ein,den der neue Channel haben soll. 
-Aktivieren Sie nun die Checkbox "öffentlich", können Sie sofort "Speichern" klicken, 
-denn wenn diese Checkbox aktiviert ist, kann jeder Benutzer, und auch Gäste, diesen
-Channel benutzen.<BR>
-Ist die Checkbox allerdings nicht aktiviert, so müssen Sie durch klicken auf 
-die Pfeile die Benutzer aus der Liste "Nicht berechtigte Benutzer" dem Channel 
-Benutzer zuweisen, die diesen Channel betreten dürfen. Haben Sie dies abgeschlossen, so
-klicken Sie "Speichern" und der neue Channel ist aktiv.<BR>
-<BR>
-Um sich etwas Arbeit zu ersparen, können Sie auch einen bereis 
-existierenden Channel kopieren, indem Sie ihn aus der Channel-
-liste auswählen und "Bearbeiten klicken".<BR>
-Die Daten des Channels, sowie die dafür berechtigten Benutzer stehen 
-nun in den entsprechenden Feldern. Durch klicken des "Kopieren" Knopfes und 
-anschließendes Klicken des "Speichern" Knopfes wird eine Kopie
-des Channels erzeugt. Diese können Sie nun aus der Channelliste
-auswählen und nach Ihren Wünschen bearbeiten. Wenn Sie damit
-fertig sind genügt ein Klick auf "Speichern" und der Channel ist
-aktiv. Diese Methode ist z.B. sinnvoll, wenn sie eine Liste
-von berechtigten Benutzern eines Channels in den neuen über-
-nehmen möchten, Sie also nur den Namen ändern wollen.
-</DD>
-
-<DT>
-	<B>2.2.3 Channel bearbeiten</B>
-</DT>
-<DD>
-Wenn Sie einen Channel bearbeiten möchten, wählen Sie diesen aus
-der Channelliste aus und klicken Sie auf "Bearbeiten".<BR>
-Sie können den Namen des Channels ändern, indem Sie einen neuen eingeben. 
-Sie können den Channel für jeden, durch Aktivierung des "öffentlich"-
-Knopfs, öffentlich machen, und Sie können die Liste der berechtigten
-Benutzer durch klicken der Pfeiltaste zwischen den Benutzerliste
-ändern, indem Sie die Benutzer von Liste zu Liste schieben.<BR>
- Haben Sie Ihren Bearbeitungswunsch abgeschlossen, so klicken Sie
-"Speichern" und die Änderungen sind aktiv.
-</DD>
-
-<DT>
-	<B>2.2.4 Channel löschen</B>
-</DT>
-<DD>
-Wollen Sie einen Channel löschen?<BR>
-Wählen sie Ihn einfach aus der Channelliste aus und 
-klicken "Löschen". Schon ist er weg :-)
-</DD>
-</DL>
-</DL>
-
-<div align=center>
-    <a href="hilfe.html" target="_self" name="zurück">zurück</a>
-</div>
-
+		<dt>
+		<b>2.2.4 Channel löschen</b>
+		</dt>
+		<dd>
+		Wenn Sie einen Channel löschen wählen, wählen Sie den Eintrag in der
+		"Channelliste" (1) aus und klicken auf "Löschen" (10).<BR>
+		Der Channel wird daraufhin sofort komplett aus der Channelverwaltung 
+		gelöscht.<br><br>
+		</dd>
+	  </dl>
+	</dd>
+	</dl>
+	<div align=center>
+    <b>
+		<a href="hilfe.html" target="_self">Inhalt</a> | 
+		<a href="clienthelp.html" target="_self">Zurück</a> | 
+		<a href="faq.html" target="_self">Weiter</a>
+	</b>
+	</div>
+    <hr>
+	<font size=-1><i>(c) 2001 <a href="http://www.tu-bs.de/~y0013570" target="_blank">WorstCases</a></i></font>
 </BODY>
 </HTML>
 
