@@ -5,6 +5,7 @@ import java.io.*;
 import Util.Commands.*;
 import Util.Debug.Debug;
 
+
 /**
  * Versendet Nachrichten über einen Socket an einen Downlink. Diese Klasse ist die sendende Hälfte eines Kommunikationskanals.
  * Die andere Hälfte, die das Empfangen von Nachrichten übernimmt, ist der Downlink.
@@ -14,46 +15,51 @@ import Util.Debug.Debug;
  * @see Server.ClientServant
  */
 public class Uplink {
-    /**
-     * Konstruktor.
-     * @param socket der zu benutzende Socket.
-     */
-    public Uplink(Socket paramSocket) {
-        this.socket = paramSocket;
+
+  /**
+   * Konstruktor.
+   * @param socket der zu benutzende Socket.
+   */
+  public Uplink(Socket paramSocket) {
+    this.socket = paramSocket;
+  }
+
+  /** Über diesen Socket werden die Nachrichten versendet. */
+  private Socket socket;
+
+  /** Output-Stream für Objekte. */
+  private ObjectOutputStream objectOutputStream;
+
+  /** Öffnet den Output-Stream. */
+  public void startUplink() throws java.io.IOException {
+
+    this.objectOutputStream =
+      new ObjectOutputStream(this.socket.getOutputStream());
+
+    Debug.println(Debug.LOW, this + ": started");
+  }
+
+  /** Schließt den Output-Stream. */
+  public void stopUplink() {
+
+    try {
+      this.objectOutputStream.close();
+      Debug.println(Debug.LOW, this + ": stopped");
+    } catch (java.io.IOException e) {
+      Debug.println(Debug.HIGH, this + ":error stopping:" + e);
     }
+  }
 
-    /** Über diesen Socket werden die Nachrichten versendet. */
-    private Socket socket;
+  /**
+   * Sendet ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
+   * Benutzt objectOutputStream.writeObject()
+   * @param msg Das zu versendende Commandobjekt.
+   * @see Downlink
+   */
+  public synchronized void sendMsg(Command msg) throws java.io.IOException {
 
-    /** Output-Stream für Objekte. */
-    private ObjectOutputStream objectOutputStream;
-
-    /** Öffnet den Output-Stream. */
-    public void startUplink() throws java.io.IOException {
-        this.objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
-        Debug.println(Debug.LOW, this + ": started");
-    }
-
-    /** Schließt den Output-Stream. */
-    public void stopUplink() {
-        try {
-            this.objectOutputStream.close();
-            Debug.println(Debug.LOW, this + ": stopped");
-        }
-        catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, this + ":error stopping:" + e);
-        }
-    }
-
-    /**
-     * Sendet ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
-     * Benutzt objectOutputStream.writeObject()
-     * @param msg Das zu versendende Commandobjekt.
-     * @see Downlink
-     */
-    public synchronized void sendMsg(Command msg) throws java.io.IOException {
-        Debug.println(Debug.MEDIUM, this + ": sending " + msg);
-        objectOutputStream.writeObject(msg);
-        objectOutputStream.flush();
-    }
+    Debug.println(Debug.MEDIUM, this + ": sending " + msg);
+    objectOutputStream.writeObject(msg);
+    objectOutputStream.flush();
+  }
 }

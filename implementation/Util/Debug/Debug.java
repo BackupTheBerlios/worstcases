@@ -2,12 +2,12 @@ package Util.Debug;
 
 /**
  * Klasse zur Ausgabe von Debug-Nachrichten. Gegenüber dem üblichen
- * <pre>System.out.println("Wichtiger Fehler!");</pre> 
+ * <pre>System.out.println("Wichtiger Fehler!");</pre>
  * haben so ausgegebene Nachrichten u.a. folgende Vorteile:
  * <ul>
  * <li>sie können im Code bleiben, müssen nicht auskommentiert werden</li>
  * <li>sie sind zur Laufzeit ein- und ausschaltbar</li>
- * <li>verschiedene Prioritäten ermöglichen eine nach Debug-Level gefilterte 
+ * <li>verschiedene Prioritäten ermöglichen eine nach Debug-Level gefilterte
  * Ausgabe von Debug-Nachrichten</li>
  * </ul>
  */
@@ -15,18 +15,18 @@ public class Debug {
 
   /** Stellt die Ausgabe von Debug-Nachrichten ab. */
   public final static int OFF = 0;
-  
+
   /** Niedrige Priorität. */
   public final static int LOW = 1;
-  
+
   /** Mittlere Priorität. */
   public final static int MEDIUM = 2;
-  
+
   /** Hohe Priorität. */
   public final static int HIGH = 3;
 
   /**
-   * Debug-Level. Je höher er ist, desto mehr und auch unwichtigere 
+   * Debug-Level. Je höher er ist, desto mehr und auch unwichtigere
    * Debug-Nachrichten werden ausgegeben.
    * Der Wert Debug.OFF stellt Debug-Nachrichten ab.
    */
@@ -48,7 +48,7 @@ public class Debug {
   public static void println(Object msg) {
     println(MEDIUM, msg);
   }
-  
+
   /**
    * Löst eine Debug-Nachricht mit einer bestimmten Priorität aus.
    *
@@ -57,7 +57,8 @@ public class Debug {
    * @param msg die Debug-Nachricht.
    */
   public static void println(int priority, Object msg) {
-    if ((HIGH - level) < priority) { //XXX
+
+    if ((HIGH - level) < priority) {  // XXX
       System.err.println(msg);
     }
   }
@@ -66,6 +67,7 @@ public class Debug {
    * Beispiele.
    */
   public static void main(String args[]) {
+
     Debug.setLevel(Debug.LOW);
     Debug.println(Debug.LOW, "Unwichtiger Fehler!");
     Debug.println("Normaler Fehler!");
