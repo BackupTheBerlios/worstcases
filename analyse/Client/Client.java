@@ -5,7 +5,7 @@ import java.util.Vector;
 import java.net.Socket;
 
 /**
- * die Clientapplikation 
+ * Die Clientapplikation 
  */
 public class Client {
     /**

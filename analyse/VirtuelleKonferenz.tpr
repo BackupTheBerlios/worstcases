@@ -42,7 +42,7 @@ codesense.java.delay=1
 [print]
 diagram=current
 preview.autoupdate=true
-preview.scale=4
+preview.scale=1
 [genHTML]
 folder=C:\\Programme\\togethaj\\out\\webpublish\\VirtuelleKonferenz
 include.deprecated=true
@@ -52,9 +52,9 @@ include.tag.since=true
 include.tag.throws=true
 include.tag.user=true
 includeDiagrams=true
-javaDoc.generate.help=false
+javaDoc.generate.help=true
 javaDoc.generate.index=true
-javaDoc.generate.navbar=false
+javaDoc.generate.navbar=true
 javaDoc.generate.tree=true
 javaDoc.generate.use=true
 javaDoc.splitIndex=false
@@ -62,5 +62,3 @@ javadoc=false
 launchBrowser=true
 navigationTree=true
 updatedependencies=true
-[newDiagramExpert]
-includeInCurrentDiagram=false

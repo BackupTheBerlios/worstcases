@@ -32,12 +32,6 @@ class link {
 @automatic 
 */
 class link1 {
-}/**
-@shapeType Hyperlink
-@__modelType link
-@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.diagram:oiref><oihard> 
-*/
-class link36 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -48,8 +42,8 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id1jz3ccmoxh5dycmoxoi0c.diagram:oiref>=328,193,91,63,1:oigroup>
-<oigroup:<oiref:design#Class#id4pb9vcmoxh5dycmoxnxey.diagram:oiref>=24,14,264,84,0:oigroup> 
+@__positions <oigroup:<oiref:design#Class#id1jz3ccmoxh5dycmoxoi0c.diagram:oiref>=10,130,93,129,1:oigroup>
+<oigroup:<oiref:design#Class#id4pb9vcmoxh5dycmoxnxey.diagram:oiref>=152,24,148,243,1:oigroup>
 */
 class __positions {
 }

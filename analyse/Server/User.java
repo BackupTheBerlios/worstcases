@@ -5,9 +5,13 @@ package Server;
 import java.util.Vector;
 
 /**
- * ein Benutzerdatensatz 
+ * Ein Benutzerdatensatz
  */
 class User {
+
+    /**
+     *@param userSet Benutzerdaten als String
+    */
     public User(String userSet) {
     }
 
@@ -35,6 +39,11 @@ class User {
             this.currentChannel = currentChannel;
         }
 
+
+    /**
+     *gibt einen Channel aus der Liste der erlaubten Channels
+     *mit dem angegebenen Namen zurück
+     */
     public Channel getFromAllowedChannelByName(String channelName) {
       return null;
     }
@@ -68,32 +77,32 @@ class User {
         }
 
     /**
-     * gibt den Channel an, in dem sich der Benutzer zur Zeit befindet
+     * Gibt den Channel an, in dem sich der Benutzer zur Zeit befindet.
      * @supplierCardinality 0..1
      * @clientCardinality 0..* 
      */
     private Channel currentChannel;
 
-    /** gibt die Channels an, die der Benutzer betreten darf
+    /** Gibt die Channels an, die der Benutzer betreten darf.
      * @associates <{Channel}>
      * @clientCardinality 0..*
      * @supplierCardinality 0..**/
     private Vector allowedChannelList;
 
     /**
-     * gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt 
+     * Gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt.
      */
     private boolean modified;
     private String name;
     private String password;
 
     /**
-     * gibt an, ob der Benutzer momentan das System benutzt 
+     * Gibt an, ob der Benutzer momentan das System benutzt.
      */
     private boolean loggedIn;
 
     /**
-     * Administrator? 
+     * Ist der User Administrator? 
      */
     private boolean isAdmin;
 

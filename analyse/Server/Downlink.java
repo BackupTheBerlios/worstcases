@@ -4,14 +4,14 @@ package Server;
 import java.net.Socket;
 
 /**
- * empfängt Nachrichten von der Clientapplikation und leitet diese an den Observer weiter 
+ * Empfängt Nachrichten von der Clientapplikation und leitet diese an den (Admin)ClientServant weiter.
  */
 class Downlink extends Thread {
     public Downlink(Socket paramSocket, ClientServant paramClientServant) {
     }
 
     /**
-     * wartet auf ankommende Nachrichten und leitet diese an den ClientServant weiter 
+     * Wartet auf ankommende Nachrichten und leitet diese an den ClientServant weiter.
      */
     public void listen() {
      String msg="foo";
@@ -22,7 +22,7 @@ class Downlink extends Thread {
     }
 
     /**
-     * öffnet den Stream, danach ist der Downlink betriebsbereit 
+     * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit.
      */
     public void startDownlink() {
     }
@@ -32,7 +32,7 @@ class Downlink extends Thread {
     }
 
     /**
-     * schließt den Stream 
+     * Schließt den Input - Stream 
      */
     public void stopDownlink() {
     }

@@ -4,7 +4,7 @@ package Client;
 import java.net.Socket;
 
 /**
- * sendet Daten an den Server 
+ * Sendet Daten an den Server.
  */
 public class Uplink {
     public Uplink(Socket socket) {
@@ -13,19 +13,19 @@ public class Uplink {
     private Socket socket;
 
     /**
-     * startet den Stream 
+     * Startet den Output - Stream
      */
     public void startUplink() {
     }
 
     /**
-     * schließt den Stream 
+     * Schließt den Output - Stream 
      */
     public void stopUplink() {
     }
 
     /**
-     * sendet eine Nachricht an den Server 
+     * Sendet eine Nachricht an den Server.
      */
     public void sendMsg(String msg) {
     }

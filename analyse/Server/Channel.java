@@ -18,17 +18,11 @@ import java.util.Vector;
 class Channel {
     public Channel(String channelSet) {
     }
-    /**
-    *  liefert alle sich zu dieser Zeit im Channel aufhaltenden User
-    */
 
     public Vector getCurrentUserList(){
             return currentUserList;
         }
 	
-     /**
-    *    setzt die sich im Channel aufhaltenden User
-    */
 	
 
     public void setCurrentUserList(Vector currentUserList){
@@ -36,7 +30,7 @@ class Channel {
         }
 
     /**
-    *   fügt einen User zu den im Channel befindlichen Usern hinzu
+    *   Fügt einen User zu den im Channel befindlichen Usern hinzu.
     */
 
 
@@ -49,7 +43,7 @@ class Channel {
     }
 
     /**
-    *   entfernt einen User von den im Channel befindlichen Usern
+    *   Entfernt einen User von den im Channel befindlichen Usern.
     */
 
 
@@ -61,25 +55,18 @@ class Channel {
      tmpClientServant.sendChannelData();
     }
 
-    /**
-    *   Gibt eine Liste aller berechtigten User für diesen Channel zurück
-    */
-
 
     public Vector getAllowedUserList(){
             return allowedUserList;
         }
 
-    /**
-    *   setzt die berechtigten User für diesen Channel
-    */
 
 
     public void setAllowedUser(Vector allowedUser){
             this.allowedUserList = allowedUserList;
         }
 
-    /** gibt die Benutzer an, die sich momentan in dem Channel befinden
+    /** Gibt die Benutzer an, die sich momentan in dem Channel befinden.
      * @associates <{User}>
      * @supplierCardinality 0..*
      * @clientCardinality 0..1
@@ -88,7 +75,7 @@ class Channel {
      * @label current state*/
     private Vector currentUserList;
 
-    /** gibt die Benutzer an, die den Channel betreten dürfen
+    /** Gibt die Benutzer an, die den Channel betreten dürfen.
      * @associates <{User}>
      * @clientCardinality 0..*
      * @supplierCardinality 0..*
@@ -98,7 +85,7 @@ class Channel {
     private Vector allowedUserList;
 
     /**
-     * gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt 
+     * Gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt.
      */
     private boolean modified;
 

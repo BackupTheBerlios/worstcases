@@ -36,7 +36,7 @@ class Server {
      ((ClientServant)(this.clientServantList.elementAt(pos))).stopClientServant();
     }
      
-        /**
+    /**
      * Stoppt und entfernt einen ClientServant aus der Liste der aktiven
      * ClientServants.
      */
@@ -96,7 +96,7 @@ class Server {
      * Die Länge der Warteschlange, in der Verbindungswünsche von Clients
      * zwischengespeichert werden, die nicht sofort verarbeitet werden können.
      * Verbindungswünsche, die nicht mehr in die Warteschlange  passen, werden
-     * automatisch abgewiesen.
+     * automatisch abgewiesen (siehe auch java.net.ServerSocket).
      */
 
 

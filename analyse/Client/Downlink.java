@@ -5,27 +5,27 @@ import java.net.Socket;
 
 
 /**
- * empfängt Daten vom Server 
+ * Empfängt Daten vom Server
  */
 public class Downlink extends Thread{
     public Downlink(Socket socket) {
     }
 
     /**
-     * wartet auf ankommende Daten und leitet diese an den Client weiter 
+     * Wartet auf ankommende Daten und leitet diese an den Client weiter.
      */
     private void listen() {
       this.client.processMsg("Mensachat, Virtuelle Konferenz, tubs intern");
     }
 
     /**
-     * startet den Stream 
+     * Startet den Input - Stream 
      */
     public void startDownlink() {
     }
 
     /**
-     * schließt den Stream 
+     * Schließt den Input - Stream 
      */
     public void stopDownlink() {
     }

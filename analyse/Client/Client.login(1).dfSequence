@@ -49,13 +49,13 @@ class __options {
 <oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node:oiref>=30,30,90,270,1:oigroup>
 <oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref>=234,155,487,155:oigroup>
 <oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568:oiref>=182,30,90,270,1:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref>=238,132,232,19,0:oigroup> 
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref>=238,132,232,19,0:oigroup>
 */
 class __positions {
 }/**
 @shapeType Object
 @__modelType node
-@name Object1
+@name GUI
 @stereotype actor 
 */
 class node {
@@ -68,6 +68,7 @@ class node {
 @sequenceNumber 1
 @operation <oiref:java#Member#Client.Client#login#(#java.lang.String#java.lang.String#)#:oiref>
 @operationNameAsText 'login(String,String):void' 
+@controlFlowType asynchronous
 */
 class link {
 }/**

@@ -8,53 +8,43 @@ package id4pb9vcmoxh5dycmoxnxey;
 class diagram {
 /**
 @__ref <oiref:java#Class#Server.Server:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference {
 }/**
 @__ref <oiref:java#Class#Server.UserAdministration:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference23 {
 }/**
 @__ref <oiref:java#Class#Server.ChannelAdministration:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference24 {
 }/**
 @__ref <oiref:java#Class#Server.DataBaseIO:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference25 {
 }/**
 @__ref <oiref:java#Class#Server.User:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference26 {
 }/**
 @__ref <oiref:java#Class#Server.Channel:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference27 {
 }/**
 @__ref <oiref:java#Class#Server.ClientServant:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference28 {
 }/**
 @__ref <oiref:java#Class#Server.Uplink:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference29 {
 }/**
 @__ref <oiref:java#Class#Server.Downlink:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference30 {
 }/**
 @__ref <oiref:java#Class#Server.AdminClientServant:oiref><oihard>
-@__modelType reference 
-@__hidden*/
+@__modelType reference */
 class reference31 {
 }/**
 @shapeType DependencyLink
@@ -82,67 +72,115 @@ option.links = Direct
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:java#Extends#Server.AdminClientServant#Server.ClientServant:oiref>=742,599,742,480:oigroup>
-<oigroup:<oiref:java#Class#Server.DataBaseIO:oiref>=325,364,203,166,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#lnkChannelAdministration:oiref>=454,365,588,365:oigroup>
-<oigroup:<oiref:java#Member#Server.ClientServant#loginGuest#(#java.lang.String#)#:oiref>=842,540,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Downlink#ClientServant:oiref>=392,599,716,480:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1248,1292,1017,1088:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=364,725,7,17,0:oigroup>
-<oigroup:<oiref:java#Class#Server.ClientServant:oiref>=616,10,279,470,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#uplink:oiref>=647,480,101,599:oigroup>
-<oigroup:<oiref:java#Class#Server.AdminClientServant:oiref>=503,599,329,280,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=201,644,201,746:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=364,530,7,17,0:oigroup>
-<oigroup:<oiref:java#Class#Server.Downlink:oiref>=208,549,271,222,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.DataBaseIO#userAdministration:oiref>=370,364,370,271:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Server#ClientServant:oiref>=452,452,305,452:oigroup>
-<oigroup:<oiref:java#Member#Server.ChannelAdministration#$$constructor$$#(#Server.DataBaseIO#)#:oiref>=243,16,0,0,1:oigroup>
-<oigroup:<oiref:java#Class#Server.Server:oiref>=10,364,203,280,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#allowedUser:oiref>=717,55,311,55:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#dataBaseIO:oiref>=416,271,416,364:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=190,725,7,17,0:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=190,644,7,17,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#downlink:oiref>=681,480,302,599:oigroup>
-<oigroup:<oiref:java#Class#Server.Channel:oiref>=633,746,203,242,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.AdminClientServant#channelAdministration:oiref>=832,823,984,1124,1593,1124,1777,763:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=425,746,425,530:oigroup>
-<oigroup:<oiref:java#Class#Server.UserAdministration:oiref>=180,10,282,261,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channelList:oiref>=475,882,633,882:oigroup>
-<oigroup:<oiref:java#Member#Server.UserAdministration#$$constructor$$#(#Server.DataBaseIO#)#:oiref>=695,292,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#currentChannelList:oiref>=311,103,717,103:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#channelAdministration:oiref>=633,814,475,814:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#user1:oiref>=208,276,312,370:oigroup>
-<oigroup:<oiref:java#Class#Server.Uplink:oiref>=10,599,182,119,1:oigroup>
-<oigroup:<oiref:java#Member#Server.Server#ClientServant:oiref>=196,144,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#lnkUserAdministration:oiref>=307,56,193,56:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#currentUser:oiref>=717,112,311,112:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channel1:oiref>=681,370,681,240:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#user:oiref>=1885,839,1811,839,1811,675,935,675,935,411,311,411:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#user:oiref>=789,480,1077,599:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#userAdministration:oiref>=1268,686,1430,686:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=414,530,7,17,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#lnkServer:oiref>=352,88,404,88,456,88:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#userAdministration:oiref>=869,480,1499,599:oigroup>
+@__positions <oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1773,616,18,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.User#userAdministration:oiref>=1934,569,18,17,0:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channel2:oiref>=639,370,639,240:oigroup>
-<oigroup:<oiref:java#Member#Server.AdminClientServant#$$constructor$$#(#java.net.Socket#Server.ChannelAdministration#Server.UserAdministration#)#:oiref>=398,549,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Server#userAdministration:oiref>=111,364,275,271:oigroup>
+<oigroup:<oiref:java#Class#Server.ChannelAdministration:oiref>=1274,20,306,204,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1325,695,1795,695:oigroup>
+<oigroup:Composite#label#MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1526,674,68,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#user:oiref>=1774,583,7,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#downlink:oiref>=817,490,190,590:oigroup>
+<oigroup:<oiref:java#Class#Server.Server:oiref>=852,590,203,280,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#userAdministration:oiref>=1712,44,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.AdminClientServant#channelAdministration:oiref>=1306,224,7,17,0:oigroup>
+<oigroup:<oiref:java#Class#Server.AdminClientServant:oiref>=503,590,329,280,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#downlink:oiref>=732,480,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=1341,224,13,19,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.UserAdministration#dataBaseIO:oiref>=2232,569,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#uplink:oiref>=381,569,7,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=2226,590,1536,224:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Server#ClientServant:oiref>=452,452,305,452:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#Server.User#allowedChannel:oiref>=311,167,717,167:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#userList:oiref>=1430,773,1268,773:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#userList:oiref>=1864,281,2023,590:oigroup>
+<oigroup:<oiref:java#Class#Server.Channel:oiref>=1122,590,203,242,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#userAdministration:oiref>=1947,281,7,17,0:oigroup>
+<oigroup:<oiref:java#Member#Server.ClientServant#loginGuest#(#java.lang.String#)#:oiref>=842,540,0,0,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=2126,567,13,19,0:oigroup>
+<oigroup:<oiref:java#Member#Server.Server#ClientServant:oiref>=196,144,0,0,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#channelAdministration:oiref>=1189,590,1404,401,1404,224:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=969,567,13,19,0:oigroup>
+<oigroup:Composite#clientRole#MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1329,638,90,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Channel#channelAdministration:oiref>=1167,569,18,17,0:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channel:oiref>=318,157,517,157,517,149,717,149:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=414,725,7,17,0:oigroup>
-<oigroup:<oiref:java#Member#Server.User#modified:oiref>=82,641,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#ClientServant:oiref>=1172,599,830,480:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#allowedChannelList:oiref>=1229,1088,1453,1292:oigroup>
-<oigroup:<oiref:java#Class#Server.User:oiref>=982,599,286,489,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Server#dataBaseIO:oiref>=213,447,325,447:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=375,530,375,746:oigroup>
-<oigroup:<oiref:java#Class#Server.ChannelAdministration:oiref>=169,746,306,204,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1350,1292,1123,1088:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.User#currentChannel:oiref>=1258,1088,1491,1292:oigroup>
+<oigroup:<oiref:java#Class#Server.Uplink:oiref>=301,590,182,119,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#downlink:oiref>=179,569,7,17,0:oigroup>
+<oigroup:<oiref:java#Class#Server.Downlink:oiref>=10,590,271,222,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#currentChannelList:oiref>=311,103,717,103:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.UserAdministration#userList:oiref>=1853,281,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Server#clientServantList:oiref>=925,490,18,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#userAdministration:oiref>=1036,47,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#allowedChannelList:oiref>=1795,746,1325,746:oigroup>
+<oigroup:<oiref:java#Class#Server.UserAdministration:oiref>=1723,20,282,261,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#lnkChannelAdministration:oiref>=454,365,588,365:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.User#ClientServant:oiref>=1774,577,7,17,0:oigroup>
 <oigroup:<oiref:java#Member#Server.UserAdministration#dataBaseIO:oiref>=351,412,0,0,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#server:oiref>=895,196,1540,196:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Server.Server#clientServantList:oiref>=1540,103,895,103:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1329,674,20,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#channelList:oiref>=1235,569,18,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1773,673,18,17,0:oigroup>
+<oigroup:Composite#supplierRole#MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1721,639,70,17,0:oigroup>
+<oigroup:<oiref:java#Member#Server.ChannelAdministration#$$constructor$$#(#Server.DataBaseIO#)#:oiref>=243,16,0,0,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#userAdministration:oiref>=1966,590,1817,281:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Server#dataBaseIO:oiref>=1059,809,7,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Server#clientServantList:oiref>=937,569,7,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#allowedUser:oiref>=717,55,311,55:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=1475,224,13,19,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#ClientServant:oiref>=1909,590,1022,490:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#dataBaseIO:oiref>=1911,281,2267,590:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#user:oiref>=1885,839,1811,839,1811,675,935,675,935,411,311,411:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.UserAdministration#dataBaseIO:oiref>=1900,281,7,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#server:oiref>=891,490,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.AdminClientServant#channelAdministration:oiref>=722,590,1317,424,1317,224:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#userAdministration:oiref>=1032,75,1263,10,1591,10,1723,72:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channel1:oiref>=681,370,681,240:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1325,638,1795,638:oigroup>
+<oigroup:Composite#label#MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1510,638,100,17,0:oigroup>
+<oigroup:<oiref:java#Member#Server.AdminClientServant#$$constructor$$#(#java.net.Socket#Server.ChannelAdministration#Server.UserAdministration#)#:oiref>=398,549,0,0,1:oigroup>
+<oigroup:<oiref:java#Member#Server.User#modified:oiref>=82,641,0,0,1:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#userAdministration:oiref>=2274,569,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.User#ClientServant:oiref>=998,490,20,17,0:oigroup>
+<oigroup:<oiref:java#Class#Server.DataBaseIO:oiref>=2146,590,203,166,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=1519,224,13,19,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Server#userAdministration:oiref>=1709,281,7,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#uplink:oiref>=743,490,7,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#server:oiref>=913,490,913,590:oigroup>
+<oigroup:<oiref:java#Extends#Server.AdminClientServant#Server.ClientServant:oiref>=612,590,874,490:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Downlink#ClientServant:oiref>=89,569,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.UserAdministration#userList:oiref>=1991,569,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Downlink#ClientServant:oiref>=100,590,785,490:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.User#currentChannel:oiref>=1773,768,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.DataBaseIO#userAdministration:oiref>=2308,590,1958,281:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.AdminClientServant#channelAdministration:oiref>=698,569,20,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Channel#currentUser:oiref>=717,112,311,112:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.UserAdministration#user1:oiref>=208,276,312,370:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#lnkUserAdministration:oiref>=307,56,193,56:oigroup>
+<oigroup:Composite#clientRole#MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1329,695,85,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Server#dataBaseIO:oiref>=2135,702,7,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ChannelAdministration#channelList:oiref>=1437,224,7,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.User#allowedChannelList:oiref>=1773,725,18,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.User#allowedChannelList:oiref>=1329,725,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#channelList:oiref>=1448,224,1448,374,1257,590:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ChannelAdministration#dataBaseIO:oiref>=1492,224,2186,590:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Downlink#ClientServant:oiref>=732,475,7,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#uplink:oiref>=849,490,392,590:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Server#userAdministration:oiref>=1020,590,1770,281:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#user:oiref>=961,490,20,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.User#currentChannel:oiref>=1795,789,1325,789:oigroup>
+<oigroup:<oiref:java#Member#Server.UserAdministration#$$constructor$$#(#Server.DataBaseIO#)#:oiref>=695,292,0,0,1:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.DataBaseIO#channelAdministration:oiref>=2166,567,13,19,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Server#channelAdministration:oiref>=986,590,1360,420,1360,224:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Server#dataBaseIO:oiref>=1055,830,1784,1089,2092,1089,2146,723:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.User#userAdministration:oiref>=1806,281,7,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.Channel#channelAdministration:oiref>=1382,224,18,17,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#lnkServer:oiref>=352,88,404,88,456,88:oigroup>
+<oigroup:Composite#supplierRole#MemberLink#<oiref:java#Member#Server.Channel#currentUserList:oiref>=1726,696,65,17,0:oigroup>
+<oigroup:<oiref:java#Class#Server.User:oiref>=1795,590,286,489,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.Server#clientServantList:oiref>=948,590,948,490:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.ClientServant#server:oiref>=902,569,7,17,0:oigroup>
+<oigroup:<oiref:java#Class#Server.ClientServant:oiref>=753,20,279,470,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Server.ClientServant#user:oiref>=985,490,1852,590:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Channel#allowedUserList:oiref>=1329,617,18,17,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Server.User#currentChannel:oiref>=1329,768,20,17,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Server.Server#userAdministration:oiref>=1009,569,7,17,0:oigroup>
 
 
 

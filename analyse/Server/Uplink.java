@@ -4,26 +4,26 @@ package Server;
 import java.net.Socket;
 
 /**
- * ermöglicht dem Observer das Senden von Nachrichten an die Clientapplikation 
+ * Ermöglicht dem Observer das Senden von Nachrichten an die Clientapplikation.
  */
 class Uplink {
     public Uplink(Socket paramSocket) {
     }
 
     /**
-     * sendet eine Nachricht zur Clientapplikation 
+     * Sendet eine Nachricht zur Clientapplikation.
      */
     public void send(String msg) {
     }
 
     /**
-     * startet den Stream, danach ist Uplink betriebsbereit 
+     * Startet den Output - Stream, danach ist der Uplink betriebsbereit.
      */
     public void startUplink() {
     }
 
     /**
-     * schließt den Stream 
+     * Schließt den Output - Stream.
      */
     public void stopUplink() {
     }

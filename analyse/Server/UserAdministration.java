@@ -4,32 +4,38 @@ package Server;
 
 import java.util.Vector;
 /**
- * verwaltet die Benutzer 
+ * Verwaltet die Benutzer
  */
 class UserAdministration {
     public UserAdministration(DataBaseIO paramDataBaseIO) {
     }
 
     /**
-     * meldet einen Benutzer an
-     * @return den Benutzer, falls Authentifizierung klappt, sonst null 
+     * Meldet einen Benutzer an.
+     * @param userSet die vom Client empfangenen Benutzerdaten
+     * @return den Benutzer, falls Authentifizierung klappt, sonst null
      */
     public User loginUser(String userSet) {
         return null;
     }
 
+    /**
+     * Meldet einen Gast an.
+     * @param guestSet die vom Client empfangenen Gastdaten
+     * @return den Benutzer, falls Authentifizierung klappt, sonst null
+     */
     public User loginGuest(String guestSet) {
         return null;
     }
 
     /**
-     * fügt einen Benutzer hinzu 
+     * Fügt einen Benutzer hinzu.
      */
     public void addToUserList(User paramUser) {
     }
 
     /**
-     * entfernt einen Benutzer 
+     * Entfernt einen Benutzer.
      */
     public void removeFromUserList(User paramUser) {
       paramUser.getClientServant().stopClientServant();
@@ -37,7 +43,7 @@ class UserAdministration {
     }
 
     /**
-     * gibt den Benutzer mit dem angegebenen Namen zurück 
+     * Gibt den Benutzer mit dem angegebenen Namen zurück.
      */
     public User getFromUserListByName(String name) {
         return null;
@@ -62,12 +68,12 @@ class UserAdministration {
     private Vector userList;
 
     /**
-     * Anzahl der eingeloggten Benutzer(registrierte und Gäste)  im System 
+     * Anzahl der eingeloggten Benutzer(registrierte und Gäste) im System.
      */
     private int numCurrentUsers;
 
     /**
-     * maximale Anzahl von eingeloggten Benutzern im System 
+     * Maximale Anzahl von eingeloggten Benutzern im System.
      */
     private int maxUsers;
 

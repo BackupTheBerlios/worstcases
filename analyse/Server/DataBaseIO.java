@@ -4,14 +4,14 @@ package Server;
 import java.util.Vector;
 
 /**
- * stellt Methoden bereit, um die Benutzer- und Channeldatenbank zu laden
+ * Stellt Methoden bereit, um die Benutzer- und Channeldatenbank zu laden
  * und zu speichern. Außerdem wird dafür gesorgt, daß für den Betrieb die
- * Beziehungen zwischen User- und Channeldatenbank gesetzt werden
+ * relationalen Beziehungen zwischen User- und Channeldatenbank gesetzt werden.
  */
 
 class DataBaseIO {
          /**
-     * lädt die Benutzer- und Channeldaten aus userDBFile und channelDBFile
+     * Lädt die Benutzer- und Channeldaten aus userDBFile und channelDBFile.
      */
 
     public void loadFromDisk() {
@@ -23,7 +23,7 @@ class DataBaseIO {
     }
 
     /**
-     * speichert die Benutzer- und Channeldaten in userDBFile und channelDBFile
+     * Speichert die Benutzer- und Channeldaten in userDBFile und channelDBFile.
      */
 
     public void saveToDisk() {
@@ -31,7 +31,7 @@ class DataBaseIO {
     }
 
     /**
-     * stellt die relationalen Beziehungen zwische User- und Channeldatensätzen her 
+     * Stellt die relationalen Beziehungen zwische User- und Channeldatensätzen her.
      */
     private void doLinks() {
      int pos=0;
@@ -55,12 +55,12 @@ class DataBaseIO {
     private ChannelAdministration channelAdministration;
 
     /**
-     * Dateiname der Channeldatenbank 
+     * Dateiname der Channeldatenbank.
      */
     private final static String channelDBFile = "channel.db";
 
     /**
-     * Dateiname der Benutzerdatenbank 
+     * Dateiname der Benutzerdatenbank. 
      */
     private final static String userDBFile = "user.db";
 }

@@ -68,7 +68,7 @@ class __tags {
 option.printheader = false
 option.printfooter = false
 option.fittopage = true
-option.papersize = A4 
+option.papersize = A5
 */
 class __options {
 }/**

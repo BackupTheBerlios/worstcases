@@ -4,27 +4,27 @@ package Server;
 
 import java.util.Vector;
 /**
- * verwaltet die Channel 
+ * Verwaltet die Channelobjekte.
  */
 class ChannelAdministration {
     public ChannelAdministration(DataBaseIO paramDataBaseIO) {
     }
 
     /**
-     * gibt den Channel mit dem angegebenen Namen zurück 
+     * gibt den Channel mit dem angegebenen Namen zurück
      */
     public Channel getByName(String name) {
         return null;
     }
 
     /**
-     * fügt einen Channel hinzu 
+     * Fügt einen Channel hinzu
      */
     public void addToChannelList(Channel paramChannel) {
     }
 
     /**
-     * entfernt einen Channel 
+     * Entfernt einen Channel.
      */
     public void removeFromChannelList(Channel paramChannel) {
      int pos=0;
@@ -41,7 +41,9 @@ class ChannelAdministration {
     }
 
     /**
-     * editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem String
+     * Editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem String
+     * @param name Der Name des Channels, der verändert werden soll
+     * @param newChannelData String, der die neuen Daten des Channels enthält
      */
     public void editChannel(String name, String newChannelData) {
 
