@@ -3,6 +3,7 @@ package Server;
 import java.util.Vector;
 import java.util.Enumeration;
 import Util.Debug.Debug;
+import Util.Helper;
 
 /**
  * Ein Channeldatensatz. Eine Instanz dieser Klasse kann wichtige Channeldaten wie beispielsweise
@@ -42,24 +43,18 @@ class Channel {
      * user.removeFromAllowedChannelList(this)
      */
     public synchronized void setAllowedForGuest(boolean b) {
-        boolean old = this.isAllowedForGuest();
+        boolean oldValue = this.isAllowedForGuest();
         this.allowedForGuest = b;
-        if (old != b) {
-            if (old) {
+        if (oldValue != b) {
+            //Channel ist nicht mehr für Gäste frei
+            if (oldValue) {
                 Enumeration enum = this.getCurrentUserEnum();
-                if (enum != null) {
-                    User tmpUser;
-                    try {
-                        while (enum.hasMoreElements()) {
-                            tmpUser = (User)enum.nextElement();
-                            if (tmpUser.isGuest()) {
-                                tmpUser.removeFromAllowedChannelList(this);
-                                tmpUser.setCurrentChannel(null);
-                            }
-                        }
-                    }
-                    catch (java.util.NoSuchElementException e) {
-                        Debug.println(this + ": error while setting isAllowedForGuest" + e);
+                User tmpUser;
+                //alle Gäste aus der Liste der berechtigten User entfernen
+                while (enum.hasMoreElements()) {
+                    tmpUser = (User)enum.nextElement();
+                    if (tmpUser.isGuest()) {
+                        tmpUser.removeFromAllowedChannelList(this);
                     }
                 }
             }
@@ -73,41 +68,43 @@ class Channel {
     public Vector getAllowedUserNames() {
         Vector tmpVector = new Vector();
         Enumeration enum = this.getAllowedUserEnum();
-        if (enum != null) {
-            while (enum.hasMoreElements()) {
-                tmpVector.addElement(((User)enum.nextElement()).getName());
-            }
+        //alle Namen zu tmpVector hinzufügen
+        while (enum.hasMoreElements()) {
+            tmpVector.addElement(((User)enum.nextElement()).getName());
         }
         return tmpVector;
     }
 
     /** Gibt eine Aufzählung der aktuellen Benutzerobjekte im Channel zurück. */
     public Enumeration getAllowedUserEnum() {
-        return this.allowedUserList.elements();
+        return Helper.vectorCopy(this.allowedUserList).elements();
     }
 
     /**
      * Setzt allowedUserList auf die in enumAllowedUser übergebenen Werte
      * Benutzt addToAllowedUserList() und removeFromAllowedUserList().
      */
-    public void setAllowedUserList(Enumeration enumAllowedUser) {
+    public synchronized void setAllowedUserList(Enumeration enumAllowedUser) {
         Enumeration enum = enumAllowedUser;
+        //mit einer leeren Aufzählung beginnen, falls null übergeben wurde
         if (enum == null) {
             enum = (
                 new Vector()).elements();
         }
         Vector tmpList = new Vector();
         User tmpUser;
+        //alle User aus enum hinzufügen, zusätzlich in tmpList speichern
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             tmpList.addElement(tmpUser);
             this.addToAllowedUserList(tmpUser);
         }
         enum = this.getAllowedUserEnum();
-        if (enum == null) {
-            enum = (
-                new Vector()).elements();
-        }
+
+        /*
+         * alle Benutzer aus allowedUserList entfernen, die nicht in enumAllowedUser stehen
+         */
+
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             if (!tmpList.contains(tmpUser)) {
@@ -134,8 +131,11 @@ class Channel {
      * Benachrichtigt mittels User.removeFromAllowedChannelList() das entsprechende User-Objekt.
      */
     public void removeFromAllowedUserList(User paramUser) {
-        if (this.allowedUserList.removeElement(paramUser)) {
-            paramUser.removeFromAllowedChannelList(this);
+        if (paramUser != null) {
+            //removeElement() gibt true zurück, falls paramUser entfernt wurde
+            if (this.allowedUserList.removeElement(paramUser)) {
+                paramUser.removeFromAllowedChannelList(this);
+            }
         }
     }
 
@@ -146,17 +146,15 @@ class Channel {
     public Vector getCurrentUserNames() {
         Vector tmpVector = new Vector();
         Enumeration enum = this.getCurrentUserEnum();
-        if (enum != null) {
-            while (enum.hasMoreElements()) {
-                tmpVector.addElement(((User)enum.nextElement()).getName());
-            }
+        while (enum.hasMoreElements()) {
+            tmpVector.addElement(((User)enum.nextElement()).getName());
         }
         return tmpVector;
     }
 
     /** Liefert eine Aufzählung der aktuellen Benutzer zurück. */
     public Enumeration getCurrentUserEnum() {
-        return currentUserList.elements();
+        return Helper.vectorCopy(currentUserList).elements();
     }
 
     /**
@@ -165,22 +163,21 @@ class Channel {
      */
     public void setCurrentUserList(Enumeration enumCurrentUser) {
         Enumeration enum = enumCurrentUser;
+        //falls null übergeben wurde wird eine leere Aufzählung benutzt
         if (enumCurrentUser == null) {
             enum = (
                 new Vector()).elements();
         }
         Vector tmpList = new Vector();
         User tmpUser;
+        //alle User aus enumCurrentUser hinzufügen
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             tmpList.addElement(tmpUser);
             this.addToCurrentUserList(tmpUser);
         }
         enum = this.getCurrentUserEnum();
-        if (enum == null) {
-            enum = (
-                new Vector()).elements();
-        }
+        //alle Benutzer, die nicht in tmpList, also in enumCurrentUser stehen aus der Liste entfernen
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             if (!tmpList.contains(tmpUser)) {
@@ -194,10 +191,12 @@ class Channel {
      * Ruft dann informCurrentUsers() auf.
      */
     public void addToCurrentUserList(User paramUser) {
-        if (!this.currentUserList.contains(paramUser)) {
-            this.currentUserList.addElement(paramUser);
-            paramUser.setCurrentChannel(this);
-            this.informCurrentUsers();
+        if (paramUser != null) {
+            if (!this.currentUserList.contains(paramUser)) {
+                this.currentUserList.addElement(paramUser);
+                paramUser.setCurrentChannel(this);
+                this.informCurrentUsers();
+            }
         }
     }
 
@@ -206,6 +205,7 @@ class Channel {
      * Ruft dann informCurrentUsers() auf.
      */
     public void removeFromCurrentUserList(User paramUser) {
+        //removeElement() gibt true zurück, falls paramUser entfernt wurde
         if (this.currentUserList.removeElement(paramUser)) {
             paramUser.setCurrentChannel(null);
             this.informCurrentUsers();
@@ -213,14 +213,14 @@ class Channel {
     }
 
     /** Entfernt das Channelobjekt aus dem System. Benutzt setCurrentUserList(null) und setAllowedUserList(null). */
-    public  void removeYou() {
+    public void removeYou() {
         this.setCurrentUserList(null);
         this.setAllowedUserList(null);
     }
 
     /** Dient dem debugging. */
     public String toString() {
-        String tmpString =" Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user: ";
+        String tmpString = " Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user: ";
         Enumeration enum = this.getAllowedUserEnum();
         while (enum.hasMoreElements()) {
             tmpString = tmpString + ((User)enum.nextElement()).getName() + " ";
@@ -236,6 +236,7 @@ class Channel {
         Enumeration enum = this.getCurrentUserEnum();
         User tmpUser;
         ClientServant tmpClientServant;
+        //bei allen ClientServants sendCurrentChannelData() ausführen
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             tmpClientServant = tmpUser.getClientServant();
@@ -243,7 +244,7 @@ class Channel {
                 tmpClientServant.sendCurrentChannelData();
             }
         }
-        Debug.println(Debug.LOW,this.getName()+": informed current users");
+        Debug.println(Debug.LOW, this.getName() + ": informed current users");
     }
 
     /** Der Name des Channels. */

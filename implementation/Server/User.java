@@ -3,6 +3,7 @@ package Server;
 import java.util.Vector;
 import java.util.Enumeration;
 import Util.Debug.Debug;
+import Util.Helper;
 
 /** Ein Benutzerdatensatz. Enthält alle Informationen über einen Benutzer wie beispielsweise die Zugriffsrechte. */
 class User {
@@ -79,10 +80,8 @@ class User {
     }
 
     /** Setzt das Passwort. */
-    public synchronized void setPassword(String paramPassword) {
-        if (this.password != paramPassword) {
-            this.password = paramPassword;
-        }
+    public void setPassword(String paramPassword) {
+        this.password = paramPassword;
     }
 
     /** Gibt true zurück, wenn der Benutzer ein Gast ist. */
@@ -99,7 +98,7 @@ class User {
      *Setzt das Adminflag, macht allerdings weiter nichts. D.h. ein Benutzer, der eingeloggt ist und
      * Admin-Rechte bekommt muß sich mittels der AdminClient-Applikation neu einloggen, um diese nutzen zu können.
      */
-    public synchronized void setIsAdmin(boolean b) {
+    public void setIsAdmin(boolean b) {
         this.isAdmin = b;
     }
 
@@ -110,16 +109,17 @@ class User {
 
     /**
      * Loggt den Benutzer ein oder aus, Benutzt userAdministration.incNumCurrentUsers(),decNumCurrentUsers(),
-     * (incNumCurrentGuests(),decNumCurrentGuests() bei Gästen,
-     * benutzt ggf. user.setCurrentChannel(null),setClientServant(null)
-     * (und userAdministration.removeFromUserList() bei Gästen, um den Gast aus dem System zu entfernen, da
+     * (incNumCurrentGuests(),decNumCurrentGuests() bei Gästen, benutzt ggf. user.setCurrentChannel(null),setClientServant(null)
+     * (und removeYou() bei Gästen, um den Gast aus dem System zu entfernen, da
      * Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen).
      */
     public synchronized void setIsLoggedIn(boolean paramLoggedIn) {
+        //nur wenn sich der Status ändert
         if (this.isLoggedIn() != paramLoggedIn) {
-            boolean old = this.loggedIn;
             this.loggedIn = paramLoggedIn;
+            //User wird eingeloggt
             if (paramLoggedIn) {
+                //Gast bzw. Userzaehler in userAdministration erhoehen
                 if (this.isGuest()) {
                     this.userAdministration.incNumCurrentGuests();
                 }
@@ -128,13 +128,17 @@ class User {
                 }
                 Debug.println(Debug.MEDIUM, this + " logged in");
             }
+            //User wird ausgeloggt
             else {
+                //betroffene assocs aktualisieren
                 this.setCurrentChannel(null);
                 this.setClientServant(null);
+                //falls Gast, Objekt aus der Userliste entfernen, Gastzähler erniedrigen
                 if (this.isGuest()) {
                     this.userAdministration.decNumCurrentGuests();
-                    this.userAdministration.removeFromUserList(this);
+                    this.removeYou();
                 }
+                //kein Gast, nur Userzähler erniedrigen
                 else {
                     this.userAdministration.decNumCurrentUsers();
                 }
@@ -145,39 +149,34 @@ class User {
 
     /** Gibt eine Liste der Namen der Channels zurück, die der Benutzer betreten darf. */
     public Vector getAllowedChannelNames() {
-        Vector tmpVector = new Vector();
         Enumeration enum = this.getAllowedChannelEnum();
-        try {
-            while (enum.hasMoreElements()) {
-                tmpVector.addElement(((Channel)enum.nextElement()).getName());
-            }
-        }
-        catch (java.util.NoSuchElementException e) {
-            Debug.println(Debug.HIGH, this + ": error while getAllowedChannelNames: " + e);
+        Vector tmpVector = new Vector();
+        //Namen der Channel zu tmpVector hinzufügen
+        while (enum.hasMoreElements()) {
+            tmpVector.addElement(((Channel)enum.nextElement()).getName());
         }
         return tmpVector;
     }
 
     /** Gibt eine Aufzählung der Channels zurück, die der Benutzer betreten darf. */
     public Enumeration getAllowedChannelEnum() {
-        return allowedChannelList.elements();
+        return Helper.vectorCopy(allowedChannelList).elements();
     }
 
-    /** Gibt einen Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück. */
+    /**
+     * Gibt einen Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück.
+     * Falls der Channel nicht existiert wird null zurückgegeben.
+     */
     public Channel getFromAllowedChannelByName(String channelName) {
         Enumeration enum = this.getAllowedChannelEnum();
         Channel tmpChannel;
-        try {
-            while (enum.hasMoreElements()) {
-                tmpChannel = (Channel)enum.nextElement();
-                if (tmpChannel.getName().compareTo(channelName) == 0) {
-                    return tmpChannel;
-                }
+        while (enum.hasMoreElements()) {
+            tmpChannel = (Channel)enum.nextElement();
+            if (tmpChannel.getName().compareTo(channelName) == 0) {
+                return tmpChannel;
             }
         }
-        catch (java.util.NoSuchElementException e) {
-            Debug.println(Debug.HIGH, this + ": error while getFromAllowedChannelByName: " + e);
-        }
+        //wird nur erreicht, falls kein Channel gefunden wurde
         return null;
     }
 
@@ -185,12 +184,14 @@ class User {
      *Setzt die Liste der für den Benutzer erlaubten Channels mit
      * addToAllowedChannelList() und removeFromAllowedChannelList().
      */
-    public void setAllowedChannelList(Enumeration channelEnum) {
+    public synchronized void setAllowedChannelList(Enumeration channelEnum) {
         Enumeration enum = channelEnum;
+        //wurde null übergeben, dann wird eine leere Enumeration benutzt
         if (enum == null) {
             enum = (
                 new Vector()).elements();
         }
+        //speichert die Channel aus channelEnum
         Vector tmpChannelList = new Vector();
         Channel tmpChannel;
 
@@ -198,15 +199,10 @@ class User {
          *und diese zusaetzlich in tmpChannelList speichern
          */
 
-        try {
-            while (enum.hasMoreElements()) {
-                tmpChannel = (Channel)enum.nextElement();
-                tmpChannelList.addElement(tmpChannel);
-                this.addToAllowedChannelList(tmpChannel);
-            }
-        }
-        catch (java.util.NoSuchElementException e) {
-            Debug.println(Debug.HIGH, this + ": error while setAllowedChannelList: " + e);
+        while (enum.hasMoreElements()) {
+            tmpChannel = (Channel)enum.nextElement();
+            tmpChannelList.addElement(tmpChannel);
+            this.addToAllowedChannelList(tmpChannel);
         }
 
         /*
@@ -215,29 +211,27 @@ class User {
          */
 
         enum = tmpChannelList.elements();
-        try {
-            while (enum.hasMoreElements()) {
-                tmpChannel = (Channel)enum.nextElement();
-                if (!tmpChannelList.contains(tmpChannel)) {
-                    this.removeFromAllowedChannelList(tmpChannel);
-                }
+        while (enum.hasMoreElements()) {
+            tmpChannel = (Channel)enum.nextElement();
+            if (!tmpChannelList.contains(tmpChannel)) {
+                this.removeFromAllowedChannelList(tmpChannel);
             }
-        }
-        catch (java.util.NoSuchElementException e) {
-            Debug.println(Debug.HIGH, this + ": error while setAllowedChannelList: " + e);
         }
     }
 
     /**
      *Fügt einen Channel zu der Liste der für den Benutzer erlaubten Channels
-     * hinzu, benutzt Channel.addToAllowedUserList(), falls der Benutzer kein Gast ist. Ruft informClient() auf.
+     * hinzu, benutzt Channel.addToAllowedUserList(). Ruft informClient() auf.
      */
     public void addToAllowedChannelList(Channel paramChannel) {
-        if (!this.allowedChannelList.contains(paramChannel)) {
-            this.allowedChannelList.addElement(paramChannel);
-            this.informClient();
-            paramChannel.addToAllowedUserList(this);
-            Debug.println(Debug.LOW, this.getName() + ": add channel: " + paramChannel);
+        if (paramChannel != null) {
+            //nur Channel aufnehmen, die noch nicht in der Liste stehen
+            if (!this.allowedChannelList.contains(paramChannel)) {
+                this.allowedChannelList.addElement(paramChannel);
+                this.informClient();
+                paramChannel.addToAllowedUserList(this);
+                Debug.println(Debug.LOW, this.getName() + ": added allowed channel: " + paramChannel);
+            }
         }
     }
 
@@ -246,13 +240,17 @@ class User {
      * benutzt Channel.removeFromAllowedUserList(). Ruft informClient() auf.
      */
     public void removeFromAllowedChannelList(Channel paramChannel) {
-        if (this.allowedChannelList.removeElement(paramChannel)) {
-            paramChannel.removeFromAllowedUserList(this);
-            if (paramChannel == this.currentChannel) {
-                this.setCurrentChannel(null);
+        if (paramChannel != null) {
+            //removeElement() gibt true zurück, falls das Element wirklich entfernt wurde, d.h. existent war
+            if (this.allowedChannelList.removeElement(paramChannel)) {
+                paramChannel.removeFromAllowedUserList(this);
+                //wenn der betretene Channel nicht mehr erlaubt ist, currentChannel auf null setzen
+                if (paramChannel == this.currentChannel) {
+                    this.setCurrentChannel(null);
+                }
+                this.informClient();
+                Debug.println(Debug.LOW, this.getName() + ": remove Channel: " + paramChannel);
             }
-            this.informClient();
-            Debug.println(Debug.LOW, this.getName() + ": remove Channel: " + paramChannel);
         }
     }
 
@@ -319,6 +317,7 @@ class User {
             if (paramClientServant != null) {
                 paramClientServant.setUser(this);
             }
+            //clientServant wurde auf null gesetzt
             else {
                 this.setIsLoggedIn(false);
             }
