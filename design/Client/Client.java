@@ -116,7 +116,7 @@ public class Client implements Util.DownlinkOwner {
       */
     public void leaveChannel() { }
 
-    /** meldet den Benutzer an. Name und Passwort werden per Methode
+    /** Meldet den Benutzer an. Name und Passwort werden per Methode
       * sendCommand an den ClientServant gesendet.
       */
     public void login(String name, String password) {
@@ -124,7 +124,7 @@ public class Client implements Util.DownlinkOwner {
             new LoginCommand(name, password));
     }
 
-    /** meldet einen Gast an. Die Methode funktioniert wie die normale
+    /** Meldet einen Gast an. Die Methode funktioniert wie die normale
       * Methode login, jedoch wird kein Passwort erwartet.
       */
     public void loginAsGuest(String name) {
@@ -133,24 +133,24 @@ public class Client implements Util.DownlinkOwner {
             new LoginGuestCommand(name));
     }
 
-    /** meldet den Benutzer ab. Die Methode sorgt dafür, das der
+    /** Meldet den Benutzer ab. Die Methode sorgt dafür, das der
       * Benutzer zum Loginscreen zuückgelangt.
       */
     public void logout() { }
 
     /**
-     * setzt availableChannels mit den Daten aus dem String channelSet.
+     * Setzt availableChannels mit den Daten aus dem String channelSet.
      * Der Client erhält die für den Benutzer zugänglichen Channels.
      */
     public void setAvailableChannelList(String channelSet) { }
 
     /**
-     * setzt currentUsers mit den Daten aus dem String userSet.
+     * Setzt currentUsers mit den Daten aus dem String userSet.
      * Der Client erhält die Liste der aktuellen Benutzer in dem betretenen Channel
      */
     public void setCurrentUserInChannelList(String userSet) { }
 
-    /** sendet eine Nachricht an einen einzigen Benutzer. Die Nachricht, sowie
+    /** Sendet eine Nachricht an einen einzigen Benutzer. Die Nachricht, sowie
       * der Name des Empfängrs (name) wird an die Methode übergeben, die sie
       * dann via Uplink an den ClientServant sendet.
       */
@@ -172,12 +172,6 @@ public class Client implements Util.DownlinkOwner {
      * Nachrichten vom Server, die durch den Downlink empfangen werden, werden hier als Parameter eingesetzt.
      */
     public void processMsg(Command msg) {
-    /* Muss wg. Command überarbeitet werden.
-    this.setAvailableChannelList(
-      "Mensachat, Virtuelle Konferenz, tubs intern");
-    this.channelMsgBuffer=    this.channelMsgBuffer.concat(msg+"\n");
-    */
-
         msg.execute(this);
     }
 
@@ -217,6 +211,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     /**
+     * Der Uplink, über ihn werden Nachrichten gesendet.
      * @directed
      * @clientCardinality 1
      * @supplierCardinality 1
@@ -224,33 +219,39 @@ public class Client implements Util.DownlinkOwner {
     protected Util.Uplink uplink;
 
     /**
+     * Der Downlink, über ihn werden Nachrichten empfangen.
      * @directed
      * @supplierCardinality 1
      * @clientCardinality 1
      */
     protected Util.Downlink downlink;
 
-    /** der Port des Servers */
+    /** Der Port des Servers. */
     protected final static int SERVER_PORT = 1500;
 
-    /** die IP - Adresse des Servers */
+    /** Die IP - Adresse des Servers. */
     protected final static String SERVER_IP = "localhost";
 
-    /** Vector von Strings, repräsentiert die für den Benutzer freigegebenen
+    /** 
+      * Vector von Strings, repräsentiert die für den Benutzer freigegebenen
+      * Channels.
+      */
+     /* FIXME: Welche Methode?!
       * Die Methode ist nötig, damit der Server erkennt, für welche Channels
       * der Benutzer Zugriff hat.
      */
     protected Vector availableChannelList;
 
     /**
-     * Speichert ankommende Nachrichten in einem Channel. Wird vom GUI benutzt und kann als
+     * Speichert ankommende Nachrichten. Wird vom GUI benutzt und kann als
      * Protokoll der Unterhaltung in dem Channel dienen.
      */
     public String channelMsgBuffer = new String();
     protected Socket socket;
 
     /** Vector von Strings, repräsentiert die aktuellen Benutzer in einem
-      * Wird im Client Window eingebunden.
+      * Channel.
+      * Wird vom GUI bennutzt.
       */
     protected Vector currentUserInChannelList;
 }
