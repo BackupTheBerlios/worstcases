@@ -60,7 +60,7 @@ public class ClientServant implements Util.DownlinkOwner {
     this.joinChannel(tmpTokenizer.nextToken());
    }
    if(token.compareTo("channelmsg")==0){
-    this.sendMsgToChannel(tmpTokenizer.nextToken());
+    this.sendMsgToChannel(msg.substring(10));
    }
 
   }

@@ -117,7 +117,7 @@ public class Client implements Util.DownlinkOwner {
   /**
    * die IP - Adresse des Servers
   */
-  protected final static String SERVER_IP = "0.0.0.0";
+  protected final static String SERVER_IP = "134.169.8.196" ;
 
   /**
    * Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels
