@@ -122,8 +122,8 @@ public class AdminClientServant extends ClientServant
       boolean tmpIsAdmin = tmpUser.isAdmin();
       Vector tmpAllowedChannelList = tmpUser.getAllowedChannelNames();
 
-      this.sendCommand(new Util.Commands.SetUserDataCommand(tmpName,
-              tmpPassword, tmpIsAdmin, tmpAllowedChannelList));
+      this.sendCommand(new de.tu_bs.juliet.util.commands.SetUserDataCommand(
+              tmpName, tmpPassword, tmpIsAdmin, tmpAllowedChannelList));
     }
   }
 
