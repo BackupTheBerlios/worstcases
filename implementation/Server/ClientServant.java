@@ -259,11 +259,7 @@ public class ClientServant implements Util.DownlinkOwner {
             Channel tmpChannel = old.getFromAllowedChannelByName(name);
             // Channel existent
             if (tmpChannel != null) {
-                if (old.getCurrentChannel() != null) {
-                    this.sendMsgToChannel("verl‰ﬂt den Channel");
-                }
-                old.setCurrentChannel(tmpChannel);
-                this.sendMsgToChannel("betritt den Channel");
+								old.setCurrentChannel(tmpChannel);
             }
             // Channel nicht existent
             else {

@@ -301,10 +301,14 @@ class User {
    * Benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList(). benutzt informClient()
    */
   public void setCurrentChannel(Channel paramChannel) {
-
+		ClientServant tmpClientServant=this.getClientServant();
     if (this.currentChannel != paramChannel) {
-      if (this.currentChannel != null) {
-        Channel old = this.currentChannel;
+			if (this.currentChannel != null) {
+				if(tmpClientServant!=null){
+				 tmpClientServant.sendMsgToChannel("verl‰ﬂt den Channel");
+				}
+				Channel old = this.currentChannel;
+
 
         this.currentChannel = null;
 
@@ -313,7 +317,10 @@ class User {
 
       this.currentChannel = paramChannel;
 
-      if (paramChannel != null) {
+			if (paramChannel != null) {
+				if(tmpClientServant!=null){
+				 tmpClientServant.sendMsgToChannel("betritt den Channel");
+				}
         paramChannel.addToCurrentUserList(this);
       }
 
