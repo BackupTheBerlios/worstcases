@@ -1,0 +1,219 @@
+package id2bqf6cmt6jj8ycmt6wj9k;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node63:oiref><oihard>
+@__modelType reference 
+*/
+class reference64 {
+}/**
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65:oiref><oihard>
+@__modelType reference */
+class reference66 {
+}/**
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70:oiref><oihard>
+@__modelType reference 
+*/
+class reference71 {
+}}/**
+Ein Beispiehafter Chat-Ablauf.
+@__tags
+@shapeType ActivityDiagram 
+@author Jan
+@author Malte
+@description Beispielhafter Chat-Ablauf
+*/
+class __tags {
+}/**
+@__options option.orientation = Landscape 
+*/
+class __options {
+}/**
+@__positions 
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70:oiref>=477,51,367,693,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node41.link59:oiref>=359,443,675,446,675,492:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node54:oiref>=557,356,240,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node37.link:oiref>=293,126,664,128,664,158:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node45:oiref>=126,678,166,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node57:oiref>=541,492,251,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node39:oiref>=131,299,170,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node43:oiref>=57,556,335,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node37:oiref>=127,109,166,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node49:oiref>=560,233,234,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node45.link:oiref>=217,705,217,803:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node54.link:oiref>=557,372,217,372,217,426:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node47.link:oiref>=667,185,667,233:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65:oiref>=34,51,374,693,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node.link:oiref>=163,29,163,109:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node63:oiref>=209,803,15,15,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node60.link:oiref>=488,634,218,634,218,678:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node49.link:oiref>=560,244,219,244,219,299:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node43.link62:oiref>=392,566,678,565,678,617:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node41:oiref>=91,426,268,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node60:oiref>=488,617,346,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node47:oiref>=567,158,201,27,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node39.link56:oiref>=301,309,673,308,673,356:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node:oiref>=157,17,12,12,1:oigroup>
+<oigroup:<oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node57.link:oiref>=541,504,218,504,218,556:oigroup>
+*/
+class __positions {
+}/**
+@shapeType StartState
+@__modelType node
+@name StartState1 
+*/
+class node {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node37:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType EndState
+@__modelType node
+@name EndState1 
+*/
+class node63 {
+}/**
+@shapeType SwimLane
+@__modelType node
+@name Benutzer 
+*/
+class node65 {
+/**
+@shapeType Activity
+@__modelType node
+@name Nachricht an alle Benutzer abschicken 
+*/
+class node41 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node57:oiref><oihard> 
+*/
+class link59 {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Nachricht an einen einzelnen Benutzer abschicken 
+*/
+class node43 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node60:oiref><oihard> 
+*/
+class link62 {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Benutzer abmelden 
+*/
+class node45 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node63:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Benutzer anmelden 
+*/
+class node37 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node47:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Channel auswählen 
+*/
+class node39 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node54:oiref><oihard> 
+*/
+class link56 {
+}}}/**
+@shapeType SwimLane
+@__modelType node
+@name ClientServant 
+*/
+class node70 {
+/**
+@shapeType Activity
+@__modelType node
+@name Benutzerdaten überprüfen 
+*/
+class node47 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node70.node49:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Verfügbare Channel übermitteln 
+*/
+class node49 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node39:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Anwesende Benutzer übermitteln 
+*/
+class node54 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node41:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Nachricht an alle Benutzer verteilen 
+*/
+class node57 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node43:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType Activity
+@__modelType node
+@name Nachricht an den gewünschten Benutzer weiterleiten 
+*/
+class node60 {
+/**
+@shapeType TransitionLink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.node65.node45:oiref><oihard> 
+*/
+class link {
+}}}
