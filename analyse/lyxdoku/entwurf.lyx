@@ -1344,12 +1344,16 @@ Client
 \layout Standard
 
 Die Klasse Client stellt alle notwendigen Methoden zur Verfügung, mit denen
- der Benutzer über das Graphical User Interface (GUI) interagieren kann.
+ der Benutzer über das Graphical User Interface (GUI) mit dem Chat-Server
+ interagieren kann.
  Hinter dem GUI steht sozusagen ein Objekt der Klasse Client.
-\begin_inset Info sehr vorläufig. Objekte?
-\end_inset 
-
-
+ Wenn der Benutzer durch das GUI im Chat etwas macht (z.B.
+ einen Channel betreten), leitet der Client diese Aktion als Anfrage an
+ seinen ClientServant weiter.
+ Der Client erhält dann von seinem ClientServant Rückmeldung zu seinen Anfragen,
+ die er meist an das GUI weiterleitet.
+ Die Kommunikation zwischen Client und ClientServant findet über den Downlink
+ und Uplink statt.
 \layout Paragraph
 
 Attribute
