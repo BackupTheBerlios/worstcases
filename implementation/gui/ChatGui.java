@@ -16,16 +16,24 @@ import java.util.Vector;
 import java.util.Enumeration;
 import Util.Debug.Debug;
 
-public class ChatGui extends java.applet.Applet implements GUI {
+public class ChatGui extends java.applet.Applet {
     /** initialisiert die GUI */
     public void init() {
-        this.adminClient.SERVER_IP = this.getCodeBase().getHost(); //disabled for testing
+        this.adminClient.SERVER_IP = this.getCodeBase().getHost();
+	//adminClient.SERVER_IP = "134.169.42.3";
         Debug.println("host set to" + this.adminClient.SERVER_IP);
         Debug.println(Debug.MEDIUM, this + "this codebase: " + this.getCodeBase());
         this.adminClient.gui = this;
         initComponents();
         loginName.requestFocus();
     }
+
+    public void displayError(String msg) {
+       ErrorMessage errormessage = new ErrorMessage();
+       errormessage.messageArea.setText(msg);
+       errormessage.show();
+    }
+
 
     public synchronized void loginError() {
         this.cardLayout.first(mainpanel);
@@ -625,4 +633,5 @@ public class ChatGui extends java.applet.Applet implements GUI {
     ChannelAdminGUI channelAdminGUI = new ChannelAdminGUI(this);
     UserAdminGUI userAdminGUI = new UserAdminGUI(this);
     private LogText logText = new LogText();
+    public static final String PRODUCT_NAME = "jConvention";
 }

@@ -61,7 +61,7 @@ public class UserAdminGUI extends java.awt.Frame {
         java.awt.GridBagConstraints gridBagConstraints1;
         setFont(
             new java.awt.Font("SansSerif", 0, 12));
-        setTitle("jConvention | UserAdministration");
+        setTitle(gui.ChatGui.PRODUCT_NAME + " - UserAdministration");
         passwordLabel.setFont(
             new java.awt.Font("SansSerif", 0, 11));
         passwordLabel.setName("passwordLabel");
@@ -464,8 +464,7 @@ public class UserAdminGUI extends java.awt.Frame {
                 new Vector());
             this.chatGui.adminClient.getUserList();
         } else {
-            errorMessage.messageArea.setText("Passwort und Wiederholung stimmen nicht überein. \n Die Daten wurden nicht gespeichert.");
-            errorMessage.show();
+            chatGui.displayError("Passwort und Wiederholung stimmen nicht überein. \n Die Daten wurden nicht gespeichert.");
             this.passwordVerify.requestFocus();
         }
     }
@@ -509,5 +508,4 @@ public class UserAdminGUI extends java.awt.Frame {
     java.awt.Button deleteUser;
     // End of variables declaration//GEN-END:variables
     private boolean isNewUser = true;
-    private ErrorMessage errorMessage = new ErrorMessage();
 }

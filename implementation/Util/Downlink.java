@@ -88,14 +88,18 @@ public class Downlink extends Thread {
    */
   public void startDownlink() {
 
+    Debug.println("Downlink: trying to start...");
+    
     try {
       this.objectInputStream =
         new ObjectInputStream(this.socket.getInputStream());
 
+      Debug.println("Downlink: got ObjectInputStream.");
+      
       this.start();
-      Debug.println(Debug.LOW, this + ": started");
+      Debug.println(Debug.LOW, "Downlink: started");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ":error starting downlink:" + e);
+      Debug.println(Debug.HIGH,  "Downlink: error starting downlink:" + e);
       this.downlinkOwner.downlinkError();
     }
   }

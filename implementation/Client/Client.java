@@ -2,6 +2,7 @@ package Client;
 
 import java.util.Vector;
 import java.net.Socket;
+import gui.*;
 import Util.*;
 import Util.Commands.*;
 import Util.Debug.Debug;
@@ -32,7 +33,9 @@ public class Client implements Util.DownlinkOwner {
    * interagieren. Der Client und seine GUI werden in den Zustand
    * zurückversetzt, der nach dem Login des Users bestand.
    */
-  public synchronized final void joinChannelError() {}
+  public synchronized final void joinChannelError() {
+    gui.displayError("Der gewünschte Channel ist nicht verfügbar.");
+  }
 
   /**
    * Trennt die Verbindung des Clients zum Server. Dazu werden die Referenzen
@@ -136,7 +139,7 @@ public class Client implements Util.DownlinkOwner {
   public synchronized final void downlinkError() {
     stopClient();
   }
-  ;
+
 
   /**
    * Wird aufgerufen, wenn vom ClientServant beim Einloggen, die Nachricht
@@ -247,7 +250,9 @@ public class Client implements Util.DownlinkOwner {
 
       setDownlink(new Util.Downlink(socket, this));
       uplink.startUplink();
+      Debug.println("Client: Uplink started. Trying to start downlink...");
       downlink.startDownlink();
+      Debug.println("Client: Downlink started.");
     } catch (java.io.IOException e) {
       Debug.println(Debug.HIGH, this + ": error starting: " + e);
       this.stopClient();
@@ -325,5 +330,6 @@ public class Client implements Util.DownlinkOwner {
    * Client Window eingebunden.
    */
   protected Vector currentUsersInChannelList;
-  public gui.GUI gui;
+
+  public ChatGui gui;
 }

@@ -139,10 +139,13 @@ public class Server {
       while (!stop) {
         try {
 
-          // horcht an Port für eine Verbindung mit einem Client
-          Socket tmpSocket = serverSocket.accept();
+          Debug.println("Server: ready to wait for more incoming connections.");
+	  
+	  // horcht an Port für eine Verbindung mit einem Client
+          Socket tmpSocket = serverSocket.accept(); 
+	  Debug.println("Server: new tmpSocket instantiated.");
 
-          Debug.println(Debug.MEDIUM,
+	  Debug.println(Debug.MEDIUM,
                         this + ": incoming connection from "
                         + tmpSocket.getInetAddress() + ":"
                         + tmpSocket.getPort());
@@ -151,13 +154,19 @@ public class Server {
           ClientServant tmpClientServant = new ClientServant(tmpSocket, this,
                                              userAdministration);
 
-          // neuer ClientServant wird in die Liste hinzugefügt
+          Debug.println(this + ": new ClientServant");
+	  
+	  // neuer ClientServant wird in die Liste hinzugefügt
           this.addToClientServantList(tmpClientServant);
 
-          // der neue Clientservant wird gestartet
+          Debug.println(this + ": ClientServant added to list");
+	  
+	  // der neue Clientservant wird gestartet
           tmpClientServant.startClientServant();
 
-          // Fehler beim horchen werden abgefangen
+          Debug.println(this + ": ClientServant started");
+	  
+	  // Fehler beim horchen werden abgefangen
         } catch (java.io.IOException e) {
           Debug.println(this + ": error while listening: " + e);
         }

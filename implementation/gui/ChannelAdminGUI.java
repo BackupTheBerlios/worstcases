@@ -59,7 +59,7 @@ public class ChannelAdminGUI extends java.awt.Frame {
             new java.awt.GridBagLayout());
         java.awt.GridBagConstraints gridBagConstraints1;
         setFont(new java.awt.Font ("SansSerif", 0, 12));
-        setTitle("jConvention | ChannelAdministration");
+        setTitle(gui.ChatGui.PRODUCT_NAME + " - ChannelAdministration");
        channelNameLabel.setFont(
             new java.awt.Font("SansSerif", 0, 11));
         channelNameLabel.setName("channelNameLabel");
