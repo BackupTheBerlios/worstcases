@@ -578,7 +578,7 @@ public class ChatGui extends java.applet.Applet {
         }
         else {
             this.adminClient.sendMsgToUser(this.userList.getSelectedItem(), this.msg.getText());
-            this.chatText.append("Flüstern an" + this.userList.getSelectedItem() + ": " + this.msg.getText()); //FIXME: tut nicht.
+            this.chatText.append("Flüstern an " + this.userList.getSelectedItem() + ": " + this.msg.getText() + "\n");
             this.userList.select(0);
         }
         this.msg.setText("");
