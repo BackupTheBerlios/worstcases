@@ -26,7 +26,7 @@ public class Client implements Util.DownlinkOwner {
    * meldet den Benutzer an
    */
   public void login(String name, String password) {
-    this.uplink.sendMsg("login Foo password Bar");
+    uplink.sendMsg(new LoginCommand(name, password));
   }
 
   /**
@@ -70,16 +70,18 @@ public class Client implements Util.DownlinkOwner {
   }
 
   /**
-   * verarbeitet eine empfangene Nachricht, entscheidet,
-   * welche Funktionalität aufgerufen werden muß.
+   * Verarbeitet eine empfangene Nachricht bzw. führt den empfangenen
+   * Befehl einfach aus.
    * Nachrichten vom Server, die durch den Downlink empfangen werden,
    * werden hier als Parameter eingesetzt.
    */
-  public void processMsg(String msg) {
+  public void processMsg(Command  msg) {
+    /* Muss wg. Command überarbeitet werden.
     this.setAvailableChannelList(
       "Mensachat, Virtuelle Konferenz, tubs intern");
-   this.channelMsgBuffer=    this.channelMsgBuffer.concat(msg+"\n");  
-      
+    this.channelMsgBuffer=    this.channelMsgBuffer.concat(msg+"\n");  
+    */
+    msg.execute(this);
   }
 
   public void startClient() {

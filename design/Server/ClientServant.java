@@ -49,33 +49,18 @@ public class ClientServant implements Util.DownlinkOwner {
   public void stopClientServant() {}
 
   /**
-   * Prüft den Inhalt einer vom Client empfangenen Nachricht und entscheidet,
-   * welche Funktionalität des ClientObservers
-   * aufgerufen werden muss, um den "Wunsch" des Clients zu erfüllen.
+   * Verarbeitet eine empfangene Nachricht, bzw.
+   * führt den empfangenen Befehl einfach aus.
    */
-  public synchronized void processMsg(String msg) {
-
-    StringTokenizer tmpTokenizer = new StringTokenizer(msg);
-    String token = tmpTokenizer.nextToken();
-
-    if (token.compareTo("loginGuest") == 0) {
-      this.loginGuest(tmpTokenizer.nextToken());
-    }
-
-    if (token.compareTo("joinChannel") == 0) {
-      this.joinChannel(tmpTokenizer.nextToken());
-    }
-
-    if (token.compareTo("channelmsg") == 0) {
-      this.sendMsgToChannel(msg.substring(10));
-    }
+  public synchronized void processMsg(Command  msg) {
+    msg.execute(this);
   }
 
   /**
    * Meldet den Benutzer beim System an, benutzt dafür eine vom Client
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
-  public void loginUser(String userSet) {
+  public void loginUser(String userSet) { // FIXME: an LoginCommand anpassen
 
     this.user = this.userAdministration.loginUser(userSet);
 

@@ -43,16 +43,21 @@ public class Downlink extends Thread {
    */
   private void listen() {
 
-    String tmpString;
+   //  String tmpString;
+   Command tmpCommand;
 
     while (!stop) {
       try {
+        /* Muss wg. Command überarbeitet werden (Deserialisierung).
         tmpString = this.bufferedReader.readLine();
 
         System.out.println("#" + tmpString + "# received!");
         downlinkOwner.processMsg(tmpString);
       } catch (java.io.IOException e) {
         System.out.println(e);
+        */
+        tmpCommand = (Command) bufferedReader.getObject(); // FIXME: Dummy
+        downlinkOwner.processMsg(tmpCommand);
       }
     }
   }

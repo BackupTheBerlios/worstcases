@@ -64,14 +64,16 @@ public class Uplink {
    * @param msg Die zu versendende Nachricht.
    * @see Dowlink
    */
-  public void sendMsg(String msg) {
-
+  public void sendMsg(Command msg) {
     try {
+      /* Muss wg. Command überarbeitet werden (Serialisierung).
       this.bufferedWriter.write(msg + "\n");
       this.bufferedWriter.flush();
       System.out.println("#" + msg + "# sent!");
     } catch (java.io.IOException e) {
       System.out.println(e);
+      */
+      bufferedWriter.writeObject(msg); // FIXME: Dummy
     }
   }
 }

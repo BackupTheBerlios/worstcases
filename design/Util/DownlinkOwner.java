@@ -9,5 +9,5 @@ public interface DownlinkOwner {
    * Diese Methode wird vom Client aufgerufen, wenn er eine Nachricht
    * erhält.
    */
-  public void processMsg(String msg);
+  public void processMsg(Command msg);
 }
