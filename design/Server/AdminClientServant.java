@@ -6,10 +6,11 @@ import java.util.Enumeration;
 import Util.*;
 import Util.Commands.*;
 
-/** Verarbeitet die Anfragen eines AdminClients. */
+/** Verarbeitet die Anfragen eines AdminClients.*/
 public class AdminClientServant extends ClientServant implements DownlinkOwner {
     /** Konstruktor, setzt die entsprechenden Attribute.
      *  Benutzt setDownlink(),setServer() und setUser().
+     * "Entreisst" somit dem aufrufenden ClientServant die Objekte.
      */
     public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server paramServer,
         ChannelAdministration paramChannelAdministration, UserAdministration paramUserAdministration, User paramUser) {
@@ -26,7 +27,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Sendet eine Liste aller Channelnamen. Benutzt sendCommand() und erzeugt ein neues SetChannelListCommand - Objekt.
      * Benutzt channelAdministration.getChannelNames(), um die Namensliste zu erzeugen
      */
-    public void sendChannelList() {
+    public synchronized void sendChannelList() {
         this.sendCommand(
             new SetChannelListCommand(this.channelAdministration.getChannelNames()));
     }
@@ -35,7 +36,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Sendet eine Liste aller Benutzernamen. Benutzt sendCommand und erzeugt ein neues SetUserListCommand-Objekt
      * Benutzt userAdministration.getUserNames(), um die Namensliste zu erzeugen
      */
-    public void sendUserList() {
+    public  synchronized  void sendUserList() {
         this.sendCommand(
             new SetUserListCommand(this.userAdministration.getUserNames()));
     }
@@ -51,7 +52,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * @param paramAllowedForGuests Flag, ob Gäste den Channel betreten dürfen
      * @param paramAllowedUserNames Vector von Strings - die Namen der Userobjekte, die den Channel betreten dürfen
      */
-    public void addChannel(String paramName, boolean paramAllowedForGuests, Vector paramAllowedUserNames) {
+    public synchronized  void addChannel(String paramName, boolean paramAllowedForGuests, Vector paramAllowedUserNames) {
         Channel tmpChannel = new Channel(paramName, paramAllowedForGuests);
         Enumeration enum = paramAllowedUserNames.elements();
         while (enum.hasMoreElements()) {
@@ -65,7 +66,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * und channelAdministration.removeFromChannelList()
      * Bewirkt Aufruf von DataBaseIO.saveToDisk()
      */
-    public void deleteChannel(String channelName) {
+    public synchronized  void deleteChannel(String channelName) {
         Channel tmpChannel = this.channelAdministration.getFromChannelListByName(channelName);
         this.channelAdministration.removeFromChannelList(tmpChannel);
     }
@@ -80,7 +81,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * @param paramAllowedForGuest Flag - ob Gäste den Channel betreten dürfen
       * @param allowedUserNames Vector von Strings - Liste der Usernamen, die den Channel betreten dürfen
       */
-    public void editChannel(String oldName, String newName, boolean paramAllowedForGuest, Vector allowedUserNames) {
+    public synchronized  void editChannel(String oldName, String newName, boolean paramAllowedForGuest, Vector allowedUserNames) {
         Channel tmpChannel = new Channel(newName, paramAllowedForGuest);
         Enumeration enum = allowedUserNames.elements();
         Vector tmpList = new Vector();
@@ -98,7 +99,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * Ruft schließlich userAdministration.addToUserList auf
      * Bewirkt Aufruf von DataBaseIO.saveToDisk()
      */
-    public void addUser(String paramName, String paramPassword, boolean paramIsAdmin, Vector paramAllowedChannelNames) {
+    public synchronized  void addUser(String paramName, String paramPassword, boolean paramIsAdmin, Vector paramAllowedChannelNames) {
         User tmpUser = new User(paramName, paramPassword, false, paramIsAdmin, this.userAdministration);
         Enumeration enum = paramAllowedChannelNames.elements();
         while (enum.hasMoreElements()) {
@@ -112,7 +113,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * userAdministration.removeFromUserList()
      * Bewirkt Aufruf von DataBaseIO.saveToDisk()
       */
-    public void deleteUser(String userName) {
+    public synchronized  void deleteUser(String userName) {
         User tmpUser = this.userAdministration.getFromUserListByName(userName);
         this.userAdministration.removeFromUserList(tmpUser);
     }
@@ -130,7 +131,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * @param allowedChannelNames Vector von Strings - Liste der Channelnamen, die der Benutzer betreten darf
       */
 
-    public void editUser(String oldName, String newName, String newPassword, boolean paramIsAdmin,
+    public synchronized  void editUser(String oldName, String newName, String newPassword, boolean paramIsAdmin,
         Vector allowedChannelNames) {
             User tmpUser = new User(newName, newPassword, false, paramIsAdmin, this.userAdministration);
             Enumeration enum = allowedChannelNames.elements();
@@ -146,7 +147,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Benutzt userAdministration.getFromUserListByName().
      * Erzeugt und versendet ein entsprechendes SetUserDataCommand()
      */
-    public void sendUser(String userName) {
+    public  synchronized void sendUser(String userName) {
         User tmpUser = this.userAdministration.getFromUserListByName(userName);
         String tmpName = tmpUser.getName();
         String tmpPassword = tmpUser.getPassword();
@@ -160,7 +161,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * Erzeugt und versendet ein neues SetChannelDataCommand().
       * Benutzt channelAdministration.getFromChannelListByName()
       */
-    public void sendChannel(String channelName) {
+    public synchronized  void sendChannel(String channelName) {
         Channel tmpChannel = this.channelAdministration.getFromChannelListByName(channelName);
         String tmpName = tmpChannel.getName();
         boolean tmpIsAllowedForGuest = tmpChannel.isAllowedForGuest();

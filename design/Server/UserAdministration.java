@@ -29,7 +29,7 @@ class UserAdministration {
                return null;
               }
               else{
-                tmpUser.setLoggedIn(true);
+                tmpUser.setIsLoggedIn(true);
                 return tmpUser;
               }
             }
@@ -65,7 +65,7 @@ class UserAdministration {
         if ((this.getFromUserListByName(paramName) == null) && (this.numCurrentUsers < this.maxUsers)) {
             User tmpUser = new User(paramName, "guest", true, false, this);
             tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
-            tmpUser.setLoggedIn(true);
+            tmpUser.setIsLoggedIn(true);
             this.addToUserList(tmpUser);
             return tmpUser;
         }
