@@ -4,8 +4,10 @@ package Util.Commands;
 
 import Client.Client;
 
+/**Stoppt einen Client*/
 public class StopClientCommand implements Command {
 
+    /**Ruft beim Client stopClient() auf*/
     public void execute(Object target) {
         if (target instanceof Client) {
             ((Client)target).stopClient();
