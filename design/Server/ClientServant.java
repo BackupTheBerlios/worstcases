@@ -5,13 +5,14 @@ import Util.*;
 import java.util.StringTokenizer;
 import java.util.Enumeration;
 
+
 /**
-* Diese Klasse kümmert sich um die Anfragen, die von einem Client an den
-* Server gestellt werden. Der Server
-* erzeugt für jeden Client eine Instanz dieser Klasse, die sich von da an nur
-* noch um diesen Client kümmert und seine Anfragen bearbeitet. In dieser Klasse
-* steckt die meiste Funktionalität des Servers.
-*/
+ * Diese Klasse kümmert sich um die Anfragen, die von einem Client an den
+ * Server gestellt werden. Der Server
+ * erzeugt für jeden Client eine Instanz dieser Klasse, die sich von da an nur
+ * noch um diesen Client kümmert und seine Anfragen bearbeitet. In dieser Klasse
+ * steckt die meiste Funktionalität des Servers.
+ */
 public class ClientServant implements Util.DownlinkOwner {
 
   /**
@@ -19,10 +20,10 @@ public class ClientServant implements Util.DownlinkOwner {
    */
   public ClientServant(Socket paramSocket, Server paramServer,
                        UserAdministration paramUserAdministration) {
-  this.socket=paramSocket;
-  this.server=paramServer;
-  this.userAdministration=paramUserAdministration;
 
+    this.socket = paramSocket;
+    this.server = paramServer;
+    this.userAdministration = paramUserAdministration;
   }
 
   public ClientServant() {}
@@ -32,8 +33,10 @@ public class ClientServant implements Util.DownlinkOwner {
    * die Anfragen seines Clients bearbeiten.
    */
   public void startClientServant() {
-    this.uplink=new Uplink(this.socket);
-    this.downlink=new Util.Downlink(this.socket,this);
+
+    this.uplink = new Uplink(this.socket);
+    this.downlink = new Util.Downlink(this.socket, this);
+
     this.uplink.startUplink();
     this.downlink.startDownlink();
     this.downlink.start();
@@ -51,18 +54,21 @@ public class ClientServant implements Util.DownlinkOwner {
    * aufgerufen werden muss, um den "Wunsch" des Clients zu erfüllen.
    */
   public synchronized void processMsg(String msg) {
-   StringTokenizer tmpTokenizer=new StringTokenizer(msg);
-   String token=tmpTokenizer.nextToken();
-   if(token.compareTo("loginGuest")==0){
-    this.loginGuest(tmpTokenizer.nextToken());
-   }
-   if(token.compareTo("joinChannel")==0){
-    this.joinChannel(tmpTokenizer.nextToken());
-   }
-   if(token.compareTo("channelmsg")==0){
-    this.sendMsgToChannel(msg.substring(10));
-   }
 
+    StringTokenizer tmpTokenizer = new StringTokenizer(msg);
+    String token = tmpTokenizer.nextToken();
+
+    if (token.compareTo("loginGuest") == 0) {
+      this.loginGuest(tmpTokenizer.nextToken());
+    }
+
+    if (token.compareTo("joinChannel") == 0) {
+      this.joinChannel(tmpTokenizer.nextToken());
+    }
+
+    if (token.compareTo("channelmsg") == 0) {
+      this.sendMsgToChannel(msg.substring(10));
+    }
   }
 
   /**
@@ -87,9 +93,11 @@ public class ClientServant implements Util.DownlinkOwner {
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
   public void loginGuest(String guestSet) {
+
     this.user = this.userAdministration.loginGuest(guestSet);
+
     this.user.setClientServant(this);
-    this.uplink.sendMsg(this.user.getName()+" logged in");
+    this.uplink.sendMsg(this.user.getName() + " logged in");
   }
 
   /**
@@ -106,7 +114,6 @@ public class ClientServant implements Util.DownlinkOwner {
 
     this.user.setClientServant(tmpAdminClientServant);
     this.downlink.setDownlinkOwner(tmpAdminClientServant);
-
     this.server.addToClientServantList(tmpAdminClientServant);
     this.server.removeFromClientServantList(this);
   }
@@ -123,9 +130,12 @@ public class ClientServant implements Util.DownlinkOwner {
    * Lässt den User in den Channel mit dem angegebenen Namen eintreten.
    */
   public void joinChannel(String name) {
+
     Channel tmpChannel = this.user.getFromAllowedChannelByName(name);
+
     this.user.setCurrentChannel(tmpChannel);
-    this.uplink.sendMsg("Channel "+this.user.getCurrentChannel().getName()+" joined!");
+    this.uplink.sendMsg("Channel " + this.user.getCurrentChannel().getName()
+                        + " joined!");
   }
 
   /**
@@ -140,11 +150,16 @@ public class ClientServant implements Util.DownlinkOwner {
    * Channel.
    */
   public void sendMsgToChannel(String msg) {
-    Enumeration enum = this.user.getCurrentChannel().getCurrentUserList().elements();
-    while(enum.hasMoreElements()){
-    User tmpUser = (User) (enum.nextElement());
-    ClientServant tmpClientServant = tmpUser.getClientServant();
-    tmpClientServant.sendMsgFromChannel(this.user.getName()+" sayz: "+msg);
+
+    Enumeration enum =
+      this.user.getCurrentChannel().getCurrentUserList().elements();
+
+    while (enum.hasMoreElements()) {
+      User tmpUser = (User) (enum.nextElement());
+      ClientServant tmpClientServant = tmpUser.getClientServant();
+
+      tmpClientServant.sendMsgFromChannel(this.user.getName() + " sayz: "
+                                          + msg);
     }
   }
 
@@ -180,7 +195,9 @@ public class ClientServant implements Util.DownlinkOwner {
    * Sendet die Daten des betretenen Channel an den Client.
    */
   public void sendChannelData() {
+
     Channel tmpChannel = this.user.getCurrentChannel();
+
     this.uplink.sendMsg(tmpChannel.getCurrentUserList().toString());
   }
 
@@ -194,18 +211,22 @@ public class ClientServant implements Util.DownlinkOwner {
     this.uplink.sendMsg(tmpUserSet);
   }
 
-  /** @link aggregationByValue
+  /**
+   * @link aggregationByValue
    * @clientCardinality 1
-   * @supplierCardinality 1*/
+   * @supplierCardinality 1
+   */
   protected Uplink uplink;
 
-  /** @link aggregationByValue
+  /**
+   * @link aggregationByValue
    * @clientCardinality 1
-   * @supplierCardinality 1*/
+   * @supplierCardinality 1
+   */
   protected Util.Downlink downlink;
 
   /**
-   * @clientCardinality 0..*
+   * @clientCardinality 0..
    * @supplierCardinality 1
    */
   protected UserAdministration userAdministration;
@@ -219,7 +240,7 @@ public class ClientServant implements Util.DownlinkOwner {
   protected Socket socket;
 
   /**
-   * @clientCardinality 0..*
+   * @clientCardinality 0..
    * @supplierCardinality 1
    */
   private Server server;

@@ -4,6 +4,7 @@ import java.util.Vector;
 import java.net.Socket;
 import Util.*;
 
+
 /**
  * Die Clientapplikation
  */
@@ -13,7 +14,7 @@ public class Client implements Util.DownlinkOwner {
    * betritt den angegebenen Channel
    */
   public void joinChannel(String name) {
-   this.uplink.sendMsg("joinChannel "+name);
+    this.uplink.sendMsg("joinChannel " + name);
   }
 
   /**
@@ -32,8 +33,7 @@ public class Client implements Util.DownlinkOwner {
    * meldet einen Gast an
    */
   public void loginAsGuest(String name) {
-   this.uplink.sendMsg("loginGuest "+name);
-
+    this.uplink.sendMsg("loginGuest " + name);
   }
 
   /**
@@ -66,8 +66,7 @@ public class Client implements Util.DownlinkOwner {
    * Channel empfangen.
    */
   public void sendMsgToChannel(String msg) {
-   this.uplink.sendMsg("channelmsg "+msg);
-
+    this.uplink.sendMsg("channelmsg " + msg);
   }
 
   /**
@@ -82,17 +81,19 @@ public class Client implements Util.DownlinkOwner {
   }
 
   public void startClient() {
-   try{
-   this.socket=new Socket(this.SERVER_IP,this.SERVER_PORT);
-   }
-   catch(java.io.IOException e){
-    System.out.println(e);
-   }
-   this.uplink=new Uplink(this.socket);
-   this.downlink=new Downlink(this.socket,this);
-   this.uplink.startUplink();
-   this.downlink.startDownlink();
-   this.downlink.start();
+
+    try {
+      this.socket = new Socket(this.SERVER_IP, this.SERVER_PORT);
+    } catch (java.io.IOException e) {
+      System.out.println(e);
+    }
+
+    this.uplink = new Uplink(this.socket);
+    this.downlink = new Downlink(this.socket, this);
+
+    this.uplink.startUplink();
+    this.downlink.startDownlink();
+    this.downlink.start();
   }
 
   /**
@@ -110,14 +111,14 @@ public class Client implements Util.DownlinkOwner {
   protected Downlink downlink;
 
   /**
-  * der Port des Servers
-  */
+   * der Port des Servers
+   */
   protected final static int SERVER_PORT = 1500;
 
   /**
    * die IP - Adresse des Servers
-  */
-  protected final static String SERVER_IP = "134.169.8.196" ;
+   */
+  protected final static String SERVER_IP = "134.169.8.196";
 
   /**
    * Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels

@@ -3,6 +3,7 @@ package Util;
 import java.net.Socket;
 import java.io.*;
 
+
 /**
  * Versendet Nachrichten über einen Socket an einen Downlink.
  * Diese Klasse ist die sendende Hälfte eines Kommunikationskanals. Die andere
@@ -21,8 +22,7 @@ public class Uplink {
    * @param socket der zu benutzende Socket.
    */
   public Uplink(Socket paramSocket) {
-  this.socket=paramSocket;
-
+    this.socket = paramSocket;
   }
 
   /**
@@ -35,26 +35,26 @@ public class Uplink {
    * Öffnet den Output-Stream.
    */
   public void startUplink() {
-   try{
-   this.bufferedWriter=new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
-   }
-   catch(java.io.IOException e){
-    System.out.println(e);
-   }
 
+    try {
+      this.bufferedWriter =
+        new BufferedWriter(new OutputStreamWriter(this.socket
+          .getOutputStream()));
+    } catch (java.io.IOException e) {
+      System.out.println(e);
+    }
   }
 
   /**
    * Schließt den Output-Stream.
    */
   public void stopUplink() {
-    try{
-  this.bufferedWriter.close();
-    }
-    catch(java.io.IOException e){
-        System.out.println(e);
-    }
 
+    try {
+      this.bufferedWriter.close();
+    } catch (java.io.IOException e) {
+      System.out.println(e);
+    }
   }
 
   /**
@@ -65,14 +65,13 @@ public class Uplink {
    * @see Dowlink
    */
   public void sendMsg(String msg) {
-    try{
-   this.bufferedWriter.write(msg+"\n");
-   this.bufferedWriter.flush();
-   System.out.println("#"+msg+"# sent!");
-    }
-    catch (java.io.IOException e){
-     System.out.println(e);
-    }
 
+    try {
+      this.bufferedWriter.write(msg + "\n");
+      this.bufferedWriter.flush();
+      System.out.println("#" + msg + "# sent!");
+    } catch (java.io.IOException e) {
+      System.out.println(e);
+    }
   }
 }
