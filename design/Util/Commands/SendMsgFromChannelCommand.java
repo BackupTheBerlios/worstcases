@@ -1,26 +1,33 @@
 package Util.Commands;
 
-import Server.ClientServant;
 import Client.Client;
+
+/**
+* wird von einem ClientServant an einen Client geschickt,
+* falls eine neue Nachricht in dem besuchten Channel
+* gesendet wurde
+*/
+
+
 
 public class SendMsgFromChannelCommand implements Command {
     /**
-     * Konstruktor. Erzeugt einen Befehl, mit dem eine Nachricht an einen
-     * Channel gesendet werden kann. Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
-     * @param msg die Nachricht.
+     * setzt die Nachricht und den Absender
      */
-    public SendMsgFromChannelCommand(String fromName,String paramMsg) {
-        this.name=fromName;
+    public SendMsgFromChannelCommand(String paramFromName,String paramMsg) {
         this.msg = paramMsg;
+        this.fromName=paramFromName;
     }
 
-    /** Der Benutzername. */
+    /** Die Nachricht */
     String msg;
-    String name;
+    /** der Name des Benutzers, der diese Nachricht gesendet hat*/
+    String fromName;
 
+    /** führt beim Client sendMsgFromChannel() auf*/
     public void execute(Object target) {
         if (target instanceof Client) {
-            ((Client)target).sendMsgFromChannel(name,msg);
+            ((Client)target).sendMsgFromChannel(fromName,msg);
         } // XXX: else Exception auslösen?
     }
 }

@@ -67,12 +67,6 @@ class UserAdministration {
         if (!this.userList.contains(paramUser)) {
             this.userList.addElement(paramUser);
             paramUser.setUserAdministration(this);
-            try {
-                this.dataBaseIO.saveToDisk();
-            }
-            catch (java.io.IOException e) {
-                System.out.println(e);
-            }
         }
     }
 
@@ -80,12 +74,6 @@ class UserAdministration {
     public void removeFromUserList(User paramUser) {
         if (this.userList.removeElement(paramUser)) {
             paramUser.setUserAdministration(null);
-            try {
-                this.dataBaseIO.saveToDisk();
-            }
-            catch (java.io.IOException e) {
-                System.out.println(e);
-            }
         }
     }
 
@@ -129,7 +117,7 @@ class UserAdministration {
      * @clientCardinality 1
      * @supplierCardinality 0..
      */
-    private Vector userList;
+    private Vector userList=new Vector();
 
     /** Anzahl der eingeloggten Benutzer(registrierte und Gäste) im System. */
     private int numCurrentUsers = 0;

@@ -228,12 +228,12 @@ public class ClientServant implements Util.DownlinkOwner {
                 User tmpUser;
                 while (enum.hasMoreElements()) {
                     tmpUser = (User)enum.nextElement();
-                    tmpUser.getClientServant().sendMsgFromChannel(this.user.getName(), msg);
+                    tmpUser.getClientServant().sendMsgFromChannel(tmpUser.getName(),msg);
                 }
             }
-            else{
-                this.sendCommand(new SendMsgToChannelErrorCommand());
-            }
+	    else{
+	     this.sendCommand(new JoinChannelErrorCommand());
+	    }
         }
         else {
             this.sendCommand(new LoginErrorCommand());
@@ -243,9 +243,9 @@ public class ClientServant implements Util.DownlinkOwner {
     /** Sendet eine Nachricht, die in den besuchten Channel gesendet wurde, an den Client.
     * sendet SendMsgFromChannelCommand
     */
-    public void sendMsgFromChannel(String fromName, String msg) {
+    public void sendMsgFromChannel(String fromName,String msg) {
         this.sendCommand(
-            new Util.Commands.SendMsgFromChannelCommand(fromName, msg));
+            new Util.Commands.SendMsgFromChannelCommand(fromName,msg));
     }
 
     /** Sendet eine private Nachricht eines anderen Users an den Client.
@@ -272,7 +272,7 @@ public class ClientServant implements Util.DownlinkOwner {
             }
         }
         else{
-         this.sendCommand(new SendMsgToUserErrorCommand());
+	 this.sendCommand(new JoinChannelErrorCommand());
         }
         }
         else{
@@ -287,7 +287,7 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public void sendCurrentChannelData() {
         this.sendCommand(
-            new Util.Commands.CurrentChannelDataCommand(this.user.getCurrentChannel().getName(),
+            new Util.Commands.SetCurrentChannelDataCommand(this.user.getCurrentChannel().getName(),
             this.user.getCurrentChannel().getCurrentUserNames()));
     }
 
@@ -295,9 +295,9 @@ public class ClientServant implements Util.DownlinkOwner {
      * sendet UserDataCommand
      * benutzt user.getName() und user.getAllowedChannelNames()
      */
-    public void sendUserData() {
+    public void sendCurrentUserData() {
         this.sendCommand(
-            new Util.Commands.UserDataCommand(this.user.getName(), this.user.getAllowedChannelNames()));
+            new Util.Commands.SetCurrentUserDataCommand(this.user.getName(), this.user.getAllowedChannelNames()));
     }
 
     /**

@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.util.Vector;
 import java.io.*;
 import Util.Commands.*;
-import Util.Debug.Debug;
 
 /**
  * Empfängt über einen Socket Nachrichten von einem Uplink und leitet sie an ihren Besitzer weiter.
@@ -40,35 +39,35 @@ public class Downlink extends Thread {
         while (!stop) {
             try {
                 tmpCommand = (Command)objectInputStream.readObject();
-                Debug.println("Downlink: received " + tmpCommand);
+                System.out.println("received " + tmpCommand);
                 downlinkOwner.processMsg(tmpCommand);
                 try {
-                    this.sleep(Downlink.LISTEN_DELAY);
+                    this.sleep(this.LISTEN_DELAY);
                 }
                 catch (java.lang.InterruptedException e) {
-                    Debug.println(Debug.HIGH, e);
+                    System.out.println(e);
                 }
             } catch (java.io.IOException e) {
-                Debug.println(Debug.HIGH, e);
+                System.out.println(e);
                 this.stopDownlink();
             }
             catch (java.lang.ClassNotFoundException e) {
-                Debug.println(Debug.HIGH, e);
+                System.out.println(e);
             }
         }
         try {
             this.objectInputStream.close();
         }
         catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, e);
+            System.out.println(e);
         }
-        Debug.println("Downlink: stopped");
+        System.out.println("downlink stopped");
     }
 
     /** Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. */
     public void startDownlink() throws java.io.IOException{
             this.objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-            Debug.println("Downlink: started");
+            System.out.println("downlink started");
     }
 
     /** Startet den Thread. */

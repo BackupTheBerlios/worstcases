@@ -36,12 +36,6 @@ class ChannelAdministration {
     public void removeFromChannelList(Channel paramChannel) {
         if (this.channelList.removeElement(paramChannel)) {
             paramChannel.removeYou();
-            try {
-                this.dataBaseIO.saveToDisk();
-            }
-            catch (java.io.IOException e) {
-                System.out.println(e);
-            }
         }
     }
 
@@ -66,12 +60,6 @@ class ChannelAdministration {
     public void addToChannelList(Channel paramChannel) {
         if (!this.channelList.contains(paramChannel)) {
             this.channelList.addElement(paramChannel);
-            try {
-                this.dataBaseIO.saveToDisk();
-            }
-            catch (java.io.IOException e) {
-                System.out.println(e);
-            }
         }
     }
 
@@ -90,12 +78,6 @@ class ChannelAdministration {
             tmpChannel.setName(newChannel.getName());
             tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
             tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
-            try {
-                this.dataBaseIO.saveToDisk();
-            }
-            catch (java.io.IOException e) {
-                System.out.println(e);
-            }
         }
     }
 
@@ -118,7 +100,7 @@ class ChannelAdministration {
      * @clientCardinality 1
      * @supplierCardinality 0..
      */
-    private Vector channelList;
+    private Vector channelList=new Vector();
 
     /**
      * @supplierCardinality 1

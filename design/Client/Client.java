@@ -20,10 +20,10 @@ public class Client implements Util.DownlinkOwner {
     public void stopClient(){
     }
 
-    public void setUserData(String userName,Vector channelNames){
+    public void setCurrentUserData(String userName,Vector channelNames){
     }
 
-    public void setChannelData(String paramName,Vector userNames){
+    public void setCurrentChannelData(String paramName,Vector userNames){
     }
 
     public void newUserInChannel(String paramName) {

@@ -23,9 +23,9 @@ public class AdminClient extends Client {
 
     }
 
-    public void setUserRequestData(String userName,String password,boolean isAdmin,Vector channelNames){}
+    public void setUserData(String userName,String password,boolean isAdmin,Vector channelNames){}
 
-    public void setChannelRequestData(String channelName,boolean isAllowedForGuest,Vector userNames){}
+    public void setChannelData(String channelName,boolean isAllowedForGuest,Vector userNames){}
 
     public void setUserList(Vector list){
     }

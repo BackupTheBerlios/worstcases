@@ -8,7 +8,9 @@ import Util.Commands.*;
 
 /** Verarbeitet die Anfragen eines AdminClients. */
 public class AdminClientServant extends ClientServant implements DownlinkOwner {
-    /** Konstruktor, setzt die entsprechenden Attribute. */
+    /** Konstruktor, setzt die entsprechenden Attribute.
+     * Benutzt setDownlink(),setServer() und setUser()
+     */
     public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server paramServer,
         ChannelAdministration paramChannelAdministration, UserAdministration paramUserAdministration, User paramUser) {
             this.setDownlink(paramDownlink);
@@ -20,17 +22,30 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             System.out.println("AdminClient started");
     }
 
-    /** Sendet eine Liste aller Channelnamen. */
+    /** Sendet eine Liste aller Channelnamen.
+      * benutzt sendCommand und erzeugt ein neues ChannelListCommand - Objekt
+      * benutzt channelAdministration.getChannelNames(), um die
+      * Namensliste zu erzeugen
+      */
     public void sendChannelList() {
-      this.sendCommand(new ChannelListCommand(this.channelAdministration.getChannelNames()));
+      this.sendCommand(new SetChannelListCommand(this.channelAdministration.getChannelNames()));
     }
 
-    /** Sendet eine Liste aller Benutzernamen. */
+    /** Sendet eine Liste aller Benutzernamen.
+      * benutzt sendCommand und erzeugt ein neues UserListCommand
+      * benutzt userAdministration.getUserNames(), um die
+      * Namensliste zu erzeugen
+     */
     public void sendUserList() {
-     this.sendCommand(new UserListCommand(this.userAdministration.getUserNames()));
+     this.sendCommand(new SetUserListCommand(this.userAdministration.getUserNames()));
     }
 
-    /** Fügt einen Channel hinzu. */
+    /** Fügt einen Channel hinzu.
+     * erzeugt ein neues Channelobjekt mit paramName, paramAllowedForGuests
+     * und generiert für dieses Channelobjekt die Referenzen auf die erlaubten Benutzer
+     * aus der Namensliste paramAllowedUserNames mittels userAdministration.getFromUserListByName()
+     * und channel.addToAllowedUserList()
+     */
     public void addChannel(String paramName,boolean paramAllowedForGuests,Vector paramAllowedUserNames) {
       Channel tmpChannel=new Channel(paramName,paramAllowedForGuests);
       Enumeration enum=paramAllowedUserNames.elements();
@@ -38,10 +53,12 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
        tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
       }
       this.channelAdministration.addToChannelList(tmpChannel);
-
     }
 
-    /** Löscht den Channel mit dem angegebenen Namen. */
+    /** Löscht den Channel mit dem angegebenen Namen.
+      *benutzt channelAdministration.getFromChannelListByName()
+      *und channelAdministration.removeFromChannelList()
+      */
     public void deleteChannel(String channelName) {
         Channel tmpChannel = this.channelAdministration.getFromChannelListByName(channelName);
         this.channelAdministration.removeFromChannelList(tmpChannel);
@@ -102,7 +119,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       String tmpPassword=tmpUser.getPassword();
       boolean tmpIsAdmin=tmpUser.isAdmin();
       Vector tmpAllowedChannelList=tmpUser.getAllowedChannelNames();
-      this.sendCommand(new Util.Commands.UserDataRequestCommand(tmpName,tmpPassword,tmpIsAdmin,tmpAllowedChannelList));
+      this.sendCommand(new Util.Commands.SetUserDataCommand(tmpName,tmpPassword,tmpIsAdmin,tmpAllowedChannelList));
     }
 
     /** Sendet die Channeldaten des Channels mit dem angegebenen Namen */
@@ -111,7 +128,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       String tmpName=tmpChannel.getName();
       boolean tmpIsAllowedForGuest=tmpChannel.isAllowedForGuest();
       Vector tmpAllowedUserList=tmpChannel.getAllowedUserNames();
-      this.sendCommand(new Util.Commands.ChannelDataRequestCommand(tmpName,tmpIsAllowedForGuest,tmpAllowedUserList));
+      this.sendCommand(new SetChannelDataCommand(tmpName,tmpIsAllowedForGuest,tmpAllowedUserList));
     }
 
     /**

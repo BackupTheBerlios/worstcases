@@ -2,12 +2,12 @@ package Util.Commands;
 
 import Server.AdminClientServant;
 
+/** wird von einem AdminClient gesendet
+ *löscht einen User
+ */
+
 public class DeleteUserCommand implements Command {
-    /**
-     * Konstruktor. Erzeugt einen Login-Befehl mit den zur Anmeldung eines
-     * Users am Server benötigten Daten. Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
-     * @param name der Benutzername.
-     * @param password das Kennwort.
+    /** setzt den Namen
      */
     public DeleteUserCommand(String paramName) {
         this.name = paramName;
@@ -16,6 +16,7 @@ public class DeleteUserCommand implements Command {
     /** Der Benutzername. */
     String name;
 
+    /**ruft beim AdminClientServant deleteUser() auf*/
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
             ((AdminClientServant)target).deleteUser(name);
