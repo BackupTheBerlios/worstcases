@@ -19,9 +19,9 @@ import Util.Debug.Debug;
 public class ChatGui extends java.applet.Applet implements GUI {
     /** initialisiert die GUI */
     public void init() {
-        //this.adminClient.SERVER_IP = this.getCodeBase().getHost(); //disabled for testing
-        this.adminClient.SERVER_IP = "localhost";
+        this.adminClient.SERVER_IP = this.getCodeBase().getHost(); //disabled for testing
         Debug.println("host set to" + this.adminClient.SERVER_IP);
+        Debug.println(Debug.MEDIUM, this + "this codebase: " + this.getCodeBase());
         this.adminClient.gui = this;
         initComponents();
         loginName.requestFocus();
@@ -61,6 +61,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
             this.userList.select(0);
             this.userList.add((String)enum.nextElement());
         }
+        this.userList.select(0);
     }
 
     public synchronized void setChannelList(Vector channelNames) {
@@ -69,6 +70,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         while (enum.hasMoreElements()) {
             this.channelAdminGUI.channelList.add((String)enum.nextElement());
         }
+        this.userAdminGUI.userList.select(0);
     }
 
     public synchronized void setUserList(Vector userNames) {
@@ -77,6 +79,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         while (enum.hasMoreElements()) {
             this.userAdminGUI.userList.add((String)enum.nextElement());
         }
+        this.userAdminGUI.userList.select(0);
     }
 
     public synchronized void setChannelData(String channelName, boolean isAllowedForGuest, Vector userNames,
@@ -145,9 +148,9 @@ public class ChatGui extends java.applet.Applet implements GUI {
             this.channelChoice.add(tmpName);
             Debug.println(tmpName + " added to channelist");
         }
+        this.channelChoice.setSize(this.channelChoice.getPreferredSize());
+        this.repaint();
         if (isAdmin) {
-            this.adminClient.getChannelList();
-            this.adminClient.getUserList();
             this.channelAdmin.setEnabled(true);
             this.userAdmin.setEnabled(true);
         }
@@ -350,6 +353,14 @@ public class ChatGui extends java.applet.Applet implements GUI {
             new java.awt.Font("SansSerif", 0, 11));
         msg.setColumns(70);
         msg.setForeground(java.awt.Color.black);
+        msg.addKeyListener(
+            new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        sendMsg();
+                    }
+                }
+            });
         gridBagConstraints3 = new java.awt.GridBagConstraints();
         gridBagConstraints3.gridx = 0;
         gridBagConstraints3.gridy = 4;
@@ -391,6 +402,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         gridBagConstraints3.gridy = 0;
         gridBagConstraints3.insets = new java.awt.Insets(0, 10, 10, 0);
         gridBagConstraints3.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints3.weightx = 1.0;
         chatpanel.add(channelChoice, gridBagConstraints3);
         channelChoiceLabel.setFont(
             new java.awt.Font("SansSerif", 0, 11));
@@ -543,6 +555,10 @@ public class ChatGui extends java.applet.Applet implements GUI {
     } //GEN-LAST:event_channelChoiceItemStateChanged
 
     private void sendMsgActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_sendMsgMouseClicked
+        this.sendMsg();
+    } //GEN-LAST:event_sendMsgMouseClicked
+
+    private void sendMsg() {
         if (this.userList.getSelectedItem().compareTo("Alle") == 0) {
             this.adminClient.sendMsgToChannel(this.msg.getText());
         }
@@ -552,7 +568,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         }
         this.msg.setText("");
         this.msg.requestFocus();
-    } //GEN-LAST:event_sendMsgMouseClicked
+    }
 
     private void login() {
         this.adminClient.startClient();

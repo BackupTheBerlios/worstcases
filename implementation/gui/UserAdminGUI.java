@@ -16,10 +16,9 @@ import java.util.Vector;
  * aufgerufen werden, falls es sich bei dem Benutzer um einen Admin handelt.
  */
 public class UserAdminGUI extends java.awt.Frame {
-
     gui.ChatGui chatGui;
-    
-    /** 
+
+    /**
      * Konstruktor, setzt Attribute, initialisiert die grafischen Komponenten
      * und fügt einen WindowListener hinzu, der das Schließen des Frames ermöglicht.
      */
@@ -35,10 +34,7 @@ public class UserAdminGUI extends java.awt.Frame {
         pack();
     }
 
-    /**
-     * Diese Methode wird vom Konstruktor aufgerufen, um die grafische
-     * Oberfläche zu initialisieren.
-     */
+    /** Diese Methode wird vom Konstruktor aufgerufen, um die grafische Oberfläche zu initialisieren. */
     private void initComponents() { //GEN-BEGIN:initComponents
         passwordLabel = new java.awt.Label();
         loginName = new java.awt.TextField();
@@ -63,7 +59,8 @@ public class UserAdminGUI extends java.awt.Frame {
         setLayout(
             new java.awt.GridBagLayout());
         java.awt.GridBagConstraints gridBagConstraints1;
-        setFont(new java.awt.Font ("SansSerif", 0, 12));
+        setFont(
+            new java.awt.Font("SansSerif", 0, 12));
         setTitle("jConvention | UserAdministration");
         passwordLabel.setFont(
             new java.awt.Font("SansSerif", 0, 11));
@@ -123,6 +120,12 @@ public class UserAdminGUI extends java.awt.Frame {
         userList.setName("userList");
         userList.setBackground(java.awt.Color.white);
         userList.setForeground(java.awt.Color.black);
+        userList.addItemListener(
+            new java.awt.event.ItemListener() {
+                public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                 editUser();
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 2;
@@ -213,10 +216,10 @@ public class UserAdminGUI extends java.awt.Frame {
         addToActive.setBackground(
             new java.awt.Color(204, 204, 204));
         addToActive.setForeground(java.awt.Color.black);
-        addToActive.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    addToActiveMouseClicked(evt);
+        addToActive.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    addToActive();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -230,10 +233,10 @@ public class UserAdminGUI extends java.awt.Frame {
         removeFromActive.setBackground(
             new java.awt.Color(204, 204, 204));
         removeFromActive.setForeground(java.awt.Color.black);
-        removeFromActive.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    removeFromActiveMouseClicked(evt);
+        removeFromActive.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    removeFromActive();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -290,10 +293,10 @@ public class UserAdminGUI extends java.awt.Frame {
         editUser.setBackground(
             new java.awt.Color(204, 204, 204));
         editUser.setForeground(java.awt.Color.black);
-        editUser.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    editUserMouseClicked(evt);
+        editUser.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    editUser();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -310,10 +313,11 @@ public class UserAdminGUI extends java.awt.Frame {
         copyUser.setBackground(
             new java.awt.Color(204, 204, 204));
         copyUser.setForeground(java.awt.Color.black);
-        copyUser.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    copyUserMouseClicked(evt);
+        copyUser.setForeground(java.awt.Color.black);
+        editUser.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    copyUser();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -330,10 +334,10 @@ public class UserAdminGUI extends java.awt.Frame {
         newUser.setBackground(
             new java.awt.Color(204, 204, 204));
         newUser.setForeground(java.awt.Color.black);
-        newUser.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    newUserMouseClicked(evt);
+        newUser.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    newUser();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -351,10 +355,10 @@ public class UserAdminGUI extends java.awt.Frame {
         saveUser.setBackground(
             new java.awt.Color(204, 204, 204));
         saveUser.setForeground(java.awt.Color.black);
-        saveUser.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    saveUserMouseClicked(evt);
+        saveUser.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    saveUser();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -372,10 +376,10 @@ public class UserAdminGUI extends java.awt.Frame {
         deleteUser.setBackground(
             new java.awt.Color(204, 204, 204));
         deleteUser.setForeground(java.awt.Color.black);
-        deleteUser.addMouseListener(
-            new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    deleteUserMouseClicked(evt);
+        deleteUser.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    deleteUser();
                 }
             });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -392,88 +396,90 @@ public class UserAdminGUI extends java.awt.Frame {
      * Diese Methode entfernt den/die ausgewählten Channels aus der Liste der für diesen
      * Benutzer zugelassenen Channels und fügt sie der Liste der nicht zugelassenen hinzu.
      */
-    private void removeFromActiveMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_removeFromActiveMouseClicked
-      String[] tmpString = this.activeChannels.getSelectedItems();
-      for (int i=0;i<tmpString.length;i++){
-       this.activeChannels.remove(tmpString[i]);
-       this.passiveChannels.add(tmpString[i]);
-      }
-    } //GEN-LAST:event_removeFromActiveMouseClicked
+    private void removeFromActive() {
+        String[] tmpString = this.activeChannels.getSelectedItems();
+        for (int i = 0; i < tmpString.length; i++) {
+            this.activeChannels.remove(tmpString[i]);
+            this.passiveChannels.add(tmpString[i]);
+        }
+    }
 
     /**
      * Diese Methode fügt den/die ausgewählten Channels zur Liste der für diesen Benutzer
      * zugelassenen Channels hinzu und entfernt ihn/sie aus der Liste der nicht zugelassenen.
      */
-    private void addToActiveMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_addToActiveMouseClicked
-      String[] tmpString = this.passiveChannels.getSelectedItems();
-      for (int i=0;i<tmpString.length;i++){
-       this.passiveChannels.remove(tmpString[i]);
-       this.activeChannels.add(tmpString[i]);
-      }
-    } //GEN-LAST:event_addToActiveMouseClicked
+    private void addToActive() {
+        String[] tmpString = this.passiveChannels.getSelectedItems();
+        for (int i = 0; i < tmpString.length; i++) {
+            this.passiveChannels.remove(tmpString[i]);
+            this.activeChannels.add(tmpString[i]);
+        }
+    }
 
     /**
      * Diese Methode entfernt den in userList ausgewählten Benutzer und fordert über den
-     * AdminClient die neue Version der Benutzerliste an. Zusätzlich werden mittels 
-     * newUserMouseClicked() die Felder der grafischen Oberfläche geleert.
+     * AdminClient die neue Version der Benutzerliste an. Zusätzlich werden mittels newUserMouseClicked() die Felder der
+     * grafischen Oberfläche geleert.
      */
-    private void deleteUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_deleteUserMouseClicked
-      String name=this.userList.getSelectedItem();
-      this.chatGui.adminClient.deleteUser(name);
-      this.chatGui.adminClient.getUserList();
-      this.newUserMouseClicked(evt);
-    } //GEN-LAST:event_deleteUserMouseClicked
+    private void deleteUser() {
+        String name = this.userList.getSelectedItem();
+        this.chatGui.adminClient.deleteUser(name);
+        this.newUser();
+    }
 
-    /**
-     * Diese Methode ermöglicht die Verwendung von angezeigten Benutzerdaten für das Anlegen
-     * eines neuen Benutzers.
-     */
-    private void copyUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_copyUserMouseClicked
-      isNewUser=true; //Attribut wird für das Speichern benötigt
-      this.loginName.setText(this.loginName.getText() + " [Kopie]");
-    } //GEN-LAST:event_copyUserMouseClicked
+    /** Diese Methode ermöglicht die Verwendung von angezeigten Benutzerdaten für das Anlegen eines neuen Benutzers. */
+    private void copyUser() {
+        isNewUser = true; //Attribut wird für das Speichern benötigt
+        this.loginName.setText(this.loginName.getText() + " [Kopie]");
+    }
 
     /**
      * Diese Methode ermöglicht das Editieren eines vorhandenen Benutzers und wird außerdem
      * verwendet, um sich die Benutzerdaten anzeigen zu lassen.
      */
-    private void editUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_editUserMouseClicked
-      isNewUser=false; //Attribut wird für das Speichern benötigt
-      String name = this.userList.getSelectedItem();
-      this.chatGui.adminClient.getUserData(name);
-    } //GEN-LAST:event_editUserMouseClicked
+    private void editUser() {
+        isNewUser = false; //Attribut wird für das Speichern benötigt
+        String name = this.userList.getSelectedItem();
+        this.chatGui.adminClient.getUserData(name);
+    }
 
     /**
      * Diese Methode dient dem Speichern von geänderten respektive neu angelegten Benutzern mit
      * den aktuell sichtbaren Daten. Das Attribut isNewUser dient hierbei dazu festzustellen,
      * welcher dieser Fälle zutrifft. Zunächst wird allerdings überprüft, ob das eingegebene
-     * Passwort und die Wiederholung übereinstimmen, sonst wird ein neuer Frame mit einer
-     * Fehlermeldung geöffnet.
+     * Passwort und die Wiederholung übereinstimmen, sonst wird ein neuer Frame mit einer Fehlermeldung geöffnet.
      */
-    private void saveUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_saveUserMouseClicked
-      if(this.password.getText().compareTo(this.passwordVerify.getText())==0) {
-        if (isNewUser==true) {
-          this.chatGui.adminClient.addUser(this.loginName.getText(),this.password.getText(),this.isAdmin.getState(),this.chatGui.stringToVector(this.activeChannels.getItems()));
+    private void saveUser() {
+        if (this.password.getText().compareTo(this.passwordVerify.getText()) == 0) {
+            if (isNewUser == true) {
+                this.chatGui.adminClient.addUser(this.loginName.getText(), this.password.getText(), this.isAdmin.getState(),
+                    this.chatGui.stringToVector(this.activeChannels.getItems()));
+            } else {
+                this.chatGui.adminClient.editUser(this.chatGui.adminClient.getTmpOldUserName(), this.loginName.getText(), this.password.getText(),
+                    this.isAdmin.getState(), this.chatGui.stringToVector(this.activeChannels.getItems()));
+            }
+            this.chatGui.adminClient.getUserData(this.loginName.getText());
+            this.chatGui.setUserData("", "", false,
+                new Vector(),
+                new Vector());
+            this.chatGui.adminClient.getUserList();
         } else {
-          this.chatGui.adminClient.editUser(this.chatGui.adminClient.getTmpOldUserName(),this.loginName.getText(),this.password.getText(),this.isAdmin.getState(),this.chatGui.stringToVector(this.activeChannels.getItems()));
+            errorMessage.messageArea.setText("Passwort und Wiederholung stimmen nicht überein. \n Die Daten wurden nicht gespeichert.");
+            errorMessage.show();
+            this.passwordVerify.requestFocus();
         }
-        this.chatGui.adminClient.getUserList();
-      } else {
-        errorMessage.messageArea.setText("Passwort und Wiederholung stimmen nicht überein. \n Die Daten wurden nicht gespeichert.");
-	errorMessage.show();
-	this.passwordVerify.requestFocus();
-      }
-    } //GEN-LAST:event_saveUserMouseClicked
+    }
 
     /**
      * Diese Methode dient dazu, beginnend mit leeren Feldern einen neuen Benutzer anzulegen.
      * Hierzu werden die Felder auf ihre Default-Werte gesetzt und isNewUser gesetzt.
      */
-    private void newUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_newUserMouseClicked
-      isNewUser=true;
-      Vector tmpVector = this.chatGui.stringToVector(this.chatGui.channelAdminGUI.channelList.getItems());
-      this.chatGui.setUserData("","",false,new Vector(),tmpVector);
-    } //GEN-LAST:event_newUserMouseClicked
+    private void newUser() {
+        isNewUser = true;
+        Vector tmpVector = this.chatGui.stringToVector(this.chatGui.channelAdminGUI.channelList.getItems());
+        this.chatGui.setUserData("", "", false,
+            new Vector(), tmpVector);
+    }
 
     /** Schließen des Applikationsframes */
     private void exitForm(java.awt.event.WindowEvent evt) {
