@@ -102,6 +102,7 @@ public class Server {
 
             // wird nur ausgeführt, falls loadFromDisk() keine Exception wirft
             this.clientServantWatchDog.start();
+	    Debug.println(Debug.HIGH, "Server gestartet");
             this.listen();
         }
 
