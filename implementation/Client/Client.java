@@ -157,6 +157,10 @@ public class Client implements Util.DownlinkOwner {
     stopClient();
   }
 
+  public synchronized final void displayError(String errorMsg) {
+    this.gui.displayError(errorMsg);
+  }
+
   /**
    * Dient dazu, eine Nachricht über das für den Client zuständige
    * Uplinkobjekt an den ClientServant zu verschicken. Dabei wird die Nachricht

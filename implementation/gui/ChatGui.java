@@ -55,6 +55,9 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void setCurrentChannelData(String name, Vector userNames) {
+        if (this.channelChoice.getSelectedItem().compareTo(name) != 0) {
+          this.chatText.setText("");
+        }
         this.channelChoice.select(name);
         String selectedUser = new String();
         if (this.userList.getSelectedItem() != null) {
