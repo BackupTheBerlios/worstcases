@@ -19,7 +19,6 @@ public class Server {
      * und ein ClientServantDog gestartet, um inaktive Clients aus dem System zu entfernen. Ruft listen() auf.
      */
     public void startServer() {
-        Debug.println(Debug.LOW, this + ": starting server");
         this.channelAdministration = new ChannelAdministration();
         this.userAdministration = new UserAdministration(this.channelAdministration);
         this.dataBaseIO = new DataBaseIO(this.userAdministration, this.channelAdministration);
@@ -36,6 +35,7 @@ public class Server {
         catch (java.io.IOException e) {
             Debug.println(Debug.HIGH, this + ": DataBase IO could not load database:" + e);
         }
+        Debug.println(Debug.MEDIUM, this + ": started");
     }
 
     private ClientServantWatchDog clientServantWatchDog;
@@ -45,20 +45,22 @@ public class Server {
      * aus der ClientServantList enfernt werden. Setzt stop=true, um die Listen-Methode zu beenden.
      */
     public void stopServer() {
+        this.dataBaseIO.saveToDisk();
         this.stop = true;
         this.clientServantWatchDog.stop = true;
-        Enumeration enum = this.clientServantList.elements();
+        Enumeration enum = this.getClientServantEnum();
         while (enum.hasMoreElements()) {
             this.removeFromClientServantList((ClientServant)enum.nextElement());
         }
-        Debug.println(Debug.LOW, this + ": Server stopped");
+        Debug.println(Debug.MEDIUM, this + ": Server stopped");
     }
 
     /** Entfernt den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven ClientServants. */
-    public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
+    public void removeFromClientServantList(ClientServant paramClientServant) {
         if (paramClientServant != null) {
             if (this.clientServantList.removeElement(paramClientServant)) {
                 paramClientServant.setServer(null);
+                Debug.println(Debug.MEDIUM, this + ": removed: " + paramClientServant);
                 Debug.println(Debug.MEDIUM, this + ": " + this.clientServantList.size() + " ClientServants active");
             }
         }
@@ -66,7 +68,7 @@ public class Server {
 
     /** Gibt eine Aufzählung der aktiven ClientServants zurück. */
     public Enumeration getClientServantEnum() {
-        return this.clientServantList.elements();
+        return Util.Helper.vectorCopy(this.clientServantList).elements();
     }
 
     public DataBaseIO getDataBaseIO() {
@@ -89,12 +91,13 @@ public class Server {
                 while (!stop) {
                     try {
                         Socket tmpSocket = serverSocket.accept();
-                        Debug.println(Debug.MEDIUM,this+": incoming connection from " + tmpSocket.getInetAddress() + ":" + tmpSocket.getPort());
-                        ClientServant tmpClientServant = new ClientServant(tmpSocket, this, userAdministration);
+                        Debug.println(Debug.MEDIUM, this + ": incoming connection from " + tmpSocket.getInetAddress() + ":" +
+                            tmpSocket.getPort());
+                            ClientServant tmpClientServant = new ClientServant(tmpSocket, this, userAdministration);
                         this.addToClientServantList(tmpClientServant);
                         tmpClientServant.startClientServant();
                     } catch (java.io.IOException e) {
-                        Debug.println(this+": error while listening: "+e);
+                        Debug.println(this + ": error while listening: " + e);
                     }
             }
         } catch (java.io.IOException e) {
@@ -102,20 +105,21 @@ public class Server {
         }
         try {
             this.serverSocket.close();
-            Debug.println(Debug.LOW,this+": ServerSocket closed");
+            Debug.println(Debug.MEDIUM, this + ": ServerSocket closed");
         } catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH,this+": error closing serverSocket: "+e);
+            Debug.println(Debug.HIGH, this + ": error closing serverSocket: " + e);
         }
     }
 
     /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu. Benutzt ClientServant.setServer(). */
-    public synchronized void addToClientServantList(ClientServant paramClientServant) {
-        if(paramClientServant!=null){
-        if (!this.clientServantList.contains(paramClientServant)) {
-            this.clientServantList.addElement(paramClientServant);
-            paramClientServant.setServer(this);
-            Debug.println(Debug.MEDIUM,this+": "+this.clientServantList.size() + " ClientServants active");
-        }
+    public void addToClientServantList(ClientServant paramClientServant) {
+        if (paramClientServant != null) {
+            if (!this.clientServantList.contains(paramClientServant)) {
+                this.clientServantList.addElement(paramClientServant);
+                paramClientServant.setServer(this);
+                Debug.println(Debug.MEDIUM, this + ": added: " + paramClientServant);
+                Debug.println(Debug.MEDIUM, this + ": " + this.clientServantList.size() + " ClientServants active");
+            }
         }
     }
 

@@ -14,12 +14,12 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
     public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server paramServer,
         ChannelAdministration paramChannelAdministration, UserAdministration paramUserAdministration, User paramUser,
         DataBaseIO paramDataBaseIO) {
+            this.setUser(paramUser);
             this.setDownlink(paramDownlink);
             this.uplink = paramUplink;
             this.setServer(paramServer);
             this.channelAdministration = paramChannelAdministration;
             this.userAdministration = paramUserAdministration;
-            this.setUser(paramUser);
             this.dataBaseIO = paramDataBaseIO;
     }
 

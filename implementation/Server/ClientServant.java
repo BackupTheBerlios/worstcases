@@ -116,6 +116,7 @@ public class ClientServant implements Util.DownlinkOwner {
         this.uplink = null;
         //Versuch, ein StopClientCommand() zu senden
         if (old != null) {
+            Debug.println(Debug.MEDIUM, this + ": stopping");
             try {
                 old.sendMsg(
                     new StopClientCommand());
@@ -129,7 +130,6 @@ public class ClientServant implements Util.DownlinkOwner {
         this.setDownlink(null);
         this.setServer(null);
         this.setUser(null);
-        Debug.println(Debug.MEDIUM, this + ": stopped");
     }
 
     /** Führt den empfangenen Befehl einfach mittels msg.execute(this) aus. Benutzt setAliveStamp(). */
@@ -217,16 +217,26 @@ public class ClientServant implements Util.DownlinkOwner {
     public final void becomeAdminClientServant() {
         Debug.println(Debug.MEDIUM, this + ": becoming AdminClientServant");
         Uplink oldUplink = this.uplink;
-        //notwendig, damit stopClientServant() nicht den uplink stoppt
+        Downlink oldDownlink = this.downlink;
+        User oldUser = this.user;
+
+        /*notwendig, damit die in dem Konstruktor AdminClientServant()
+         * verwendeten set - Methoden nicht zu einem vorzeitigen stopClientServant()
+         * führen - was sonst eigentlich erwünscht ist
+         */
+
         this.uplink = null;
+        this.downlink = null;
+        this.user = null;
 
         /*der AdminClientServant - Konstruktor bewirkt über setMethoden, daß dieser
          *ClientServant beendet wird
          */
 
         AdminClientServant tmpAdminClientServant =
-            new AdminClientServant(oldUplink, this.downlink, this.server, this.server.getChannelAdministration(),
-            this.userAdministration, this.user, this.server.getDataBaseIO());
+            new AdminClientServant(oldUplink, oldDownlink, this.server, this.server.getChannelAdministration(),
+            this.userAdministration, oldUser, this.server.getDataBaseIO());
+        this.stopClientServant();
     }
 
     /**

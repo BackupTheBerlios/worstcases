@@ -12,14 +12,13 @@ import Util.Debug.Debug;
  * relationalen Beziehungen zwischen User- und Channeldatenbank gesetzt werden.
  */
 class DataBaseIO {
-
     /**
      * Konstruktor, der die Attribute für die ChannelAdministration und UserAdministration setzt.
      * Benutzt setChannelAdministration() und setUserAdministration().
      */
-    public DataBaseIO(UserAdministration paramUserAdministration,ChannelAdministration paramChannelAdministration){
-     this.setChannelAdministration(paramChannelAdministration);
-     this.setUserAdministration(paramUserAdministration);
+    public DataBaseIO(UserAdministration paramUserAdministration, ChannelAdministration paramChannelAdministration) {
+        this.setChannelAdministration(paramChannelAdministration);
+        this.setUserAdministration(paramUserAdministration);
     }
 
     /**
@@ -28,12 +27,18 @@ class DataBaseIO {
      * Format des Strings: "name#password#true#channel1#channel2#channel3".
      */
     private String userToString(User paramUser) {
-        String tmpString = paramUser.getName() + "#" + paramUser.getPassword() + "#" + paramUser.isAdmin();
-        Enumeration enum = paramUser.getAllowedChannelEnum();
-        while (enum.hasMoreElements()) {
-            tmpString = tmpString + "#" + ((Channel)(enum.nextElement())).getName();
+        if (paramUser != null) {
+            String tmpString = paramUser.getName() + "#" + paramUser.getPassword() + "#" + paramUser.isAdmin();
+            Enumeration enum = paramUser.getAllowedChannelEnum();
+            while (enum.hasMoreElements()) {
+                tmpString = tmpString + "#" + ((Channel)(enum.nextElement())).getName();
+            }
+            Debug.println(Debug.LOW, this + ": userToString result: " + tmpString);
+            return tmpString;
         }
-        return tmpString;
+        else {
+            return null;
+        }
     }
 
     /**
@@ -41,7 +46,6 @@ class DataBaseIO {
      * Setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden.
      * Benutzt channelAdministration.getFromChannelListByName() und user.setAllowedChannelList().
      */
-
     private User stringToUser(String userSet) {
         StringTokenizer tmpTokenizer = new StringTokenizer(userSet, "#", false);
         String name = tmpTokenizer.nextToken();
@@ -52,37 +56,41 @@ class DataBaseIO {
         while (tmpTokenizer.hasMoreTokens()) {
             tmpChannelList.addElement(this.channelAdministration.getFromChannelListByName(tmpTokenizer.nextToken()));
         }
-        User tmpUser = new User(name, password, false, isAdmin,this.userAdministration);
+        User tmpUser = new User(name, password, false, isAdmin, this.userAdministration);
         tmpUser.setAllowedChannelList(tmpChannelList.elements());
-            return tmpUser;
+        Debug.println(Debug.LOW, this + ": processed: " + userSet);
+        return tmpUser;
     }
 
     /**
-     * Konvertiert den Namen und das isAllowedForGuests-Flag
-     * eines Channelobjekts in einen String, wird von saveToDisk() verwendet.
-     * Format des Strings: "name#true".
+     * Konvertiert den Namen und das isAllowedForGuests-Flag eines Channelobjekts in einen String, wird von saveToDisk()
+     * verwendet. Format des Strings: "name#true".
      */
     private String channelToString(Channel paramChannel) {
-        String tmpString = paramChannel.getName() + "#" + paramChannel.isAllowedForGuest();
-        return tmpString;
+        if (paramChannel != null) {
+            String tmpString = paramChannel.getName() + "#" + paramChannel.isAllowedForGuest();
+            Debug.println(Debug.LOW, this + ": channelToString result: " + tmpString);
+            return tmpString;
+        }
+        else {
+            return null;
+        }
     }
 
-    /** Konvertiert den von channelToString() erzeugten String in ein Channelobjekt.
-      */
+    /** Konvertiert den von channelToString() erzeugten String in ein Channelobjekt. */
     private Channel stringToChannel(String channelSet) {
         StringTokenizer tmpTokenizer = new StringTokenizer(channelSet, "#", false);
         String name = tmpTokenizer.nextToken();
         boolean allowedForGuests = (
             new Boolean(tmpTokenizer.nextToken())).booleanValue();
         Channel tmpChannel = new Channel(name, allowedForGuests);
-
+        Debug.println(Debug.LOW, this + ": processed: " + channelSet);
         return tmpChannel;
     }
 
     /**
      * Lädt die Benutzer- und Channeldaten aus userDBFile und channelDBFile
-     * mittels stringToUser(),stringToChannel,channelAdministration.setChannelList() und
-     * userAdministration.setUserList().
+     * mittels stringToUser(),stringToChannel,channelAdministration.setChannelList() und userAdministration.setUserList().
      */
     public synchronized void loadFromDisk() throws java.io.FileNotFoundException, java.io.IOException {
         String tmpString;
@@ -97,8 +105,7 @@ class DataBaseIO {
         }
         this.channelAdministration.setChannelList(tmpList.elements());
         tmpBufferedReader.close();
-        Debug.println(Debug.MEDIUM,"channeldb loaded");
-
+        Debug.println(Debug.MEDIUM, "channeldb loaded");
         Vector tmpList2 = new Vector();
         tmpBufferedReader = new BufferedReader(
             new FileReader(
@@ -110,13 +117,10 @@ class DataBaseIO {
         }
         this.userAdministration.setUserList(tmpList2.elements());
         tmpBufferedReader.close();
-
-        Debug.println(Debug.MEDIUM,"userdb loaded");
-        Debug.println(Debug.LOW,this+": loaded the following data: ");
-        Debug.println(Debug.LOW,tmpList);
-        Debug.println(Debug.LOW,tmpList2);
-
-
+        Debug.println(Debug.MEDIUM, "userdb loaded");
+        Debug.println(Debug.LOW, this + ": loaded the following data: ");
+        Debug.println(Debug.LOW, tmpList);
+        Debug.println(Debug.LOW, tmpList2);
     }
 
     /**
@@ -124,40 +128,37 @@ class DataBaseIO {
      * in userDBFile und channelDBFile mittels userToString(), channelToString().
      * Benutzt channelAdministration.getChannelEnum() und userAdministration.getUserEnum()
      */
-    public synchronized void saveToDisk()  {
-        try{
-        BufferedWriter tmpBufferedWriter = new BufferedWriter(
-            new FileWriter(
-            new File(this.channelDBFile)));
-        Enumeration enum = this.channelAdministration.getChannelEnum();
-        while (enum.hasMoreElements()) {
-            tmpBufferedWriter.write(this.channelToString((Channel)(enum.nextElement())) + "\r\n");
-        }
-        tmpBufferedWriter.close();
-        Debug.println("channel data written to disk");
-
-        tmpBufferedWriter = new BufferedWriter(
-            new FileWriter(
-            new File(this.userDBFile)));
-        User tmpUser;
-        enum=this.userAdministration.getUserEnum();
-        while (enum.hasMoreElements()) {
-            tmpUser = (User)(enum.nextElement());
-            if (!tmpUser.isGuest()) {
-                tmpBufferedWriter.write(this.userToString(tmpUser) + "\r\n");
+    public synchronized void saveToDisk() {
+        try {
+            BufferedWriter tmpBufferedWriter = new BufferedWriter(
+                new FileWriter(
+                new File(this.channelDBFile)));
+            Enumeration enum = this.channelAdministration.getChannelEnum();
+            while (enum.hasMoreElements()) {
+                tmpBufferedWriter.write(this.channelToString((Channel)(enum.nextElement())) + "\r\n");
             }
+            tmpBufferedWriter.close();
+            Debug.println("channel data written to disk");
+            tmpBufferedWriter = new BufferedWriter(
+                new FileWriter(
+                new File(this.userDBFile)));
+            User tmpUser;
+            enum = this.userAdministration.getUserEnum();
+            while (enum.hasMoreElements()) {
+                tmpUser = (User)(enum.nextElement());
+                if (!tmpUser.isGuest()) {
+                    tmpBufferedWriter.write(this.userToString(tmpUser) + "\r\n");
+                }
+            }
+            tmpBufferedWriter.close();
+            Debug.println("user data written to disk");
         }
-        tmpBufferedWriter.close();
-        Debug.println("user data written to disk");
-        }
-        catch(java.io.IOException e){
-         Debug.println(Debug.HIGH,"error while saving data: "+e);
+        catch (java.io.IOException e) {
+            Debug.println(Debug.HIGH, "error while saving data: " + e);
         }
     }
 
-    /**
-     *  Setzt channelAdministration und benutzt channelAdministration.setDataBaseIO().
-     */
+    /** Setzt channelAdministration und benutzt channelAdministration.setDataBaseIO(). */
     public void setChannelAdministration(ChannelAdministration paramChannelAdministration) {
         if (this.channelAdministration != paramChannelAdministration) {
             if (this.channelAdministration != null) {

@@ -277,8 +277,8 @@ class User {
                 paramChannel.addToCurrentUserList(this);
             }
             this.informClient();
+            Debug.println(Debug.LOW, this.getName() + ": setCurrentChannel to: " + paramChannel);
         }
-        Debug.println(Debug.LOW, this.getName() + ": setCurrentChannel to: " + paramChannel);
     }
 
     /**
