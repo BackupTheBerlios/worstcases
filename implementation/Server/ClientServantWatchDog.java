@@ -22,7 +22,7 @@ class ClientServantWatchDog extends Thread {
      * Zeitspanne in Millisekunden, die vergeht, bis
      * der ClientServantWatchDog erneut alle ClientServants überprüft.
      */
-    private int updateDelay = 600000;
+    private int updateDelay = 6000;
 
 
     /**
@@ -59,8 +59,10 @@ class ClientServantWatchDog extends Thread {
             while (enum.hasMoreElements()) {
                 tmpClientServant = (ClientServant)enum.nextElement();
                 if ((java.lang.System.currentTimeMillis() - tmpClientServant.getAliveStamp()) > timeToLive) {
-                    System.out.println("clientservant stopped by watchdog");
+
+
                     tmpClientServant.stopClientServant();
+                    System.out.println("clientservant stopped by watchdog");  
                 }
             }
             try{

@@ -84,9 +84,10 @@ class ChannelAdministration {
      * @param paramChannel das Channelobjekt, das hinzugefügt werden soll
      */
     public  synchronized void addToChannelList(Channel paramChannel) {
-        if (!this.channelList.contains(paramChannel)) {
-            this.channelList.addElement(paramChannel);
-        }
+      if(this.getFromChannelListByName(paramChannel.getName())==null){
+       this.channelList.addElement(paramChannel);
+      }
+
     }
 
     /**

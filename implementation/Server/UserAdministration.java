@@ -88,7 +88,7 @@ class UserAdministration {
     	return tmpVector;
     }
 
-	/** Mittles dieser Methode kann ein User-Objekt bearbeitet werden.
+	/** Mittels dieser Methode kann ein User-Objekt bearbeitet werden.
       * Setzt die Daten des Userobjektes mit dem Namen oldName
       * auf die in newUser enthaltenen Daten mittels
       * user.setName(),setPassword(),setIsAdmin(),setAllowedChannelList().
@@ -107,7 +107,7 @@ class UserAdministration {
 
     /** Fügt einen Benutzer mittels user.setUserAdministration() zur UserList hinzu. */
     public synchronized void addToUserList(User paramUser) {
-        if (!this.userList.contains(paramUser)) {
+        if (this.getFromUserListByName(paramUser.getName())==null) {
             this.userList.addElement(paramUser);
             paramUser.setUserAdministration(this);
         }
