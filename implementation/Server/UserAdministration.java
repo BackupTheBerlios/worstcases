@@ -225,7 +225,7 @@ class UserAdministration {
     private int numCurrentGuests = 0;
 
     /** Maxmimale Anzahl von eingeloggten Gästen im System */
-    private int maxGuests = 10;
+    private int maxGuests = 100;
 
     /** Erhöht den Zähler numCurrentUsers um 1 */
     public synchronized void incNumCurrentUsers() {
