@@ -383,7 +383,11 @@ public class ClientServant implements Util.DownlinkOwner {
             this.sendCommand(
                 new LoginErrorCommand());
         }
-    }
+		}
+
+		public final void sendErrorMsg(String msg){
+     this.sendCommand(new ErrorCommand(msg));
+		}
 
     /**
      * Sendet die Daten des betretenen Channel an den Client. Sendet ein SetCurrentChannelDataCommand.

@@ -144,7 +144,7 @@ class UserAdministration {
     if ((oldName != null) && (newUser != null)) {
 
       // Wenn oldName und newUser nicht null sind...
-      User tmpUser = this.getFromUserListByName(oldName);
+			User tmpUser = this.getFromUserListByName(oldName);
 
       // Das "alte" Userobjekt wird geladen.
       Debug.println(Debug.MEDIUM, "UserAdministration: changing: " + tmpUser);
@@ -157,7 +157,13 @@ class UserAdministration {
       }
 
       newUser.removeYou();  // Das newUser-Objekt löst sich selber auf.
-      Debug.println(Debug.MEDIUM, "UserAdministration: changed: " + tmpUser);
+			Debug.println(Debug.MEDIUM, "UserAdministration: changed: " + tmpUser);
+
+			//Client über Veränderungen informieren
+		  ClientServant tmpClientServant =tmpUser.getClientServant();
+			if(tmpClientServant!=null){
+       tmpClientServant.sendErrorMsg("Benutzerdaten haben sich geändert!\n"+tmpUser);
+			}
     }
   }
 
