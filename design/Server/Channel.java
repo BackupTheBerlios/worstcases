@@ -35,7 +35,7 @@ class Channel {
    */
   public void addToCurrentUserList(User paramUser) {
 
-    this.currentUserList.add(paramUser);
+    this.currentUserList.addElement(paramUser);
 
     Enumeration enum = this.currentUserList.elements();
 
@@ -54,7 +54,7 @@ class Channel {
 
     int pos = 0;
 
-    this.currentUserList.remove(paramUser);
+    this.currentUserList.removeElement(paramUser);
 
     User tmpUser = (User) (this.currentUserList.elementAt(pos));
     ClientServant tmpClientServant = tmpUser.getClientServant();

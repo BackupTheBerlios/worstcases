@@ -34,7 +34,6 @@ public class Client implements Util.DownlinkOwner {
    * meldet einen Gast an
    */
   public void loginAsGuest(String name) {
-    uplink.sendMsg("loginGuest " + name);
   }
 
   /**

@@ -2,6 +2,7 @@ package Server;
 
 import java.net.Socket;
 import Util.*;
+import Util.Commands.*;
 
 
 /**
@@ -24,7 +25,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     String tmpList = this.channelAdministration.getChannelList().toString();
 
-    this.uplink.sendMsg(tmpList);
   }
 
   /**
@@ -34,7 +34,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     String tmpList = this.userAdministration.getUserList().toString();
 
-    this.uplink.sendMsg(tmpList);
   }
 
   /**
@@ -62,7 +61,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
    */
   public void editChannel(String channelName, String newChannelSet) {
     this.channelAdministration.editChannel(channelName, newChannelSet);
-    this.uplink.sendMsg("channel Bar changed");
   }
 
   /**
@@ -105,7 +103,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
     String tmpUserSet =
       this.userAdministration.getFromUserListByName(userName).toString();
 
-    this.uplink.sendMsg(tmpUserSet);
   }
 
   /**
@@ -117,7 +114,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
     String tmpChannelSet =
       this.channelAdministration.getByName(channelName).toString();
 
-    this.uplink.sendMsg(tmpChannelSet);
   }
 
   /**
@@ -127,7 +123,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
    */
   public void processMsg(String msg) {
     this.deleteChannel("channel foo");
-    this.uplink.sendMsg("channel foo deleted");
   }
 
   /**

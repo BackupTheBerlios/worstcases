@@ -64,7 +64,7 @@ public class Server {
 
     int pos = 0;
 
-    this.clientServantList.remove(paramClientServant);
+    this.clientServantList.removeElement(paramClientServant);
     ((ClientServant) (this.clientServantList.elementAt(pos)))
       .stopClientServant();
   }
@@ -80,7 +80,7 @@ public class Server {
       ClientServant tmpClientServant = new ClientServant(tmpSocket, this,
                                          userAdministration);
 
-      this.clientServantList.add(tmpClientServant);
+      this.clientServantList.addElement(tmpClientServant);
       tmpClientServant.startClientServant();
     } catch (java.io.IOException e) {
       System.out.println(e);
@@ -94,7 +94,7 @@ public class Server {
    */
   public synchronized void addToClientServantList(
           ClientServant paramClientServant) {
-    this.clientServantList.add(paramClientServant);
+    this.clientServantList.addElement(paramClientServant);
   }
 
   public ChannelAdministration getChannelAdministration() {

@@ -2,6 +2,7 @@ package Util;
 
 import java.net.Socket;
 import java.io.*;
+import Util.Commands.*;
 
 
 /**
@@ -29,7 +30,7 @@ public class Uplink {
    * Über diesen Socket werden die Nachrichten versendet.
    */
   private Socket socket;
-  private BufferedWriter bufferedWriter;
+  private ObjectOutputStream objectOutputStream;
 
   /**
    * Öffnet den Output-Stream.
@@ -37,9 +38,9 @@ public class Uplink {
   public void startUplink() {
 
     try {
-      this.bufferedWriter =
-        new BufferedWriter(new OutputStreamWriter(this.socket
-          .getOutputStream()));
+      this.objectOutputStream =
+        new ObjectOutputStream(
+          this.socket.getOutputStream());
     } catch (java.io.IOException e) {
       System.out.println(e);
     }
@@ -51,7 +52,7 @@ public class Uplink {
   public void stopUplink() {
 
     try {
-      this.bufferedWriter.close();
+      this.objectOutputStream.close();
     } catch (java.io.IOException e) {
       System.out.println(e);
     }
@@ -73,7 +74,10 @@ public class Uplink {
     } catch (java.io.IOException e) {
       System.out.println(e);
       */
-      bufferedWriter.writeObject(msg); // FIXME: Dummy
+      objectOutputStream.writeObject(msg); // FIXME: Dummy
+    }
+    catch(Exception e){
+     System.out.println(e);
     }
   }
 }

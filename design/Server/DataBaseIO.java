@@ -21,7 +21,7 @@ class DataBaseIO {
 
     Vector tmpVector = new Vector();
 
-    tmpVector.add(tmpChannel);
+    tmpVector.addElement(tmpChannel);
     this.channelAdministration.setChannelList(tmpVector);
     doLinks();
   }

@@ -3,6 +3,7 @@ package Util;
 import java.net.Socket;
 import java.util.Vector;
 import java.io.*;
+import Util.Commands.*;
 
 
 /**
@@ -35,7 +36,7 @@ public class Downlink extends Thread {
    * weitergeleitet werden sollen.
    */
   private DownlinkOwner downlinkOwner;
-  private BufferedReader bufferedReader;
+  private ObjectInputStream objectInputStream;
   private boolean stop = false;
 
   /**
@@ -53,11 +54,12 @@ public class Downlink extends Thread {
 
         System.out.println("#" + tmpString + "# received!");
         downlinkOwner.processMsg(tmpString);
-      } catch (java.io.IOException e) {
-        System.out.println(e);
-        */
-        tmpCommand = (Command) bufferedReader.getObject(); // FIXME: Dummy
+
+	        */
+        tmpCommand = (Command) objectInputStream.readObject(); // FIXME: Dummy
         downlinkOwner.processMsg(tmpCommand);
+
+      } catch (Exception e) {
       }
     }
   }
@@ -68,10 +70,9 @@ public class Downlink extends Thread {
   public void startDownlink() {
 
     try {
-      this.bufferedReader =
-        new BufferedReader(new InputStreamReader(this.socket
-          .getInputStream()));
-    } catch (java.io.IOException e) {
+      this.objectInputStream =
+        new ObjectInputStream(this.socket.getInputStream());
+    } catch (Exception e) {
       System.out.println(e);
     }
   }
@@ -89,7 +90,7 @@ public class Downlink extends Thread {
   public void stopDownlink() {
 
     try {
-      this.bufferedReader.close();
+      this.objectInputStream.close();
     } catch (java.io.IOException e) {
       System.out.println(e);
     }

@@ -41,7 +41,6 @@ public class ClientServant implements Util.DownlinkOwner {
     this.uplink.startUplink();
     this.downlink.startDownlink();
     this.downlink.start();
-    this.uplink.sendMsg("Welcome to the server!");
   }
 
   /**
@@ -63,7 +62,7 @@ public class ClientServant implements Util.DownlinkOwner {
    */
   public void loginUser(String name, String password) { 
     // FIXME: an LoginCommand anpassen:
-    this.user = this.userAdministration.loginUser(userSet);
+    this.user = this.userAdministration.loginUser(name,password);
 
     this.user.setClientServant(this);
 
@@ -71,19 +70,17 @@ public class ClientServant implements Util.DownlinkOwner {
       this.becomeAdminClientServant();
     }
 
-    this.uplink.sendMsg(this.user.getAllowedChannelList().toString());
   }
 
   /**
    * Meldet einen Gast beim System an, benutzt dafür eine vom Client
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
-  public void loginGuest(String guestSet) {
+  public void loginAsGuest(String name) {
 
-    this.user = this.userAdministration.loginGuest(guestSet);
+    this.user = this.userAdministration.loginGuest(name);
 
     this.user.setClientServant(this);
-    this.uplink.sendMsg(this.user.getName() + " logged in");
   }
 
   /**
@@ -120,8 +117,6 @@ public class ClientServant implements Util.DownlinkOwner {
     Channel tmpChannel = this.user.getFromAllowedChannelByName(name);
 
     this.user.setCurrentChannel(tmpChannel);
-    this.uplink.sendMsg("Channel " + this.user.getCurrentChannel().getName()
-                        + " joined!");
   }
 
   /**
@@ -154,14 +149,12 @@ public class ClientServant implements Util.DownlinkOwner {
    * an den Client.
    */
   public void sendMsgFromChannel(String msg) {
-    this.uplink.sendMsg(msg);
   }
 
   /**
    * Sendet eine private Nachricht eines anderen Users an den Client.
    */
   public void sendMsgFromUser(String msg) {
-    this.uplink.sendMsg(msg);
   }
 
   /**
@@ -174,7 +167,6 @@ public class ClientServant implements Util.DownlinkOwner {
     User tmpUser = (User) (tmpChannel.getCurrentUserList().elementAt(pos));
     ClientServant tmpClientServant = tmpUser.getClientServant();
 
-    tmpClientServant.sendMsgFromUser(msg);
   }
 
   /**
@@ -184,7 +176,6 @@ public class ClientServant implements Util.DownlinkOwner {
 
     Channel tmpChannel = this.user.getCurrentChannel();
 
-    this.uplink.sendMsg(tmpChannel.getCurrentUserList().toString());
   }
 
   /**
@@ -194,7 +185,6 @@ public class ClientServant implements Util.DownlinkOwner {
 
     String tmpUserSet = this.user.toString();
 
-    this.uplink.sendMsg(tmpUserSet);
   }
 
   /**

@@ -19,7 +19,7 @@ class UserAdministration {
    * @param userSet die vom Client empfangenen Benutzerdaten
    * @return den Benutzer, falls Authentifizierung klappt, sonst null
    */
-  public User loginUser(String userSet) {
+  public User loginUser(String name,String password) {
     return null;
   }
 
@@ -48,7 +48,7 @@ class UserAdministration {
    */
   public void removeFromUserList(User paramUser) {
     paramUser.getClientServant().stopClientServant();
-    this.userList.remove(paramUser);
+    this.userList.removeElement(paramUser);
   }
 
   /**
