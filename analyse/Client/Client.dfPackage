@@ -1,0 +1,75 @@
+package id1jz3ccmoxh5dycmoxoi0c;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:java#Class#Client.Client:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:java#Class#Client.AdminClient:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:java#Class#Client.Uplink:oiref><oihard>
+@__modelType reference 
+*/
+class reference2 {
+}/**
+@__ref <oiref:java#Class#Client.Downlink:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id4lct0cmoxh5dycmoxntq6.diagram:oiref><oihard>
+@automatic 
+*/
+class link {
+}}/**
+enthält die Klassen der Client- und AdminClientapplikation
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options option.boundingbox = false
+option.printheader = false
+option.printfooter = false
+option.fittopage = true
+option.papersize = A4 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:java#Class#Client.Uplink:oiref>=403,261,182,138,0:oigroup>
+<oigroup:<oiref:java#Member#Client.Uplink#socket:oiref>=604,287,0,0,1:oigroup>
+<oigroup:<oiref:java#Class#Client.AdminClient:oiref>=71,494,278,283,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Downlink#lnkClient:oiref>=482,107,341,107:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#uplink:oiref>=341,330,403,330:oigroup>
+<oigroup:<oiref:java#Member#Client.Uplink#$$constructor$$#(#java.net.Socket#)#:oiref>=601,225,0,0,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#lnkDownlink:oiref>=204,162,394,117:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Uplink#lnkClient:oiref>=515,174,225,174,204,174:oigroup>
+<oigroup:<oiref:java#Extends#Client.AdminClient#Client.Client:oiref>=206,494,206,450:oigroup>
+<oigroup:<oiref:java#Class#Client.Client:oiref>=68,59,273,391,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Client.Downlink#client:oiref>=403,152,13,19,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#lnkUplink:oiref>=204,194,407,194:oigroup>
+<oigroup:<oiref:java#Class#Client.Downlink:oiref>=414,16,167,214,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Downlink#client:oiref>=414,173,341,173:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Client.Downlink#client:oiref>=345,152,13,19,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Client.Client#downlink:oiref>=345,95,13,19,0:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Client.Client#downlink:oiref>=341,116,414,116:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#Client.Client#uplink:oiref>=345,309,13,19,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Client.Client#downlink:oiref>=403,95,13,19,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#Client.Client#uplink:oiref>=392,309,13,19,0:oigroup>
+
+
+*/
+class __positions {
+}

@@ -1,0 +1,163 @@
+package id1lnoocmrovepkcmrrcgq8;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:java#Member#Client.Downlink#listen#(##)#:oiref><oihard>
+@__reversed 
+*/
+class link {
+}/**
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575:oiref><oihard>
+@__modelType reference 
+*/
+class reference576 {
+}/**
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref><oihard>
+@__modelType reference 
+*/
+class reference579 {
+}}/**
+@__tags
+@shapeType SequenceDiagram 
+*/
+class __tags {
+}/**
+@__options option.boundingbox = false
+option.printheader = false
+option.printfooter = false
+option.fittopage = true
+option.papersize = A4 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578.link582:oiref>=561,175,561,170,601,170,601,180,570,180:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575.link580:oiref>=195,155,547,155:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node.link:oiref>=82,135,181,135:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node:oiref>=30,30,90,270,1:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref>=509,30,90,270,1:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575.node:oiref>=181,135,14,80,1:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578.node583:oiref>=556,175,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578.node:oiref>=547,155,14,50,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578.link582:oiref>=574,180,415,19,0:oigroup>
+<oigroup:<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575:oiref>=143,30,90,270,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node.link:oiref>=86,112,358,19,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575.link580:oiref>=199,132,462,19,0:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Object
+@__modelType node
+@name Server
+@stereotype actor 
+*/
+class node {
+/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575:oiref><oihard>
+@sendingInstant 135
+@processingDuration 80
+@sequenceNumber 1
+@controlFlowType asynchronous
+@label "available channels: Mensachat, Virtuelle Konferenz, tubs intern"*/
+class link {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575:oiref><oihard> 
+*/
+class link577 {
+}}/**
+@shapeType Object
+@__modelType node
+@name initial 
+*/
+class node575 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#Client.Downlink:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation1
+@activationMessage <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node.link:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref><oihard>
+@sendingInstant 155
+@processingDuration 50
+@sequenceNumber 1.1
+@operation <oiref:java#Member#Client.Client#processMsg#(#java.lang.String#)#:oiref>
+@operationNameAsText 'processMsg(String):void'
+@arguments "available channels: Mensachat, Virtuelle Konferenz, tubs intern"
+@label 
+*/
+class link580 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref><oihard> 
+*/
+class link581 {
+}}/**
+@shapeType Object
+@__modelType node
+@name anonymous 
+*/
+class node578 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#Client.Client:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation2
+@activationMessage <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node575.link580:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref><oihard>
+@sendingInstant 175
+@processingDuration 20
+@sequenceNumber 1.1.1
+@operation <oiref:java#Member#Client.Client#setAvailableChannelList#(#java.lang.String#)#:oiref>
+@operationNameAsText 'setAvailableChannelList(String):void'
+@arguments "Mensachat, Virtuelle Konferenz, tubs intern" 
+*/
+class link582 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation3
+@activationMessage <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578.link582:oiref> 
+*/
+class node583 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id1lnoocmrovepkcmrrcgq8.node578:oiref><oihard> 
+*/
+class link584 {
+}}

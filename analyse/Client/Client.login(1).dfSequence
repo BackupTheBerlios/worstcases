@@ -1,0 +1,135 @@
+package id3511qcmrovepkcmrr9e18;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:java#Member#Client.Client#login#(#java.lang.String#java.lang.String#)#:oiref><oihard>
+@__reversed 
+*/
+class link {
+}/**
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node568:oiref><oihard>
+@__modelType reference 
+*/
+class reference569 {
+}/**
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node571:oiref><oihard>
+@__modelType reference 
+*/
+class reference572 {
+}}/**
+@__tags
+@shapeType SequenceDiagram 
+*/
+class __tags {
+}/**
+@__options option.boundingbox = false
+option.printheader = false
+option.printfooter = false
+option.fittopage = true
+option.papersize = A4 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node571.node:oiref>=487,155,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3511qcmrovepkcmrr9e18.node.link:oiref>=86,112,136,19,0:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.node:oiref>=220,135,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node.link:oiref>=82,135,220,135:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node571:oiref>=449,30,90,270,1:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node:oiref>=30,30,90,270,1:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref>=234,155,487,155:oigroup>
+<oigroup:<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568:oiref>=182,30,90,270,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref>=238,132,232,19,0:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Object
+@__modelType node
+@name Object1
+@stereotype actor 
+*/
+class node {
+/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node568:oiref><oihard>
+@sendingInstant 135
+@processingDuration 50
+@sequenceNumber 1
+@operation <oiref:java#Member#Client.Client#login#(#java.lang.String#java.lang.String#)#:oiref>
+@operationNameAsText 'login(String,String):void' 
+*/
+class link {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node568:oiref><oihard> 
+*/
+class link570 {
+}}/**
+@shapeType Object
+@__modelType node
+@name initial 
+*/
+class node568 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#Client.Client:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation1
+@activationMessage <oiref:design#Class#id3511qcmrovepkcmrr9e18.node.link:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node571:oiref><oihard>
+@sendingInstant 155
+@processingDuration 20
+@sequenceNumber 1.1
+@operation <oiref:java#Member#Client.Uplink#sendMsg#(#java.lang.String#)#:oiref>
+@operationNameAsText 'sendMsg(String):void'
+@arguments "login Foo password Bar" 
+*/
+class link573 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3511qcmrovepkcmrr9e18.node571:oiref><oihard> 
+*/
+class link574 {
+}}/**
+@shapeType Object
+@__modelType node
+@name anonymous 
+*/
+class node571 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#Client.Uplink:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation2
+@activationMessage <oiref:design#Class#id3511qcmrovepkcmrr9e18.node568.link573:oiref> 
+*/
+class node {
+}}
