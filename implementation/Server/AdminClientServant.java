@@ -126,9 +126,9 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 						 (oldName.compareTo(newName)==0)){
 
 					//Foyer darf nicht verändert werden
-            if (oldName.compareTo(this.channelAdministration.FOYERNAME) != 0) {
-                Channel tmpChannel = new Channel(newName, paramAllowedForGuest);
-                Enumeration enum;
+						if (oldName.compareTo(this.channelAdministration.FOYERNAME) != 0) {
+								Vector tmpUsers=new Vector();
+								Enumeration enum;
                 // Channel ist nicht für Gäste, benutze allowedUserNames
                 if (!paramAllowedForGuest) {
                     if (allowedUserNames != null) {
@@ -139,15 +139,15 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                     }
                     // füge die berechtigten Benutzer hinzu
                     while (enum.hasMoreElements()) {
-                        tmpChannel.addToAllowedUserList(this.userAdministration
+												tmpUsers.addElement(this.userAdministration
                             .getFromUserListByName((String)enum.nextElement()));
-                    }
+										}
+										this.channelAdministration.editChannel(oldName,newName,paramAllowedForGuest,tmpUsers.elements());
                 }
                 // Channel ist für Gäste freigegeben, füge alle Benutzer hinzu
-                else {
-                    tmpChannel.setAllowedUserList(this.userAdministration.getUserEnum());
-                }
-                this.channelAdministration.editChannel(oldName, tmpChannel);
+								else {
+									this.channelAdministration.editChannel(oldName,newName,paramAllowedForGuest,this.userAdministration.getUserEnum());
+								}
 								this.dataBaseIO.saveToDisk();
 						}
             }
@@ -229,14 +229,15 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             if ((newName != null) && (newPassword != null) && (newName.compareTo("") != 0) &&
 								(newPassword.compareTo("") != 0)) {
 								if(this.userAdministration.getFromUserListByName(newName)==null|oldName.compareTo(newName)==0){
-
-                    User tmpUser = new User(newName, newPassword, false, paramIsAdmin, this.userAdministration);
+										Vector tmpChannels=new Vector();
+										Enumeration enum=this.channelAdministration.getFreeForGuestEnum();
 										/* gewährt Zugriff auf alle Channel,
 										 *die für Gäste freigegeben sind
 										 */
-                    tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
-                    Enumeration enum;
-                    if (allowedChannelNames != null) {
+										while(enum.hasMoreElements()){
+										 tmpChannels.addElement(enum.nextElement());
+										}
+										if (allowedChannelNames != null) {
                         enum = allowedChannelNames.elements();
                     } else {
                         enum = (
@@ -244,16 +245,18 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                     }
 										// weitere Channels aus allowedChannelNames hinzufügen
                     while (enum.hasMoreElements()) {
-                        tmpUser.addToAllowedChannelList(this.channelAdministration
+												tmpChannels.addElement(this.channelAdministration
                             .getFromChannelListByName((String)enum.nextElement()));
                     }
 										/* falls der neue Benutzer Admin - Rechte hat,
 										 * dann berechtige zum Betreten aller Channel
 										 */
-                    if (paramIsAdmin) {
-                        tmpUser.setAllowedChannelList(this.channelAdministration.getChannelEnum());
-                    }
-                    this.userAdministration.editUser(oldName, tmpUser);
+										if (paramIsAdmin) {
+											this.userAdministration.editUser(oldName,newName,newPassword,paramIsAdmin,this.channelAdministration.getChannelEnum());
+										}
+										else{
+											this.userAdministration.editUser(oldName,newName,newPassword,paramIsAdmin,tmpChannels.elements());
+										}
 										this.dataBaseIO.saveToDisk();
 								}
             }

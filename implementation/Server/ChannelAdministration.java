@@ -142,23 +142,21 @@ class ChannelAdministration {
    * @param newChannel neues Channelobjekt, 
    * das die neuen Daten des Channels enthält
    */
-  public synchronized void editChannel(String oldName, Channel newChannel) {
-
-    if ((oldName != null) && (newChannel != null)) {
+		public synchronized void editChannel(String oldName, String newName, boolean paramAllowedForGuest, Enumeration allowedUser) {
+		if ((oldName != null)) {
     	//Wenn oldName und newChannel nicht leer übergeben wurden...
       Channel tmpChannel = this.getFromChannelListByName(oldName);
 		//...wird der zu verändernde Channel geladen.
       Debug.println(Debug.MEDIUM, "ChannelAdministration: changing: " + tmpChannel);
 
       if (tmpChannel != null) {//Wenn der Channel gefunden wurde...
-        tmpChannel.setName(newChannel.getName());
+				tmpChannel.setName(newName);
         //...wird sein Name aktualisiert.
-        tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
+				tmpChannel.setAllowedUserList(allowedUser);
         //...wird seine AllowedUserList aktualisiert.
-				tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
+				tmpChannel.setAllowedForGuest(paramAllowedForGuest);
         //...wird sein AllowedForGuest-Status aktualisiert.
 			}
-      newChannel.removeYou();
       //Das nun unnötige newChannel-Objekt wird gelöscht.
       Debug.println(Debug.MEDIUM, "ChannelAdministration: changed: " + tmpChannel);
     }
