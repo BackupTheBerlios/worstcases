@@ -560,7 +560,7 @@ Im folgenden Abschnitt werden die Klassen des Serverpakets in ihren Einzelheiten
 Server
 \layout Standard
 
-Dieser Klasse stellt den eigentlichen Chat-Server dar.
+Diese Klasse stellt den eigentlichen Chat-Server dar.
  Nachdem er gestartet wurde, horcht der Server an einem bestimmten Port
  auf Verbindungswünsche von Clients.
  Sowie sich ein Client an diesem Port meldet, startet der Server einen ClientSer
