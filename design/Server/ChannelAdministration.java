@@ -3,13 +3,13 @@ package Server;
 import java.util.Vector;
 import java.util.Enumeration;
 
-/** Eine Instanz dieser Klasse stellt wichtige Methoden zur Channel-Administration
+/** Stellt wichtige Methoden zur Administration der Channel
   * zur Verfügung.
   * So können unter anderem Channel hinzugefügt, bearbeitet und
   * gelöscht werden.
   */
 class ChannelAdministration {
-	/** Gibt eine Aufzählung der existierenden Channel zurück */
+	/** Gibt eine Aufzählung der existierenden Channel zurück. */
     public Enumeration getChannelEnum() {
         return this.channelList.elements();
     }
@@ -53,7 +53,7 @@ class ChannelAdministration {
     /** 
      * Gibt den Channel mit dem angegebenen Namen zurück,
      * falls er existiert. Ansonsten wird null zurückgegeben. 
-     * benutzt getChannelEnum()
+     * Benutzt getChannelEnum().
      * @param name der Name des Channels, dessen Objekt erwartet wird
      */    
     public Channel getFromChannelListByName(String name) {
@@ -70,7 +70,7 @@ class ChannelAdministration {
 
     /** 
      * Entfernt einen Channel.
-     * Benachrichtigt den Betroffenen Channel mittels Channel.removeYou()
+     * Benachrichtigt den betroffenen Channel mittels Channel.removeYou().
      * @param paramChannel das Channelobjekt, das gelöscht werden soll
      */
     public synchronized void removeFromChannelList(Channel paramChannel) {
@@ -80,7 +80,7 @@ class ChannelAdministration {
     }
 
     /** 
-     * Fügt einen Channel hinzu, sofern er noch nicht existiert 
+     * Fügt einen Channel hinzu, sofern er noch nicht existiert.
      * @param paramChannel das Channelobjekt, das hinzugefügt werden soll
      */
     public  synchronized void addToChannelList(Channel paramChannel) {
@@ -90,12 +90,11 @@ class ChannelAdministration {
     }
 
     /**
-     * Editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem neuen Channelobjekt
-     * benutzt Channel.setName(),setAllowedForGuest() und setAllowedUserList()
+     * Editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem neuen Channelobjekt.
+     * Benutzt Channel.setName(),setAllowedForGuest() und setAllowedUserList().
      * @param name Der Name des Channels, der verändert werden soll
      * @param newChannel neues Channelobjekt, das die neuen Daten des Channels enthält
      */
-
     public  synchronized void editChannel(String oldName, Channel newChannel) {
         Channel tmpChannel = this.getFromChannelListByName(oldName);
         if (tmpChannel != null) {
@@ -107,8 +106,8 @@ class ChannelAdministration {
 
 
 	/**
-	 * liefert eine Aufzählung der Channel, die für Gäste freigegeben sind
-	 * benutzt getChannelEnum() und channel.isAllowedForGuests()
+	 * Liefert eine Aufzählung der Channel, die für Gäste freigegeben sind.
+	 * Benutzt getChannelEnum() und channel.isAllowedForGuests().
 	 */
     public Enumeration getFreeForGuestEnum() {
         Vector tmpList = new Vector();
@@ -125,6 +124,7 @@ class ChannelAdministration {
 
 
     /**
+     * Liste der verfügbaren Channel.
      * @link aggregation
      *     @associates <{Channel}>
      * @clientCardinality 1
@@ -134,13 +134,14 @@ class ChannelAdministration {
 
 
     /**
+     * "Datenbank", in der die Channel-Daten gespeichert sind.
      * @supplierCardinality 1
      * @clientCardinality 1
      */
     private DataBaseIO dataBaseIO;
 
 
-    /**setzt dataBaseIO, benutzt DataBaseIO.setChannelAdministration*/
+    /**Setzt dataBaseIO, benutzt DataBaseIO.setChannelAdministration.*/
     public void setDataBaseIO(DataBaseIO paramDataBaseIO) {
         if (this.dataBaseIO != paramDataBaseIO) {
             if (this.dataBaseIO != null) {

@@ -4,7 +4,7 @@ import java.util.Vector;
 import java.util.Enumeration;
 
 /**
- * Ein Channeldatensatz: Eine Instanz dieser Klasse kann wichtige Channeldaten wie z.B.
+ * Ein Channeldatensatz: Eine Instanz dieser Klasse kann wichtige Channeldaten wie beispielsweise
  * berechtigte User oder im Channel befindliche User speichern.
  * Außerdem stehen Methoden zur Verfügung, mit denen Listen der berechtigten
  * bzw. im Raum befindlichen User abgefragt und übergeben werden können.
@@ -12,7 +12,7 @@ import java.util.Enumeration;
  * wieder entfernt werden, wenn sie den Channel betreten bzw. verlassen.
  */
 class Channel {
-    /** Konstruktur, der die entsprechenden Attribute setzt */
+    /** Konstruktur, der die entsprechenden Attribute setzt. */
     public Channel(String paramName, boolean paramAllowedForGuests) {
         this.name = paramName;
         this.allowedForGuest = paramAllowedForGuests;
@@ -25,7 +25,7 @@ class Channel {
 
     /**
      *Setzt den Namen des Channels.
-     *Ruft informCurrentUsers() auf
+     *Ruft informCurrentUsers() auf.
      */
     public synchronized void setName(String paramName) {
         if(this.name!=paramName){
@@ -39,7 +39,7 @@ class Channel {
         return allowedForGuest;
     }
 
-    /** Setzt, ob Gäste den Channel betreten dürfen
+    /** Setzt, ob Gäste den Channel betreten dürfen.
       * Benachrichtig ggf. betroffene User mittels user.isGuest() und user.removeFromAllowedChannelList(this) */
     public void setAllowedForGuest(boolean b) {
         boolean old = this.isAllowedForGuest();
@@ -59,7 +59,7 @@ class Channel {
         }
     }
 
-    /** Die Namensliste als Vector von Strings der berechtigten Benutzer wird zurückgegeben Benutzt getAllowedUserEnum() und User.getName() */
+    /** Die Namensliste als Vector von Strings der berechtigten Benutzer wird zurückgegeben Benutzt getAllowedUserEnum() und User.getName(). */
     public Vector getAllowedUserNames() {
         Vector tmpVector = new Vector();
         Enumeration enum = this.getAllowedUserEnum();
@@ -69,7 +69,7 @@ class Channel {
         return tmpVector;
     }
 
-    /** Gibt eine Aufzählung der aktuellen Benutzerobjekte im Channel zurück */
+    /** Gibt eine Aufzählung der aktuellen Benutzerobjekte im Channel zurück. */
     public Enumeration getAllowedUserEnum() {
         return this.allowedUserList.elements();
     }
@@ -124,7 +124,7 @@ class Channel {
         }
     }
 
-    /** Eine Namensliste als Vector von Strings der aktuellen Benutzer wird zurückgegeben Benutzt getCurrentUserEnum() und User.getName() */
+    /** Eine Namensliste als Vector von Strings der aktuellen Benutzer wird zurückgegeben. Benutzt getCurrentUserEnum() und User.getName() */
     public Vector getCurrentUserNames() {
         Vector tmpVector = new Vector();
         Enumeration enum = this.getCurrentUserEnum();
@@ -140,7 +140,7 @@ class Channel {
     }
 
     /**
-     * Setzt CurrentUserList auf die in enumCurrentUser übergebenen Werte
+     * Setzt CurrentUserList auf die in enumCurrentUser übergebenen Werte.
      * Benutzt addToCurrentUserList() und removeFromCurrentUserList().
      */
     public  synchronized void setCurrentUserList(Enumeration enumCurrentUser) {
@@ -195,7 +195,7 @@ class Channel {
         this.setAllowedUserList(null);
     }
 
-    /** for debugging */
+    /** Dient dem debugging. */
     public String toString() {
         String tmpString = "Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user:";
         Enumeration enum = this.getAllowedUserEnum();
@@ -209,7 +209,7 @@ class Channel {
      * Informiert die Clients der aktuellen Benutzer im Channel
      * über Veränderungen im Channel mittels getCurrentUserEnum(),
      * User.getClientServant() und
-     * ClientServant.sendCurrentChannelData();
+     * ClientServant.sendCurrentChannelData().
      */
     public synchronized void informCurrentUsers(){
             Enumeration enum = this.getCurrentUserEnum();
@@ -225,10 +225,10 @@ class Channel {
 
     }
 
-    /**Der Name des Channels*/
+    /**Der Name des Channels.*/
     private String name=new String();
 
-    /** erlaubt-für-Gäste-Flag */
+    /** "Erlaubt-für-Gäste"-Flag. */
     private boolean allowedForGuest = false;
 
     /**

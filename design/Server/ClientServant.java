@@ -12,28 +12,28 @@ import java.util.Enumeration;
  * noch um diesen Client kümmert und seine Anfragen bearbeitet. In dieser Klasse steckt die meiste Funktionalität des Servers.
  */
 public class ClientServant implements Util.DownlinkOwner {
-    /** Standard-Konstruktor, notwendig, da der AdminClientServant von dieser Klasse erbt Wird sonst NICHT benutzt. */
+    /** Standard-Konstruktor, notwendig, da der AdminClientServant von dieser Klasse erbt. Wird sonst <em>nicht</em> benutzt. */
     public ClientServant() { }
 
-    /** Konstruktor, der die entsprechenden Attribute setzt. Benutzt setServer(paramServer) */
+    /** Konstruktor, der die entsprechenden Attribute setzt. Benutzt setServer(paramServer). */
     public ClientServant(Socket paramSocket, Server paramServer, UserAdministration paramUserAdministration) {
         this.socket = paramSocket;
         this.setServer(paramServer);
         this.userAdministration = paramUserAdministration;
     }
 
-    /** Gibt den aktuellen aliveStamp - Wert zurück */
+    /** Gibt den aktuellen aliveStamp-Wert zurück. */
     public final long getAliveStamp() {
         return this.aliveStamp;
     }
 
-    /** Setzt aliveStamp auf die aktuelle Zeit. Benutzt java.lang.System.currentTimeMillis(); */
+    /** Setzt aliveStamp auf die aktuelle Zeit. Benutzt java.lang.System.currentTimeMillis(). */
     public final synchronized void setAliveStamp() {
         this.aliveStamp = java.lang.System.currentTimeMillis();
         System.out.println("timestamp set to :" + aliveStamp);
     }
 
-    /** Setzt downlink, benachrichtigt die betroffenen Downlinkobjekte mittels setDownlinkOwner() */
+    /** Setzt downlink, benachrichtigt die betroffenen Downlinkobjekte mittels setDownlinkOwner(). */
     public final synchronized void setDownlink(Downlink paramDownlink) {
         if (this.downlink != paramDownlink) {
             if (this.downlink != null) {
@@ -49,15 +49,17 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Siehe auch interface DownlinkOwner: wird vom Downlink aufgerufen, falls beim Empfang von Nachrichten ein
-     * Fehler auftritt, enthält Fehlerbehandlung FIXME: Sinnvolle Möglichkeiten außer stopClientServant() ?
+     * Wird vom Downlink aufgerufen, falls beim Empfang von Nachrichten ein
+     * Fehler auftritt, enthält Fehlerbehandlung.
+     * @see Utils.DownlinkOwner
      */
+     // FIXME: Sinnvolle Möglichkeiten außer stopClientServant() ?
     public final synchronized void downlinkError() {
         System.out.println("downlink error");
         this.stopClientServant();
     }
 
-    /** Setzt user, benutzt user.setClientServant() - setUser(null) bewirkt ein stopClientServant() */
+    /** Setzt user, benutzt user.setClientServant(). setUser(null) bewirkt ein stopClientServant(). */
     public final synchronized void setUser(User paramUser) {
         if (this.user != paramUser) {
             if (this.user != null) {
@@ -77,9 +79,10 @@ public class ClientServant implements Util.DownlinkOwner {
 
     /**
      * Startet den ClientServant, danach ist er betriebsbereit und kann die Anfragen seines Clients bearbeiten.
-     * Erzeugt einen neuen Uplink und Downlink. Benutzt setDownlink(), uplink.startUplink() und downlink.startDownlink()
-     * fängt Fehler aus startUplink() und startDownlink() ab FIXME: stopClientServant() ?
+     * Erzeugt einen neuen Uplink und Downlink. Benutzt setDownlink(), uplink.startUplink() und downlink.startDownlink().
+     * Fängt Fehler aus startUplink() und startDownlink() ab.
      */
+     // FIXME: stopClientServant() ?
     public final synchronized void startClientServant() {
         this.uplink = new Uplink(this.socket);
         this.setDownlink(
@@ -96,8 +99,8 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Stoppt den ClientServant. benutzt setDownlink(null) uplink.stopUplink(), setServer(null) und setUser(null)
-     * sendet ein stopClientCommand() an den Client
+     * Stoppt den ClientServant. Benutzt setDownlink(null) uplink.stopUplink(), setServer(null) und setUser(null).
+     * Sendet ein stopClientCommand() an den Client.
      */
     public final synchronized void stopClientServant() {
         this.setDownlink(null);
@@ -113,7 +116,7 @@ public class ClientServant implements Util.DownlinkOwner {
         System.out.println("ClientServant stopped");
     }
 
-    /** Führt den empfangenen Befehl einfach mittels msg.execute(this) aus. Benutzt setAliveStamp() */
+    /** Führt den empfangenen Befehl einfach mittels msg.execute(this) aus. Benutzt setAliveStamp(). */
     public final synchronized void processMsg(Command msg) {
         if (msg != null) {
             msg.execute(this);
@@ -123,8 +126,9 @@ public class ClientServant implements Util.DownlinkOwner {
 
     /**
      * Sendet das angegebene CommandObjekt über den Uplink. Benutzt uplink.sendMsg()
-     * bei einem Fehler: Fehlerbehandlung FIXME: stopClientServant() ?
+     * Bei einem Fehler: Fehlerbehandlung.
      */
+     // FIXME: stopClientServant() ?
     public final synchronized void sendCommand(Command paramCommand) {
         try {
             if (this.uplink != null) {
@@ -140,7 +144,7 @@ public class ClientServant implements Util.DownlinkOwner {
     /**
      * Meldet den Benutzer mit Namen name und mit Passwort password beim System an
      * Benutzt userAdministration.loginUser() um das Userobjekt zu holen und setUser() um es zu setzen.
-     * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen -> clientServant beendet sich
+     * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen, anschließend beendet sich clientServant.
      * Falls der User Admin-Rechte hat, so wird becomeAdminClient() aufgerufen.
      */
     public final synchronized void loginUser(String name, String password) {
@@ -161,7 +165,7 @@ public class ClientServant implements Util.DownlinkOwner {
 
     /**
      * Meldet einen Gast beim System an. Benutzt userAdministration.loginGuest() und setUser()
-     * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen -> clientServant beendet sich
+     * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen anschließend beendet sich clientServant.
      */
     public final synchronized void loginAsGuest(String name) {
         User tmpUser = this.userAdministration.loginGuest(name);
@@ -178,9 +182,9 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Wenn der angemeldete Benutzer Administratorrechte hat, dann wird aus dem ClientServant automatisch ein AdminClientServant
-     * mit erweiterter Funktionalität. Benutzt den AdminClientServant - Konstruktor
-     * Setzt uplink=null und ruft dann this.stopClientServant() auf
+     * Wenn der angemeldete Benutzer Admin-Rechte hat, dann wird aus dem ClientServant automatisch ein AdminClientServant
+     * mit erweiterter Funktionalität. Benutzt den AdminClientServant-Konstruktor
+     * Setzt uplink=null und ruft dann this.stopClientServant() auf.
      */
     public final synchronized void becomeAdminClientServant() {
         System.out.println("becoming AdminClientServant");
@@ -215,8 +219,8 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Lässt den User den Channel verlassen. benutzt user.setCurrentChannel(null)
-     * Falls user nicht existent, sendet LoginErrorCommand()
+     * Lässt den User den Channel verlassen. Benutzt user.setCurrentChannel(null)
+     * Falls user nicht existent, wird LoginErrorCommand() gesendet.
      */
     public final synchronized void leaveChannel() {
         if (this.user != null) {
@@ -229,7 +233,7 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet eine Nachricht des Users an alle anderen User im Channel. sendet ggf. joinChannelError(),loginErrorCommand()
+     * Sendet eine Nachricht des Users an alle anderen User im Channel. Sendet ggf. joinChannelError(),loginErrorCommand()
      * Benutzt user.getCurrentChannel() und Channel.getCurrentUserEnum(), getClientServant()
      * um bei den verantwortlichen ClientServants ein sendMsgFromChannel() aufzurufen.
      */
@@ -255,7 +259,7 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet eine Nachricht, die in den besuchten Channel gesendet wurde, an den Client. sendet SendMsgFromChannelCommand()
+     * Sendet eine Nachricht, die in den besuchten Channel gesendet wurde, an den Client (mit einem SendMsgFromChannelCommand).
      * @param fromName Name des Absenders
      * @param msg Nachricht
      */
@@ -265,7 +269,8 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet eine private Nachricht eines anderen Users an den Client. sendet SendMsgFromUserCommand()
+     * Sendet eine private Nachricht eines anderen Users an den Client. 
+     * Sendet ein SendMsgFromUserCommand.
      * @param fromName Name des Absenders
      * @param msg Nachricht
      */
@@ -275,7 +280,7 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet eine private Nachricht des Users an einen anderen User. sendet ggf. joinChannelErrorCommand, loginErrorCommand()
+     * Sendet eine private Nachricht des Users an einen anderen User. Sendet ggf. joinChannelErrorCommand, loginErrorCommand()
      * Benutzt user.getCurrentChannel() und Channel.getCurrentUserEnum(), getClientServant()
      * um bei den verantwortlichen ClientServants ein sendMsgFromChannel() aufzurufen.
      */
@@ -303,8 +308,8 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet die Daten des betretenen Channel an den Client. Sendet SetCurrentChannelDataCommand
-     * benutzt getCurrentChannel().getName() und getCurrentChannel().getCurrentUserNames()
+     * Sendet die Daten des betretenen Channel an den Client. Sendet ein SetCurrentChannelDataCommand.
+     * Benutzt getCurrentChannel().getName() und getCurrentChannel().getCurrentUserNames().
      */
     public final synchronized void sendCurrentChannelData() {
         this.sendCommand(
@@ -313,8 +318,8 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
-     * Sendet die Daten des Users an den Client. Sendet SetCurrentUserDataCommand
-     * Benutzt user.getName() und user.getAllowedChannelNames()
+     * Sendet die Daten des Users an den Client. Sendet ein SetCurrentUserDataCommand.
+     * Benutzt user.getName() und user.getAllowedChannelNames().
      */
     public final synchronized void sendCurrentUserData() {
         this.sendCommand(
@@ -322,6 +327,7 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /**
+     * Der Uplink, über ihn werden Nachrichten gesendet.
      * @link aggregationByValue
      * @clientCardinality 1
      * @supplierCardinality 1
@@ -329,6 +335,7 @@ public class ClientServant implements Util.DownlinkOwner {
     protected Util.Uplink uplink;
 
     /**
+     * Der Downlink, über ihn werden Nachrichten empfangen.
      * @link aggregationByValue
      * @clientCardinality 1
      * @supplierCardinality 1
@@ -336,13 +343,14 @@ public class ClientServant implements Util.DownlinkOwner {
     protected Util.Downlink downlink;
 
     /**
+     * Die Benutzerverwaltung.
      * @clientCardinality 0..
      * @supplierCardinality 1
      */
     protected UserAdministration userAdministration;
 
     /**
-     * der Benutzer der Clientapplikation
+     * Der Benutzer der Clientapplikation.
      * @clientCardinality 0..1
      * @supplierCardinality 1
      */
@@ -353,13 +361,14 @@ public class ClientServant implements Util.DownlinkOwner {
     protected long aliveStamp = java.lang.System.currentTimeMillis();
 
     /**
+     * Der Server.
      * @clientCardinality 0..
      * @supplierCardinality 1
      */
     protected Server server;
 
     /**
-     * setServer setzt server und benachrichtigt das betroffene Serverobjekt mittels removeFromClientServantList() und
+     * Setzt server und benachrichtigt das betroffene Serverobjekt mittels removeFromClientServantList() und
      * addToClientServantList. setServer(null) bewirkt stopClientServant()
      */
     public final synchronized void setServer(Server paramServer) {
