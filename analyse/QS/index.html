@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+  <title>Qualitätssicherung (Analayse-Phase)</title>
+</head>
+<body bgcolor="white" text="black">
+<h1>Qualitätssicherung (Analyse-Phase)</h1>
+<p>Hier wird die Qualität des in der Analyse-Phase enstandenen
+UML-Entwurfs bewertet. Dabei gefundene Probleme sollen in der nächsten
+Phase behoben werden.</p>
+
+<h2>Messung mit CCCC</h2>
+<p>Der Quellcode des UML-Entwurfs wurde mit
+<a href="http://cccc.sourceforge.net">CCCC</a> gemessen. Dieses Werkzeug erzeugt
+ein nicht allzu umfangreiches <a href="cccc/cccc.html">Messergebnis</a>, das
+dennoch ausführlich genug ist, um grobe Fehler im Entwurf aufzudecken.</p>
+
+<h3>Informationsfluss zu komplex</h3>
+<p>Es gibt dem Messebericht zu Folge ein
+<a href="cccc/cccc.html#structsum">Problem mit dem Informationsfluss</a>
+(Information Flow) in einigen Klassen. Dies meint konkret, dass jede dieser Klassen
+mit zu vielen anderen Klassen kommuniziert (sprich deren Methoden aufruft).</p>
+
+<p>Betroffene Klassen: ClientServant, User, UserAdministration,
+ChannelAdministration, Server</p>
+
+<h3>Kapselung ungenügend</h3>
+<p>Ein weiteres Problem ist die <a href="cccc/cccc.html#oodesign">zu enge
+Kopplung</a> zwischen einigen Klassen (CBO - Coupling Between Objects). Ein
+hoher CBO-Wert deutet an, dass die Klassen nicht gut genug gekapselt sind, was
+u.a. ihre Wiederverwendung erschwert.</p>
+
+<p>Betroffene Klassen: ClientServant, UserAdministration, User, Server,
+ChannelAdministration</p>
+
+<h3>Lösung</h3>
+<p>Die Probleme des zu komplexen Informationsflusses und der
+ungenügenden Kapselung sind vermutlich auf die gleiche Ursache zurückzuführen.
+Wenn die betroffenen Klassen (es sind bei beiden Problemen die selben) besser
+gekapselt werden, werden vermutlich beide Probleme gelöst. Dies sollte am Anfang 
+der nächsten Phase erledigt werden.</p>
+
+
+<p><i>Version 1.0 von <a href="mailto:m.knoerr@tu-bs.de">Malte Knörr</a></i></p>
+</body>
+</html>
