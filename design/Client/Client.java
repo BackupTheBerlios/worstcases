@@ -6,7 +6,14 @@ import Util.*;
 import Util.Commands.*;
 import Util.Debug.Debug;
 
-/** Die Clientapplikation */
+/** 
+ * Die Klasse Client stellt dem Benutzer alle nötigen Methoden zur 
+ * Verfügung, um an einer Virtuellen Konferenz, also einem Chat teilnehmen 
+ * zu können. Der Benutzer bedient den Client nicht direkt, sondern über 
+ * ein GUI. Der Client
+ * leitet alle Nachrichten und Aktionen des Benutzers an seinen
+ * ClientServant weiter, und verarbeitet dessen Antworten.
+ */
 public class Client implements Util.DownlinkOwner {
     /**
      * Betritt den angegebenen Channel. Das entpechende Command mit dem Channelnamen wid an den ClientSevant gesendet und
@@ -28,12 +35,11 @@ public class Client implements Util.DownlinkOwner {
     public synchronized final  void joinChannelError() {
     }
 
-    /**
-     * Dient dazu, die Verbindung des Clients zum Server zu trennen. Dazu
-     * werden die Referenzen auf das Uplink-, bzw. Downlinkobjekt ge-
-     * trennt und eine entsprechende Meldung wird auf dem GUI ausgegeben.
-     * Benutzt setDownlink(null) und uplink.stopUplink()
-     */
+
+    /** Trennt die Verbindung des Clients zum Server. Dazu
+      * werden die Referenzen auf das Uplink- bzw. Downlinkobjekt
+      * entfernt und eine entsprechende Meldung auf dem GUI ausgegeben.
+      */
     public  synchronized final void stopClient() {
       this.setDownlink(null);
       if(uplink!=null){
@@ -44,13 +50,13 @@ public class Client implements Util.DownlinkOwner {
 
     }
 
-    /**Der Name des Benutzers des Clients*/
+    /**Der Name des Benutzers des Clients.*/
     String currentUserName;
 
-    /**Namensliste der Channels, die der Benutzer betreten darf*/
+    /**Namensliste der Channels, die der Benutzer betreten darf.*/
     Vector currentAllowedChannelNames;
 
-    /**Der Name des Channels, der momentan betreten wurde*/
+    /**Der Name des Channels, der momentan betreten wurde.*/
     String currentChannelName;
 
 
@@ -131,7 +137,7 @@ public class Client implements Util.DownlinkOwner {
 
         }
 
-    /** meldet den Benutzer an. Name und Passwort werden per Methode sendCommand an den ClientServant gesendet.
+    /** Meldet den Benutzer an. Name und Passwort werden per Methode sendCommand an den ClientServant gesendet.
       * Sendet LoginCommand().
       */
     public synchronized final void login(String name, String password) {
@@ -139,7 +145,7 @@ public class Client implements Util.DownlinkOwner {
             new LoginCommand(name, password));
     }
 
-    /** meldet einen Gast an. Die Methode funktioniert wie die normale Methode login, jedoch wird kein Passwort erwartet.
+    /** Meldet einen Gast an. Die Methode funktioniert wie die normale Methode login, jedoch wird kein Passwort erwartet.
       * Sendet LoginGuestCommand().
       */
     public  synchronized final void loginAsGuest(String name) {
@@ -148,7 +154,7 @@ public class Client implements Util.DownlinkOwner {
             new LoginGuestCommand(name));
     }
 
-    /** meldet den Benutzer ab. Die Methode sorgt dafür, das der Benutzer zum Loginscreen zuückgelangt.
+    /** Meldet den Benutzer ab. Die Methode sorgt dafür, das der Benutzer zum Loginscreen zuückgelangt.
       * Sendet ein LogoutCommand()
       */
     public synchronized final void logout() {
@@ -158,7 +164,7 @@ public class Client implements Util.DownlinkOwner {
 
 
     /**
-     * sendet eine Nachricht an einen einzigen Benutzer. Die Nachricht, sowie
+     * Sendet eine Nachricht an einen einzigen Benutzer. Die Nachricht, sowie
      * der Name des Empfängrs (name) wird an die Methode übergeben, die sie dann via Uplink an den ClientServant sendet.
      * Sendet sendMsgToUserCommand.
      */
@@ -223,6 +229,7 @@ public class Client implements Util.DownlinkOwner {
     }
 
     /**
+     * Der Uplink, über ihn werden Nachrichten gesendet.
      * @directed
      * @clientCardinality 1
      * @supplierCardinality 1
@@ -230,16 +237,17 @@ public class Client implements Util.DownlinkOwner {
     protected Util.Uplink uplink;
 
     /**
+     * Der Downlink, über ihn werden Nachrichten empfangen.
      * @directed
      * @supplierCardinality 1
      * @clientCardinality 1
      */
     protected Util.Downlink downlink;
 
-    /** der Port des Servers */
+    /** Der Port des Servers. */
     protected int SERVER_PORT = 1500;
 
-    /** die IP - Adresse des Servers */
+    /** Die IP-Adresse des Servers. */
     protected String SERVER_IP = "localhost";
 
 
@@ -249,6 +257,9 @@ public class Client implements Util.DownlinkOwner {
      */
     public String channelMsgBuffer = new String();
 
+    /**
+     * Der Socket, über den die Verbindung zum Server aufgenommen wird.
+     */
     protected Socket socket;
 
     /** Vector von Strings, repräsentiert die aktuellen Benutzer in einem Wird im Client Window eingebunden. */
