@@ -5,12 +5,51 @@ import java.util.Enumeration;
 
 /** Eine Instanz dieser Klasse stellt wichtige Methoden zur Channel-Administration
   * zur Verfügung.
-  * So können unter anderem Channel angezeigt, hinzugefügt, bearbeitet und 
+  * So können unter anderem Channel hinzugefügt, bearbeitet und
   * gelöscht werden.
   */
 class ChannelAdministration {
-    
-    
+	/** Gibt eine Aufzählung der existierenden Channel zurück */
+    public Enumeration getChannelEnum() {
+        return this.channelList.elements();
+    }
+
+	/** 
+	 * Setzt ChannelList auf die in channelEnum übergebenen Werte.  
+ 	 * Benutzt addToChannelList() und removeFromChannelList().
+ 	 */ 
+    public  synchronized void setChannelList(Enumeration channelEnum) {
+        Vector tmpList = new Vector();
+        Channel tmpChannel;
+        while (channelEnum.hasMoreElements()) {
+            tmpChannel = (Channel)channelEnum.nextElement();
+            tmpList.addElement(tmpChannel);
+            this.addToChannelList(tmpChannel);
+        }
+        Enumeration enum = this.getChannelEnum();
+        while (enum.hasMoreElements()) {
+            tmpChannel = (Channel)enum.nextElement();
+            if (!tmpList.contains(tmpChannel)) {
+                this.removeFromChannelList(tmpChannel);
+            }
+        }
+    }
+
+	/** 
+	 * Liefert eine Aufzählung der existierenden Channel.
+	 * Benutzt getChannelEnum().
+	 */
+    public Vector getChannelNames() {
+ 		Vector tmpVector = new Vector();
+   		Enumeration enum = this.getChannelEnum();
+   		Channel tmpChannel;
+    	while (enum.hasMoreElements()) {
+       		tmpChannel = (Channel)enum.nextElement();
+        	tmpVector.addElement(tmpChannel.getName());
+      	}
+      	return tmpVector;
+    }
+
     /** 
      * Gibt den Channel mit dem angegebenen Namen zurück,
      * falls er existiert. Ansonsten wird null zurückgegeben. 
@@ -29,77 +68,35 @@ class ChannelAdministration {
         return null;
     }
 
-
-	/** 
-	 * Liefert eine Aufzählung der existierenden Channel.
-	 * Benutzt getChannelEnum()
-	 */
-    public Vector getChannelNames() {
- 		Vector tmpVector = new Vector();
-   		Enumeration enum = this.getChannelEnum();
-   		Channel tmpChannel;
-    	while (enum.hasMoreElements()) {
-       		tmpChannel = (Channel)enum.nextElement();
-        	tmpVector.addElement(tmpChannel.getName());
-      	}
-      	return tmpVector;
-    }
-
-
     /** 
-     * Entfernt einen Channel. 
+     * Entfernt einen Channel.
+     * Benachrichtigt den Betroffenen Channel mittels Channel.removeYou()
      * @param paramChannel das Channelobjekt, das gelöscht werden soll
      */
-    public void removeFromChannelList(Channel paramChannel) {
+    public synchronized void removeFromChannelList(Channel paramChannel) {
         if (this.channelList.removeElement(paramChannel)) {
             paramChannel.removeYou();
         }
     }
 
-
-	/** 
-	 * Setzt ChannelList auf die in channelEnum übergebenen Werte.  
- 	 * Benutzt addToChannelList() und removeFromChannelList()
- 	 */ 
-    public void setChannelList(Enumeration channelEnum) {
-        Vector tmpList = new Vector();
-        Channel tmpChannel;
-        while (channelEnum.hasMoreElements()) {
-            tmpChannel = (Channel)channelEnum.nextElement();
-            tmpList.addElement(tmpChannel);
-            this.addToChannelList(tmpChannel);
-        }
-        Enumeration enum = this.getChannelEnum();
-        while (enum.hasMoreElements()) {
-            tmpChannel = (Channel)enum.nextElement();
-            if (!tmpList.contains(tmpChannel)) {
-                this.removeFromChannelList(tmpChannel);
-            }
-        }
-    }
-
-
     /** 
      * Fügt einen Channel hinzu, sofern er noch nicht existiert 
      * @param paramChannel das Channelobjekt, das hinzugefügt werden soll
      */
-    public void addToChannelList(Channel paramChannel) {
+    public  synchronized void addToChannelList(Channel paramChannel) {
         if (!this.channelList.contains(paramChannel)) {
             this.channelList.addElement(paramChannel);
         }
     }
 
-	/** Gibt eine Aufzählung der existierenden Channel zurück */
-    public Enumeration getChannelEnum() {
-        return this.channelList.elements();
-    }
-
     /**
-     * Editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem String
+     * Editiert den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem neuen Channelobjekt
+     * benutzt Channel.setName(),setAllowedForGuest() und setAllowedUserList()
      * @param name Der Name des Channels, der verändert werden soll
-     * @param newChannelData String, der die neuen Daten des Channels enthält
+     * @param newChannel neues Channelobjekt, das die neuen Daten des Channels enthält
      */
-    public void editChannel(String oldName, Channel newChannel) {
+
+    public  synchronized void editChannel(String oldName, Channel newChannel) {
         Channel tmpChannel = this.getFromChannelListByName(oldName);
         if (tmpChannel != null) {
             tmpChannel.setName(newChannel.getName());
@@ -111,7 +108,7 @@ class ChannelAdministration {
 
 	/**
 	 * liefert eine Aufzählung der Channel, die für Gäste freigegeben sind
-	 * benutzt getChannelEnum()
+	 * benutzt getChannelEnum() und channel.isAllowedForGuests()
 	 */
     public Enumeration getFreeForGuestEnum() {
         Vector tmpList = new Vector();
@@ -142,6 +139,8 @@ class ChannelAdministration {
      */
     private DataBaseIO dataBaseIO;
 
+
+    /**setzt dataBaseIO, benutzt DataBaseIO.setChannelAdministration*/
     public void setDataBaseIO(DataBaseIO paramDataBaseIO) {
         if (this.dataBaseIO != paramDataBaseIO) {
             if (this.dataBaseIO != null) {

@@ -10,22 +10,23 @@ import java.util.Enumeration;
  * bearbeitet und gelöscht werden. Außerdem gibt es Methoden, um sich alle oder einzelne 
  * User anzeigen zu lassen, sowie einige Methoden, welche die Counter-Attribute für die
  * angemeldeten User bzw. Gäste hoch/ runter zählen
- * Desweitern sind in dieser Klasse die jeweils maximalen Anzahlen für z.B. User oder 
+ * Desweitern sind in dieser Klasse die jeweils maximalen Anzahlen für User und
  * Gäste festgelegt. 
  */
 class UserAdministration {
 
-
+    /**Setzt channelAdministration.*/
     public UserAdministration(ChannelAdministration paramChannelAdministration) {
     	this.channelAdministration = paramChannelAdministration;
     }
 
     /**
      * Meldet einen Benutzer an.
+     * Prüft, ob numCurrentUser < maxUsers, läßt Administratoren immer ins System, sonst,
+     * falls maximale Anzahl erreicht, return null.
+     * Benutzt getFromUserListByName(), user.getPassword(), isLoggedIn() und setIsLogged()
      * @return den Benutzer, falls Authentifizierung klappt, sonst null
-     * prüft, ob numCurrentUser < maxUsers, läßt Administratoren immer ins System, sonst,
-     * falls maximale Anzahl erreicht, return null
-     */    
+     */
     public synchronized User loginUser(String name, String password) {
         User tmpUser = this.getFromUserListByName(name);
         if (tmpUser == null) {
@@ -38,7 +39,7 @@ class UserAdministration {
             		return null;
               	}
             	else {
-            		tmpUser.setLoggedIn(true);
+            		tmpUser.setIsLoggedIn(true);
             		return tmpUser;
            		}
             }
@@ -46,15 +47,32 @@ class UserAdministration {
         }
     }
 
-
-	/** Mittles dieser Methode kann ein User-Objekt bearbeitet werden */
-    public void editUser(String oldName,User newUser) {
+    /**
+     * Meldet einen Gast an und fügt ihn zur UserList hinzu,
+     * Mittels setAllowedChannelList() wird er zum Betreten der für Gäste freie
+     * Channels berechtigt.
+     * Legt ein neues Userobjekt an.
+     * Benutzt addToUserList und setIsLoggedIn().
+     * Prüft mittels getFromUserListByName, ob der gewünschte Gastname noch frei ist
+     * @return den Benutzer, falls Authentifizierung klappt, sonst null
+     */
+    public synchronized User loginGuest(String paramName) {
+        if ((this.getFromUserListByName(paramName) == null) && (this.numCurrentUsers < this.maxUsers)) {
+            User tmpUser = new User(paramName, "guest", true, false, this);
+            tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
+            tmpUser.setIsLoggedIn(true);
+            this.addToUserList(tmpUser);
+            return tmpUser;
+        }
+        else {
+            System.out.println("guestname " + paramName + " login failed");
+            return null;
+        }
     }
 
-    
     /** 
-     * Liefert eine Liste aller User.
-     * Benutzt getUserEnum()
+     * Liefert eine Namensliste aller User, die nicht Gäste sind.
+     * Benutzt getUserEnum().
      */
     public Vector getUserNames() {
         Vector tmpVector=new Vector();
@@ -69,39 +87,33 @@ class UserAdministration {
     	return tmpVector;
     }
 
+	/** Mittles dieser Methode kann ein User-Objekt bearbeitet werden.
+      * Setzt die Daten des Userobjektes mit dem Namen oldName
+      * auf die in newUser enthaltenen Daten mittels
+      * user.setName(),setPassword(),setIsAdmin(),setAllowedChannelList().
+      * Benutzt getFromUserListByName().
+      */
+    public synchronized void editUser(String oldName,User newUser) {
+      User tmpUser=this.getFromUserListByName(oldName);
+      if((tmpUser!=null) && (newUser!=null)){
+        tmpUser.setName(newUser.getName());
+        tmpUser.setPassword(newUser.getPassword());
+        tmpUser.setIsAdmin(newUser.isAdmin());
+        tmpUser.setAllowedChannelList(newUser.getAllowedChannelEnum());
 
-    /**
-     * Meldet einen Gast an und fügt ihn zur UserList hinzu,
-     * mittles setAllowedChannelList() wird er zum Betreten der für Gäste freie
-     * Channels berechtigt.
-     * @param guestSet die vom Client empfangenen Gastdaten
-     * @return den Benutzer, falls Authentifizierung klappt, sonst null
-     */
-    public synchronized User loginGuest(String paramName) {
-        if ((this.getFromUserListByName(paramName) == null) && (this.numCurrentUsers < this.maxUsers)) {
-            User tmpUser = new User(paramName, "guest", true, false, this);
-            tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
-            tmpUser.setLoggedIn(true);
-            this.addToUserList(tmpUser);
-            return tmpUser;
-        }
-        else {
-            System.out.println("guestname " + paramName + " login failed");
-            return null;
-        }
+      }
     }
 
-
-    /** Fügt einen Benutzer mittels setUserAdministration() zur UserList hinzu. */
-    public void addToUserList(User paramUser) {
+    /** Fügt einen Benutzer mittels user.setUserAdministration() zur UserList hinzu. */
+    public synchronized void addToUserList(User paramUser) {
         if (!this.userList.contains(paramUser)) {
             this.userList.addElement(paramUser);
             paramUser.setUserAdministration(this);
         }
     }
 
-    /** Entfernt einen Benutzer mittels setUserAdministration() aus der UserList. */
-    public void removeFromUserList(User paramUser) {
+    /** Entfernt einen Benutzer mittels user.setUserAdministration() aus der UserList. */
+    public synchronized  void removeFromUserList(User paramUser) {
         if (this.userList.removeElement(paramUser)) {
             paramUser.setUserAdministration(null);
         }
@@ -109,7 +121,7 @@ class UserAdministration {
 
     /** 
      * Gibt den Benutzer mit dem angegebenen Namen zurück. 
-     * Benutzt getUserEnum() 
+     * Benutzt getUserEnum(), user.getName()
      */
     public User getFromUserListByName(String name) {
         Enumeration enum = this.getUserEnum();
@@ -131,8 +143,8 @@ class UserAdministration {
     
 
     /** 
-     * Setzt die userList mittels userEnum
-	 * Benutzt addTOUserList() und removeFromUserList()
+     * Setzt userList auf die in userEnum enthaltenen Objekte von Typ User
+	 * Benutzt addToUserList() und removeFromUserList().
 	 */    
     public void setUserList(Enumeration userEnum) {
         Vector tmpUserList = new Vector();
@@ -153,6 +165,7 @@ class UserAdministration {
 
 
     /**
+     * Liste aller Benutzer im System.
      * @link aggregation
      *     @associates <{User}>
      * @clientCardinality 1
@@ -160,20 +173,26 @@ class UserAdministration {
      */
     private Vector userList=new Vector();
 
-    /** Anzahl der eingeloggten Benutzer(registrierte und Gäste) im System. */
+    /**
+     * @clientCardinality 1
+     * @supplierCardinality 1
+     */
+    private DataBaseIO dataBaseIO;
+    private ChannelAdministration channelAdministration;
+
+    /** Anzahl der eingeloggten Benutzer im System. */
     private int numCurrentUsers = 0;
 
     /** Maximale Anzahl von eingeloggten Benutzern im System. */
     private int maxUsers = 90;
 
-    /** Maxmimale Anzahl von eingeloggten Gästen im System*/
-    private int maxGuests = 10;
-
     /** Anzahl der Gäste im System*/
     private int numCurrentGuests=0;
 
+    /** Maxmimale Anzahl von eingeloggten Gästen im System*/
+    private int maxGuests = 10;
 
-    /** Erhöht den Zähler numCurrentUsers um 1 und gibt die aktuelleAnzahl aus */
+    /** Erhöht den Zähler numCurrentUsers um 1 */
     public synchronized void incNumCurrentUsers() {
         this.numCurrentUsers++;
         System.out.println("#User:"+this.numCurrentUsers);
@@ -181,32 +200,29 @@ class UserAdministration {
     }
 
 
-	/** Verkleinert den Zähler numCurrentUsers um 1 und gibt die aktuelleAnzahl aus */
+	/** Verkleinert den Zähler numCurrentUsers um 1*/
     public synchronized void decNumCurrentUsers() {
         this.numCurrentUsers--;
         System.out.println("#User:"+this.numCurrentUsers);
 
     }
 
-	/** Erhöht den Zähler numCurrentGuests um 1 und gibt die aktuelleAnzahl aus */
+	/** Erhöht den Zähler numCurrentGuests um 1*/
     public synchronized void incNumCurrentGuests() {
       this.numCurrentGuests++;
         System.out.println("#User:"+this.numCurrentGuests);
 	}
 
-	/** Verringert den Zähler numCurrentGuests um 1 und gibt die aktuelleAnzahl aus */
+	/** Verringert den Zähler numCurrentGuests um 1*/
     public synchronized void decNumCurrentGuests() {
       this.numCurrentGuests--;
         System.out.println("#User:"+this.numCurrentGuests);
 
     }
 
-    /**
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     */
-    private DataBaseIO dataBaseIO;
-
+    /**Setzt dataBaseIO und benachrichtigt das betroffene Objekt
+      * durch DataBaseIO.setUserAdministration
+      */
     public void setDataBaseIO(DataBaseIO paramDataBaseIO) {
         if (this.dataBaseIO != paramDataBaseIO) {
             if (this.dataBaseIO != null) {
@@ -220,6 +236,4 @@ class UserAdministration {
             }
         }
     }
-
-    private ChannelAdministration channelAdministration;
 }
