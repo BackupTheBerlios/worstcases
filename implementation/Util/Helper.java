@@ -26,7 +26,8 @@ public class Helper {
                 tmpString = tmpRow + "\n" + tmpString;
                 tmpRow = tmpToken;
             }
-        }
+				}
+				tmpString = tmpRow +"\n"+tmpString;
         return tmpString;
     }
 
