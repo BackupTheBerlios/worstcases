@@ -24,7 +24,7 @@ public class SetCurrentChannelDataCommand implements Command {
     /**ruft Client.setCurrentChannelData() auf*/
     public void execute(Object target) {
         if (target instanceof Client) {
-            ((Client)target).setChannelData(channelName,userNames);
+            ((Client)target).setCurrentChannelData(channelName,userNames);
         } // XXX: else Exception auslösen?
     }
 }

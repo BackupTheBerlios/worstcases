@@ -24,7 +24,7 @@ public class SetCurrentUserDataCommand implements Command {
     /**ruft Client.setCurrentUserData auf*/
     public void execute(Object target) {
         if (target instanceof Client) {
-            ((Client)target).setUserData(userName,channelNames);
+            ((Client)target).setCurrentUserData(userName,channelNames);
         } // XXX: else Exception auslösen?
     }
 }
