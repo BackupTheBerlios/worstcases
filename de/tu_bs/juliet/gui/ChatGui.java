@@ -20,13 +20,13 @@
    License along with this library; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-package de.tu_bs.de.juliet.gui;
+package de.tu_bs.juliet.gui;
 
 import java.util.Vector;
 import java.util.Enumeration;
 
-import de.tu_bs.de.juliet.client.AdminClient;
-import de.tu_bs.de.juliet.util.debug.Debug;
+import de.tu_bs.juliet.client.AdminClient;
+import de.tu_bs.juliet.util.debug.Debug;
 
 /**
  * Das GUI, mit dem der Benutzer chatten kann.
