@@ -69,7 +69,8 @@ vfill{}
 \layout Standard
 \added_space_top 0,3cm \added_space_bottom 0,3cm \align center \LyXTable
 multicol5
-5 3 0 0 -1 -1 -1 -1
+6 3 0 0 -1 -1 -1 -1
+1 1 0 0
 1 1 0 0
 1 1 0 0
 1 1 0 0
@@ -78,6 +79,9 @@ multicol5
 8 1 0 "" ""
 8 1 0 "" ""
 8 1 1 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
@@ -123,6 +127,12 @@ Fabian Rotte
 31.05.2001
 \newline 
 Andreas Büthe, Fabian Rotte
+\newline 
+1.1
+\newline 
+04.06.2001
+\newline 
+Malte Knörr
 \layout Standard
 
 
@@ -162,22 +172,22 @@ Virtuelle Konferenz
 \layout Standard
 
 Als einer der wichtigsten Fortschritte in dieser Phase mag das Protokoll
- gelten, das über 
+ gelten, das mit Hilfe des Design-Patterns 
 \begin_inset Quotes gld
 \end_inset 
 
-Command-Objekte
+Command
 \begin_inset Quotes grd
 \end_inset 
 
- konzipiert wurde.
+ realisiert wurde.
  
 \layout Standard
 
 Bei den durchgeführten Erweiterungen in allen Klassen und Methoden stellten
  sich einige kleinere Mängel heraus, so wurden fehlende Klassen und Methoden
- entsprechend ergänzt, z.B.
- die Klassen ClientServantWatchDog und Downlinkowner.
+ entsprechend ergänzt, wie z.B.
+ die Klassen ClientServantWatchDog und DownlinkOwner.
  Downlink und Uplink wurden in einem eigenen Package namens Util gekapselt,
  da sie sowohl vom ClientServant als auch vom Client verwendet werden.
 \layout Standard
@@ -245,7 +255,7 @@ flags 9
 
 \end_inset 
 
-Übersicht über die vorhandenen Pakete
+Übersicht über die vorhandenen Pakete.
 \end_float 
 \layout Subsection
 \pagebreak_top 
@@ -270,7 +280,7 @@ Sie enthalten die nötigen Methoden, die es dem Benutzer letztendlich ermöglichen
 \layout Standard
 
 Die im Entwurf noch zum Package Client zugehörigen Klassen Uplink und Downlink
- befinden sich jetzt im Package Util, und werden auch von ClientServants
+ befinden sich jetzt im Package Util und werden auch von ClientServants
  mitbenutzt.
  Sie stellen aber weiterhin dem Client die bekannte Funktionalität bereit.
 \begin_float fig 
@@ -292,26 +302,26 @@ flags 11
 
 \end_inset 
 
-Übersicht über das Package Client
+Übersicht über das Package Client.
 \end_float 
 \layout Subsection
 \pagebreak_top 
 Package Util
 \layout Standard
 
-Das neue Package Util enthält, wie in Abbildung\SpecialChar ~
+Das neue Package Util enthält, wie aus Abbildung\SpecialChar ~
 
 \begin_inset LatexCommand \ref{UtilOverview}
 
 \end_inset 
 
  ersichtlich, die altbekannten Klassen Downlink und Uplink sowie das Interface
- DownLinkOwner (und zwei Unterpakete Debug und Commands).
+ DownlinkOwner (und zwei Unterpakete Debug und Commands).
 \layout Standard
 
-Die Kommunikationsklassen Uplink und Downlink wurden hierdurch entkapselt
- und können somit von Client.Client, Client.AdminClient und Server.ClientServant
- gleichermaßen verwendet werden.
+Die im Entwurf noch redundanten Kommunikationsklassen Uplink und Downlink
+ wurden hier zusammengeführt und können somit von Client.Client, Client.AdminClien
+t und Server.ClientServant gleichermaßen verwendet werden.
 \begin_float fig 
 \layout Standard
 \align center 
@@ -331,7 +341,7 @@ flags 9
 
 \end_inset 
 
-Übersicht über das Package Util
+Übersicht über das Package Util.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -351,7 +361,7 @@ Abbildung\SpecialChar ~
 \layout Standard
 
 Die Kommunikation zwischen den Komponenten Server bzw.
- ClientServant und Client lehnt sich an das Design Pattern 
+ ClientServant und Client lehnt sich an das Design-Pattern 
 \begin_inset Quotes gld
 \end_inset 
 
@@ -398,7 +408,7 @@ flags 9
 
 \end_inset 
 
-Übersicht über das Package Util.Commands
+Übersicht über das Package Util.Commands.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -447,7 +457,7 @@ flags 11
 
 \end_inset 
 
-Überblick über das Package Server
+Überblick über das Package Server.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -483,7 +493,7 @@ flags 11
 
 \end_inset 
 
-Klassendiagramm aus Sicht von Server und ClientServant
+Klassendiagramm aus der Sicht von Server und ClientServant.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -519,7 +529,7 @@ flags 11
 
 \end_inset 
 
-Übersicht über die Klassen der Channel- und UserAdministration
+Übersicht über die Klassen der Channel- und UserAdministration.
 \end_float 
 \layout Section
 \pagebreak_top 
@@ -696,7 +706,7 @@ Abschnitt\SpecialChar ~
 Das Package Client
 \layout Standard
 
-Im folgenden Abschnitt werden die Klassen des Clientpaketes näher vorgestellt.
+Im folgenden Abschnitt werden die Klassen des Packages Client näher vorgestellt.
  
 \layout Subsubsection
 
@@ -1055,9 +1065,8 @@ list) Wird vom SetUserListCommand aufgerufen
 Das Package Util
 \layout Standard
 
-Im Package Util vereinigt finden sich die Kommunikationsklassen, die im
- Entwurf noch redundant jeweils im Client- und Server-Package vorhanden
- waren.
+Im Package Util befinden sich nun die Kommunikationsklassen, die im Entwurf
+ noch redundant jeweils im Client- und Server-Package vorhanden waren.
  Zusätzlich dazu erfordert diese Änderung einen DownlinkOwner.
 \layout Subsubsection
 
@@ -1140,7 +1149,7 @@ downlinkOwner
 
 private\SpecialChar ~
 int\SpecialChar ~
-LISTEN_DELAY Zeit zwischen zwei Listen()-Schleifendurchläufen
+LISTEN_DELAY Zeit zwischen zwei listen()-Schleifendurchläufen
  in Millisekunden.
 \layout Description
 
@@ -1200,7 +1209,7 @@ nkOwner(null) bewirkt stopDownlink().
 
 public\SpecialChar ~
 void\SpecialChar ~
-startDownlink() Öffnet den Input - Stream, danach ist der Downlink
+startDownlink() Öffnet den Input-Stream, danach ist der Downlink
  betriebsbereit.
  Ruft this.start() auf.
  Benutzt DownlinkOwner.downlinkError().
@@ -1256,6 +1265,20 @@ paramDownlink) Diese Methode wird vom Benutzer
 \layout Subsection
 
 Das Package Util.Commands
+\layout Standard
+
+Im Package Util.Commands ist das Protokoll spezifiziert, mit dem sich die
+ beteiligten Programme über das Netzwerk verständigen.
+ Dieser Austausch von Befehlen findet gemäß dem Design-Pattern 
+\begin_inset Quotes gld
+\end_inset 
+
+Command
+\begin_inset Quotes grd
+\end_inset 
+
+ statt, wobei hier als Besonderheit die Command-Objekte serialisiert werden,
+ um sie über das Netzwerk verschicken zu können.
 \layout Subsubsection
 
 Command
@@ -1263,6 +1286,7 @@ Command
 
 Diese Klasse bildet das Interface für alle Befehle, die beispielsweise zwischen
  Client und ClientServant ausgetauscht werden.
+ 
 \layout Paragraph
 
 Methoden
@@ -3872,7 +3896,7 @@ flags 11
 
 \end_inset 
 
-Vorgang des Sendens von Command-Objekten
+Vorgang des Sendens von Command-Objekten.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -3908,7 +3932,7 @@ flags 11
 
 \end_inset 
 
-Vorgang des Empfangens von Command-Objekten
+Vorgang des Empfangens von Command-Objekten.
 \end_float 
 \layout Subsection
 \pagebreak_top 
@@ -3929,7 +3953,7 @@ Das Sequenzdiagramm in Abbildung\SpecialChar ~
 \end_inset 
 
  zeigt, wie ein ClientServant auf Anfragen der Clientapplikation reagiert.
- In diesem speziellen Beispiel verarbeitet der ClientServant eine Loginanfrage.
+ In diesem speziellen Beispiel verarbeitet der ClientServant eine Login-Anfrage.
  Gegenüber dem themengleichen Diagramm im Entwurfsdokument wird hier das
  Detail des Designs deutlich.
 \layout Standard
@@ -3953,7 +3977,7 @@ flags 11
 
 \end_inset 
 
-Eine Benutzeranmeldung aus Sicht des ClientServants
+Eine Benutzeranmeldung aus Sicht des ClientServants.
 \end_float 
 \layout Subsubsection
 \pagebreak_top 
@@ -3991,7 +4015,7 @@ flags 11
 
 \end_inset 
 
-Nachrichtenverteilung durch den ClientServant
+Nachrichtenverteilung durch den ClientServant.
 \end_float 
 \layout Section
 \pagebreak_top 
@@ -4019,7 +4043,15 @@ Das Kollaborationsdiagramm in Abbildung\SpecialChar ~
 \layout Standard
 
 Ein AdminClientServant empfängt von seiner AdminClientapplikation den Aufruf,
- den Channel "foo" zu löschen.
+ den Channel 
+\begin_inset Quotes gld
+\end_inset 
+
+foo
+\begin_inset Quotes grd
+\end_inset 
+
+ zu löschen.
  Der AdminClientServant ruft daraufhin bei der Klasse ChannelAdministration
  die entsprechende Funktion auf.
  Die ChannelAdministration löscht den Channel mittels removeYou(), woraufhin
@@ -4086,7 +4118,7 @@ Channel löschen
 \begin_inset Quotes erd
 \end_inset 
 
- als Kollaborationsdiagramm
+ als Kollaborationsdiagramm.
 \end_float 
 \layout Section
 \pagebreak_top 

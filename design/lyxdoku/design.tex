@@ -35,7 +35,6 @@
 \usepackage{a4wide}
 \usepackage{babel}
 \usepackage{graphics}
-\usepackage{times}
 
 \makeatletter
 
@@ -89,6 +88,11 @@ Fabian Rotte\\
 31.05.2001&
 Andreas Büthe, Fabian Rotte\\
 \hline 
+\hline 
+1.1&
+04.06.2001&
+Malte Knörr\\
+\hline 
 \end{tabular}\par}
 \vspace{0,3cm}
 
@@ -105,11 +109,11 @@ verfeinert, es wurden dabei jedoch keine grundlegenden Änderungen an der Archite
 vorgenommen.
 
 Als einer der wichtigsten Fortschritte in dieser Phase mag das Protokoll gelten,
-das über {},,Command-Objekte{}`` konzipiert wurde. 
+das mit Hilfe des Design-Patterns {},,Command{}`` realisiert wurde. 
 
 Bei den durchgeführten Erweiterungen in allen Klassen und Methoden stellten
 sich einige kleinere Mängel heraus, so wurden fehlende Klassen und Methoden
-entsprechend ergänzt, z.B. die Klassen ClientServantWatchDog und Downlinkowner.
+entsprechend ergänzt, wie z.B. die Klassen ClientServantWatchDog und DownlinkOwner.
 Downlink und Uplink wurden in einem eigenen Package namens Util gekapselt, da
 sie sowohl vom ClientServant als auch vom Client verwendet werden.
 
@@ -144,7 +148,7 @@ Rollen übernehmen.
 {\par\centering \resizebox*{0,8\textwidth}{!}{\includegraphics{eps/packagesoverview.eps}} \par}
 
 
-\caption{\label{packageoverview}Übersicht über die vorhandenen Pakete}
+\caption{\label{packageoverview}Übersicht über die vorhandenen Pakete.}
 \end{figure}
 
 
@@ -161,13 +165,13 @@ den normalen Methoden der Klasse Client noch Methoden zur Verfügung, mit denen
 Benutzer- bzw. Channeldaten bearbeitet werden können.
 
 Die im Entwurf noch zum Package Client zugehörigen Klassen Uplink und Downlink
-befinden sich jetzt im Package Util, und werden auch von ClientServants mitbenutzt.
+befinden sich jetzt im Package Util und werden auch von ClientServants mitbenutzt.
 Sie stellen aber weiterhin dem Client die bekannte Funktionalität bereit.
 \begin{figure}[!hp]
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientpackagesoverview.eps}} \par}
 
 
-\caption{\label{ClientOverview}Übersicht über das Package Client}
+\caption{\label{ClientOverview}Übersicht über das Package Client.}
 \end{figure}
 
 
@@ -175,18 +179,18 @@ Sie stellen aber weiterhin dem Client die bekannte Funktionalität bereit.
 \newpage
 \subsection{Package Util}
 
-Das neue Package Util enthält, wie in Abbildung~\ref{UtilOverview} ersichtlich,
-die altbekannten Klassen Downlink und Uplink sowie das Interface DownLinkOwner
+Das neue Package Util enthält, wie aus Abbildung~\ref{UtilOverview} ersichtlich,
+die altbekannten Klassen Downlink und Uplink sowie das Interface DownlinkOwner
 (und zwei Unterpakete Debug und Commands).
 
-Die Kommunikationsklassen Uplink und Downlink wurden hierdurch entkapselt und
-können somit von Client.Client, Client.AdminClient und Server.ClientServant
-gleichermaßen verwendet werden.
+Die im Entwurf noch redundanten Kommunikationsklassen Uplink und Downlink wurden
+hier zusammengeführt und können somit von Client.Client, Client.AdminClient
+und Server.ClientServant gleichermaßen verwendet werden.
 \begin{figure}[!hp]
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/utiloverview.eps}} \par}
 
 
-\caption{\label{UtilOverview}Übersicht über das Package Util}
+\caption{\label{UtilOverview}Übersicht über das Package Util.}
 \end{figure}
 
 
@@ -199,7 +203,7 @@ Neuerungen gegenüber dem Entwurf, da hier das Kommunikationsprotokoll zwischen
 Server (bzw. ClientServant) und Client festgelegt wird.
 
 Die Kommunikation zwischen den Komponenten Server bzw. ClientServant und Client
-lehnt sich an das Design Pattern {},,Command{}`` an (vgl. Gamma, Helm, Johnson
+lehnt sich an das Design-Pattern {},,Command{}`` an (vgl. Gamma, Helm, Johnson
 \& Vlissides 1994). Dabei tauschen die Komponenten untereinander Nachrichten
 in Form von Command-Objekten aus, die dann jeweils beim {},,Befehlsempfänger{}``
 ausgeführt werden.
@@ -213,7 +217,7 @@ die das Interface Command implementieren, stellt also das Protokoll dar.
 {\par\centering \resizebox*{0,8\textwidth}{!}{\includegraphics{eps/commandsoverview.eps}} \par}
 
 
-\caption{\label{CommandsOverview}Übersicht über das Package Util.Commands}
+\caption{\label{CommandsOverview}Übersicht über das Package Util.Commands.}
 \end{figure}
 
 
@@ -239,7 +243,7 @@ wurden erstellt.
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/serverpackageoverview.eps}} \par}
 
 
-\caption{\label{ServerOverview}Überblick über das Package Server}
+\caption{\label{ServerOverview}Überblick über das Package Server.}
 \end{figure}
 
 
@@ -255,7 +259,7 @@ mit welchen Klassen die Klassen Server und ClientServant direkt zusammenarbeiten
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/servercentric.eps}} \par}
 
 
-\caption{\label{servercentric}Klassendiagramm aus Sicht von Server und ClientServant}
+\caption{\label{servercentric}Klassendiagramm aus der Sicht von Server und ClientServant.}
 \end{figure}
 
 
@@ -272,7 +276,7 @@ Klassen Channel und User.
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/userchannelcentric.eps}} \par}
 
 
-\caption{\label{channeluser}Übersicht über die Klassen der Channel- und UserAdministration}
+\caption{\label{channeluser}Übersicht über die Klassen der Channel- und UserAdministration.}
 \end{figure}
 
 
@@ -355,7 +359,7 @@ und berücksichtigen die wechselseitigen Assoziationen (vgl.~Abschnitt~\ref{get_s
 
 \subsection{Das Package Client}
 
-Im folgenden Abschnitt werden die Klassen des Clientpaketes näher vorgestellt. 
+Im folgenden Abschnitt werden die Klassen des Packages Client näher vorgestellt. 
 
 
 \subsubsection{Client}
@@ -529,7 +533,7 @@ und setzt die Userliste in userList.
 
 \subsection{Das Package Util}
 
-Im Package Util vereinigt finden sich die Kommunikationsklassen, die im Entwurf
+Im Package Util befinden sich nun die Kommunikationsklassen, die im Entwurf
 noch redundant jeweils im Client- und Server-Package vorhanden waren. Zusätzlich
 dazu erfordert diese Änderung einen DownlinkOwner.
 
@@ -574,7 +578,7 @@ von seinem Client zu empfangen.
 
 \begin{description}
 \item [private~DownlinkOwner~downlinkOwner]~
-\item [private~int~LISTEN\_DELAY]Zeit zwischen zwei Listen()-Schleifendurchläufen
+\item [private~int~LISTEN\_DELAY]Zeit zwischen zwei listen()-Schleifendurchläufen
 in Millisekunden.
 \item [private~ObjectInputStream~objectInputStream]~
 \item [private~Socket~socket]~
@@ -596,7 +600,7 @@ die Schleife, falls stop=true;
 \item [public~void~setDownlinkOwner(DownlinkOwner~paramDownlinkOwner)]Aufruf von
 setDownlinkOwner(null) bewirkt stopDownlink(). Benachrichtigt die betroffenen
 Objekte mittels setDownlink().
-\item [public~void~startDownlink()]Öffnet den Input - Stream, danach ist der Downlink
+\item [public~void~startDownlink()]Öffnet den Input-Stream, danach ist der Downlink
 betriebsbereit. Ruft this.start() auf. Benutzt DownlinkOwner.downlinkError().
 \item [private~void~stopDownlink()]Schließt den Input-Stream. Benutzt setDownlinkOwner(null).
 \end{description}
@@ -623,11 +627,17 @@ des Downlinks aufgerufen, um den Downlink zu setzen.
 
 \subsection{Das Package Util.Commands}
 
+Im Package Util.Commands ist das Protokoll spezifiziert, mit dem sich die beteiligten
+Programme über das Netzwerk verständigen. Dieser Austausch von Befehlen findet
+gemäß dem Design-Pattern {},,Command{}`` statt, wobei hier als Besonderheit
+die Command-Objekte serialisiert werden, um sie über das Netzwerk verschicken
+zu können.
+
 
 \subsubsection{Command}
 
 Diese Klasse bildet das Interface für alle Befehle, die beispielsweise zwischen
-Client und ClientServant ausgetauscht werden.
+Client und ClientServant ausgetauscht werden. 
 
 
 \paragraph{Methoden}
@@ -1935,7 +1945,7 @@ verschickt wird. Dies können sowohl (Admin-)Client als auch ClientServant veranl
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientsendcommand.eps}} \par}
 
 
-\caption{\label{sendCommand}Vorgang des Sendens von Command-Objekten}
+\caption{\label{sendCommand}Vorgang des Sendens von Command-Objekten.}
 \end{figure}
 
 
@@ -1952,7 +1962,7 @@ dessen Ausführung veranlasst.
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/downlinklisten.eps}} \par}
 
 
-\caption{\label{downlinkListen}Vorgang des Empfangens von Command-Objekten}
+\caption{\label{downlinkListen}Vorgang des Empfangens von Command-Objekten.}
 \end{figure}
 
 
@@ -1968,7 +1978,7 @@ die Abläufe im ClientServant.
 
 Das Sequenzdiagramm in Abbildung~\ref{clientServant.loginUser} zeigt, wie
 ein ClientServant auf Anfragen der Clientapplikation reagiert. In diesem speziellen
-Beispiel verarbeitet der ClientServant eine Loginanfrage. Gegenüber dem themengleichen
+Beispiel verarbeitet der ClientServant eine Login-Anfrage. Gegenüber dem themengleichen
 Diagramm im Entwurfsdokument wird hier das Detail des Designs deutlich.
 
 
@@ -1976,7 +1986,7 @@ Diagramm im Entwurfsdokument wird hier das Detail des Designs deutlich.
 {\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientservantloginuser.eps}} \par}
 
 
-\caption{\label{clientServant.loginUser}Eine Benutzeranmeldung aus Sicht des ClientServants}
+\caption{\label{clientServant.loginUser}Eine Benutzeranmeldung aus Sicht des ClientServants.}
 \end{figure}
 
 
@@ -1994,7 +2004,7 @@ Nachricht an nur einen Benutzer verläuft analog.
 {\par\centering \resizebox*{!}{0,85\textheight}{\rotatebox{90}{\includegraphics{eps/clientservantsendmsgtochannel.eps}}} \par}
 
 
-\caption{\label{clientServant.sendMsgToChannel}Nachrichtenverteilung durch den ClientServant}
+\caption{\label{clientServant.sendMsgToChannel}Nachrichtenverteilung durch den ClientServant.}
 \end{figure}
 
 
@@ -2008,13 +2018,13 @@ ChannelAdministration, User, ClientServant und einem der neuen Commands am Beisp
 der Funktionalität \char`\"{}Channel löschen\char`\"{}. 
 
 Ein AdminClientServant empfängt von seiner AdminClientapplikation den Aufruf,
-den Channel \char`\"{}foo\char`\"{} zu löschen. Der AdminClientServant ruft
-daraufhin bei der Klasse ChannelAdministration die entsprechende Funktion auf.
-Die ChannelAdministration löscht den Channel mittels removeYou(), woraufhin
-der Channel mittels der entsprechenden {},,Set{}``-Methoden die {},,allowance{}``-
-und {},,current~state{}``-Beziehungen zum User-Objekt angleicht. Dieses veranlaßt
-wiederum seinen ihm zugeordneten ClientServant, den Client mittels sendCurrentUserData()
-über den geänderten Userzustand zu informieren. 
+den Channel {},,foo{}`` zu löschen. Der AdminClientServant ruft daraufhin
+bei der Klasse ChannelAdministration die entsprechende Funktion auf. Die ChannelAdministration
+löscht den Channel mittels removeYou(), woraufhin der Channel mittels der entsprechenden
+{},,Set{}``-Methoden die {},,allowance{}``- und {},,current~state{}``-Beziehungen
+zum User-Objekt angleicht. Dieses veranlaßt wiederum seinen ihm zugeordneten
+ClientServant, den Client mittels sendCurrentUserData() über den geänderten
+Userzustand zu informieren. 
 
 Dieses Kollaborationsdiagramm repräsentiert damit eine ganze Klasse von Funktionen,
 deren Interaktion mit anderen Klassen ähnlich verläuft (deleteUser, addChannel,
@@ -2026,7 +2036,7 @@ editChannel etc.)
 
 
 \caption{\label{adminClientServer.deleteChannel}Die Funktion {}``Channel löschen{}''
-als Kollaborationsdiagramm}
+als Kollaborationsdiagramm.}
 \end{figure}
 
 
