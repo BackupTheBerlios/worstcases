@@ -60,7 +60,7 @@ flags 11
 \newline 
  Virtuelle Konferenz
 \lang american
-16
+1616
 \layout Standard
 
 
@@ -260,7 +260,7 @@ flags 9
 
 \layout Caption
 
-ein Beispielverlauf
+Beispielverlauf eines Chats
 \end_float 
 \layout Section
 
@@ -547,31 +547,13 @@ Im folgenden Abschnitt werden die Klassen des Serverpakets in ihren Einzelheiten
 Server
 \layout Standard
 
-Eine Instanz dieser Klasse stellt den Chat-Server dar
-\begin_inset Info ???
-\end_inset 
-
-.
- Nachdem der Server gestartet wurde, horcht er an einem bestimmten Port
+Dieser Klasse stellt den eigentlichen Chat-Server dar.
+ Nachdem er gestartet wurde, horcht der Server an einem bestimmten Port
  auf Verbindungswünsche von Clients.
  Sowie sich ein Client an diesem Port meldet, startet der Server einen ClientSer
 vant, der sich ab dann ausschließlich um diesen Client kümmert.
  Anschließend horcht der Server wieder an seinem Port und wartet auf Verbindungs
 wünsche von weiteren Clients.
- Diese Klasse ist der Chat-Server.
- Der Server horcht an seinem Port, und wenn ein Client eine Verbindungsanfrage
- stellt, startet er einen ClientServant, der sich ab dann um diesen Client
- kümmert.
- Dann fängt der Server wieder an, an seinem Port zu horchen und wartet auf
- neue Client-Verbindungswünsche.
-\layout Standard
-
-Diese Klasse ist der Chat-Server.
- Der Server horcht an seinem Port, und wenn ein Client eine Verbindungsanfrage
- stellt, startet er einen ClientServant, der sich ab dann um diesen Client
- kümmert.
- Dann fängt der Server wieder an, an seinem Port zu horchen und wartet auf
- neue Client-Verbindungswünsche.
 \layout Paragraph
 
 Attribute
@@ -644,14 +626,8 @@ Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
 
 private\SpecialChar ~
 void\SpecialChar ~
-<<<<<<< entwurf.lyxlisten()
-\lang american
- 
-\lang german
-Wartet auf ankommendene Verbindungswünsche der Clients und leitet diese
- jeweils an einen neuen ClientObserver weiter.=======listen() Wartet auf
- ankommendene Verbindungswünsche der Clients und leitet diese an jeweils
- einen neu instanziierten ClientObserver weiter.>>>>>>> 1.2
+ Wartet auf ankommendene Verbindungswünsche der Clients und leitet
+ diese an jeweils einen neu instanziierten ClientObserver weiter.
 \layout Description
 
 public\SpecialChar ~
@@ -958,17 +934,17 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 send(String\SpecialChar ~
-msg) sendet eine Nachricht zur Clientapplikation
+msg) Sendet eine Nachricht zur Clientapplikation.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-startUplink() startet den Stream, danach ist Uplink betriebsbereit
+startUplink() Startet den Stream, danach ist Uplink betriebsbereit.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-stopUplink() schließt den Stream
+stopUplink() Schließt den Stream.
 \layout Subsubsection
 
 Downlink
