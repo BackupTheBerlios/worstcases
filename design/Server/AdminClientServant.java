@@ -29,7 +29,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     /**
      * Sendet eine Liste aller Channelnamen. Benutzt sendCommand() und erzeugt ein neues SetChannelListCommand - Objekt.
-     * Benutzt channelAdministration.getChannelNames(), um die Namensliste zu erzeugen
+     * Benutzt channelAdministration.getChannelNames(), um die Namensliste zu erzeugen.
      */
     public synchronized void sendChannelList() {
         this.sendCommand(
@@ -38,7 +38,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     /**
      * Sendet eine Liste aller Benutzernamen. Benutzt sendCommand und erzeugt ein neues SetUserListCommand-Objekt
-     * Benutzt userAdministration.getUserNames(), um die Namensliste zu erzeugen
+     * Benutzt userAdministration.getUserNames(), um die Namensliste zu erzeugen.
      */
     public  synchronized  void sendUserList() {
         this.sendCommand(
@@ -50,8 +50,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Erzeugt ein neues Channelobjekt
      * und generiert für dieses Channelobjekt die Referenzen auf die erlaubten Benutzer
      * mittels userAdministration.getFromUserListByName()
-     * und channel.addToAllowedUserList()
-     * Bewirkt Aufruf von DataBaseIO.saveToDisk()
+     * und channel.addToAllowedUserList().
+     * Bewirkt Aufruf von DataBaseIO.saveToDisk().
      * @param paramName Name des Channels
      * @param paramAllowedForGuests Flag, ob Gäste den Channel betreten dürfen
      * @param paramAllowedUserNames Vector von Strings - die Namen der Userobjekte, die den Channel betreten dürfen
@@ -66,8 +66,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
     }
 
     /**
-     * Löscht den Channel mit dem angegebenen Namen. benutzt channelAdministration.getFromChannelListByName()
-     * und channelAdministration.removeFromChannelList()
+     * Löscht den Channel mit dem angegebenen Namen. Benutzt channelAdministration.getFromChannelListByName()
+     * und channelAdministration.removeFromChannelList().
      * Bewirkt Aufruf von DataBaseIO.saveToDisk()
      */
     public synchronized  void deleteChannel(String channelName) {
@@ -78,7 +78,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
     /** Verändert die Daten des angegebenen Channels.
       * Erzeugt ein neues Channelobjekt mit den angegebenen Daten.
       * Benutzt setAllowedUserList() um die erlaubten Benutzer des Channels einzutragen
-      * und ruft dann channelAdministration.editChannel() auf
+      * und ruft dann channelAdministration.editChannel() auf.
      * Bewirkt Aufruf von DataBaseIO.saveToDisk()
       * @param oldName alter Name des Channels
       * @param newName neuer Name des Channels
@@ -97,11 +97,11 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
     }
 
     /** Fügt einen Benutzer hinzu.
-      * erzeugt ein neues Userobjekt mit den angegebenen Daten
-      * benutzt paramAllowedChannelNames und channelAdministration.getFromChannelListByName
+      * Erzeugt ein neues Userobjekt mit den angegebenen Daten.
+      * Benutzt paramAllowedChannelNames und channelAdministration.getFromChannelListByName
       * um mit user.addToAllowedChannelList die für den Benutzer erlaubten Channelobjekte zu referenzieren.
-      * Ruft schließlich userAdministration.addToUserList auf
-     * Bewirkt Aufruf von DataBaseIO.saveToDisk()
+      * Ruft schließlich userAdministration.addToUserList auf.
+     * Bewirkt Aufruf von DataBaseIO.saveToDisk().
      */
     public synchronized  void addUser(String paramName, String paramPassword, boolean paramIsAdmin, Vector paramAllowedChannelNames) {
         User tmpUser = new User(paramName, paramPassword, false, paramIsAdmin, this.userAdministration);
@@ -114,8 +114,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     /** Löscht den Benutzer mit dem angegebenen Namen.
       * Benutzt userAdministration.getFromUserListByName() und
-      * userAdministration.removeFromUserList()
-     * Bewirkt Aufruf von DataBaseIO.saveToDisk()
+      * userAdministration.removeFromUserList().
+     * Bewirkt Aufruf von DataBaseIO.saveToDisk().
       */
     public synchronized  void deleteUser(String userName) {
         User tmpUser = this.userAdministration.getFromUserListByName(userName);
@@ -126,8 +126,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
       * Erzeugt ein neues Userobjekt mit den angegebenen Daten.
       * Benutzt setAllowedChannelList() um die erlaubten Channels des Benutzers einzutragen -
       * benutzt dafür channelAdministration.getFromChannelListByName()
-      * und ruft dann userAdministration.editUser() auf
-     * Bewirkt Aufruf von DataBaseIO.saveToDisk()
+      * und ruft dann userAdministration.editUser() auf.
+     * Bewirkt Aufruf von DataBaseIO.saveToDisk().
       * @param oldName alter Name des Users
       * @param newName neuer Name des Users
       * @param newPassword neues Passwort
@@ -149,7 +149,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     /** Sendet die Benutzerdaten des Benutzers mit dem angegebenen Namen an den Client.
      * Benutzt userAdministration.getFromUserListByName().
-     * Erzeugt und versendet ein entsprechendes SetUserDataCommand()
+     * Erzeugt und versendet ein entsprechendes SetUserDataCommand().
      */
     public  synchronized void sendUser(String userName) {
         User tmpUser = this.userAdministration.getFromUserListByName(userName);
@@ -163,7 +163,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
     /** Sendet die Channeldaten des Channels mit dem angegebenen Namen.
       * Erzeugt und versendet ein neues SetChannelDataCommand().
-      * Benutzt channelAdministration.getFromChannelListByName()
+      * Benutzt channelAdministration.getFromChannelListByName().
       */
     public synchronized  void sendChannel(String channelName) {
         Channel tmpChannel = this.channelAdministration.getFromChannelListByName(channelName);
