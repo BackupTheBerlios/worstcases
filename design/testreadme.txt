@@ -18,3 +18,5 @@ crashed sofort, wenn:
 btw: evtl. in Client::Client.java noch IP anpassen und neu compilieren
 
 have fun
+
+Fraidl-Test
