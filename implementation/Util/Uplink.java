@@ -7,9 +7,12 @@ import Util.Debug.Debug;
 
 
 /**
- * Versendet Nachrichten über einen Socket an einen Downlink. Diese Klasse ist die sendende Hälfte eines Kommunikationskanals.
- * Die andere Hälfte, die das Empfangen von Nachrichten übernimmt, ist der Downlink.
- * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten an seinen ClientServant zu senden.
+ * Versendet Nachrichten über einen Socket an einen Downlink. 
+ * Diese Klasse ist die sendende Hälfte eines Kommunikationskanals.
+ * Die andere Hälfte, die das Empfangen von Nachrichten übernimmt, 
+ * ist der Downlink.
+ * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten an seinen 
+ * ClientServant zu senden.
  * @see Util.Downlink
  * @see Client.Client
  * @see Server.ClientServant
@@ -51,14 +54,15 @@ public class Uplink {
   }
 
   /**
-   * Sendet ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
+   * Sendet ein Commandobjekt über den Socket. Es wird am anderen 
+   * Ende des Kommunikationskanals von einem Downlink empfangen.
    * Benutzt objectOutputStream.writeObject()
    * @param msg Das zu versendende Commandobjekt.
    * @see Downlink
    */
   public synchronized void sendMsg(Command msg) throws java.io.IOException {
 
-    Debug.println(Debug.MEDIUM, "Uplink: sending " + msg);
+    Debug.println("Uplink: sending " + msg);
     objectOutputStream.writeObject(msg);
     objectOutputStream.flush();
   }

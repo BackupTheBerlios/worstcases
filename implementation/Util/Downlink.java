@@ -8,7 +8,8 @@ import Util.Debug.Debug;
 
 
 /**
- * Empfängt über einen Socket Nachrichten von einem Uplink und leitet sie an ihren Besitzer weiter.
+ * Empfängt über einen Socket Nachrichten von einem Uplink 
+ * und leitet sie an ihren Besitzer weiter.
  * Diese Klasse ist die empfangende Hälfte eines Kommunikationskanals. Die
  * andere Hälfte, die das Senden von Nachrichten übernimmt, ist der Uplink.
  * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von seinem Client zu empfangen.
@@ -33,7 +34,10 @@ public class Downlink extends Thread {
   /** Über diesen Socket werden die Nachrichten empfangen. */
   private Socket socket;
 
-  /** Der Besitzer des Downlinks, an den die ankommenden Nachrichten weitergeleitet werden sollen. */
+  /** 
+   * Der Besitzer des Downlinks, an den die ankommenden Nachrichten 
+   * weitergeleitet werden sollen. 
+   */
   private DownlinkOwner downlinkOwner;
 
   /** InputStream für Objekte. */
@@ -43,9 +47,11 @@ public class Downlink extends Thread {
   private boolean stop = false;
 
   /**
-   * Wartet auf ankommende Nachrichten mit objectInputStream.readObject() und leitet sie an den Besitzer weiter.
-   * Benutzt DownlinkOwner.downlinkError() und processMsg(). Wartet pro Schleifendurchlauf gemäß LISTEN_DELAY und beendet
-   * die Schleife, falls stop=true;
+   * Wartet auf ankommende Nachrichten mit objectInputStream.readObject() und 
+   * leitet sie an den Besitzer weiter.
+   * Benutzt DownlinkOwner.downlinkError() und processMsg(). Wartet pro 
+   * Schleifendurchlauf gemäß LISTEN_DELAY und beendet
+   * die Schleife, falls stop = true;
    */
   private void listen() {
 
@@ -59,7 +65,7 @@ public class Downlink extends Thread {
       try {
         tmpCommand = (Command) objectInputStream.readObject();
 
-        Debug.println(Debug.MEDIUM, "Downlink: received: " + tmpCommand);
+        Debug.println("Downlink: received: " + tmpCommand);
 
         // owner aktualisieren
         owner = this.downlinkOwner;
@@ -83,7 +89,8 @@ public class Downlink extends Thread {
   }
 
   /**
-   * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. Ruft this.start() auf.
+   * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. 
+   * Ruft this.start() auf.
    * Benutzt DownlinkOwner.downlinkError().
    */
   public void startDownlink() {
@@ -132,7 +139,8 @@ public class Downlink extends Thread {
 
   /**
    * Benachrichtigt die betroffenen Objekte mittels setDownlink().
-   * Hat der Downlink keinen DownlinkOwner mehr, so wird stopDownlink() aufgerufen
+   * Hat der Downlink keinen DownlinkOwner mehr, so wird stopDownlink() 
+   * aufgerufen.
    */
   public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
 
