@@ -26,9 +26,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:java#Class#Client.AdminClient:oiref>=18,576,203,339,1:oigroup>
+@__positions <oigroup:<oiref:java#Class#Client.AdminClient:oiref>=18,576,219,407,1:oigroup>
 <oigroup:<oiref:java#Class#Client.Client:oiref>=10,10,219,574,1:oigroup>
-<oigroup:<oiref:java#Extends#Client.AdminClient#Client.Client:oiref>=221,616,224,584:oigroup> 
+<oigroup:<oiref:java#Extends#Client.AdminClient#Client.Client:oiref>=232,576,229,541:oigroup> 
 */
 class __positions {
 }

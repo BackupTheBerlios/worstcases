@@ -19,6 +19,16 @@ class ChannelAdministration {
     }
 
     public Vector getChannelNames(){
+      Vector tmpVector=new Vector();
+      Enumeration enum=this.getChannelEnum();
+      Channel tmpChannel;
+      while(enum.hasMoreElements()){
+        tmpChannel=(Channel)enum.nextElement();
+        tmpVector.addElement(tmpChannel.getName());
+      }
+      return tmpVector;
+
+
     }
 
 

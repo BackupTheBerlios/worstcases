@@ -27,6 +27,16 @@ class Channel {
      return tmpVector;
     }
 
+    public Vector getAllowedUserNames(){
+     Vector tmpVector=new Vector();
+     Enumeration enum=this.getAllowedUserEnum();
+     while(enum.hasMoreElements()){
+      tmpVector.addElement(((User)enum.nextElement()).getName());
+     }
+     return tmpVector;
+    }
+
+
     public void addToAllowedUserList(User paramUser) {
         if (!this.allowedUserList.contains(paramUser)) {
             this.allowedUserList.addElement(paramUser);

@@ -24,7 +24,23 @@ class UserAdministration {
         }
     }
 
+    public void editUser(String oldName,User newUser){
+    }
+
     public Vector getUserNames(){
+        Vector tmpVector=new Vector();
+      Enumeration enum=this.getUserEnum();
+      User tmpUser;
+      while(enum.hasMoreElements()){
+       tmpUser=(User)enum.nextElement();
+       if(!tmpUser.isGuest()){
+        tmpVector.addElement(tmpUser.getName());
+       }
+
+
+      }
+      return tmpVector;
+
     }
 
     /**

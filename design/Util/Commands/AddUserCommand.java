@@ -6,19 +6,21 @@ import java.util.Vector;
 import Server.AdminClientServant;
 
 public class AddUserCommand implements Command {
-    public AddUserCommand(String paramName, boolean paramIsAdmin, Vector paramAllowedChannelNames) {
+    public AddUserCommand(String paramName, String paramPassword,boolean paramIsAdmin, Vector paramAllowedChannelNames) {
         this.name = paramName;
+        this.password=paramPassword;
         this.isAdmin = paramIsAdmin;
         this.allowedChannelNames = paramAllowedChannelNames;
     }
 
     private String name;
+    private String password;
     private boolean isAdmin = false;
     private Vector allowedChannelNames;
 
     public void execute(Object target) {
         if (target instanceof AdminClientServant) {
-            ((AdminClientServant)target).addUser(name, isAdmin, allowedChannelNames);
+            ((AdminClientServant)target).addUser(name,password, isAdmin, allowedChannelNames);
         }
     }
 }
