@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * Stellt Methoden bereit, um die Benutzer- und Channeldatenbank zu laden
- * und zu speichern. Außerdem wird dafür gesorgt, daß für den Betrieb die
+ * und zu speichern. Außerdem wird dafür gesorgt, dass für den Betrieb die
  * relationalen Beziehungen zwischen User- und Channeldatenbank gesetzt werden.
  */
 class DataBaseIO {
@@ -22,9 +22,9 @@ class DataBaseIO {
     }
 
     /**
-     * Konvertiert den Namen, das Password, das isAdmin - Flag und
-     * die Namen der für den Benutzer erlaubten Channels eines Userobjekts in einen String, wird von saveToDisk() verwendet,
-     * Format des Strings: "name#password#true#channel1#channel2#channel3"
+     * Konvertiert den Namen, das Password, das isAdmin-Flag und
+     * die Namen der für den Benutzer erlaubten Channels eines Userobjekts in einen String, wird von saveToDisk() verwendet.
+     * Format des Strings: "name#password#true#channel1#channel2#channel3".
      */
     private String userToString(User paramUser) {
         String tmpString = paramUser.getName() + "#" + paramUser.getPassword() + "#" + paramUser.isAdmin();
@@ -37,8 +37,8 @@ class DataBaseIO {
     }
 
     /**
-     * Konvertiert den von userToString() erzeugten String in ein Userobjekt,
-     * setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden.
+     * Konvertiert den von userToString() erzeugten String in ein Userobjekt.
+     * Setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden.
      * Benutzt channelAdministration.getFromChannelListByName() und user.setAllowedChannelList().
      */
 
@@ -59,16 +59,16 @@ class DataBaseIO {
     }
 
     /**
-     * Konvertiert den Namen und das isAllowedForGuests - Flag
+     * Konvertiert den Namen und das isAllowedForGuests-Flag
      * eines Channelobjekts in einen String, wird von saveToDisk() verwendet.
-     * Format des Strings: "name#true"
+     * Format des Strings: "name#true".
      */
     private String channelToString(Channel paramChannel) {
         String tmpString = paramChannel.getName() + "#" + paramChannel.isAllowedForGuest();
         return tmpString;
     }
 
-    /** konvertiert den von channelToString() erzeugten String in ein Channelobjekt
+    /** Konvertiert den von channelToString() erzeugten String in ein Channelobjekt.
       */
     private Channel stringToChannel(String channelSet) {
         StringTokenizer tmpTokenizer = new StringTokenizer(channelSet, "#", false);
@@ -117,7 +117,7 @@ class DataBaseIO {
     }
 
     /**
-     * Speichert die Benutzer- und Channeldaten der aktuellen User(keine Gäste)- und Channelobjekte im System
+     * Speichert die Benutzer- und Channeldaten der aktuellen User- (keine Gäste) und Channelobjekte im System
      * in userDBFile und channelDBFile mittels userToString(), channelToString().
      * Benutzt channelAdministration.getChannelEnum() und userAdministration.getUserEnum()
      */
@@ -183,12 +183,14 @@ class DataBaseIO {
     }
 
     /**
+     * Die Benutzerverwaltung.
      * @clientCardinality 1
      * @supplierCardinality 1
      */
     private UserAdministration userAdministration;
 
     /**
+     * Die Channelverwaltung.
      * @clientCardinality 1
      * @supplierCardinality 1
      */

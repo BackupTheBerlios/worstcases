@@ -34,7 +34,7 @@ public class Server {
     /** 
      * Stoppt den Server, indem die ClientServants durch eine Schleife mit der Methode removeFromClientServant
      * aus der ClientServantList enfernt werden.
-     * Setzt stop=true, um die Listen - Methode zu beenden.
+     * Setzt stop=true, um die Listen-Methode zu beenden.
      */
     public void stopServer() {
         this.stop=true;
@@ -56,7 +56,7 @@ public class Server {
         }
     }
 
-    /**Gibt eine Aufzählung der aktiven ClientServants zurück*/
+    /**Gibt eine Aufzählung der aktiven ClientServants zurück.*/
     public Enumeration getClientServantEnum(){
      return this.clientServantList.elements();
     }
@@ -67,7 +67,7 @@ public class Server {
      *  Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
      *  Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese durch try und catch abgefangen.
      * Schleifendurchlauf, solange stop==true.
-     * Benutzt ClientServant.startClientServant() und addToClientServantList()
+     * Benutzt ClientServant.startClientServant() und addToClientServantList().
      */
     private void listen() {
         try {
@@ -99,7 +99,7 @@ public class Server {
     }
 
     /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
-      * Benutzt ClientServant.setServer()
+      * Benutzt ClientServant.setServer().
       */
     public synchronized void addToClientServantList(ClientServant paramClientServant) {
         if (!this.clientServantList.contains(paramClientServant)) {
@@ -111,7 +111,7 @@ public class Server {
     }
 
 
-    /**Gibt die aktive ChannelAdministration zurück*/
+    /**Gibt die aktive ChannelAdministration zurück.*/
     public ChannelAdministration getChannelAdministration() {
         return channelAdministration;
     }
@@ -135,9 +135,11 @@ public class Server {
      * automatisch abgewiesen (siehe auch java.net.ServerSocket).
      */
     private int LISTEN_QUEUE_LENGTH = 10;
+
+    /** Der ServerSocket. */
     private ServerSocket serverSocket;
 
-    /**Flag, welches angibt, ob listen() weiter auf Verbindungen warten soll*/
+    /**Flag, welches angibt, ob listen() weiter auf Verbindungen warten soll.*/
     private boolean stop=false;
 
     /**
@@ -150,6 +152,7 @@ public class Server {
     private DataBaseIO dataBaseIO;
 
     /**
+     * Die Benutzerverwaltung.
      * @link aggregation
      * @clientCardinality 1
      * @supplierCardinality 1
@@ -157,6 +160,7 @@ public class Server {
     private UserAdministration userAdministration;
 
     /**
+     * Die channelverwaltung.
      * @link aggregation
      * @clientCardinality 1
      * @supplierCardinality 1

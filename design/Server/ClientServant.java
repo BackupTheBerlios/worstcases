@@ -51,7 +51,7 @@ public class ClientServant implements Util.DownlinkOwner {
     /**
      * Wird vom Downlink aufgerufen, falls beim Empfang von Nachrichten ein
      * Fehler auftritt, enthält Fehlerbehandlung.
-     * @see Utils.DownlinkOwner
+     * @see Util.DownlinkOwner
      */
      // FIXME: Sinnvolle Möglichkeiten außer stopClientServant() ?
     public final synchronized void downlinkError() {
@@ -355,6 +355,8 @@ public class ClientServant implements Util.DownlinkOwner {
      * @supplierCardinality 1
      */
     protected User user;
+
+    /** Über diesen Socket kommuniziert der ClientServant mit seinem Client.*/
     protected Socket socket;
 
     /** Gibt den letzten Zeitpunkt an, an dem der ClientServant eine Nachricht von seinem Client empfangen hat. */

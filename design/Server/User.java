@@ -3,9 +3,10 @@ package Server;
 import java.util.Vector;
 import java.util.Enumeration;
 
-/** Ein Benutzerdatensatz */
+/** Ein Benutzerdatensatz. Enthält alle Informationen über einen Benutzer
+ wie beispielsweise die Zugriffsrechte.*/
 class User {
-    /** Setzt die entsprechenden Attribute, benutzt setUserAdministration()*/
+    /** Setzt die entsprechenden Attribute, benutzt setUserAdministration().*/
     public User(String paramName, String paramPassword, boolean paramGuest, boolean paramAdmin,
         UserAdministration paramUserAdministration) {
             this.name = paramName;
@@ -14,12 +15,12 @@ class User {
             this.isGuest = paramGuest;
             this.setUserAdministration(paramUserAdministration);
     }
-    /**Der Name des Benutzers*/
+    /**Der Name des Benutzers.*/
     private String name;
-    /**Das Passwort des Benutzers*/
+    /**Das Passwort des Benutzers.*/
     private String password;
 
-    /**Gaststatus des Benutzers*/
+    /**Gaststatus des Benutzers.*/
     private boolean isGuest = true;
 
     /** Ist der User Administrator? */
@@ -31,7 +32,8 @@ class User {
     /** Gibt die Channels an, die der Benutzer betreten darf.
         * @associates <{Channel}>
         * @clientCardinality 0..
-        * @supplierCardinality 0..* */
+        * @supplierCardinality 0..* 
+        */
     private Vector allowedChannelList = new Vector();
 
     /** Gibt den Channel an, in dem sich der Benutzer zur Zeit befindet.
@@ -39,20 +41,20 @@ class User {
      * @clientCardinality 0.. */
     private Channel currentChannel;
 
-    /** Der für den Benutzer verantwortliche ClientServant
-       *@clientCardinality 1
-             * @supplierCardinality 0..1 */
+    /** Der für den Benutzer verantwortliche ClientServant.
+      *@clientCardinality 1
+      * @supplierCardinality 0..1 */
     private ClientServant clientServant;
 
     private UserAdministration userAdministration;
 
-    /**Gibt den Namen des Benutzers zurück*/
+    /**Gibt den Namen des Benutzers zurück.*/
     public String getName() {
         return name;
     }
 
     /**Setzt den Namen des Benutzers.
-      *Ruft ggf. informClient() und currentChannel.informCurrentUsers() auf*/
+      *Ruft ggf. informClient() und currentChannel.informCurrentUsers() auf.*/
     public synchronized void setName(String paramName){
       if(this.name!=paramName){
        this.name =paramName;
@@ -64,36 +66,36 @@ class User {
       }
     }
 
-    /**Gibt das Passwort zurück*/
+    /**Gibt das Passwort zurück.*/
     public String getPassword() {
         return password;
     }
 
-    /**Setzt das Passwort*/
+    /**Setzt das Passwort.*/
     public synchronized void setPassword(String paramPassword){
       if(this.password!=paramPassword){
        this.password=paramPassword;
       }
     }
-    /**True, wenn der Benutzer ein Gast ist*/
+    /**Gibt true zurück, wenn der Benutzer ein Gast ist.*/
     public boolean isGuest() {
         return isGuest;
     }
 
-    /**True, wenn der Benutzer Adminrechte hat*/
+    /**Gibt true zurück, wenn der Benutzer Adminrechte hat.*/
     public boolean isAdmin() {
         return this.isAdmin;
     }
 
-    /**Setzt das Adminflag, macht allerdings weiter nichts,
-      *d.h. ein Benutzer, der eingeloggt ist und
-      *Admin - Rechte bekommt muß sich mittels der AdminClient - Applikation neu einloggen,
-      *um diese nutzen zu können*/
+    /**Setzt das Adminflag, macht allerdings weiter nichts.
+      *D.h. ein Benutzer, der eingeloggt ist und
+      *Admin-Rechte bekommt muß sich mittels der AdminClient-Applikation neu einloggen,
+      *um diese nutzen zu können.*/
     public synchronized void setIsAdmin(boolean b){
         this.isAdmin=b;
     }
 
-    /**gibt an, ob der Benutzer sich im System eingeloggt hat*/
+    /**Gibt an, ob sich der Benutzer im System eingeloggt hat.*/
     public boolean isLoggedIn() {
         return loggedIn;
     }
@@ -104,7 +106,7 @@ class User {
      * (incNumCurrentGuests(),decNumCurrentGuests() bei Gästen,
      * benutzt ggf. user.setCurrentChannel(null),setClientServant(null)
      * (und userAdministration.removeFromUserList() bei Gästen, um den Gast aus dem System zu entfernen, da
-     * Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen)
+     * Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen).
      */
     public synchronized void setIsLoggedIn(boolean paramLoggedIn) {
         if (this.isLoggedIn() != paramLoggedIn) {
@@ -134,7 +136,7 @@ class User {
         }
     }
 
-    /**Gibt eine Liste der Namen der Channels zurück, die der Benutzer betreten darf*/
+    /**Gibt eine Liste der Namen der Channels zurück, die der Benutzer betreten darf.*/
     public Vector getAllowedChannelNames(){
       Vector tmpVector=new Vector();
       Enumeration enum=this.getAllowedChannelEnum();
@@ -144,12 +146,12 @@ class User {
       return tmpVector;
     }
 
-    /**Gibt eine Aufzählung der Channels zurück, die der Benutzer betreten darf*/
+    /**Gibt eine Aufzählung der Channels zurück, die der Benutzer betreten darf.*/
     public Enumeration getAllowedChannelEnum() {
         return allowedChannelList.elements();
     }
 
-    /** Gibt einen Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück */
+    /** Gibt einen Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück. */
     public Channel getFromAllowedChannelByName(String channelName) {
         Enumeration enum = this.getAllowedChannelEnum();
         Channel tmpChannel;
@@ -217,14 +219,14 @@ class User {
         }
     }
 
-    /**Gibt den Channel zurück, in dem sich der Benutzer momentan befindet*/
+    /**Gibt den Channel zurück, in dem sich der Benutzer momentan befindet.*/
     public Channel getCurrentChannel() {
         return currentChannel;
     }
 
 
-    /**Setzt den Channel, in dem sich der Benutzer befindet,
-      * benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList().
+    /**Setzt den Channel, in dem sich der Benutzer befindet.
+      * Benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList().
       */
     public synchronized void setCurrentChannel(Channel paramChannel) {
         if (this.currentChannel != paramChannel) {
@@ -241,8 +243,8 @@ class User {
     }
 
     /**
-     * Setzt die für den Benutzer verantwortliche UserAdministration,
-     * benutzt UserAdministration.removeFromUserList() und addToUserList()
+     * Setzt die für den Benutzer verantwortliche UserAdministration.
+     * Benutzt UserAdministration.removeFromUserList() und addToUserList()
      */
 
     public synchronized void setUserAdministration(UserAdministration paramUserAdministration) {
@@ -268,7 +270,7 @@ class User {
 
     /**
      * Setzt den zugeordneten ClientServant und benutzt ClientServant.setUser().
-     * Ein setClientServant(null) bewirkt ein setIsLoggedIn(false)
+     * Ein setClientServant(null) bewirkt ein setIsLoggedIn(false).
      */
 
     public synchronized void setClientServant(ClientServant paramClientServant) {
@@ -288,8 +290,8 @@ class User {
         }
     }
 
-    /**Entfernt das Benutzerobject aus dem System,
-      *benutzt setIsLoggedIn(false)
+    /**Entfernt das Benutzerobject aus dem System.
+      *Benutzt setIsLoggedIn(false),
       *setAllowedChannelList(null) und UserAdministration.removeFromUserList(this)
       */
 
@@ -300,7 +302,7 @@ class User {
             this.userAdministration.removeFromUserList(this);
         }
     }
-    /**for debugging*/
+    /**Dient dem debugging.*/
     public String toString() {
         return ("Name:" + this.getName() + " isAdmin:" + this.isAdmin() + " isGuest:" + this.isGuest() + " currentChannel:" +
             this.getCurrentChannel() + " allowedChannelEnum:" + this.getAllowedChannelEnum());
@@ -308,7 +310,7 @@ class User {
 
 
     /**Informiert den Client des Benutzers bei Veränderungen der Userdaten mittels
-      *getClientServant() und ClientServant.sendCurrentUserData()*/
+      *getClientServant() und ClientServant.sendCurrentUserData().*/
     private synchronized void informClient(){
       ClientServant tmpClientServant=this.getClientServant();
       if(tmpClientServant!=null){

@@ -7,7 +7,7 @@ import java.util.Enumeration;
   * ClientServants aus dem System zu entfernen,
   * die seit einer bestimmten Zeitspanne
   * keine Nachrichten mehr von ihrem Client
-  * empfangen haben
+  * empfangen haben.
   */
 
 class ClientServantWatchDog extends Thread {
@@ -26,7 +26,7 @@ class ClientServantWatchDog extends Thread {
 
 
     /**
-     * Flag, welches angibt, ob der Thread beendet werden soll
+     * Flag, welches angibt, ob der Thread beendet werden soll.
      */
     public boolean stop = false;
 
@@ -34,7 +34,7 @@ class ClientServantWatchDog extends Thread {
 
 
     /**
-     * setzt das Server-Attribut
+     * Setzt das Server-Attribut.
      */
     public ClientServantWatchDog(Server paramServer) {
         this.server = paramServer;
@@ -42,7 +42,7 @@ class ClientServantWatchDog extends Thread {
 
     /**
      * Die Runmethode enthält im Wesentlichen eine Schleife,
-     * die solange ausgeführt wird bis stop auf true gesetzt wird
+     * die solange ausgeführt wird bis stop auf true gesetzt wird,
      * und mittels servant.getClientServantEnum() die entsprechenden
      * Clientservants überprüft.
      * Für die Überprüfung wird ClientServant.getAliveStamp() und java.lang.System.currentTimeMillis() benutzt.

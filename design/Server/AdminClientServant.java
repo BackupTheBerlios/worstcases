@@ -175,6 +175,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
     }
 
     /**
+     * Die Channel-Verwaltung.
      * @clientCardinality 0..1
      * @supplierCardinality 1
      */
