@@ -24,11 +24,11 @@ public class Helper {
                 tmpRow = tmpRow + " " + tmpToken;
             }
             else {
-                tmpString = tmpString + "\n" + tmpRow;
+								tmpString = tmpString  + tmpRow +"\n";
                 tmpRow = tmpToken;
             }
         }
-        tmpString = tmpString + "\n" + tmpRow;
+        tmpString = tmpString + tmpRow;
         return tmpString;
     }
 
