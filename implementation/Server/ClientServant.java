@@ -220,7 +220,7 @@ public class ClientServant implements Util.DownlinkOwner {
   public final void loginAsGuest(String name) {
 
     UserAdministration tmpUserAdministration = this.userAdministration;
-    User tmpUser = tmpUserAdministration.loginGuest(name);
+		User tmpUser = tmpUserAdministration.loginGuest("[Gast]"+name);
 
     // Gastanmeldung nicht gelungen, Fehler senden
     if (tmpUser == null) {
@@ -285,8 +285,14 @@ public class ClientServant implements Util.DownlinkOwner {
       Channel tmpChannel = old.getFromAllowedChannelByName(name);
 
       // Channel existent
-      if (tmpChannel != null) {
-        old.setCurrentChannel(tmpChannel);
+			if (tmpChannel != null) {
+				Channel oldChannel = old.getCurrentChannel();
+				if(oldChannel!=null){
+				 this.sendMsgToChannel("verl‰ﬂt den Channel");
+				}
+
+				old.setCurrentChannel(tmpChannel);
+        this.sendMsgToChannel("betritt den Channel");
       }
 
       // Channel nicht existent
