@@ -34,8 +34,9 @@ class DataBaseIO {
   private String userToString(User paramUser) {
 
     // in tmpString wird Name, Paßwort und IsAdmin gespeichert
-		String tmpString = paramUser.getName().replace('#',' ') + "#" + paramUser.getPassword().replace('#',' ')
-                       + "#" + paramUser.isAdmin();
+    String tmpString = paramUser.getName().replace('#', ' ') + "#"
+                       + paramUser.getPassword().replace('#', ' ') + "#"
+                       + paramUser.isAdmin();
 
     // Anzahl der Channels
     Enumeration enum = paramUser.getAllowedChannelEnum();
@@ -43,7 +44,8 @@ class DataBaseIO {
     // mittels einer Schleife werden die Channels tmpString hinzugefügt
     while (enum.hasMoreElements()) {
       tmpString = tmpString + "#"
-									+ ((Channel) (enum.nextElement())).getName().replace('#',' ');
+                  + ((Channel) (enum.nextElement())).getName().replace('#',
+                    ' ');
     }
 
     return tmpString;
@@ -97,7 +99,7 @@ class DataBaseIO {
    */
   private String channelToString(Channel paramChannel) {
 
-		String tmpString = paramChannel.getName().replace('#',' ') + "#"
+    String tmpString = paramChannel.getName().replace('#', ' ') + "#"
                        + paramChannel.isAllowedForGuest();
 
     return tmpString;
@@ -207,8 +209,7 @@ class DataBaseIO {
       // Schleife, um die Channels als Strings in die Datei zu schreiben
       while (enum.hasMoreElements()) {
         tmpBufferedWriter
-          .write(this.channelToString((Channel) (enum.nextElement()))
-                 + "\n");
+          .write(this.channelToString((Channel) (enum.nextElement())) + "\n");
       }
 
       tmpBufferedWriter.close();

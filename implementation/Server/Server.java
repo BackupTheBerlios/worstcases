@@ -93,7 +93,6 @@ public class Server {
     // wenn der ClientServant existiert...
     if (paramClientServant != null) {
       if (this.clientServantList.removeElement(paramClientServant)) {
-
         paramClientServant.setServer(null);
         Debug.println(Debug.MEDIUM,
                       "Server: " + this.clientServantList.size()
@@ -138,14 +137,14 @@ public class Server {
       // Schleife bis Thread beendet wird
       while (!stop) {
         try {
+          Debug.println(
+            "Server: ready to wait for more incoming connections.");
 
-          Debug.println("Server: ready to wait for more incoming connections.");
-	  
-	  // horcht an Port für eine Verbindung mit einem Client
-          Socket tmpSocket = serverSocket.accept(); 
-	  Debug.println(Debug.LOW, "Server: new tmpSocket instantiated.");
+          // horcht an Port für eine Verbindung mit einem Client
+          Socket tmpSocket = serverSocket.accept();
 
-	  Debug.println(Debug.MEDIUM,
+          Debug.println(Debug.LOW, "Server: new tmpSocket instantiated.");
+          Debug.println(Debug.MEDIUM,
                         "Server: incoming connection from "
                         + tmpSocket.getInetAddress() + ":"
                         + tmpSocket.getPort());
@@ -155,18 +154,16 @@ public class Server {
                                              userAdministration);
 
           Debug.println(Debug.LOW, "Server: new ClientServant");
-	  
-	  // neuer ClientServant wird in die Liste hinzugefügt
+
+          // neuer ClientServant wird in die Liste hinzugefügt
           this.addToClientServantList(tmpClientServant);
-
           Debug.println(Debug.LOW, "Server: ClientServant added to list");
-	  
-	  // der neue Clientservant wird gestartet
-          tmpClientServant.startClientServant();
 
+          // der neue Clientservant wird gestartet
+          tmpClientServant.startClientServant();
           Debug.println(Debug.LOW, "Server: ClientServant started");
-	  
-	  // Fehler beim horchen werden abgefangen
+
+          // Fehler beim horchen werden abgefangen
         } catch (java.io.IOException e) {
           Debug.println(Debug.HIGH, "Server: error while listening: " + e);
         }

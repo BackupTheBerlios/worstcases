@@ -7,11 +7,11 @@ import Util.Debug.Debug;
 
 
 /**
- * Versendet Nachrichten über einen Socket an einen Downlink. 
+ * Versendet Nachrichten über einen Socket an einen Downlink.
  * Diese Klasse ist die sendende Hälfte eines Kommunikationskanals.
- * Die andere Hälfte, die das Empfangen von Nachrichten übernimmt, 
+ * Die andere Hälfte, die das Empfangen von Nachrichten übernimmt,
  * ist der Downlink.
- * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten an seinen 
+ * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten an seinen
  * ClientServant zu senden.
  * @see Util.Downlink
  * @see Client.Client
@@ -54,7 +54,7 @@ public class Uplink {
   }
 
   /**
-   * Sendet ein Commandobjekt über den Socket. Es wird am anderen 
+   * Sendet ein Commandobjekt über den Socket. Es wird am anderen
    * Ende des Kommunikationskanals von einem Downlink empfangen.
    * Benutzt objectOutputStream.writeObject()
    * @param msg Das zu versendende Commandobjekt.

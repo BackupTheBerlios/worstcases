@@ -8,7 +8,7 @@ import Util.Debug.Debug;
 
 
 /**
- * Empfängt über einen Socket Nachrichten von einem Uplink 
+ * Empfängt über einen Socket Nachrichten von einem Uplink
  * und leitet sie an ihren Besitzer weiter.
  * Diese Klasse ist die empfangende Hälfte eines Kommunikationskanals. Die
  * andere Hälfte, die das Senden von Nachrichten übernimmt, ist der Uplink.
@@ -34,9 +34,9 @@ public class Downlink extends Thread {
   /** Über diesen Socket werden die Nachrichten empfangen. */
   private Socket socket;
 
-  /** 
-   * Der Besitzer des Downlinks, an den die ankommenden Nachrichten 
-   * weitergeleitet werden sollen. 
+  /**
+   * Der Besitzer des Downlinks, an den die ankommenden Nachrichten
+   * weitergeleitet werden sollen.
    */
   private DownlinkOwner downlinkOwner;
 
@@ -47,16 +47,16 @@ public class Downlink extends Thread {
   private boolean stop = false;
 
   /**
-   * Wartet auf ankommende Nachrichten mit objectInputStream.readObject() und 
+   * Wartet auf ankommende Nachrichten mit objectInputStream.readObject() und
    * leitet sie an den Besitzer weiter.
-   * Benutzt DownlinkOwner.downlinkError() und processMsg(). Wartet pro 
+   * Benutzt DownlinkOwner.downlinkError() und processMsg(). Wartet pro
    * Schleifendurchlauf gemäß LISTEN_DELAY und beendet
    * die Schleife, falls stop = true;
    */
   private void listen() {
 
     Debug.println("Downlink: starting...");
-    
+
     Command tmpCommand;
     DownlinkOwner owner = this.downlinkOwner;
 
@@ -73,8 +73,9 @@ public class Downlink extends Thread {
         // beim owner das Command ausführen
         if (owner != null) {
           owner.processMsg(tmpCommand);
-				}
-				// pausieren
+        }
+
+        // pausieren
         this.sleep(Downlink.LISTEN_DELAY);
       } catch (Exception e) {
         Debug.println(Debug.HIGH, "Downlink: error while listening :" + e);
@@ -82,33 +83,31 @@ public class Downlink extends Thread {
 
         if (owner != null) {
           owner.downlinkError();
-				}
-				else{
-         this.stop=true;
-				}
+        } else {
+          this.stop = true;
+        }
       }
     }
   }
 
   /**
-   * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. 
+   * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit.
    * Ruft this.start() auf.
    * Benutzt DownlinkOwner.downlinkError().
    */
   public void startDownlink() {
 
     Debug.println("Downlink: trying to start...");
-    
+
     try {
       this.objectInputStream =
         new ObjectInputStream(this.socket.getInputStream());
 
       Debug.println("Downlink: got ObjectInputStream.");
-      
       this.start();
       Debug.println(Debug.LOW, "Downlink: started");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH,  "Downlink: error starting downlink:" + e);
+      Debug.println(Debug.HIGH, "Downlink: error starting downlink:" + e);
       this.downlinkOwner.downlinkError();
     }
   }
@@ -141,7 +140,7 @@ public class Downlink extends Thread {
 
   /**
    * Benachrichtigt die betroffenen Objekte mittels setDownlink().
-   * Hat der Downlink keinen DownlinkOwner mehr, so wird stopDownlink() 
+   * Hat der Downlink keinen DownlinkOwner mehr, so wird stopDownlink()
    * aufgerufen.
    */
   public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {

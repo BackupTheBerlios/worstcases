@@ -38,8 +38,8 @@ class ClientServantWatchDog extends Thread {
     ClientServant tmpClientServant;
 
     Debug.println(Debug.MEDIUM,
-                  "ClientServantWatchDog: watching: timeToLive: " + this.timeToLive
-                  + " updateDelay: " + this.updateDelay);
+                  "ClientServantWatchDog: watching: timeToLive: "
+                  + this.timeToLive + " updateDelay: " + this.updateDelay);
 
     while (!stop) {
       enum = this.server.getClientServantEnum();
@@ -51,7 +51,8 @@ class ClientServantWatchDog extends Thread {
                 - tmpClientServant.getAliveStamp()) > timeToLive) {
           tmpClientServant.stopClientServant();
           Debug.println(Debug.MEDIUM,
-                        "ClientServantWatchDog: " + tmpClientServant + ": stopped");
+                        "ClientServantWatchDog: " + tmpClientServant
+                        + ": stopped");
         }
       }
 

@@ -46,8 +46,10 @@ public class Client implements Util.DownlinkOwner {
 
     if (uplink != null) {
       this.uplink.stopUplink();
+
       this.uplink = null;
     }
+
     this.setDownlink(null);
     this.gui.clearGui();
   }
@@ -69,6 +71,7 @@ public class Client implements Util.DownlinkOwner {
   public void clearChannelMsgBuffer() {
     this.channelMsgBuffer = new Vector();
   }
+
   /**
    * Wird gebraucht, um die Channels, die der Benutzer betreten darf
    * auf der GUI auszugeben. Dazu werden die entsprechenden Daten via Downlink
@@ -142,7 +145,6 @@ public class Client implements Util.DownlinkOwner {
     stopClient();
   }
 
-
   /**
    * Wird aufgerufen, wenn vom ClientServant beim Einloggen, die Nachricht
    * kommt, das das Einloggen nicht möglich ist. Die Methode sorgt dafür, das
@@ -171,6 +173,7 @@ public class Client implements Util.DownlinkOwner {
 
     try {
       Uplink tmpUplink = this.uplink;
+
       if (tmpUplink != null) {
         this.uplink.sendMsg(paramCommand);
       }
@@ -179,7 +182,6 @@ public class Client implements Util.DownlinkOwner {
       this.stopClient();
     }
   }
-
 
   /**
    * Meldet den Benutzer an. Name und Passwort werden per Methode sendCommand
@@ -339,6 +341,5 @@ public class Client implements Util.DownlinkOwner {
    * Client Window eingebunden.
    */
   protected Vector currentUsersInChannelList;
-
   public ChatGui gui;
 }
