@@ -23,6 +23,7 @@
 \inputencoding latin1
 \fontscheme default
 \graphics default
+\float_placement !hp
 \paperfontsize default
 \spacing single 
 \papersize a4paper
@@ -68,7 +69,8 @@ vfill{}
 \layout Standard
 \added_space_top 0,3cm \added_space_bottom 0,3cm \align center \LyXTable
 multicol5
-4 3 0 0 -1 -1 -1 -1
+5 3 0 0 -1 -1 -1 -1
+1 1 0 0
 1 1 0 0
 1 1 0 0
 1 1 0 0
@@ -76,6 +78,9 @@ multicol5
 8 1 0 "" ""
 8 1 0 "" ""
 8 1 1 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
@@ -112,6 +117,12 @@ Andreas Büthe
 16.05.2001
 \newline 
 Andreas Büthe
+\newline 
+0.6
+\newline 
+
+\newline 
+Fabian Rotte
 \layout Standard
 
 
@@ -147,14 +158,14 @@ en in der Design-Phase ist.
 \layout Standard
 
 Um die Systemstruktur und entsprechende Zusammenhänge abzubilden, werden
- sowohl verschiedene Diagrammtypen als auch eine textuelle Beschreibun
-g verwendet.
+ sowohl verschiedene Diagrammtypen als auch eine textuelle Beschreibung
+ verwendet.
  In Aktivitätsdiagrammen werden informell Abläufe im System dargestellt,
  mit dem Ziel, einen Ausgangspunkt für den Entwurf der benötigten Struktur
  zu schaffen.
 \layout Standard
 
-Die entstandene Struktur zeigen darauf aufbauend die Klassendiagramme aller
+Die entstandene Struktur zeigt darauf aufbauend die Klassendiagramme aller
  Klassen im System.
  Einerseits erfolgt dies im Überblick, um die Kommunikation zwischen den
  einzelnen Klassen deutlich zu machen, und andererseits sieht dieses Dokument
@@ -167,14 +178,14 @@ Zur formalen Verdeutlichung wichtiger Zusammenhänge wird -- wo angebracht
  Kollaborationsdiagramme zurückgegriffen.
 \layout Standard
 
-Für das zu Grunde liegende Protokoll wird im vorliegenden Entwurf nur festgeschrie
-ben, daß der Datenaustausch zwischen Server- und Clientpaket auf der Basis
-von Zeichenketten erfolgt.
+Für das zu Grunde liegende Protokoll wird im vorliegenden Entwurf nur festgeschr
+ieben, daß der Datenaustausch zwischen Server- und Clientpaket auf der Basis
+ von Zeichenketten erfolgt.
  Eine genauere Spezifikation erfolgt in der Designphase.
 \layout Standard
 
-Nicht im Entwurf berücksichtig wurden die GUIs der Client- und AdminClient-Applik
-ation, da grafische Oberflächen i.A.
+Nicht im Entwurf berücksichtig wurden die GUIs der Client- und AdminClient-Appli
+kation, da grafische Oberflächen i.A.
  nicht mit der UML entworfen werden und algorithmisch betrachtet trivial
  sind.
  Die vorhandenene Funktionalität wird aber anhand der Methoden von Client
@@ -193,7 +204,7 @@ Um die geforderte Verwendung eines CASE-Tools (hier TogetherJ) nicht ad
  eine dynamische, relationale Darstellung des Entwurfs ermöglichen, die
  zugleich navigierbar ist.
 \layout Standard
-
+\pagebreak_bottom 
 TogetherJ in der Version 4.2 unterstützt keine bidirektionalen Assoziationen.
  Daher wurden nur dort zwei unidirektionale Assoziationen verwendet, wo
  sie explizit benötigt werden.
@@ -204,10 +215,24 @@ TogetherJ in der Version 4.2 unterstützt keine bidirektionalen Assoziationen.
 Aktivitätsdiagramme
 \layout Standard
 
-\begin_float margin 
+Ein Beispielverlauf einer Benutzeraktivität
 \layout Standard
 
-werden noch hinzugefügt
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 510 505
+file eps/SampleChatActivity.eps
+height 3 60,00
+flags 9
+
+\end_inset 
+
+
+\layout Caption
+
+ein Beispielverlauf
 \end_float 
 \layout Section
 
@@ -216,8 +241,8 @@ Klassenstruktur
 
 In diesem Kapitel wird das für die Virtuelle Konferenz erforderliche System
  vorgestellt.
- Anhand erläuterter Klassendiagramme schildern wir die in der Entwurfspha
-se entwickelte Klassenstruktur.
+ Anhand erläuterter Klassendiagramme schildern wir die in der Entwurfsphase
+ entwickelte Klassenstruktur.
 \layout Subsection
 
 Klassen des Servers
@@ -243,9 +268,9 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 595 425
-file serveroverview.eps
-width 3 100,00
+\begin_inset Figure size 476 352
+file eps/Serveroverview.eps
+width 3 80,00
 flags 11
 
 \end_inset 
@@ -285,9 +310,9 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 545 757
-file servercentric.eps
-height 3 90,00
+\begin_inset Figure size 582 673
+file eps/servercentric.eps
+height 3 80,00
 flags 11
 
 \end_inset 
@@ -326,8 +351,8 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 595 757
-file clientservantcentric.eps
+\begin_inset Figure size 595 464
+file eps/clientservercentric.eps
 width 3 100,00
 angle 90,00
 flags 11
@@ -342,7 +367,7 @@ flags 11
 
 \end_inset 
 
-Klassendiagramm aus Sicht von Client- und AdminClientServant
+Klassendiagramm aus Sicht der Klasse ClientServant
 \end_float 
 \layout Subsubsection
 
@@ -374,8 +399,8 @@ ion mit den dazugehörigen Klassen Channel und User.
 \layout Standard
 \align center 
 
-\begin_inset Figure size 476 509
-file channeluser.eps
+\begin_inset Figure size 476 540
+file eps/userchannel.eps
 width 3 80,00
 flags 11
 
@@ -414,8 +439,8 @@ Das UML-Klassendiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 416 597
-file ClientOverview.eps
+\begin_inset Figure size 416 197
+file eps/clientoverview.eps
 width 3 70,00
 flags 11
 
@@ -431,8 +456,8 @@ flags 11
 
 Übersicht über das Package Client
 \end_float 
-Die Hauptfunktionalität des Client-Pakets ist in den Klassen Client und AdminClie
-nt enthalten, wobei AdminClient von Client abgeleitet ist.
+Die Hauptfunktionalität des Client-Pakets ist in den Klassen Client und
+ AdminClient enthalten, wobei AdminClient von Client abgeleitet ist.
  Sie enthalten die nötigen Methoden, die es dem Benutzer letztendlich ermögliche
 n, zu interagieren.
  Die Klasse AdminClient stellt zusätzlich zu den normalen Methoden der Klasse
@@ -591,17 +616,14 @@ Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
 
 private\SpecialChar ~
 void\SpecialChar ~
-<<<<<<< entwurf.lyx
-listen()
+<<<<<<< entwurf.lyxlisten()
 \lang american
  
 \lang german
 Wartet auf ankommendene Verbindungswünsche der Clients und leitet diese
- jeweils an einen neuen ClientObserver weiter.
-=======
-listen() Wartet auf ankommendene Verbindungswünsche der Clients
- und leitet diese an jeweils einen neu instanziierten ClientObserver weiter.
->>>>>>> 1.2
+ jeweils an einen neuen ClientObserver weiter.=======listen() Wartet auf
+ ankommendene Verbindungswünsche der Clients und leitet diese an jeweils
+ einen neu instanziierten ClientObserver weiter.>>>>>>> 1.2
 \layout Description
 
 public\SpecialChar ~
@@ -703,8 +725,7 @@ userSet) Meldet den User beim System an, benutzt
 
 public\SpecialChar ~
 void\SpecialChar ~
-logoutUser() Meldet den User vom System ab und stoppt den
- Observer.
+logoutUser() Meldet den User vom System ab und stoppt den Observer.
 \layout Description
 
 public\SpecialChar ~
@@ -851,8 +872,8 @@ public\SpecialChar ~
 void\SpecialChar ~
 processMsg(String\SpecialChar ~
 msg) Prüft den Inhalt einer vom AdminClient empfangen
-en Nachricht und entscheidet, welche Methode aufgerufen werden muss, um den
- "Wunsch" des AdminClients zu erfüllen.
+en Nachricht und entscheidet, welche Methode aufgerufen werden muss, um
+ den "Wunsch" des AdminClients zu erfüllen.
 \layout Description
 
 public\SpecialChar ~
@@ -1723,8 +1744,8 @@ Das Diagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 595 380
-file client.login.eps
+\begin_inset Figure size 595 326
+file eps/Client.login(1).eps
 width 3 100,00
 flags 11
 
@@ -1759,8 +1780,8 @@ Das UML-Sequenzdiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 595 222
-file client.availchannels.eps
+\begin_inset Figure size 595 176
+file eps/client.Downlink.listen(1).eps
 width 3 100,00
 flags 11
 
@@ -1806,8 +1827,8 @@ n.
 \layout Standard
 \align center 
 
-\begin_inset Figure size 549 799
-file clientServant.loginUser.eps
+\begin_inset Figure size 1190 799
+file eps/loginuser.eps
 height 3 95,00
 flags 11
 
@@ -1849,8 +1870,8 @@ Im Sequenzdiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 343 799
-file clientServant.sendMsgToChannel.eps
+\begin_inset Figure size 2137 799
+file eps/ClientServant.sendMsgToChannel(1).eps
 height 3 95,00
 flags 11
 
@@ -1894,8 +1915,8 @@ Das Sequenzdiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 595 678
-file server.startserver.eps
+\begin_inset Figure size 595 487
+file eps/Server.startServer(1).eps
 width 3 100,00
 flags 11
 
@@ -1954,8 +1975,8 @@ Dieses Kollaborationsdiagramm repräsentiert damit eine ganze Klasse von
 \layout Standard
 \align center 
 
-\begin_inset Figure size 609 799
-file adminClientServer.deleteChannel.eps
+\begin_inset Figure size 628 799
+file eps/deletechannel.eps
 height 3 95,00
 flags 11
 
