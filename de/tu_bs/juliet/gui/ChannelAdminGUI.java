@@ -23,9 +23,9 @@
 
 package de.tu_bs.juliet.gui;
 
-import de.tu_bs.juliet.client.*;
 import java.util.Vector;
 
+import de.tu_bs.juliet.client.*;
 
 /**
  * Der Frame ChannelAdminGUI enthält die Funktionen das GUI, um alle
@@ -42,6 +42,7 @@ public class ChannelAdminGUI extends java.awt.Frame {
   /** Das ChatGui, zu dem dieses ChannelAdminGUI gehört. */
   ChatGui chatGui;
 
+  // Elemente der GUI
   java.awt.Label channelNameLabel;
   java.awt.TextField channelName;
   java.awt.Label channelListLabel;
