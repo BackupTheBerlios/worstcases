@@ -40,7 +40,7 @@ import de.tu_bs.juliet.util.Helper;
  * noch um diesen Client kümmert und seine Anfragen bearbeitet. 
  * In dieser Klasse steckt die meiste Funktionalität des Servers.
  */
-public class ClientServant implements Util.DownlinkOwner {
+public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
 
   /** Gibt den letzten Zeitpunkt an, an dem der ClientServant 
     * eine Nachricht von seinem Client empfangen hat. 

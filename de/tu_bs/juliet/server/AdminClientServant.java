@@ -26,7 +26,7 @@ package de.tu_bs.juliet.server;
 import java.util.Vector;
 import java.util.Enumeration;
 import de.tu_bs.juliet.util.*;
-import de.tu_bs.juliet.util.Commands.*;
+import de.tu_bs.juliet.util.commands.*;
 
 
 /** Verarbeitet die Anfragen eines AdminClients. */

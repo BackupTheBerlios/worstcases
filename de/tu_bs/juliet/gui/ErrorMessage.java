@@ -54,7 +54,7 @@ public class ErrorMessage extends java.awt.Frame {
 
     setResizable(false);
     setFont(new java.awt.Font("SansSerif", 0, 12));
-    setTitle(gui.ChatGui.PRODUCT_NAME + " - Fehler aufgetreten");
+    setTitle(ChatGui.PRODUCT_NAME + " - Fehler aufgetreten");
     addWindowListener(new java.awt.event.WindowAdapter() {
 
       public void windowClosing(java.awt.event.WindowEvent evt) {

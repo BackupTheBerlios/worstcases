@@ -26,7 +26,7 @@ package de.tu_bs.juliet.server;
 import java.util.Vector;
 import java.util.Enumeration;
 import de.tu_bs.juliet.util.Helper;
-import de.tu_bs.juliet.util.Debug.Debug;
+import de.tu_bs.juliet.util.debug.Debug;
 
 
 /**
