@@ -26,7 +26,7 @@ public class User {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
-        if ((loggedIn == false) && this.isGuest) {
+        if (!loggedIn && this.isGuest) {
             this.userAdministration.removeFromUserList(this);
         }
     }
