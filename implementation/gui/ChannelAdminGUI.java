@@ -406,7 +406,7 @@ public class ChannelAdminGUI extends java.awt.Frame {
      */
     private void saveChannel() {
       if (this.channelName.getText().length() <= maxLength) {
-        if (isNewChannel==true) {
+        if (isNewChannel) {
           this.chatGui.adminClient.addChannel(this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
         } else {
           this.chatGui.adminClient.editChannel(this.chatGui.adminClient.getTmpOldChannelName(),this.channelName.getText(),this.allowedForGuests.getState(),this.chatGui.stringToVector(this.activeUsers.getItems()));
