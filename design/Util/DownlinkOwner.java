@@ -6,6 +6,6 @@ import Util.Commands.Command;
 
 public interface DownlinkOwner {
     /** Diese Methode wird vom Client aufgerufen, wenn er eine Nachricht erhält. */
-    public void processMsg(Command msg);
-    public void stopOwner();
+    void processMsg(Command msg);
+    void stopOwner();
 }
