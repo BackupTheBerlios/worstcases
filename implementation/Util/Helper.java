@@ -9,25 +9,26 @@ import Util.Debug.Debug;
 public class Helper {
     /** Bricht den String s nach rowLength Zeichen unter Beachtung von Wörtern um */
     public static String wordWrap(String s, int rowLength) {
-        java.util.Stack stack = new java.util.Stack();
+        Vector tmpVector = new Vector();
         String tmpString = new String();
         String tmpToken = new String();
         String tmpRow = new String();
         StringTokenizer stringTokenizer = new StringTokenizer(s, " ");
         while (stringTokenizer.hasMoreTokens()) {
-            stack.push(stringTokenizer.nextToken());
+            tmpVector.addElement(stringTokenizer.nextElement());
         }
-        while (!stack.empty()) {
-            tmpToken = (String)stack.pop();
+        while (!tmpVector.isEmpty()) {
+            tmpToken = (String)tmpVector.firstElement();
+            tmpVector.removeElementAt(0);
             if (tmpRow.length() + tmpToken.length() + 1 <= rowLength) {
-                tmpRow = tmpToken + " " + tmpRow;
+                tmpRow = tmpRow + " " + tmpToken;
             }
             else {
-                tmpString = tmpRow + "\n" + tmpString;
+                tmpString = tmpString + "\n" + tmpRow;
                 tmpRow = tmpToken;
             }
-				}
-				tmpString = tmpRow +"\n"+tmpString;
+        }
+        tmpString = tmpString + "\n" + tmpRow;
         return tmpString;
     }
 
