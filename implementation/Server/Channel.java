@@ -45,7 +45,8 @@ class Channel {
 		 * Benachrichtig ggf. betroffene User mittels user.isGuest() und
      * user.removeFromAllowedChannelList(this)
      */
-    public synchronized void setAllowedForGuest(boolean b) {
+		public synchronized void setAllowedForGuest(boolean b) {
+				ClientServant tmpClientServant;
         boolean oldValue = this.isAllowedForGuest();
         this.allowedForGuest = b;
         if (oldValue != b) {
@@ -57,7 +58,12 @@ class Channel {
                 while (enum.hasMoreElements()) {
                     tmpUser = (User)enum.nextElement();
                     if (tmpUser.isGuest()) {
-                        tmpUser.removeFromAllowedChannelList(this);
+												tmpUser.removeFromAllowedChannelList(this);
+												tmpClientServant=tmpUser.getClientServant();
+												if(tmpClientServant!=null){
+                         tmpClientServant.sendErrorMsg("Channel "+this.getName()+" nicht mehr für Gäste freigegeben!");
+												}
+
                     }
                 }
             }

@@ -178,14 +178,6 @@ public class Client implements Util.DownlinkOwner {
     }
   }
 
-  /**
-   * Wird aufgerufen, wenn ein Channel verlassen werden soll. Der
-   * Benutzer wird zur Auswahl eines neuen Channels aufgeordert. Sendet ein
-   * LeaveChannelCommand().
-   */
-  public synchronized final void leaveChannel() {
-    this.sendCommand(new LeaveChannelCommand());
-  }
 
   /**
    * Meldet den Benutzer an. Name und Passwort werden per Methode sendCommand
