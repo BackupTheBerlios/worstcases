@@ -376,7 +376,7 @@ public class ClientServant implements Util.DownlinkOwner {
         User old = this.user;
         if (old != null) {
             this.sendCommand(
-                new Util.Commands.SetCurrentUserDataCommand(old.getName(), old.isAdmin(),old.getAllowedChannelNames()));
+                new Util.Commands.SetCurrentUserDataCommand(old.getName(), old.isAdmin(), old.getAllowedChannelNames()));
         }
     }
 

@@ -25,23 +25,23 @@ public class Uplink {
     /** Über diesen Socket werden die Nachrichten versendet. */
     private Socket socket;
 
-    /**Output-Stream für Objekte.*/
+    /** Output-Stream für Objekte. */
     private ObjectOutputStream objectOutputStream;
 
     /** Öffnet den Output-Stream. */
     public void startUplink() throws java.io.IOException {
         this.objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
-        Debug.println(this+" started");
+        Debug.println(this + " started");
     }
 
     /** Schließt den Output-Stream. */
     public void stopUplink() {
-        try{
-        this.objectOutputStream.close();
-        Debug.println(this+" stopped");
+        try {
+            this.objectOutputStream.close();
+            Debug.println(this + " stopped");
         }
-        catch(java.io.IOException e){
-         Debug.println(this+":error stopping:"+e);
+        catch (java.io.IOException e) {
+            Debug.println(this + ":error stopping:" + e);
         }
     }
 
@@ -52,7 +52,7 @@ public class Uplink {
      * @see Downlink
      */
     public synchronized void sendMsg(Command msg) throws java.io.IOException {
-        Debug.println(this+": sending " + msg);
+        Debug.println(this + ": sending " + msg);
         objectOutputStream.writeObject(msg);
         objectOutputStream.flush();
     }

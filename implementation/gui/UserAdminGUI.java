@@ -13,13 +13,18 @@ import Client.*;
  * @version
  */
 public class UserAdminGUI extends java.awt.Frame {
-    private gui.ChatGui chatGui;
+    gui.ChatGui chatGui;
+
     /** Konstruktor */
-
-
     public UserAdminGUI(gui.ChatGui paramChatGui) {
-        this.chatGui=paramChatGui;
+        this.chatGui = paramChatGui;
         initComponents();
+        addWindowListener(
+            new java.awt.event.WindowAdapter() {
+                public void windowClosing(java.awt.event.WindowEvent evt) {
+                    exitForm(evt);
+                }
+            });
         pack();
     }
 
@@ -52,7 +57,7 @@ public class UserAdminGUI extends java.awt.Frame {
             new java.awt.GridBagLayout());
         java.awt.GridBagConstraints gridBagConstraints1;
         passwordLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         passwordLabel.setName("passwordLabel");
         passwordLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -67,7 +72,7 @@ public class UserAdminGUI extends java.awt.Frame {
         loginName.setBackground(java.awt.Color.white);
         loginName.setName("loginField");
         loginName.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         loginName.setForeground(java.awt.Color.black);
         loginName.addActionListener(
             new java.awt.event.ActionListener() {
@@ -84,7 +89,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(loginName, gridBagConstraints1);
         passwordVerifyLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         passwordVerifyLabel.setName("passwordVerifyLabel");
         passwordVerifyLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -97,7 +102,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
         add(passwordVerifyLabel, gridBagConstraints1);
         loginNameLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         loginNameLabel.setName("loginLabel");
         loginNameLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -111,7 +116,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.EAST;
         add(loginNameLabel, gridBagConstraints1);
         userList.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         userList.setName("userList");
         userList.setBackground(java.awt.Color.white);
         userList.setForeground(java.awt.Color.black);
@@ -135,7 +140,7 @@ public class UserAdminGUI extends java.awt.Frame {
         password.setBackground(java.awt.Color.white);
         password.setName("passwordField");
         password.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         password.setEchoChar('*');
         password.setForeground(java.awt.Color.black);
         password.addActionListener(
@@ -155,7 +160,7 @@ public class UserAdminGUI extends java.awt.Frame {
         passwordVerify.setBackground(java.awt.Color.white);
         passwordVerify.setName("passwordVerifyField");
         passwordVerify.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         passwordVerify.setEchoChar('*');
         passwordVerify.setForeground(java.awt.Color.black);
         passwordVerify.addActionListener(
@@ -176,7 +181,7 @@ public class UserAdminGUI extends java.awt.Frame {
             new java.awt.Color(204, 204, 204));
         isAdmin.setName("isAdminCheckbox");
         isAdmin.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         isAdmin.setForeground(java.awt.Color.black);
         isAdmin.setLabel(" ist Admin");
         gridBagConstraints1 = new java.awt.GridBagConstraints();
@@ -187,7 +192,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.anchor = java.awt.GridBagConstraints.WEST;
         add(isAdmin, gridBagConstraints1);
         userListLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         userListLabel.setName("userListLabel");
         userListLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -202,7 +207,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
         add(userListLabel, gridBagConstraints1);
         passiveChannels.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         passiveChannels.setMultipleMode(true);
         passiveChannels.setName("passiveChannelList");
         passiveChannels.setBackground(java.awt.Color.white);
@@ -217,29 +222,41 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.weightx = 1.0;
         add(passiveChannels, gridBagConstraints1);
         addToActive.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         addToActive.setLabel(">>>");
         addToActive.setName("addToChannels");
         addToActive.setBackground(
             new java.awt.Color(204, 204, 204));
         addToActive.setForeground(java.awt.Color.black);
+        addToActive.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    addToActiveMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 9;
         gridBagConstraints1.gridy = 9;
         add(addToActive, gridBagConstraints1);
         removeFromActive.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         removeFromActive.setLabel("<<<");
         removeFromActive.setName("removeFromChannels");
         removeFromActive.setBackground(
             new java.awt.Color(204, 204, 204));
         removeFromActive.setForeground(java.awt.Color.black);
+        removeFromActive.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    removeFromActiveMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 9;
         gridBagConstraints1.gridy = 11;
         add(removeFromActive, gridBagConstraints1);
         activeChannels.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         activeChannels.setMultipleMode(true);
         activeChannels.setName("activeChannelList");
         activeChannels.setBackground(java.awt.Color.white);
@@ -254,7 +271,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.weightx = 1.0;
         add(activeChannels, gridBagConstraints1);
         passiveChannelsLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         passiveChannelsLabel.setName("passiveChannelListField");
         passiveChannelsLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -268,7 +285,7 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.insets = new java.awt.Insets(15, 0, 0, 10);
         add(passiveChannelsLabel, gridBagConstraints1);
         activeChannelsLabel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         activeChannelsLabel.setName("activeChannelListField");
         activeChannelsLabel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -282,12 +299,18 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.insets = new java.awt.Insets(15, 0, 0, 10);
         add(activeChannelsLabel, gridBagConstraints1);
         editUser.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         editUser.setLabel("Bearbeiten");
         editUser.setName("editUser");
         editUser.setBackground(
             new java.awt.Color(204, 204, 204));
         editUser.setForeground(java.awt.Color.black);
+        editUser.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    editUserMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 12;
@@ -296,12 +319,18 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
         add(editUser, gridBagConstraints1);
         copyUser.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         copyUser.setLabel("Kopieren");
         copyUser.setName("copyUserData");
         copyUser.setBackground(
             new java.awt.Color(204, 204, 204));
         copyUser.setForeground(java.awt.Color.black);
+        copyUser.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    copyUserMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 13;
@@ -310,12 +339,18 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.insets = new java.awt.Insets(0, 10, 0, 30);
         add(copyUser, gridBagConstraints1);
         newUser.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         newUser.setLabel("Neu");
         newUser.setName("newUser");
         newUser.setBackground(
             new java.awt.Color(204, 204, 204));
         newUser.setForeground(java.awt.Color.black);
+        newUser.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    newUserMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 0;
@@ -325,12 +360,18 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.weightx = 1.0;
         add(newUser, gridBagConstraints1);
         saveUser.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         saveUser.setLabel("Speichern");
         saveUser.setName("saveUser");
         saveUser.setBackground(
             new java.awt.Color(204, 204, 204));
         saveUser.setForeground(java.awt.Color.black);
+        saveUser.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    saveUserMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 8;
         gridBagConstraints1.gridy = 0;
@@ -340,12 +381,18 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.weightx = 1.0;
         add(saveUser, gridBagConstraints1);
         deleteUser.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         deleteUser.setLabel("L\u00f6schen");
         deleteUser.setName("deleteUser");
         deleteUser.setBackground(
             new java.awt.Color(204, 204, 204));
         deleteUser.setForeground(java.awt.Color.black);
+        deleteUser.addMouseListener(
+            new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    deleteUserMouseClicked(evt);
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 14;
@@ -355,6 +402,35 @@ public class UserAdminGUI extends java.awt.Frame {
         gridBagConstraints1.weightx = 1.0;
         add(deleteUser, gridBagConstraints1);
     } //GEN-END:initComponents
+
+    private void deleteUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_deleteUserMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_deleteUserMouseClicked
+
+    private void copyUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_copyUserMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_copyUserMouseClicked
+
+    private void editUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_editUserMouseClicked
+        String name = this.userList.getSelectedItem();
+        this.chatGui.adminClient.getUserData(name);
+    } //GEN-LAST:event_editUserMouseClicked
+
+    private void removeFromActiveMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_removeFromActiveMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_removeFromActiveMouseClicked
+
+    private void addToActiveMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_addToActiveMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_addToActiveMouseClicked
+
+    private void saveUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_saveUserMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_saveUserMouseClicked
+
+    private void newUserMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_newUserMouseClicked
+        // Add your handling code here:
+    } //GEN-LAST:event_newUserMouseClicked
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_passwordActionPerformed
         // Add your handling code here:
@@ -372,26 +448,31 @@ public class UserAdminGUI extends java.awt.Frame {
         // Add your handling code here:
     } //GEN-LAST:event_textField1ActionPerformed
 
+    /** Schließen des Applikationsframes */
+    private void exitForm(java.awt.event.WindowEvent evt) {
+        this.setVisible(false);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label passwordLabel;
-    private java.awt.TextField loginName;
-    private java.awt.Label passwordVerifyLabel;
-    private java.awt.Label loginNameLabel;
-    public java.awt.List userList;
-    private java.awt.TextField password;
-    private java.awt.TextField passwordVerify;
-    private java.awt.Checkbox isAdmin;
-    private java.awt.Label userListLabel;
-    private java.awt.List passiveChannels;
-    private java.awt.Button addToActive;
-    private java.awt.Button removeFromActive;
-    private java.awt.List activeChannels;
-    private java.awt.Label passiveChannelsLabel;
-    private java.awt.Label activeChannelsLabel;
-    private java.awt.Button editUser;
-    private java.awt.Button copyUser;
-    private java.awt.Button newUser;
-    private java.awt.Button saveUser;
-    private java.awt.Button deleteUser;
+    java.awt.Label passwordLabel;
+    java.awt.TextField loginName;
+    java.awt.Label passwordVerifyLabel;
+    java.awt.Label loginNameLabel;
+    java.awt.List userList;
+    java.awt.TextField password;
+    java.awt.TextField passwordVerify;
+    java.awt.Checkbox isAdmin;
+    java.awt.Label userListLabel;
+    java.awt.List passiveChannels;
+    java.awt.Button addToActive;
+    java.awt.Button removeFromActive;
+    java.awt.List activeChannels;
+    java.awt.Label passiveChannelsLabel;
+    java.awt.Label activeChannelsLabel;
+    java.awt.Button editUser;
+    java.awt.Button copyUser;
+    java.awt.Button newUser;
+    java.awt.Button saveUser;
+    java.awt.Button deleteUser;
     // End of variables declaration//GEN-END:variables
 }

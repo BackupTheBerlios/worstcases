@@ -39,7 +39,7 @@ public class Sort {
 
     /** sortiert einen Vector von Strings */
     public static Vector quicksort(Vector list) {
-        if (list != null) {
+        if ((list != null) && (list.size()!=0)) {
             return (quicksortHelp(list, 0, list.size() - 1));
         }
         else {
