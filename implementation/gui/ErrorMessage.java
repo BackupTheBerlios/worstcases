@@ -25,6 +25,7 @@ public class ErrorMessage extends java.awt.Frame {
         okButton = new java.awt.Button();
         messageArea = new java.awt.TextArea();
         setLayout(new java.awt.GridBagLayout());
+        setBackground(new java.awt.Color (204, 204, 204));
         java.awt.GridBagConstraints gridBagConstraints1;
         setResizable(false);
         setFont(new java.awt.Font ("SansSerif", 0, 12));
@@ -41,13 +42,12 @@ public class ErrorMessage extends java.awt.Frame {
         okButton.setName("okButton");
         okButton.setBackground(new java.awt.Color (204, 204, 204));
         okButton.setForeground(java.awt.Color.black);
-        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okButtonMouseClicked(evt);
-            }
-        }
-        );
-
+        okButton.addActionListener(
+            new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    closeWindow();
+                }
+            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 1;
@@ -70,7 +70,7 @@ public class ErrorMessage extends java.awt.Frame {
     }
 
     /** Nach Klick auf den okButton wird der Error-Message-Frame geschlossen */
-    private void okButtonMouseClicked(java.awt.event.MouseEvent evt) {
+    private void closeWindow() {
         this.setVisible(false);
     }
 
