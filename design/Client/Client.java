@@ -116,7 +116,6 @@ public class Client implements Util.DownlinkOwner {
             downlink = new Util.Downlink(socket, this);
             uplink.startUplink();
             downlink.startDownlink();
-            downlink.start();
         } catch (java.io.IOException e) {
             Debug.println(Debug.HIGH, e);
         }

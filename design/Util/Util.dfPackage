@@ -37,7 +37,11 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:java#Class#Util.DownlinkOwner:oiref>=10,10,203,108,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#Util.Downlink#downlinkOwner:oiref>=293,64,213,64:oigroup>
+<oigroup:<oiref:java#Class#Util.Uplink:oiref>=10,270,203,135,1:oigroup>
+<oigroup:<oiref:java#Class#Util.Downlink:oiref>=293,10,219,234,1:oigroup>
+<oigroup:<oiref:design#Class#idfsn8gncn7o854rcn7o9cix.diagram:oiref>=10,450,203,461,1:oigroup>
 */
 class __positions {
 }

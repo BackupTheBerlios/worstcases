@@ -2,14 +2,24 @@ import Util.*;
 import Server.*;
 import Client.*;
 
-class Servertest {
+class Servertest extends Thread{
     public static void main(String[] args) throws java.io.FileNotFoundException, java.io.IOException {
-        Server tmpServer = new Server();
+     Servertest test=new Servertest();
+     test.start();
+    }
+    
+    public void run(){
+       try{
+                Server tmpServer = new Server();
         tmpServer.startServer();
-	tmpServer.stopServer();
+	}
+	catch (Exception e){
+	
+	 System.out.println(e);
+	}
+
+    
     }
-    public void stop(){
-     System.out.println("Hallo");
-    }
+    
 
 }

@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.util.Vector;
 import java.io.*;
 import Util.Commands.*;
-import Util.Debug.Debug;
 
 /**
  * Empfängt über einen Socket Nachrichten von einem Uplink und leitet sie an ihren Besitzer weiter.
@@ -13,7 +12,8 @@ import Util.Debug.Debug;
  * Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten von seinem Client zu empfangen.
  */
 public class Downlink extends Thread {
-    private int LISTEN_DELAY = 1000;
+    /**Zeit zwischen zwei Listen() - Schleifendurchläufen in Millisekunden*/
+    private int LISTEN_DELAY = 100;
 
     /**
      * Konstruktor.
@@ -32,43 +32,50 @@ public class Downlink extends Thread {
     private DownlinkOwner downlinkOwner;
     private ObjectInputStream objectInputStream;
     private boolean stop = false;
+    private boolean stopped =false;
 
-    /** Wartet auf ankommende Nachrichten und leitet sie an den Besitzer weiter. */
+    /** Wartet auf ankommende Nachrichten und leitet sie an den Besitzer weiter.
+      * benutzt DownlinkOwner.downlinkError()
+      */
     private void listen() {
         //  String tmpString;
         Command tmpCommand;
         while (!stop) {
             try {
                 tmpCommand = (Command)objectInputStream.readObject();
-                Debug.println("Downlink: received " + tmpCommand);
+                System.out.println("received " + tmpCommand);
                 downlinkOwner.processMsg(tmpCommand);
-                try {
-                    this.sleep(this.LISTEN_DELAY);
-                }
-                catch (java.lang.InterruptedException e) {
-                    Debug.println(Debug.HIGH, e);
-                }
-            } catch (java.io.IOException e) {
-                Debug.println(Debug.HIGH, e);
-                this.stopDownlink();
+                this.sleep(this.LISTEN_DELAY);
+
             }
-            catch (java.lang.ClassNotFoundException e) {
-                Debug.println(Debug.HIGH, e);
+            catch (Exception e){
+             System.out.println("error while listening :"+e);
+             this.stopped=true;
+             this.downlinkOwner.downlinkError();
             }
         }
-        try {
+        try{
             this.objectInputStream.close();
         }
-        catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, e);
+        catch(java.io.IOException e){
+         System.out.println("error closing stream :"+e);
         }
-        Debug.println("Downlink: stopped");
+        this.stopped=true;
     }
 
-    /** Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. */
-    public void startDownlink() throws java.io.IOException{
+    /** Öffnet den Input - Stream, danach ist der Downlink betriebsbereit.
+      * Benutzt DownlinkOwner.downlinkError()
+      */
+    public void startDownlink() {
+            try{
             this.objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-            Debug.println("Downlink: started");
+            System.out.println("downlink started");
+            this.start();
+            }
+            catch (java.io.IOException e){
+              System.out.println("error starting downlink:"+e);
+              this.downlinkOwner.downlinkError();
+            }
     }
 
     /** Startet den Thread. */
@@ -79,12 +86,19 @@ public class Downlink extends Thread {
     /** Schließt den Input - Stream */
     private void stopDownlink() {
         this.stop = true;
+        while(!stopped){}
+
+        this.setDownlinkOwner(null);
+        System.out.println("downlink stopped");
     }
 
     public DownlinkOwner getDownlinkOwner() {
         return downlinkOwner;
     }
 
+    /**
+     * setDownlinkOwner(null) bewirkt stopDownlink()
+     */
     public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
         if (this.downlinkOwner != paramDownlinkOwner) {
             if (this.downlinkOwner != null) {
@@ -95,6 +109,9 @@ public class Downlink extends Thread {
             this.downlinkOwner = paramDownlinkOwner;
             if (paramDownlinkOwner != null) {
                 paramDownlinkOwner.setDownlink(this);
+            }
+            else{
+             this.stopDownlink();
             }
         }
     }
