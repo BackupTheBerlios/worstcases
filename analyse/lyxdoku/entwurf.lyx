@@ -140,18 +140,18 @@ Einleitung
 Das vorliegende Dokument ist die entwurfstechnische Umsetzung der im Pflichtenhe
 ft beschriebenen Funktionen und Anforderungen für das Programmpaket Virtuelle
  Konferenz.
- Ziel dieses Dokuments ist es, aufzuzeigen, daß die entworfene Struktur
+ Ziel dieses Dokuments ist es, aufzuzeigen, dass die entworfene Struktur
  geeignet ist, die geforderte Funktionalität auf leicht verständliche und
  einfache Weise zu gewährleisten.
  Zudem wurde Wert auf eine Struktur gelegt, die offen für eventuelle Erweiterung
-en in der Designphase ist.
+en in der Design-Phase ist.
 \layout Standard
 
 Um die Systemstruktur und entsprechende Zusammenhänge abzubilden, werden
- sowohl verschiedene Diagrammtypen verwendet als auch eine textuelle Beschreibun
-g.
+ sowohl verschiedene Diagrammtypen als auch eine textuelle Beschreibun
+g verwendet.
  In Aktivitätsdiagrammen werden informell Abläufe im System dargestellt,
- zu dem Zweck einen Ausgangspunkt für den Entwurf der benötigten Struktur
+ mit dem Ziel, einen Ausgangspunkt für den Entwurf der benötigten Struktur
  zu schaffen.
 \layout Standard
 
@@ -168,14 +168,14 @@ Zur formalen Verdeutlichung wichtiger Zusammenhänge wird -- wo angebracht
  Kollaborationsdiagramme zurückgegriffen.
 \layout Standard
 
-Für das zugrundeliegende Protokoll wird im vorliegenden Entwurf nur festgeschrie
-ben, daß der Datenaustausch zwischen Server- und Clientpaket stringbasiert
- abläuft.
+Für das zu Grunde liegende Protokoll wird im vorliegenden Entwurf nur festgeschrie
+ben, daß der Datenaustausch zwischen Server- und Clientpaket auf der Basis
+von Zeichenketten erfolgt.
  Eine genauere Spezifikation erfolgt in der Designphase.
 \layout Standard
 
-Nicht im Entwurf berücksichtig wurden die GUIs der Client- und AdminClientapplik
-ation, da grafische Oberflächen i.a.
+Nicht im Entwurf berücksichtig wurden die GUIs der Client- und AdminClient-Applik
+ation, da grafische Oberflächen i.A.
  nicht mit der UML entworfen werden und algorithmisch betrachtet trivial
  sind.
  Die vorhandenene Funktionalität wird aber anhand der Methoden von Client
@@ -185,7 +185,7 @@ ation, da grafische Oberflächen i.a.
 Bemerkungen
 \layout Standard
 
-Um die geforderte Verwendung eines CASE - Tools (hier TogetherJ) nicht ad
+Um die geforderte Verwendung eines CASE-Tools (hier TogetherJ) nicht ad
  absurdum zu führen, beschränken wir uns in der Darstellung in diesem Dokument
  auf wichtige Details der entworfenen Struktur.
  Weitere Informationen sind aus den von TogetherJ erstellten Dateien ersichtlich
@@ -217,7 +217,7 @@ Klassenstruktur
 
 In diesem Kapitel wird das für die Virtuelle Konferenz erforderliche System
  vorgestellt.
- Anhand von beschriebenen Klassendiagrammen schildern wir die in der Entwurfspha
+ Anhand erläuterter Klassendiagramme schildern wir die in der Entwurfspha
 se entwickelte Klassenstruktur.
 \layout Subsection
 
@@ -236,7 +236,7 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 
 \end_inset 
 
- gibt einen Gesamtüberblick über alle Klassen des Pakets Server mit sämtlichen
+ gibt einen Überblick über alle Klassen des Pakets Server mit sämtlichen
  Assoziationen.
 \layout Standard
 
@@ -432,12 +432,12 @@ flags 11
 
 Übersicht über das Package Client
 \end_float 
-Die Hauptfunktionalität des Clientpakets ist in den Klassen Client und AdminClie
+Die Hauptfunktionalität des Client-Pakets ist in den Klassen Client und AdminClie
 nt enthalten, wobei AdminClient von Client abgeleitet ist.
  Sie enthalten die nötigen Methoden, die es dem Benutzer letztendlich ermögliche
 n, zu interagieren.
  Die Klasse AdminClient stellt zusätzlich zu den normalen Methoden der Klasse
- Client noch Methoden zur Verfügung, mit denen Benutzer-, bzw.
+ Client noch Methoden zur Verfügung, mit denen Benutzer- bzw.
  Channeldaten bearbeitet werden können.
  
 \layout Standard
@@ -447,7 +447,7 @@ Die Kommunikation zum Server läuft über die Klassen Uplink und Downlink.
  Zu jedem Objekt der Klasse Client existiert jeweils ein Objekt der Klasse
  Uplink und Downlink.
  Objekte der Klasse Downlink laufen als Thread im Hintergund und horchen,
- ob eine Nachricht für ihr Clientobjekt von Server gesendet worden ist,
+ ob eine Nachricht für ihr Client-Objekt vom Server gesendet worden ist,
  und übergeben, falls eine Nachricht vorhanden ist, diese an die Methode
  processMsg der Klasse Client.
  
@@ -461,7 +461,7 @@ Die Kommunikation zum Server läuft über die Klassen Uplink und Downlink.
 Klassenbeschreibungen
 \layout Standard
 
-Diese Kapitel dient einer detaillierteren Beschreibung der entstandenen
+Dieses Kapitel dient einer detaillierteren Beschreibung der entstandenen
  Struktur, indem sowohl die Klassen als auch ihre wichtigen Attribute und
  Methoden vorgestellt werden.
  Die angegebenen Assoziationen verdeutlichen überdies auch in den Klassenbeschre
@@ -545,7 +545,7 @@ paramClientServant)
 private\SpecialChar ~
 void\SpecialChar ~
 listen() Wartet auf ankommendene Verbindungswünsche der Clients
- und leitet diese jeweils an einen neuen ClientObserver weiter.
+ und leitet diese an jeweils einen neu instanziierten ClientObserver weiter.
 \layout Description
 
 public\SpecialChar ~
@@ -605,7 +605,7 @@ Eine Instanz dieser Klasse wird vom Server erzeugt, damit sie sich um genau
  die entsprechende Methode ausführt.
  Möchte der Benutzer beispielsweise in einen bestimmten Channel wechseln,
  macht er im GUI die dazu nötige Eingabe, der Client leitet eine entsprechende
- Nachricht an seinen ClientServant weiter, der nun schlussendlich den Benutzer
+ Nachricht an seinen ClientServant weiter, der dann schlussendlich den Benutzer
  in den gewünschten Channel eintreten lässt.
  
 \layout Paragraph
@@ -650,13 +650,13 @@ guestSet) Meldet einen Gast beim System an, benutzt
 public\SpecialChar ~
 void\SpecialChar ~
 loginUser(String\SpecialChar ~
-userSet) Meldet den Benutzer beim System an, benutzt
+userSet) Meldet den User beim System an, benutzt
  dafür eine vom Client empfangene Zeichenkette mit Benutzerinformationen.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-logoutUser() Meldet den Benutzer vom System ab und stoppt den
+logoutUser() Meldet den User vom System ab und stoppt den
  Observer.
 \layout Description
 
@@ -750,7 +750,7 @@ AdminClientServant
 
 Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
  AdminClientServant statt von einem normalen ClientServant "bedient".
- Ein AdminclientServant funktioniert genauso wie ein ClientServant, kann
+ Ein AdminClientServant funktioniert genauso wie ein ClientServant, kann
  allerdings noch zusätzlich administrative Nachrichten des AdminClients
  verarbeiten.
 \layout Paragraph
@@ -799,15 +799,15 @@ editUser(String\SpecialChar ~
 userName,\SpecialChar ~
 String\SpecialChar ~
 newUserSet) Ändert die Benutzerdaten
- des Benutzers mit dem angegebenen Namen.
- Setzt die neuen Daten des Benutzers mit den Daten aus newUserSet.
+ des Users mit dem angegebenen Namen.
+ Setzt die neuen Daten des Users mit den Daten aus newUserSet.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 processMsg(String\SpecialChar ~
 msg) Prüft den Inhalt einer vom AdminClient empfangen
-en Nachricht und entscheidet,welche Methode aufgerufen werden muss, um den
+en Nachricht und entscheidet, welche Methode aufgerufen werden muss, um den
  "Wunsch" des AdminClients zu erfüllen.
 \layout Description
 
@@ -815,7 +815,7 @@ public\SpecialChar ~
 void\SpecialChar ~
 sendChannel(String\SpecialChar ~
 channelName) Sendet die Channeldaten des Channels
- mit dem angegebenen Namen
+ mit dem angegebenen Namen.
 \layout Description
 
 public\SpecialChar ~
@@ -844,7 +844,7 @@ zur Klasse Server.ChannelAdministration
 Uplink
 \layout Standard
 
-Der Uplink ist eine dem ClientServant zugeordnete Helferklasse.
+Der Uplink ist eine dem ClientServant zugeordnete Hilfsklasse.
  Zu jedem ClientServant existiert auch ein Objekt der Klasse Uplink.
  Die Klasse Uplink ist dafür zuständig, Daten vom ClientServant an den Client
  zu übermitteln (siehe auch analog dazu Kap.\SpecialChar ~
