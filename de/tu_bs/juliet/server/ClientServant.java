@@ -27,6 +27,7 @@ import java.net.Socket;
 import java.util.Enumeration;
 
 import de.tu_bs.juliet.util.*;
+import de.tu_bs.juliet.util.commands.*;
 import de.tu_bs.juliet.util.debug.Debug;
 import de.tu_bs.juliet.util.commands.*;
 import de.tu_bs.juliet.util.Helper;
@@ -263,7 +264,7 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
       /* User mit diesen Daten nicht vorhanden,
        * LoginErrorCommand senden, setUser(null) */       
       if (tmpUser == null) {
-        this.sendCommand(new Util.Commands.LoginErrorCommand());
+        this.sendCommand(new LoginErrorCommand());
         this.setUser(null);
       }
       
@@ -295,7 +296,7 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
 
     // Gastanmeldung nicht gelungen, Fehler senden
     if (tmpUser == null) {
-      this.sendCommand(new Util.Commands.LoginErrorCommand());
+      this.sendCommand(new LoginErrorCommand());
       this.setUser(null);
     }
 
@@ -447,7 +448,7 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
    * @param msg Nachricht
    */
   public final void sendMsgFromChannel(String fromName, String msg) {
-    this.sendCommand(new Util.Commands.SendMsgFromChannelCommand(fromName,
+    this.sendCommand(new SendMsgFromChannelCommand(fromName,
             msg));
   }
 
@@ -458,7 +459,7 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
    * @param msg Nachricht
    */
   public final void sendMsgFromUser(String fromName, String msg) {
-    this.sendCommand(new Util.Commands.SendMsgFromUserCommand(fromName, msg));
+    this.sendCommand(new SendMsgFromUserCommand(fromName, msg));
   }
 
   /**
@@ -529,9 +530,8 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
       Channel currentChannel = old.getCurrentChannel();
 
       if (currentChannel != null) {
-        this.sendCommand(new Util.Commands
-          .SetCurrentChannelDataCommand(currentChannel
-            .getName(), currentChannel.getCurrentUserNames()));
+        this.sendCommand(new SetCurrentChannelDataCommand(currentChannel 
+          .getName(), currentChannel.getCurrentUserNames()));
       }
     }
   }
@@ -554,8 +554,8 @@ public class ClientServant implements de.tu_bs.juliet.util.DownlinkOwner {
     }
 
     if (old != null) {
-      this.sendCommand(new Util.Commands
-        .SetCurrentUserDataCommand(old.getName(), old.isAdmin(), old
+      this.sendCommand(new
+        SetCurrentUserDataCommand(old.getName(), old.isAdmin(), old
           .getAllowedChannelNames(), currentChannelName));
     }
   }

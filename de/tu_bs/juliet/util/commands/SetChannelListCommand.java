@@ -23,7 +23,7 @@
 
 package de.tu_bs.juliet.util.commands;
 
-import de.tu_bs.client.AdminClient;
+import de.tu_bs.juliet.client.AdminClient;
 import java.util.Vector;
 
 
