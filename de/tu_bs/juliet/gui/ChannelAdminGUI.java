@@ -107,7 +107,7 @@ public class ChannelAdminGUI extends java.awt.Frame {
     java.awt.GridBagConstraints gridBagConstraints1;
 
     setFont(new java.awt.Font("SansSerif", 0, 12));
-    setTitle(gui.ChatGui.PRODUCT_NAME + " - ChannelAdministration");
+    setTitle(ChatGui.PRODUCT_NAME + " - ChannelAdministration");
     setBackground(new java.awt.Color(204, 204, 204));
     channelNameLabel.setFont(new java.awt.Font("SansSerif", 0, 11));
     channelNameLabel.setName("channelNameLabel");

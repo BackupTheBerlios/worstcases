@@ -361,7 +361,7 @@ public class Client implements de.tu_bs.juliet.util.DownlinkOwner {
     try {
       socket = new Socket(SERVER_IP, SERVER_PORT);
       uplink = new de.tu_bs.juliet.util.Uplink(socket);
-      setDownlink(new de.tu_bs.util.Downlink(socket, this));
+      setDownlink(new de.tu_bs.juliet.util.Downlink(socket, this));
       uplink.startUplink();
       Debug.println("Client: Uplink started. Trying to start downlink...");
       downlink.startDownlink();
