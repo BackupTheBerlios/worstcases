@@ -59,8 +59,6 @@ flags 11
 
 \newline 
  Virtuelle Konferenz
-\lang american
-1616
 \layout Standard
 
 
@@ -71,7 +69,8 @@ vfill{}
 \layout Standard
 \added_space_top 0,3cm \added_space_bottom 0,3cm \align center \LyXTable
 multicol5
-5 3 0 0 -1 -1 -1 -1
+6 3 0 0 -1 -1 -1 -1
+1 1 0 0
 1 1 0 0
 1 1 0 0
 1 1 0 0
@@ -80,6 +79,9 @@ multicol5
 8 1 0 "" ""
 8 1 0 "" ""
 8 1 1 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
@@ -122,9 +124,15 @@ Andreas Büthe
 \newline 
 0.6
 \newline 
-
+17.05.2001
 \newline 
 Fabian Rotte
+\newline 
+0.7
+\newline 
+17.05.2001
+\newline 
+Andreas Büthe
 \layout Standard
 
 
@@ -162,9 +170,9 @@ en in der Design-Phase ist.
 Um die Systemstruktur und entsprechende Zusammenhänge abzubilden, werden
  sowohl verschiedene Diagrammtypen als auch eine textuelle Beschreibung
  verwendet.
- In Aktivitätsdiagrammen werden informell Abläufe im System dargestellt,
- mit dem Ziel, einen Ausgangspunkt für den Entwurf der benötigten Struktur
- zu schaffen.
+ In einem einfachen Aktivitätsdiagramm werden informell Abläufe im System
+ dargestellt, mit dem Ziel, einen Ausgangspunkt für den Entwurf der benötigten
+ Struktur zu schaffen.
 \layout Standard
 
 Die entstandene Struktur zeigt darauf aufbauend die Klassendiagramme aller
@@ -282,14 +290,10 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 
 \end_inset 
 
- auf S.\SpecialChar ~
-
-\begin_inset LatexCommand \pageref{ServerOverview}
-
-\end_inset 
-
  gibt einen Überblick über alle Klassen des Pakets Server mit sämtlichen
  Assoziationen.
+ Die Beziehungen zwischen den Klassen werden aus Gründen der Übersichtlichkeit
+ in Unterkapiteln aus Sicht wichtiger Teilkomponenten erklärt.
 \layout Standard
 
 \begin_float fig 
@@ -332,6 +336,11 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 
  zeigt inklusive aller Einzelheiten, mit welchen Klassen die Klasse Server
  direkt zusammenarbeitet.
+ 
+\begin_inset Info Beziehungen!
+\end_inset 
+
+
 \layout Standard
 
 \begin_float fig 
@@ -373,6 +382,10 @@ Das Klassendiagramm in Abbildung\SpecialChar ~
 \end_inset 
 
  zeigt, mit welchen Klassen ein ClientServant direkt interagiert.
+\begin_inset Info Beziehungen!
+\end_inset 
+
+
 \layout Standard
 
 \begin_float fig 
@@ -626,8 +639,8 @@ Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
 
 private\SpecialChar ~
 void\SpecialChar ~
- Wartet auf ankommendene Verbindungswünsche der Clients und leitet
- diese an jeweils einen neu instanziierten ClientObserver weiter.
+listen() Wartet auf ankommendene Verbindungswünsche der Clients
+ und leitet diese an jeweils einen neu instanziierten ClientObserver weiter.
 \layout Description
 
 public\SpecialChar ~
@@ -664,9 +677,14 @@ Stoppt den Server, alle mit ihm verbundenen Clients werden abgemeldet.
 ClientServant
 \layout Standard
 
-Eine Instanz dieser Klasse wird vom Server erzeugt, damit sie sich um genau
- einen Client kümmert und dessen Anfragen verarbeitet.
- Alle Aktionen, die der Benutzer im Chat ausführen möchte, sendet der Client
+Diese Klasse kümmert sich um die Anfragen, die von einem Client an den Server
+ gestellt werden.
+ Der Server erzeugt für jeden Client eine Instanz dieser Klasse, die sich
+ von da an nur noch um diesen Client kümmert und seine Anfragen bearbeitet.
+ In dieser Klasse steckt die meiste Funktionalität des Servers.
+\layout Standard
+
+Alle Aktionen, die der Benutzer im Chat ausführen möchte, sendet der Client
  an seinen ClientServant weiter, der dann diese Nachricht überprüft und
  die entsprechende Methode ausführt.
  Möchte der Benutzer beispielsweise in einen bestimmten Channel wechseln,
@@ -674,13 +692,6 @@ Eine Instanz dieser Klasse wird vom Server erzeugt, damit sie sich um genau
  Nachricht an seinen ClientServant weiter, der dann schlussendlich den Benutzer
  in den gewünschten Channel eintreten lässt.
  
-\layout Standard
-
-Diese Klasse kümmert sich um die Anfragen, die von einem Client an den Server
- gestellt werden.
- Der Server erzeugt für jeden Client eine Instanz dieser Klasse, die sich
- von da an nur noch um diesen Client kümmert und seine Anfragen bearbeitet.
- In dieser Klasse steckt die meiste Funktionalität des Servers.
 \layout Paragraph
 
 Attribute
@@ -796,12 +807,13 @@ stopClientServant() Stoppt den ClientServant.
 AdminClientServant
 \layout Standard
 
-Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
+Diese vom ClientServant vererbte Klasse kümmert sich um die Anfragen, die
+ von einem Client an den Server gestellt werden.
+ Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
  AdminClientServant statt von einem normalen ClientServant "bedient".
  Ein AdminClientServant funktioniert genauso wie ein ClientServant, kann
  allerdings noch zusätzlich administrative Nachrichten des AdminClients
- verarbeiten.Verarbeitet die Anfragen eines AdminClients.
- Erbt von ClientServant.
+ verarbeiten.
 \layout Paragraph
 
 Attribute
@@ -907,10 +919,10 @@ sendUserList() Sendet eine Liste aller Benutzernamen.
 Uplink
 \layout Standard
 
-Der Uplink ist eine dem ClientServant zugeordnete Hilfsklasse.
+Der Uplink ist eine dem ClientServant zugeordnete Klasse.
  Zu jedem ClientServant existiert auch ein Objekt der Klasse Uplink.
- Die Klasse Uplink ist dafür zuständig, Daten vom ClientServant an den Client
- zu übermitteln (siehe auch analog dazu Kap.\SpecialChar ~
+ Die Klasse Uplink ermöglicht dem ClientServant das Senden von Nachrichten
+ an die Clientapplikation (siehe auch analog dazu Kap.\SpecialChar ~
 
 \begin_inset LatexCommand \ref{Client.Uplink}
 
@@ -923,9 +935,6 @@ Der Uplink ist eine dem ClientServant zugeordnete Hilfsklasse.
 \end_inset 
 
 ).
-\layout Standard
-
-Ermöglicht dem Observer das Senden von Nachrichten an die Clientapplikation.
 \layout Paragraph
 
 Methoden
@@ -1009,11 +1018,11 @@ zur Klasse Server.ClientServant
 ChannelAdministration
 \layout Standard
 
-\begin_float margin 
-\layout Standard
-
-Prosatext fehlt noch
-\end_float 
+Mit der Klasse ChannelAdministration werden Methoden bereitgestellt, um
+ Channel im System zu verwalten.
+ Die ChannelAdministration kann hier durch die Klasse "DataBaseIO" auf die
+ Channeldatenbank zugreifen, um die Benutzerforen, deren Daten sich in der
+ Klasse "Channel" befinden, laden, speichern oder löschen zu können.
 \layout Paragraph
 
 Verwaltet die Channelobjekte.
@@ -1050,10 +1059,14 @@ public\SpecialChar ~
 void\SpecialChar ~
 editChannel(String\SpecialChar ~
 name,String\SpecialChar ~
-newChannelData) Editiert den Channel
- mit dem angegebenen Namen mit einem neuen Datensatz aus einem String Parameters
-: name - Der Name des Channels, der verändert werden soll newChannelData
- - String, der die neuen Daten des Channels enthält
+newChannelData) Ändert die Daten
+ des Channels mit dem per 
+\emph on 
+String name
+\emph default 
+ übergebenen Namen zu den neuen Daten aus dem 
+\emph on 
+String newChannelData
 \layout Description
 
 public\SpecialChar ~
@@ -1161,6 +1174,10 @@ ein Channeldatensatz: Eine Instanz dieser Klasse kann wichtige Channeldaten
  Desweiteren können einzelne User zu den CurrentUser hinzugefügt bzw.
  wieder entfernt werden, wenn sie den Channel betreten bzw.
  verlassen.
+\begin_inset Info was soll mir dieses sagen? Redundanz?
+\end_inset 
+
+
 \layout Paragraph
 
 Attribute
@@ -1347,9 +1364,9 @@ Die Klasse Client stellt alle notwendigen Methoden zur Verfügung, mit denen
  der Benutzer über das Graphical User Interface (GUI) mit dem Chat-Server
  interagieren kann.
  Hinter dem GUI steht sozusagen ein Objekt der Klasse Client.
- Wenn der Benutzer durch das GUI im Chat etwas macht (z.B.
- einen Channel betreten), leitet der Client diese Aktion als Anfrage an
- seinen ClientServant weiter.
+ Wenn der Benutzer durch das GUI im Chat eine Aktion durchführt (z.B.
+ einen Channel betritt), leitet der Client diese als Anfrage an seinen ClientSer
+vant weiter.
  Der Client erhält dann von seinem ClientServant Rückmeldung zu seinen Anfragen,
  die er meist an das GUI weiterleitet.
  Die Kommunikation zwischen Client und ClientServant findet über den Downlink
@@ -1514,9 +1531,9 @@ Vector von Strings, repräsentiert die aktuellen Benutzer in einem Channel.
 AdminClient
 \layout Standard
 
-Die Klasse AdminClient wird von der Klasse Client abgeleitet.
- Die Methode processMsg wird im AdminClient aufgrund erweiterter Funktionalität
- überschrieben.
+Die Klasse AdminClient wird von der Klasse Client abgeleitet, wobei die
+ Methode processMsg im AdminClient aufgrund erweiterter Funktionalität überschri
+eben wird.
  Die Klasse AdminClient liefert dem Administrator (Benutzer des Administrationsc
 lients) die nötigen Methoden, um auf die Benutzer- und Channelverwaltung
  zuzugreifen, um also Benutzer und Channels anzulegen, zu editieren und
@@ -1732,9 +1749,23 @@ zur Klasse java.net.Socket
 \layout Section
 
 Sequenzdiagramme
+\layout Standard
+
+
+\begin_inset Info Einleitungstext
+\end_inset 
+
+
 \layout Subsection
 
 Client
+\layout Standard
+
+
+\begin_inset Info Einleitung
+\end_inset 
+
+
 \layout Subsubsection
 
 Ausgehende Nachrichten
@@ -1808,6 +1839,13 @@ Nachrichtenempfang auf Clientseite
 \layout Subsection
 
 ClientServant
+\layout Standard
+
+
+\begin_inset Info Einleitung
+\end_inset 
+
+
 \layout Subsubsection
 
 Loginanfragen
@@ -1878,9 +1916,10 @@ Im Sequenzdiagramm in Abbildung\SpecialChar ~
 \layout Standard
 \align center 
 
-\begin_inset Figure size 2137 799
+\begin_inset Figure size 299 799
 file eps/ClientServant.sendMsgToChannel(1).eps
 height 3 95,00
+angle 90,00
 flags 11
 
 \end_inset 
@@ -1898,6 +1937,13 @@ Nachrichtenverteilung durch den ClientServant
 \layout Subsection
 
 Server
+\layout Standard
+
+
+\begin_inset Info Einleitung
+\end_inset 
+
+
 \layout Subsubsection
 
 Hochfahren
