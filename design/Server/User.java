@@ -7,17 +7,17 @@ import java.util.Enumeration;
 public class User {
     /** @param userSet Benutzerdaten als String */
     public User(String paramName, String paramPassword, boolean paramGuest, boolean paramAdmin,
-        Vector paramAllowedChannelStringList,UserAdministration paramUserAdministration) {
+        Vector paramAllowedChannelStringList, UserAdministration paramUserAdministration) {
             this.name = paramName;
             this.password = paramPassword;
             this.isAdmin = paramAdmin;
             this.isGuest = paramGuest;
             this.allowedChannelStringList = paramAllowedChannelStringList;
-            this.userAdministration=paramUserAdministration;
+            this.userAdministration = paramUserAdministration;
     }
 
     public boolean isAdmin() {
-        return true;
+        return this.isAdmin;
     }
 
     public boolean isLoggedIn() {
@@ -35,14 +35,22 @@ public class User {
         return currentChannel;
     }
 
-    public void setCurrentChannel(Channel currentChannel) {
-        this.currentChannel = currentChannel;
+    public void setCurrentChannel(Channel paramChannel) {
+        this.currentChannel = paramChannel;
         currentChannel.addToCurrentUserList(this);
     }
 
     /** gibt einen Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück */
     public Channel getFromAllowedChannelByName(String channelName) {
-        return (Channel)(this.allowedChannelList.elementAt(0));
+        Enumeration enum = this.allowedChannelList.elements();
+        Channel tmpChannel;
+        while (enum.hasMoreElements()) {
+            tmpChannel = (Channel)enum.nextElement();
+            if (tmpChannel.getName().compareTo(channelName) == 0) {
+                return tmpChannel;
+            }
+        }
+        return null;
     }
 
     public ClientServant getClientServant() {
@@ -75,7 +83,7 @@ public class User {
         return allowedChannelList;
     }
 
-    public void setAllowedChannel(Vector allowedChannelList) {
+    public void setAllowedChannelList(Vector allowedChannelList) {
         this.allowedChannelList = allowedChannelList;
     }
 

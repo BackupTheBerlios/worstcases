@@ -13,6 +13,10 @@ public class Client implements Util.DownlinkOwner {
             new JoinChannelCommand(name));
     }
 
+    public void newUserInChannel(String paramName){
+     System.out.println(paramName+" joined channel");
+    }
+
     public void stopOwner(){};
 
     public void loginError(String msg) {

@@ -34,15 +34,17 @@ class UserAdministration {
      * @return den Benutzer, falls Authentifizierung klappt, sonst null
      */
     public synchronized User loginGuest(String paramName) {
-        System.out.println(paramName);
-        System.out.println(this.getFromUserListByName(paramName));
         if (this.getFromUserListByName(paramName) == null) {
-            User tmpUser = new User(paramName, "guest", true, false, this.channelAdministration.getFreeForGuestList(),this);
+            User tmpUser = new User(paramName, "guest", true, false, null,this);
+	    tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestList());
             tmpUser.setLoggedIn(true);
             this.userList.addElement(tmpUser);
             return tmpUser;
         }
-        else { return null; }
+        else {
+        System.out.println("guestname "+paramName+" not free");return null;
+        }
+
     }
 
     /** Fügt einen Benutzer hinzu. */

@@ -47,7 +47,7 @@ public class Uplink {
      * @param msg Die zu versendende Nachricht.
      * @see Dowlink
      */
-    public void sendMsg(Command msg) throws java.io.IOException {
+    public synchronized void sendMsg(Command msg) throws java.io.IOException {
         objectOutputStream.writeObject(msg); // FIXME: Dummy
         objectOutputStream.flush();
         System.out.println("sending " + msg);

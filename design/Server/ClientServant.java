@@ -19,6 +19,10 @@ public class ClientServant implements Util.DownlinkOwner {
         this.userAdministration = paramUserAdministration;
     }
 
+    public void sendNewUserEnteredChannel(String paramName){
+      this.sendCommand(new NewUserInChannelCommand(paramName));
+    }
+
     public ClientServant() { }
     public void stopOwner(){
      this.stopClientServant();
@@ -95,6 +99,7 @@ public class ClientServant implements Util.DownlinkOwner {
             this.user.setClientServant(this);
             if (this.user.isAdmin()) {
                 this.becomeAdminClientServant();
+		System.out.println("becoming AdminClientServant");
             }
         }
     }

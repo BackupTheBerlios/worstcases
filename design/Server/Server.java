@@ -28,6 +28,7 @@ public class Server {
         } catch (java.io.IOException e) {
             System.out.println(e);
         }
+        System.out.println("free for guests: "+this.channelAdministration.getFreeForGuestList());
         this.listen();
     }
 
