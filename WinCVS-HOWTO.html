@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+  <title>WinCVS für BerliOS konfigurieren</title>
+</head>
+<body bgcolor="white" text="black">
+<h1>WinCVS für BerliOS konfigurieren</h1>
+<p>Bei BerliOS kann man CVS nur mit Verschlüsselung per SSH benutzen, WinCVS
+unterstützt das jedoch nicht so ohne weiteres, mit dieser Anleitung sollte es
+jedoch klappen.</p>
+
+<p>Die einfachste Methode ist, sich für jede Aktion, die man mit CVS
+machen will (z.B. update oder commit) bei BerliOS mit dem entsprechenden
+Kennwort anzumelden. WinCVS öffnet in diesem Fall immer einen DOS-Prompt, in
+dem man das Kennwort eingeben muss. Das ist natürlich sehr unpraktisch, da
+man ständig das Kennwort eingeben muss.</p>
+
+<p>Die zweite Methode ist erstmal etwas umständlicher zu konfigurieren, aber
+dann muss man nie wieder das Kennwort eingeben. Hier werden beide Methoden
+beschrieben, damit man die erste benutzen kann, bis die zweite fertig
+konfiguriert ist. Der DOS-Prompt mit der Kennwort-Abfrage, von dem noch
+häufiger die Rede sein wird, taucht bei dieser Methode natürlich nicht mehr
+auf.</p>
+
+<h2>SSH installieren</h2>
+SSH <a href="ftp://ftp.ssh.com/pub/ssh/SSHWin-2.4.0-pl2.exe">runterladen</a> und
+installieren. Das ist eine Evaluations-Version, die 30 Tage benutzbar ist.
+
+<h2>Öffentlichen SSH-Schlüssel erzeugen</h2>
+In einem DOS-Prompt <pre>ssh-keygen2</pre> eingeben, bei Frage nach Passwort keins
+eingeben, sondern einfach Return drücken. Dabei wird eine Datei
+"id_dsa_1024_a.pub" oder so erzeugt, die brauchen wir im nächsten Schritt -
+allerdings in _einer_ Zeile! Also mit einem Editor eine Zeile draus machen
+und abspeichern.
+
+<h2>Öffentlichen SSH-Schlüssel hochladen</h2>
+<p>Bei <a href="http://developer.berlios.de">BerliOS</a> per "Login via SSL"
+anmelden. Dann links im Menü auf "Account Maintenance" und anschließend rechts
+unten im Kasten "Shell Account Information" auf "[Edit Keys]" klicken. Die Zeile
+aus der Datei "id_dsa_1024_a.pub" in das Formular kopieren und abschicken. Wenn
+BerliOS behauptet, dass gerade 14 Keys hochgeladen wurden, war der Schlüssel
+nicht einzeilig, also nochmal richtig eingeben.</p>
+
+<p>Jetzt etwa 6 Stunden warten, bis BerliOS diesen Key importiert hat.
+Zwischendurch kann schonmal die erste Methode benutzt werden, bei der man
+ständig das Kennwort eingeben muss:</p>
+
+<h2>SSH konfigurieren</h2>
+Auf <pre>Start -> Programme -> SSH Secure Shell -> Secure File Transfer (?)
+Client -> QuickConnect</pre> klicken und folgendes in die entsprechenden Felder
+eintragen:
+
+<table border="1">
+  <tr>
+    <td>Host Name</td>
+    <td>worstcases.berlios.de</td>
+  </tr>
+  <tr>
+    <td>User Name</td>
+    <td><i>Der Name Deines BerliOS-Accounts</i></td>
+  </tr>
+  <tr>
+    <td>Port Number</td>
+    <td>22</td>
+  </tr>
+  <tr>
+    <td>Authentication<br> Method</td>
+    <td>Password (wenn BerliOS nach 6 Stunden Deinen Schlüssel schließlich
+importiert hat,<br> diesen Eintrag auf "Public Key" setzen!!!)</td>
+  </tr>
+</table>
+
+<p>Die Warnung wegen des SSH1-Protokolls mit Ja bestätigen.</p>
+
+<p>Wenn es keine Fehlermeldung gibt, bist Du jetzt auf dem BerliOS-Rechner unter
+Linux eingeloggt und kannst die Sitzung mit <pre>exit</pre> beenden: SSH-Test
+erfolgreich.</p>
+
+<h2>WinCVs konfigurieren</h2>
+Spätestens jetzt <a href="http://www.wincvs.org">WinCVS</a> installieren, auf
+<pre>Admin -> Preferences</pre> klicken und folgende Einstrllungen vornehmen:
+
+<h3>General</h3>
+<table border="1">
+  <tr>
+    <td>Enter the CVSROOT</td>
+    <td>:ext:<i>Name Deines BerliOS
+Accounts</i>@cvs.berlios.de:/cvsroot/worstcases</td>
+  </tr>
+  <tr>
+    <td>Authentication</td>
+    <td>SSH Server</td>
+  </tr>
+</table>
+
+
+<h3>Globals</h3>
+"Checkout read-only" deaktivieren.
+
+<h3>Ports</h3>
+<table border="1">
+  <tr>
+    <td>Check for an alternate rsh name</td>
+    <td>ssh2</td>
+  </tr>
+</table>
+
+
+<h2>Checkout des Repositorys</h2>
+In WinCVS auf <pre>Create -> Checkout Module</pre> und folgendes eingeben:
+<table border="1">
+  <tr>
+    <td>Enter the module name and path on the server</td>
+    <td>. (einen Punkt)</td>
+  </tr>
+</table>
+
+<p>Es taucht ein DOS-Prompt auf, dort Dein BerliOS-Passwort eingeben. Jetzt
+wird unser Repository erstmalig ausgecheckt, das dauert eine Weile. Fertig? Dann
+befinden sich jetzt die Dateien auf Deiner Festplatte und Du kannst sie mit dem
+Editor Deiner Wahl bearbeiten. Solch einen Checkout macht man nur einmal, danach
+wird die lokale Kopie des Repositories nur noch per cvs update aktualisiert.</p>
+
+
+<h2>Änderungen ins Repository einspielen</h2>
+Falls Du eine Datei bearbeitet hast, und Deine Änderungen ins Repository
+einspielen willst, damit alle was davon haben, so vorgehen: WinCVS wieder
+starten, links in der Navigation die ensprechende(n) Datei(en) auswählen und auf
+<pre>Modify -> Update Selection</pre> klicken. Nun spielt WinCVS Deine Änderung
+in unser Repository bei BerliOS ein, und alle kriegen bei ihrem nächsten cvs
+update diese Änderung.
+
+<h2>Neues Version aus Repository holen</h2>
+Bevor Du große Änderungen am Code vornimmst, solltest Du Dir erstmal eine
+aktuelle Kopie besorgen: Zu aktualisierendes Verzeichnis in WinCVS auswählen und
+auf <pre>Modify -> Update Selection</pre> klicken.</body>
+
+<h2>Geht immer noch nicht?</h2>
+Argh. Entweder <a href="m.knoerr@tu-bs.de">Malte fragen</a>, oder doch lieber
+gleich Linux benutzen, da ist das irgendwie tausend Mal einfacher ;-)
+</html>
