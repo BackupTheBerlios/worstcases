@@ -60,7 +60,7 @@ flags 11
 \newline 
  Virtuelle Konferenz
 \lang american
-16
+1616
 \layout Standard
 
 
@@ -2030,16 +2030,16 @@ Verwendete Abkürzungen, Fachbegriffe etc.
 CASE: Computer Aided Software Engineering
 \layout Itemize
 
-Channel: Benutzerforum, thematisch abgegrenzter Kommunikationsbereich
+Channel: Konferenzraum, thematisch abgegrenzter Kommunikationsbereich
 \layout Itemize
 
-Chat: eine textbasierte Kommunikation über ein Netzwerk
+Chat: textbasierte Kommunikation über ein Netzwerk
 \layout Itemize
 
-GUI: Graphical User Interface: eine grafische Oberfläche für den Benutzer
+GUI: Graphical User Interface, eine grafische Oberfläche für den Benutzer
 \layout Itemize
 
-JAVA: eine objektorientierte Programmiersprache von SUN
+JAVA: objektorientierte Programmiersprache von SUN
 \layout Itemize
 
 UML: Unified Modelling Language, entworfen von der OMG (Object Management
