@@ -48,7 +48,7 @@ public class Uplink {
      * Sendet ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
      * Benutzt objectOutputStream.writeObject()
      * @param msg Das zu versendende Commandobjekt.
-     * @see Dowlink
+     * @see Downlink
      */
     public synchronized void sendMsg(Command msg) throws java.io.IOException {
         objectOutputStream.writeObject(msg); // FIXME: Dummy
