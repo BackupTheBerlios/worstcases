@@ -27,7 +27,7 @@ class UserAdministration {
         if (name != null && password != null) {
             User tmpUser = this.getFromUserListByName(name);
             if (tmpUser == null) {
-                Debug.println("login User" + name + " failed");
+                Debug.println(Debug.MEDIUM, "login User" + name + " failed");
                 return null;
             }
             else {
@@ -62,7 +62,7 @@ class UserAdministration {
                 return tmpUser;
             }
             else {
-                Debug.println("guestname " + paramName + " login failed");
+                Debug.println(Debug.MEDIUM, this + ": guestname " + paramName + " login failed");
                 return null;
             }
         }
@@ -190,25 +190,25 @@ class UserAdministration {
     /** Erhöht den Zähler numCurrentUsers um 1 */
     public synchronized void incNumCurrentUsers() {
         this.numCurrentUsers++;
-        Debug.println("#User:" + this.numCurrentUsers);
+        Debug.println(Debug.MEDIUM, "#User:" + this.numCurrentUsers);
     }
 
     /** Verkleinert den Zähler numCurrentUsers um 1 */
     public synchronized void decNumCurrentUsers() {
         this.numCurrentUsers--;
-        Debug.println("#User:" + this.numCurrentUsers);
+        Debug.println(Debug.MEDIUM, "#User:" + this.numCurrentUsers);
     }
 
     /** Erhöht den Zähler numCurrentGuests um 1 */
     public synchronized void incNumCurrentGuests() {
         this.numCurrentGuests++;
-        Debug.println("#Guest:" + this.numCurrentGuests);
+        Debug.println(Debug.MEDIUM, "#Guest:" + this.numCurrentGuests);
     }
 
     /** Verringert den Zähler numCurrentGuests um 1 */
     public synchronized void decNumCurrentGuests() {
         this.numCurrentGuests--;
-        Debug.println("#guest:" + this.numCurrentGuests);
+        Debug.println(Debug.MEDIUM, "#guest:" + this.numCurrentGuests);
     }
 
     /** Setzt dataBaseIO und benachrichtigt das betroffene Objekt durch DataBaseIO.setUserAdministration */

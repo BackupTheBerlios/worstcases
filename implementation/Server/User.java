@@ -81,7 +81,9 @@ class User {
 
     /** Setzt das Passwort. */
     public void setPassword(String paramPassword) {
-        this.password = paramPassword;
+        if (paramPassword != null) {
+            this.password = paramPassword;
+        }
     }
 
     /** Gibt true zurück, wenn der Benutzer ein Gast ist. */
@@ -126,7 +128,7 @@ class User {
                 else {
                     this.userAdministration.incNumCurrentUsers();
                 }
-                Debug.println(Debug.MEDIUM, this + " logged in");
+                Debug.println(Debug.MEDIUM, this + ": logged in");
             }
             //User wird ausgeloggt
             else {
@@ -168,12 +170,14 @@ class User {
      * Falls der Channel nicht existiert wird null zurückgegeben.
      */
     public Channel getFromAllowedChannelByName(String channelName) {
-        Enumeration enum = this.getAllowedChannelEnum();
-        Channel tmpChannel;
-        while (enum.hasMoreElements()) {
-            tmpChannel = (Channel)enum.nextElement();
-            if (tmpChannel.getName().compareTo(channelName) == 0) {
-                return tmpChannel;
+        if (channelName != null) {
+            Enumeration enum = this.getAllowedChannelEnum();
+            Channel tmpChannel;
+            while (enum.hasMoreElements()) {
+                tmpChannel = (Channel)enum.nextElement();
+                if (tmpChannel.getName().compareTo(channelName) == 0) {
+                    return tmpChannel;
+                }
             }
         }
         //wird nur erreicht, falls kein Channel gefunden wurde
@@ -230,7 +234,6 @@ class User {
                 this.allowedChannelList.addElement(paramChannel);
                 this.informClient();
                 paramChannel.addToAllowedUserList(this);
-                Debug.println(Debug.LOW, this.getName() + ": added allowed channel: " + paramChannel);
             }
         }
     }
@@ -249,7 +252,6 @@ class User {
                     this.setCurrentChannel(null);
                 }
                 this.informClient();
-                Debug.println(Debug.LOW, this.getName() + ": remove Channel: " + paramChannel);
             }
         }
     }
@@ -275,8 +277,8 @@ class User {
                 paramChannel.addToCurrentUserList(this);
             }
             this.informClient();
-            Debug.println(Debug.LOW, this.getName() + ": setCurrentChannel to: " + paramChannel);
         }
+        Debug.println(Debug.LOW, this.getName() + ": setCurrentChannel to: " + paramChannel);
     }
 
     /**
@@ -294,7 +296,6 @@ class User {
             if (paramUserAdministration != null) {
                 paramUserAdministration.addToUserList(this);
             }
-            Debug.println(Debug.LOW, this.getName() + ": set UserAdministration to: " + paramUserAdministration);
         }
     }
 
@@ -359,6 +360,5 @@ class User {
         if (tmpClientServant != null) {
             tmpClientServant.sendCurrentUserData();
         }
-        Debug.println(Debug.LOW, this.getName() + ": informed ClientServant");
     }
 }

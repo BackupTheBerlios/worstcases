@@ -66,7 +66,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             }
             //Channel ist für Gäste freigegeben, erlaube alle Benutzer
             else {
-                enum = this.userAdministration.getUserEnum();
+                enum = this.userAdministration.getUserNames().elements();
             }
             //füge die Benutzerobjekte hinzu
             while (enum.hasMoreElements()) {

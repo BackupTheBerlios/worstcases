@@ -62,6 +62,7 @@ public class Downlink extends Thread {
             }
             catch (Exception e) {
                 Debug.println(Debug.HIGH, this + ": error while listening :" + e);
+                e.printStackTrace();
                 if (owner != null) {
                     owner.downlinkError();
                 }

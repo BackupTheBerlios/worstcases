@@ -56,12 +56,14 @@ class ChannelAdministration {
      * @param name der Name des Channels, dessen Objekt erwartet wird
      */
     public Channel getFromChannelListByName(String name) {
-        Enumeration enum = this.getChannelEnum();
-        Channel tmpChannel;
-        while (enum.hasMoreElements()) {
-            tmpChannel = (Channel)(enum.nextElement());
-            if (tmpChannel.getName().compareTo(name) == 0) {
-                return tmpChannel;
+        if (name != null) {
+            Enumeration enum = this.getChannelEnum();
+            Channel tmpChannel;
+            while (enum.hasMoreElements()) {
+                tmpChannel = (Channel)(enum.nextElement());
+                if (tmpChannel.getName().compareTo(name) == 0) {
+                    return tmpChannel;
+                }
             }
         }
         return null;

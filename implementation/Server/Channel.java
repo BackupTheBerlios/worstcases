@@ -27,9 +27,11 @@ class Channel {
 
     /** Setzt den Namen des Channels. Ruft informCurrentUsers() auf. */
     public synchronized void setName(String paramName) {
-        if (this.name != paramName) {
-            this.name = paramName;
-            this.informCurrentUsers();
+        if (paramName != null) {
+            if (this.name != paramName) {
+                this.name = paramName;
+                this.informCurrentUsers();
+            }
         }
     }
 
@@ -244,7 +246,6 @@ class Channel {
                 tmpClientServant.sendCurrentChannelData();
             }
         }
-        Debug.println(Debug.LOW, this.getName() + ": informed current users");
     }
 
     /** Der Name des Channels. */
