@@ -534,9 +534,13 @@ public class ChatGui extends java.applet.Applet {
     } //GEN-END:initComponents
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_logoutMouseClicked
-        this.adminClient.logout(); // FIXME: Methode funzt noch nicht
+        this.adminClient.logout();
         cardFlipped = false;
         cardLayout.first(mainpanel);
+        chatText.setText("");
+        msg.setText("");
+        this.adminClient.clearChannelMsgBuffer();
+
     } //GEN-LAST:event_logoutMouseClicked
 
     private void channelMsgBufferActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_channelMsgBufferMouseClicked

@@ -67,6 +67,9 @@ public class Client implements Util.DownlinkOwner {
     return this.channelMsgBuffer;
   }
 
+  public void clearChannelMsgBuffer() {
+    this.channelMsgBuffer = new Vector();
+  }
   /**
    * Wird gebraucht, um die Channels, die der Benutzer betreten darf
    * auf der GUI auszugeben. Dazu werden die entsprechenden Daten via Downlink
