@@ -1,0 +1,2053 @@
+%% LyX 1.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[german]{article}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{babel}
+\usepackage{graphics}
+\usepackage{amssymb}
+\IfFileExists{url.sty}{\usepackage{url}}
+                      {\newcommand{\url}{\texttt}}
+
+\makeatletter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \newenvironment{lyxcode}
+   {\begin{list}{}{
+     \setlength{\rightmargin}{\leftmargin}
+     \raggedright
+     \setlength{\itemsep}{0pt}
+     \setlength{\parsep}{0pt}
+     \verbatim@font}%
+    \item[]}
+   {\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{a4wide}
+\usepackage{babel}
+\usepackage{graphics}
+\usepackage{times}
+
+\makeatletter
+
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{a4wide}
+\usepackage{babel}
+\usepackage{graphics}
+
+\makeatother
+
+\makeatother
+
+\begin{document}
+
+
+\title{Design\\
+ Software Engineering Praktikum SS 2001\\
+ Gruppe\\
+\includegraphics{eps/worstcaseslogo.eps} \\
+Virtuelle Konferenz}
+
+\maketitle
+\vfill{}
+
+\vspace{0,3cm}
+{\centering \begin{tabular}{|c|c|c|}
+\hline 
+Version&
+Datum&
+Autor\\
+\hline 
+\hline 
+0.1&
+29.05.2001&
+Andreas Büthe\\
+\hline 
+\hline 
+0.3&
+29.05.2001&
+Andreas Büthe\\
+\hline 
+\hline 
+0.6&
+30.05.2001&
+Fabian Rotte\\
+\hline 
+\hline 
+1.0&
+31.05.2001&
+Andreas Büthe, Fabian Rotte\\
+\hline 
+\end{tabular}\par}
+\vspace{0,3cm}
+
+\newpage
+
+\tableofcontents{} \newpage
+
+
+\section{Einleitung}
+
+Dieses Dokument präsentiert das UML-Design des Programmpakets {},,Virtuelle
+Konferenz{}``. In dieser Phase wurde der UML-Entwurf überarbeitet und weiter
+verfeinert, es wurden dabei jedoch keine grundlegenden Änderungen an der Architektur
+vorgenommen.
+
+Als einer der wichtigsten Fortschritte in dieser Phase mag das Protokoll gelten,
+das über {},,Command-Objekte{}`` konzipiert wurde. 
+
+Bei den durchgeführten Erweiterungen in allen Klassen und Methoden stellten
+sich einige kleinere Mängel heraus, so wurden fehlende Klassen und Methoden
+entsprechend ergänzt, z.B. die Klassen ClientServantWatchDog und Downlinkowner.
+Downlink und Uplink wurden in einem eigenen Package namens Util gekapselt, da
+sie sowohl vom ClientServant als auch vom Client verwendet werden.
+
+Darüberhinaus wurde die Zusammenarbeit der Klassen mittels entsprechender Get-
+und Set-Methoden realisiert. 
+
+
+\section{Bemerkungen}
+
+Da in der Designphase im eigentlichen Sinne eine Anleitung für die Implementation
+erstellt werden soll und die TogetherJ-Projektdateien für uns eben diese Funktion
+erfüllen, beschränken wir uns hier auf einen Überblick des Designs. 
+
+Der komplette Umfang des Designs wird somit aus den von TogetherJ erstellten
+Dateien ersichtlich, die auf unserer Homepage \url{http://www.tu-bs.de/~y0013570}
+verlinkt werden. Diese Projektdateien haben darüberhinaus den Vorteil, daß sie
+neben der statischen auch eine dynamische, relationale Darstellung des Designs
+ermöglichen, die zugleich navigierbar ist.
+
+
+\section{Klassenstruktur}
+
+In diesem Kapitel wird das für die Virtuelle Konferenz erforderliche System
+vorgestellt. Anhand erläuterter Klassendiagramme schildern wir die in der Designphase
+erweiterte Klassenstruktur des Entwurfs ausgehend von den in Abbildung \ref{packageoverview}
+gezeigten Paketen. Neu im Design ist das Package Util, das ein Interface DownlinkOwner
+und die Klassen Uplink und Downlink enthält, welche die aus dem Entwurf bekannten
+Rollen übernehmen.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{0,8\textwidth}{!}{\includegraphics{eps/packagesoverview.eps}} \par}
+
+
+\caption{\label{packageoverview}Übersicht über die vorhandenen Pakete}
+\end{figure}
+
+
+
+\newpage
+\subsection{Klassen des Clients}
+
+Das UML-Klassendiagramm in Abbildung~\ref{ClientOverview} zeigt die zwei Klassen
+des Clientpakets im Überblick. 
+
+Sie enthalten die nötigen Methoden, die es dem Benutzer letztendlich ermöglichen,
+mit dem System zu interagieren. Die Klasse AdminClient stellt zusätzlich zu
+den normalen Methoden der Klasse Client noch Methoden zur Verfügung, mit denen
+Benutzer- bzw. Channeldaten bearbeitet werden können.
+
+Die im Entwurf noch zum Package Client zugehörigen Klassen Uplink und Downlink
+befinden sich jetzt im Package Util, und werden auch von ClientServants mitbenutzt.
+Sie stellen aber weiterhin dem Client die bekannte Funktionalität bereit.
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientpackagesoverview.eps}} \par}
+
+
+\caption{\label{ClientOverview}Übersicht über das Package Client}
+\end{figure}
+
+
+
+\newpage
+\subsection{Package Util}
+
+Das neue Package Util enthält, wie in Abbildung~\ref{UtilOverview} ersichtlich,
+die altbekannten Klassen Downlink und Uplink sowie das Interface DownLinkOwner
+(und zwei Unterpakete Debug und Commands).
+
+Die Kommunikationsklassen Uplink und Downlink wurden hierdurch entkapselt und
+können somit von Client.Client, Client.AdminClient und Server.ClientServant
+gleichermaßen verwendet werden.
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/utiloverview.eps}} \par}
+
+
+\caption{\label{UtilOverview}Übersicht über das Package Util}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Package Util.Commands}
+
+Dieses Package (s.~Abbildung~\ref{CommandsOverview}) ist eine der wichtigsten
+Neuerungen gegenüber dem Entwurf, da hier das Kommunikationsprotokoll zwischen
+Server (bzw. ClientServant) und Client festgelegt wird.
+
+Die Kommunikation zwischen den Komponenten Server bzw. ClientServant und Client
+lehnt sich an das Design Pattern {},,Command{}`` an (vgl. Gamma, Helm, Johnson
+\& Vlissides 1994). Dabei tauschen die Komponenten untereinander Nachrichten
+in Form von Command-Objekten aus, die dann jeweils beim {},,Befehlsempfänger{}``
+ausgeführt werden.
+
+Diese Command-Objekte werden hier allerdings für den Transport über das Netzwerk
+erst serialisiert und anschließend wieder deserialisiert. Die Menge aller Klassen,
+die das Interface Command implementieren, stellt also das Protokoll dar.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{0,8\textwidth}{!}{\includegraphics{eps/commandsoverview.eps}} \par}
+
+
+\caption{\label{CommandsOverview}Übersicht über das Package Util.Commands}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Package Util.Debug}
+
+Dieses Package enthält bisher nur eine einfache Klasse, die zur Ausgabe von
+Debug-Nachrichten dient. Sie spielt im eigentlichen Design keine Rolle.
+
+
+\subsection{Klassen des Servers}
+
+Das Klassendiagramm in Abbildung~\ref{ServerOverview} gibt einen Überblick
+über alle Klassen des Pakets Server mit sämtlichen Assoziationen. Gegenüber
+dem Entwurf haben sich hier folgende Änderungen ergeben: Eine neue Assoziation
+von der UserAdministration zur ChannelAdministration (s.~ChannelAdministration.getFreeForGuestEnum()
+und UserAdministration.loginGuest()) und eine neue Klasse ClientServantWatchDog
+wurden erstellt.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/serverpackageoverview.eps}} \par}
+
+
+\caption{\label{ServerOverview}Überblick über das Package Server}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Struktur aus Sicht von Server und ClientServant}
+
+Das Klassendiagramm in Abbildung~\ref{servercentric} zeigt in allen Einzelheiten,
+mit welchen Klassen die Klassen Server und ClientServant direkt zusammenarbeiten.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/servercentric.eps}} \par}
+
+
+\caption{\label{servercentric}Klassendiagramm aus Sicht von Server und ClientServant}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Struktur der Channel- und UserAdministration }
+
+Das UML-Klassendiagramm in Abbildung~\ref{channeluser} gibt einen Überblick
+über die Klassen ChannelAdministration und UserAdministration mit den dazugehörigen
+Klassen Channel und User.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/userchannelcentric.eps}} \par}
+
+
+\caption{\label{channeluser}Übersicht über die Klassen der Channel- und UserAdministration}
+\end{figure}
+
+
+
+\newpage
+\section{\label{get_set_methods}{},,Get{}``- und {},,Set{}``-Methoden}
+
+Die einzelnen {},,Get{}``- und {},,Set{}``-Methoden sorgen dafür, daß die
+Beziehungen der Objekte untereinander bei Veränderungen eines Objekts konsistent
+bleiben, und laufen immer nach demselben Schema ab, welches am folgenden Codebeispiel
+der setIsLoggedIn()-Methode der Klasse User beispielhaft erläutert wird:
+
+\begin{lyxcode}
+public~synchronized~void~setIsLoggedIn(boolean~paramLoggedIn)~\{~
+
+~~if~(this.isLoggedIn()~!=~paramLoggedIn)~\{~
+
+~~~~boolean~old~=~this.loggedIn;~
+
+~~~~this.loggedIn~=~paramLoggedIn;~
+
+~~~~if~(paramLoggedIn)~\{~
+
+~~~~~~if(this.isGuest())\{~
+
+~~~~~~~~this.userAdministration.incNumCurrentGuests();~
+
+~~~~~~\}~
+
+~~~~~~else~\{~
+
+~~~~~~~~this.userAdministration.incNumCurrentUsers();~
+
+~~~~~~\}~
+
+~~~~\}~
+
+~~~~else~\{~
+
+~~~~~~this.setCurrentChannel(null);~
+
+~~~~~~this.setClientServant(null);~
+
+~~~~~~if~(this.isGuest())~\{~
+
+~~~~~~~~this.userAdministration.decNumCurrentGuests();~
+
+~~~~~~~~this.userAdministration.removeFromUserList(this);
+
+~~~~~~\}~
+
+~~~~~~else~\{~
+
+~~~~~~~~this.userAdministration.decNumCurrentUsers();~
+
+~~~~~~\}~
+
+~~~~\}~
+
+~~\}~
+
+\}
+\end{lyxcode}
+Wie ersichtlich ist, erhält die Methode einerseits die bidirektionale Assoziation
+zwischen einem User-Objekt und seiner UserAdministration aufrecht und andererseits
+bewirkt ein setIsLoggedIn(false) bei einem Gast, daß das {},,Gast{}``-Objekt
+aus der UserAdministration entfernt wird, da Gäste nur temporär ein User-Objekt
+zugewiesen bekommen.
+
+
+\section{Klassenbeschreibungen}
+
+Dieses Kapitel dient einer detaillierteren Beschreibung der entstandenen Struktur,
+indem sowohl die Klassen als auch ihre wichtigsten Attribute und Methoden vorgestellt
+werden. Es sollte schnell ersichtlich werden, daß gegenüber dem Entwurf inhaltlich
+entscheidende Fortschritte gemacht wurden. Die jeweiligen {},,Get{}``- und
+{},,Set{}''-Methoden sind im Gegensatz zum Entwurf jetzt explizit gegeben,
+und berücksichtigen die wechselseitigen Assoziationen (vgl.~Abschnitt~\ref{get_set_methods}).
+
+
+\subsection{Das Package Client}
+
+Im folgenden Abschnitt werden die Klassen des Clientpaketes näher vorgestellt. 
+
+
+\subsubsection{Client}
+
+Die Klasse Client stellt dem Benutzer alle nötigen Methoden zur Verfügung, um
+an einer Virtuellen Konferenz, also einem Chat teilnehmen zu können. Der Benutzer
+bedient den Client nicht direkt, sondern über ein GUI. Der Client leitet alle
+Nachrichten und Aktionen des Benutzers an seinen ClientServant weiter, und verarbeitet
+dessen Antworten.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [protected~Vector~channelMsgBuffer]Speichert ankommende Nachrichten in einem
+Channel. Wird vom GUI benutzt und kann als Protokoll der Unterhaltung in dem
+Channel dienen.
+\item [protected~Vector~currentAllowedChannelNames]Namensliste der Channel, die
+der Benutzer betreten darf.
+\item [protected~String~currentChannelName]Der Name des Channels, der momentan betreten
+wurde.
+\item [protected~String~currentUserName]Der Name des Benutzers des Clients.
+\item [protected~Vector~currentUserInChannelList]Vector von Strings, repräsentiert
+die aktuellen Benutzer in einem Channel. Wird im Client Window eingebunden.
+\item [protected~final~static~String~SERVER\_IP]Die IP - Adresse des Servers.
+\item [protected~final~static~int~SERVER\_PORT]Der Port des Servers.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~joinChannel(String~name)]Betritt den angegebenen Channel. Das
+entsprechende Command mit dem Channelnamen wird an den ClientServant gesendet
+und dort mit den entsprechenden Methoden verarbeitet. Benutzt JoinChannelCommand().
+\item [public~synchronized~final~joinChannelError()]Wird aufgerufen, falls beim
+Betreten eines Channels ein Fehler auftritt und dieser an den Client gegeben
+wird. Der Benutzer befindet sich nicht in dem Channel und kann durch die GUI
+nicht interagieren. Der Client und seine GUI werden in den Zustand zurückversetzt,
+der nach dem Login des Users bestand.
+\item [public~synchronized~final~void~stopClient()]Trennt die Verbindung des Clients
+zum Server. Dazu werden die Referenzen auf das Uplink- bzw. Downlinkobjekt entfernt
+und eine entsprechende Meldung auf dem GUI ausgegeben.
+\item [public~void~leaveChannel()]Verläßt den Channel.
+\item [public~void~login(String~name,~String~password)]Meldet den Benutzer an.
+\item [public~void~loginAsGuest(String~name)]Meldet einen Gast an.
+\item [public~void~logout()]Meldet den Benutzer ab.
+\item [public~void~processMsg(String~msg)]Verarbeitet eine empfangene Nachricht,
+entscheidet, welche Funktionalität aufgerufen werden muß. Nachrichten vom Server,
+die durch den Downlink empfangen werden, werden hier als Parameter eingesetzt.
+\item [public~void~sendMsgToChannel(String~msg)]Sendet eine Nachricht in einen
+Channel. Diese wird dann von allen Teilnehmern im Channel empfangen.
+\item [public~void~sendMsgToUser(String~name,~String~msg)]Sendet eine Nachricht
+an einen Benutzer. 1 zu 1 Kommunikation.
+\item [public~void~setAvailableChannelList(String~channelSet)]Setzt availableChannels
+mit den Daten aus dem String channelSet. Der Client erhält die für den Benutzer
+zugänglichen Channels.
+\item [public~void~setCurrentUserInChannelList(String~userSet)]Setzt currentUsers
+mit den Daten aus dem String userSet. Der Client erhält die Liste der aktuellen
+Benutzer in dem betretenen Channel.
+\end{description}
+
+\subsubsection{AdminClient}
+
+Die Klasse AdminClient wird von der Klasse Client abgeleitet, wobei die Methode
+processMsg im AdminClient aufgrund erweiterter Funktionalität überschrieben
+wird. Die Klasse AdminClient liefert dem Administrator (Benutzer des Administrationsclients)
+die nötigen Methoden, um auf die Benutzer- und Channelverwaltung zuzugreifen,
+um also Benutzer und Channels anzulegen, zu editieren und zu löschen.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~channelList]Liste aller Channelnamen.
+\item [private~Vector~tmpAllowedChannelNames]Userdaten: Liste der aktiven Channels,
+zur Bearbeitung.
+\item [private~boolean~tmpAllowedForGuests]Channeldaten: Flag öffentlich ja/nein,
+zur Bearbeitung.
+\item [private~Vector~tmpAllowedUserNames]Channeldaten: Liste der berechtigten Benutzer,
+zur Bearbeitung.
+\item [private~String~tmpChannelName]Channeldaten: Channelname, zur Bearbeitung.
+\item [private~boolean~tmpIsAdmin]Userdaten: Flag ist Admin ja/nein, zur Bearbeitung.
+\item [private~String~tmpOldChannelName]Channeldaten: alter Channelname (wird beim
+Editieren benötigt).
+\item [private~String~tmpOldUserName]Userdaten: alter Username (wird beim Editieren
+benötigt).
+\item [private~String~tmpPassword]Userdaten: Passwort, zur Bearbeitung.
+\item [private~String~tmpUserName]Userdaten: Username, zur Bearbeitung.
+\item [private~Vector~userList]Liste aller Benutzernamen.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public void addChannel(String paramName, boolean paramAllowedForGuests, Vector
+paramAllowedUserNames) }
+
+Fügt einen Channel mit den (von der GUI) übergebenen Daten hinzu. Benutzt sendCommand()
+und erzeugt ein neues AddChannelCommand - Objekt, welches im AdminClientServant
+ausgeführt wird.
+
+
+\paragraph{public void addUser(String paramName, String paramPassword, boolean paramIsAdmin,
+Vector paramAllowedChannelNames) }
+
+Fügt einen User mit den (von der GUI) übergebenen Daten hinzu. Benutzt sendCommand()
+und erzeugt ein neues AddUserCommand - Objekt, welches im AdminClientServant
+ausgeführt wird.
+
+\begin{description}
+\item [public~void~deleteChannel(String~name)]Löscht den Channel mit dem Namen
+name. Benutzt sendCommand() und erzeugt ein neues DeleteChannelCommand - Objekt,
+welches im AdminClientServant ausgeführt wird.
+\item [public~void~deleteUser(String~name)]Löscht den Benutzer mit dem Namen name.
+Benutzt sendCommand() und erzeugt ein neues DeleteUserCommand - Objekt, welches
+im AdminClientServant ausgeführt wird.
+\end{description}
+
+\paragraph{public void editChannel(String paramOldName, String paramName, boolean paramAllowedForGuests,
+Vector paramAllowedUserNames) }
+
+Ändert einen Channel mit den (von der GUI) übergebenen Daten. Benutzt sendCommand()
+und erzeugt ein neues EditChannelCommand - Objekt, welches im AdminClientServant
+ausgeführt wird.
+
+
+\paragraph{public void editUser(String paramOldName, String paramName, String paramPassword,
+boolean paramIsAdmin, Vector paramAllowedChannelNames) }
+
+Ändert einen User mit den (von der GUI) übergebenen Daten. Benutzt sendCommand()
+und erzeugt ein neues EditUserCommand - Objekt, welches im AdminClientServant
+ausgeführt wird.
+
+\begin{description}
+\item [public~void~getChannelData(String~channelName)]Fordert beim AdminClientServant
+einen bestimmten Channeldatensatz an. Benutzt sendCommand() und erzeugt ein
+neues GetChannelDataCommand - Objekt, welches im AdminClientServant ausgeführt
+wird.
+\item [public~void~getChannelList()]Fordert beim AdminClientServant die komplette
+Channelliste an. Benutzt sendCommand() und erzeugt ein neues GetChannelListCommand
+- Objekt, welches im AdminClientServant ausgeführt wird.
+\item [public~void~getUserData(String~userName)]Fordert beim AdminClientServant
+einen bestimmten Userdatensatz an. Benutzt sendCommand() und erzeugt ein neues
+GetUserDataCommand - Objekt, welches im AdminClientServant ausgeführt wird.
+\item [public~void~getUserList()]Fordert beim AdminClientServant die komplette Userliste
+an. Benutzt sendCommand() und erzeugt ein neues GetUserListCommand - Objekt,
+welches im AdminClientServant ausgeführt wird.
+\end{description}
+
+\paragraph{public void setChannelData(String channelName, boolean isAllowedForGuest, Vector
+userNames)}
+
+Wird vom SetChannelDataCommand aufgerufen und setzt die Channeldaten auf die
+entsprechenden Attribute.
+
+\begin{description}
+\item [public~void~setChannelList(Vector~list)]Wird vom SetChannelListCommand aufgerufen
+und setzt die Channelliste in channelList.
+\end{description}
+
+\paragraph{public void setUserData(String userName, String password, boolean isAdmin,
+Vector channelNames) }
+
+Wird vom SetUserDataCommand aufgerufen und setzt die Userdaten auf die entsprechenden
+Attribute.
+
+\begin{description}
+\item [public~void~setUserList(Vector~list)]Wird vom SetUserListCommand aufgerufen
+und setzt die Userliste in userList.
+\end{description}
+
+\subsection{Das Package Util}
+
+Im Package Util vereinigt finden sich die Kommunikationsklassen, die im Entwurf
+noch redundant jeweils im Client- und Server-Package vorhanden waren. Zusätzlich
+dazu erfordert diese Änderung einen DownlinkOwner.
+
+
+\subsubsection{Uplink}
+
+Der Uplink versendet Nachrichten über einen Socket an einen Downlink. Diese
+Klasse ist die sendende Hälfte eines Kommunikationskanals. Die andere Hälfte,
+die das Empfangen von Nachrichten übernimmt, ist der Downlink. Diese Klasse
+wird z.B. vom Client benutzt, um Nachrichten an seinen ClientServant zu senden.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~ObjectOutputStream~objectOutputStream]~
+\item [private~Socket~socket]~
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~Uplink(Socket~paramSocket)]Konstruktor
+\item [public~synchronized~void~(Command~msg)~throws~java.io.IOException]Sendet
+ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals
+von einem Downlink empfangen. Benutzt objectOutputStream.writeObject()
+\item [public~void~startUplink()~throws~java.io.IOException]Öffnet den Output-Stream.
+\item [public~void~stopUplink()]Schließt den Output-Stream.
+\end{description}
+
+\subsubsection{Downlink}
+
+Der Downlink dient dazu, Nachrichten zu empfangen, wobei er als Thread im Hintergrund
+läuft. Er empfängt über einen Socket Nachrichten von einem Uplink und leitet
+sie an den DownlinkOwner weiter. Diese Klasse ist die empfangende Hälfte eines
+Kommunikationskanals. Die andere Hälfte, die das Senden von Nachrichten übernimmt,
+ist der Uplink. Diese Klasse wird z.B. vom ClientServant benutzt, um Nachrichten
+von seinem Client zu empfangen.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~DownlinkOwner~downlinkOwner]~
+\item [private~int~LISTEN\_DELAY]Zeit zwischen zwei Listen()-Schleifendurchläufen
+in Millisekunden.
+\item [private~ObjectInputStream~objectInputStream]~
+\item [private~Socket~socket]~
+\item [private~boolean~stop]Wird auf true gesetzt, wenn der Thread beendet werden
+soll.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~Downlink(Socket~socket,~DownlinkOwner~owner)]Konstruktor, der setDownlinkOwner()
+benutzt.
+\item [public~DownlinkOwner~getDownlinkOwner()]Gibt den DownlinkOwner zurück.
+\item [private~void~listen()]Wartet auf ankommende Nachrichten mit objectInputStream.readObject()
+und leitet sie an den Besitzer weiter. Benutzt DownlinkOwner.downlinkError()
+und processMsg(). Wartet pro Schleifendurchlauf gemäß LISTEN\_DELAY und beendet
+die Schleife, falls stop=true;
+\item [public~void~run()]Startet den Thread.
+\item [public~void~setDownlinkOwner(DownlinkOwner~paramDownlinkOwner)]Aufruf von
+setDownlinkOwner(null) bewirkt stopDownlink(). Benachrichtigt die betroffenen
+Objekte mittels setDownlink().
+\item [public~void~startDownlink()]Öffnet den Input - Stream, danach ist der Downlink
+betriebsbereit. Ruft this.start() auf. Benutzt DownlinkOwner.downlinkError().
+\item [private~void~stopDownlink()]Schließt den Input-Stream. Benutzt setDownlinkOwner(null).
+\end{description}
+
+\subsubsection{DownLinkOwner}
+
+Neu im Package Util ist das Interface DownlinkOwner. Es muss von allen Klassen
+implementiert werden, die einen Downlink benutzen wollen. Einer der Gründe ist,
+dass der Downlink nach dem Empfang eines Command-Objekts eine Methode seines
+{},,Besitzers{}`` aufrufen muss, die das Command-Objekt verarbeitet. Das Vorhandensein
+dieser Methode soll mit diesem Interface sichergestell werden: 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~downlinkError()]Diese Methode wird vom Benutzer des Downlinks
+aufgerufen, wenn ein Fehler im Zusammenhang mit dem Downlink auftritt.
+\item [public~void~processMsg(Command~msg)]Diese Methode wird vom Benutzer des
+Downlinks aufgerufen, wenn er eine Nachricht erhält.
+\item [public~void~setDownlink(Downlink~paramDownlink)]Diese Methode wird vom Benutzer
+des Downlinks aufgerufen, um den Downlink zu setzen.
+\end{description}
+
+\subsection{Das Package Util.Commands}
+
+
+\subsubsection{Command}
+
+Diese Klasse bildet das Interface für alle Befehle, die beispielsweise zwischen
+Client und ClientServant ausgetauscht werden.
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Diese Methode wird ausgeführt, sowie
+ein Befehl (Command) bei seinem Empfänger ankommt. Ein Befehl enthält die zu
+seiner Ausführung notwendigen Informationen.
+\end{description}
+
+\subsubsection{AddChannelCommand }
+
+Dieses Command wird von einem AdminClient erzeugt, legt einen neuen Channel
+an und ruft addChannel beim AdminClientServant auf. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~boolean~allowedForGuests]Channel öffentlich oder nicht öffentlich?
+\item [private~Vector~allowedUserNames]Liste der Namen der User, die den Channel
+betreten dürfen.
+\item [private~String~name]Name des Channels.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public AddChannelCommand(String paramName, boolean paramAllowedForGuests, Vector
+paramAllowedUserNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt adminClientServant.addChannel()
+mit den Attributen des Commands aus.
+\end{description}
+
+\subsubsection{AddUserCommand }
+
+Dieses Command wird von einem AdminClient erzeugt, legt einen neuen User an
+ruft addUser beim AdminClientServant auf.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~allowedChannelNames]Liste der Namen der Channels, die der
+Benutzer betreten darf.
+\item [private~boolean~isAdmin]Admin-Status des Users.
+\item [private~String~name]Name des Users.
+\item [private~String~password]Passwort des Users.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public AddUserCommand(String paramName, String paramPassword, boolean paramIsAdmin,
+Vector paramAllowedChannelNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt adminClientServant.addUser() mit
+den Attributen des Commands aus.
+\end{description}
+
+\subsubsection{DeleteChannelCommand }
+
+Dieses Command wird von einem AdminClient erzeugt, löscht einen Channel, indem
+deleteChannel() beim AdminClientServant ausgeführt wird. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~name]Der Channelname.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~DeleteChannelCommand(String~paramName)]Setzt den Namen.
+\item [public~void~execute(Object~target)]Ruft beim AdminClientServant deleteChannel()
+auf.
+\end{description}
+
+\subsubsection{DeleteUserCommand }
+
+Dieses Command wird von einem AdminClient gesendet, löscht einen User. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~name]Der Benutzername.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~DeleteUserCommand(String~paramName)]Setzt den Namen.
+\item [public~void~execute(Object~target)]Ruft beim AdminClientServant deleteUser()
+auf.
+\end{description}
+
+\subsubsection{EditChannelCommand }
+
+Dieses Command wird von einem AdminClient erzeugt, ändert Channeldaten und ruft
+editChannel beim AdminClientServant auf. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~boolean~allowedForGuests]Channel öffentlich oder nicht öffentlich?
+\item [private~Vector~allowedUserNames]Liste der Namen der User, die den Channel
+betreten dürfen.
+\item [private~String~name]Name des Channels.
+\item [private~String~oldName]Der alte Name des Channels.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public EditChannelCommand(String paramOldName, String paramName, boolean paramAllowedForGuests,
+Vector paramAllowedUserNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt adminClientServant.editChannel()
+mit den Attributen des Commands aus.
+\end{description}
+
+\subsubsection{EditUserCommand }
+
+Dieses Command wird von einem AdminClient erzeugt, Ändert einen bestehenden
+User und ruft editUser beim AdminClientServant auf. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~allowedChannelNames]Liste der Namen der Channels, die der
+Benutzer betreten darf.
+\item [private~boolean~isAdmin]Admin-Status des Users.
+\item [private~String~name]Name des Users.
+\item [private~String~oldName]Der alte Name des Users.
+\item [private~String~password]Passwort des Users.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public EditUserCommand(String paramOldName, String paramName, String paramPassword,
+boolean paramIsAdmin, Vector paramAllowedChannelNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt adminClientServant.editUser() mit
+den Attributen des Commands aus.
+\end{description}
+
+\subsubsection{GetChannelDataCommand }
+
+Dieses Command fordert vom AdminClientServant einen Channeldatensatz an. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~channelName]Der Channelname.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~GetChannelDataCommand(String~paramChannelName)]Konstruktor, setzt
+die Attribute.
+\item [public~void~execute(Object~target)]Führt AdminClientServant.sendChannel()
+aus.
+\end{description}
+
+\subsubsection{GetChannelListCommand }
+
+Dieses Command fordert vom AdminClientServant die komplette Channelliste an. 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt AdminClientServant.sendChannelList()
+aus.
+\end{description}
+
+\subsubsection{GetUserDataCommand }
+
+Dieses Command fordert vom AdminClientServant einen Userdatensatz an.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~userName]Der Benutzername.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~GetUserDataCommand(String~paramUserName)]Konstruktor, setzt die Attribute.
+\item [public~void~execute(Object~target)]Führt AdminClientServant.sendUser() aus.
+\end{description}
+
+\subsubsection{GetUserListCommand }
+
+Dieses Command fordert vom AdminClientServant die komplette Userliste an. 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt AdminClientServant.sendUserList()
+aus.
+\end{description}
+
+\subsubsection{JoinChannelCommand }
+
+Dieses Command wird von einem Client gesendet, user betritt damit einen Channel. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~name]Der Channelname.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~JoinChannelCommand(String~paramName)]Konstruktor, setzt den Channelnamen.
+\item [public~void~execute(Object~target)]Ruft beim ClientServant joinChannel()
+auf.
+\end{description}
+
+\subsubsection{JoinChannelErrorCommand }
+
+Dieses Command wird von einem ClientServant gesendet, falls ein joinChannel()
+Aufruf fehlschlägt. 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt beim Client joinChannelError()
+aus.
+\end{description}
+
+\subsubsection{LeaveChannelCommand }
+
+Dieses Command fordert den ClientServant auf, den betretenen Channel zu verlassen. 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt ClientServant.leaveChannel() aus.
+\end{description}
+
+\subsubsection{LoginCommand }
+
+Dieses Command wird von einem Client gesendet, um einen Benutzer anzumelden.
+
+
+\paragraph{Attribute }
+
+\begin{description}
+\item [private~String~name]Der Benutzername.
+\item [private~String~password]Das Kennwort.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~LoginCommand(String~paramName,~String~paramPassword)]Konstruktor.
+Erzeugt einen Login-Befehl mit den zur Anmeldung eines Users am Server benötigten
+Daten. Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
+\item [public~void~execute(Object~target)]Ruft beim ClientServant loginUser() auf.
+\end{description}
+
+\subsubsection{LoginErrorCommand }
+
+Dieses Command wird von einem ClientServant gesendet, falls ein Login fehlschlägt. 
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Ruft beim Client loginError() auf.
+\end{description}
+
+\subsubsection{LoginGuestCommand }
+
+Dieses Command meldet einen Gast an, wird von einem Client gesendet. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~name]Der Benutzername.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~LoginGuestCommand(String~paramName)]Konstruktor. Erzeugt einen Login-Befehl
+mit den zur Anmeldung eines Users am Server benötigten Daten. Dieser Befehl
+kann nur von einem ClientServant verarbeitet werden. Parameters: name - der
+Benutzername.
+\item [public~void~execute(Object~target)]Ruft beim ClientServant loginAsGuest()
+auf.
+\end{description}
+
+\subsubsection{LogoutCommand }
+
+Dieses Command fordert den ClientServant auf, einen Logout auszuführen. 
+
+
+\paragraph{Methode}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt beim ClientServant setUser(null)
+aus.
+\end{description}
+
+\subsubsection{SendMsgFromChannelCommand }
+
+Dieses Command wird von einem ClientServant an einen Client geschickt, falls
+eine neue Nachricht in dem besuchten Channel gesendet wurde. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~fromName]Der Name des Benutzers, der diese Nachricht gesendet
+hat.
+\item [private~String~msg]Die Nachricht.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SendMsgFromChannelCommand(String~paramFromName,~String~paramMsg)]Konstruktor,
+setzt die Nachricht und den Absender.
+\item [public~void~execute(Object~target)]Führt beim Client sendMsgFromChannel()
+auf.
+\end{description}
+
+\subsubsection{SendMsgFromUserCommand }
+
+Dieses Command wird gesendet von ClientServant, falls ein Benutzer eine Privatnachricht
+verschicken möchte. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~msg]Die Nachricht.
+\item [private~String~name]Der Benutzername des Absenders.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SendMsgFromUserCommand(String~fromName,~String~paramMsg)]Konstruktor,
+setzt die Attribute.
+\item [public~void~execute(Object~target)]Führt beim Client sendMsgFromUser() auf.
+\end{description}
+
+\subsubsection{SendMsgToChannelCommand }
+
+Dieses Command wird von einem Client gesendet, sendet eine Nachricht in den
+besuchten Channel. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~msg]Die Nachricht.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SendMsgToChannelCommand(String~paramMsg)]Konstruktor
+\item [public~void~execute(Object~target)]Ruft beim ClientServant sendMsgToChannel()
+auf.
+\end{description}
+
+\subsubsection{SendMsgToUserCommand }
+
+Dieses Command wird von einem Client gesendet, sendet eine Nachricht an einen
+Benutzer. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~msg]Die Nachricht.
+\item [private~String~name]Der Empfänger.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SendMsgToUserCommand(String~paramName,~String~paramMsg)]~
+\item [public~void~execute(Object~target)]Ruft beim ClientServant sendMsgToUser()
+auf.
+\end{description}
+
+\subsubsection{SetChannelDataCommand }
+
+Dieses Command wird von einem AdminClientServant als Antwort auf ein GetChannelDataRequestCommand()
+gesendet, enthält die Channeldaten des entsprechenden Channels. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~channelName]Der Channelname.
+\item [private~boolean~isAllowedForGuest]Gäste zugelassen?
+\item [private~Vector~userNames]Namen der Benutzer, die den Channel betreten dürfen.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public SetChannelDataCommand(String paramChannelName, boolean paramIsAllowedForGuest,
+Vector paramUserNames) }
+
+Konstruktor, setzt die entsprechenden Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt setChannelData beim AdminClient
+aus.
+\end{description}
+
+\subsubsection{SetChannelListCommand }
+
+Dieses Command setzt beim AdminClient die Namensliste aller verfügbaren Channels. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~channelNames]Namensliste aller Channels.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SetChannelListCommand(Vector~list)]Konstruktor, setzt das entsprechende
+Attribut.
+\item [public~void~execute(Object~target)]Führt beim AdminClient setChannelList()
+aus.
+\end{description}
+
+\subsubsection{SetCurrentChannelDataCommand }
+
+Dieses Command setzt bei einem Client Informationen über den momentan besuchten
+Channel. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~String~channelName]Der Channelname.
+\item [private~Vector~userNames]Die Namen derjenigen Benutzer, die sich momentan
+im Channel aufhalten.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public SetCurrentChannelDataCommand(String paramChannelName, Vector paramUserNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Ruft Client.setCurrentChannelData() auf.
+\end{description}
+
+\subsubsection{SetCurrentUserDataCommand }
+
+Dieses Command setzt bei einem Client Informationen über den aktuellen Benutzer. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~channelNames]Liste der Channelnamen, die der Benutzer betreten
+darf.
+\item [private~String~userName]Der Benutzername.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public SetCurrentUserDataCommand(String paramUserName, Vector paramChannelNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Ruft Client.setCurrentUserData auf.
+\end{description}
+
+\subsubsection{SetUserDataCommand }
+
+Dieses Command setzt bei einem AdminClient Informationen über einen angeforderten
+User. 
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~channelNames]Namensliste der Channels, die der Benutzer betreten
+darf.
+\item [private~boolean~isAdmin]Admin-Status.
+\item [private~String~password]Das Passwort.
+\item [private~String~userName]Der Benutzername.
+\end{description}
+
+\paragraph{Methoden }
+
+
+\paragraph{public SetUserDataCommand(String paramUserName, String paramUserPassword, boolean
+paramIsAdmin, Vector paramChannelNames) }
+
+Konstruktor, setzt die Attribute.
+
+\begin{description}
+\item [public~void~execute(Object~target)]Führt AdminClient.setUserDataRequest()
+aus.
+\end{description}
+
+\subsubsection{SetUserListCommand }
+
+Dieses Command setzt beim AdminClient eine Liste aller vorhandenen Usernamen.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~userNames]List der Usernamen
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~SetUserListCommand(Vector~list)]Konstruktor.
+\item [public~void~execute(Object~target)]Führt beim AdminClient setUserList()
+aus
+\end{description}
+
+\subsubsection{StopClientCommand }
+
+Dieses Command stoppt einen Client.
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~void~execute(Object~target)]Ruft beim Client stopClient() auf.
+\end{description}
+
+\subsection{Das Package Util.Debug}
+
+In diesem Paket werden Funktionen zur Qualitätssicherung, oder neudeutsch zum
+{},,Debuggen{}``, gesammelt.
+
+
+\subsubsection{Debug}
+
+Bei Util.Debug.Debug handelt es sich um eine Klasse zur Ausgabe von Debug-Nachrichten.
+Gegenüber dem üblichen 
+
+\begin{lyxcode}
+System.out.println(\char`\"{}Wichtiger~Fehler!\char`\"{});
+\end{lyxcode}
+haben so ausgegebene Nachrichten u.a. folgende Vorteile: 
+
+\begin{itemize}
+\item sie können im Code bleiben, müssen nicht auskommentiert werden  
+\item sie sind zur Laufzeit ein- und ausschaltbar 
+\item verschiedene Prioritäten ermöglichen eine nach Debug-Level gefilterte Ausgabe
+von Debug-Nachrichten 
+\end{itemize}
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [public~static~final~int~OFF]Stellt die Ausgabe von Debug-Nachrichten ab. 
+\item [public~static~final~int~LOW]Niedrige Priorität. 
+\item [public~static~final~int~MEDIUM]Mittlere Priorität. 
+\item [public~static~final~int~HIGH]Hohe Priorität. 
+\item [private~static~int~level]Debug-Level. Je höher er ist, desto mehr und auch
+unwichtigere Debug-Nachrichten werden ausgegeben. Der Wert Debug.OFF stellt
+Debug-Nachrichten ab. 
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~static~void~setLevel(int~newLevel)]Stellt den Debug-Level ein. 
+\item [public~static~void~println(java.lang.Object~msg)]Löst eine Debug-Nachricht
+mit normaler Priorität aus. 
+\item [public~static~void~println(int~priority,~java.lang.Object~msg)]Löst eine
+Debug-Nachricht mit einer bestimmten Priorität aus. 
+\end{description}
+
+\subsection{Das Package Server}
+
+Im folgenden Abschnitt werden die Klassen des Serverpakets in ihren Einzelheiten
+geschildert.
+
+
+\subsubsection{Server}
+
+Diese Klasse stellt die Hauptklasse des Chat-Servers dar. Nachdem er gestartet
+wurde, horcht der Server an einem bestimmten Port auf Verbindungswünsche von
+Clients. Sowie sich ein Client an diesem Port meldet, startet der Server einen
+ClientServant, der sich ab dann ausschließlich um diesen Client kümmert. Anschließend
+horcht der Server wieder an seinem Port und wartet auf Verbindungswünsche von
+weiteren Clients.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~ChannelAdministration~channelAdministration]~
+\item [private~Vector~clientServantList]Eine Liste der aktiven ClientServants des
+Servers.
+\item [private~ClientServantWatchDog~clientServantWatchDog]~
+\item [private~DataBaseIO~dataBaseIO]Die Datenbank, in der die Informationen über
+User und Channel gespeichert werden. Von dort werden sie beim Start des Servers
+ausgelesen.
+\item [private~int~LISTEN\_QUEUE\_LENGTH]Die Länge der Warteschlange, in der Verbindungswünsche
+von Clients zwischengespeichert werden, die nicht sofort verarbeitet werden
+können. Verbindungswünsche, die nicht mehr in die Warteschlange passen, werden
+automatisch abgewiesen (siehe auch java.net.ServerSocket).
+\item [private~int~SERVER\_PORT]Der Port, auf dem der Server sein ServerSocket öffnet
+und auf Anfragen der Clients horcht.
+\item [private~ServerSocket~serverSocket]~
+\item [private~boolean~stop]Flag, welches angibt, ob listen() weiter auf Verbindungen
+warten soll.
+\item [private~UserAdministration~userAdministration]~
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~synchronized~void~addToClientServantList(ClientServant~paramClientServant)]Fügt
+einen ClientServant zu der Liste aktiver ClientServants hinzu. Benutzt ClientServant.setServer().
+\item [public~ChannelAdministration~getChannelAdministration()]Gibt die aktive ChannelAdministration
+zurück.
+\item [public~Enumeration~getClientServantEnum()]Gibt eine Aufzählung der aktiven
+ClientServants zurück.
+\item [private~void~listen()]In listen() wird zuerst ein neuer ServerSocket angelegt.
+In einer Schleife werden, solange der Thread nicht gestoppt wurde, bei ankommenden
+Verbindungenswünschen von Clients neue Clientservants erstellt, diese zur Liste
+der Servants hinzugefügt und gestartet. Nachdem der Thread beendet wurde, wird
+der ServerSocket geschlossen. Falls die Zugriffe auf den ServerSocket nicht
+möglich sind, werden diese durch try und catch abgefangen. Schleifendurchlauf,
+solange stop==true. Benutzt ClientServant.startClientServant() und addToClientServantList().
+\item [public~synchronized~void~removeFromClientServantList(ClientServant~paramClientServant)]Entfernt
+den übergebenen ClientServant durch setServer(null) aus der Liste der aktiven
+ClientServants.
+\item [public~void~startServer()~throws~java.io.FileNotFoundException,~java.io.IOException]Diese
+Methode initialisiert den Server, indem neue Referenzen von channelAdministration,
+userAdministration, clientServantWatchDog und dataBaseIO erzeugt werden. Ausserdem
+werden die Benutzer- und Channeldaten geladen und ein ClientServantDog gestartet,
+um inaktive Clients aus dem System zu entfernen. Ruft listen() auf.
+\item [public~void~stopServer()]Stoppt den Server, indem die ClientServants durch
+eine Schleife mit der Methode removeFromClientServant aus der ClientServantList
+enfernt werden. Setzt stop=true, um die Listen-Methode zu beenden.
+\end{description}
+
+\subsubsection{ClientServant}
+
+Diese Klasse kümmert sich um die Anfragen, die von einem Client an den Server
+gestellt werden. Der Server erzeugt für jeden Client eine Instanz dieser Klasse,
+die sich von da an nur noch um diesen Client kümmert und seine Anfragen bearbeitet.
+In dieser Klasse steckt die meiste Funktionalität des Servers.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [protected~long~aliveStamp]Gibt den letzten Zeitpunkt an, an dem der ClientServant
+eine Nachricht von seinem Client empfangen hat.
+\item [protected~Util.Downlink~downlink]~
+\item [protected~Server~server]~
+\item [protected~Socket~socket]Über diesen Socket kommuniziert der ClientServant
+mit seinem Client.
+\item [protected~Util.Uplink~uplink]~
+\item [protected~User~user]~
+\item [protected~UserAdministration~userAdministration]~
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~ClientServant()]Standard-Konstruktor, notwendig, da der AdminClientServant
+von dieser Klasse erbt. Wird sonst nicht benutzt.
+\end{description}
+
+\paragraph{public~ClientServant(Socket~paramSocket,~Server~paramServer, UserAdministration
+paramUserAdministration) }
+
+Konstruktor, der die entsprechenden Attribute setzt. Benutzt setServer(paramServer).
+
+\begin{description}
+\item [public~final~synchronized~void~becomeAdminClientServant()]Wenn der angemeldete
+Benutzer Admin-Rechte hat, dann wird aus dem ClientServant automatisch ein AdminClientServant
+mit erweiterter Funktionalität. Benutzt den AdminClientServant-Konstruktor Setzt
+uplink=null und ruft dann this.stopClientServant() auf.
+\item [public~final~synchronized~void~downlinkError()]Wird vom Downlink aufgerufen,
+falls beim Empfang von Nachrichten ein Fehler auftritt, enthält Fehlerbehandlung.
+\item [public~final~long~getAliveStamp()]Gibt den aktuellen aliveStamp-Wert zurück.
+\item [public~final~synchronized~void~joinChannel(String~name)]Lässt den User
+in den Channel mit dem angegebenen Namen eintreten. Benutzt user.setCurrentChannel()
+und user.getFromAllowedChannelByName() Falls der gewünschte Channel nicht existiert
+wird ein JoinChannelErrorCommand gesendet Falls der user nicht existiert, wird
+ein LoginErrorCommand gesendet.
+\item [public~final~synchronized~void~leaveChannel()]Lässt den User den Channel
+verlassen. Benutzt user.setCurrentChannel(null) Falls user nicht existent, wird
+LoginErrorCommand() gesendet.
+\item [public~final~synchronized~void~loginAsGuest(String~name)]Meldet einen
+Gast beim System an. Benutzt userAdministration.loginGuest() und setUser() Bei
+einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen
+anschließend beendet sich clientServant.
+\item [public~final~synchronized~void~loginUser(String~name,~String~password)]Meldet
+den Benutzer mit Namen name und mit Passwort password beim System an Benutzt
+userAdministration.loginUser() um das Userobjekt zu holen und setUser() um es
+zu setzen. Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null)
+aufgerufen, anschließend beendet sich clientServant. Falls der User Admin-Rechte
+hat, so wird becomeAdminClient() aufgerufen.
+\item [public~final~synchronized~void~processMsg(Command~msg)]Führt den empfangenen
+Befehl einfach mittels msg.execute(this) aus. Benutzt setAliveStamp().
+\item [public~final~synchronized~void~sendCommand(Command~paramCommand)]Sendet
+das angegebene CommandObjekt über den Uplink. Benutzt uplink.sendMsg() Bei einem
+Fehler: Fehlerbehandlung.
+\item [public~final~synchronized~void~sendCurrentChannelData()]Sendet die Daten
+des betretenen Channel an den Client. Sendet ein SetCurrentChannelDataCommand.
+Benutzt getCurrentChannel().getName() und getCurrentChannel().getCurrentUserNames().
+\item [public~final~synchronized~void~sendCurrentUserData()]Sendet die Daten des
+Users an den Client. Sendet ein SetCurrentUserDataCommand. Benutzt user.getName()
+und user.getAllowedChannelNames().
+\item [public~final~synchronized~void~sendMsgFromChannel(String~fromName,~String~msg)]Sendet
+eine Nachricht, die in den besuchten Channel gesendet wurde, an den Client (mit
+einem SendMsgFromChannelCommand).
+\item [public~final~synchronized~void~sendMsgFromUser(String~fromName,~String~msg)]Sendet
+eine private Nachricht eines anderen Users an den Client. Sendet ein SendMsgFromUserCommand.
+\item [public~final~synchronized~void~sendMsgToChannel(String~msg)]Sendet eine
+Nachricht des Users an alle anderen User im Channel. Sendet ggf. joinChannelError(),loginErrorCommand()
+Benutzt user.getCurrentChannel() und Channel.getCurrentUserEnum(), getClientServant()
+um bei den verantwortlichen ClientServants ein sendMsgFromChannel() aufzurufen.
+\item [public~final~synchronized~void~sendMsgToUser(String~userName,~String~msg)]Sendet
+eine private Nachricht des Users an einen anderen User. Sendet ggf. joinChannelErrorCommand,
+loginErrorCommand() Benutzt user.getCurrentChannel() und Channel.getCurrentUserEnum(),
+getClientServant() um bei den verantwortlichen ClientServants ein sendMsgFromChannel()
+aufzurufen.
+\item [public~final~synchronized~void~setAliveStamp()]Setzt aliveStamp auf die
+aktuelle Zeit. Benutzt java.lang.System.currentTimeMillis().
+\item [public~final~synchronized~void~setDownlink(Downlink~paramDownlink)]Setzt
+downlink, benachrichtigt die betroffenen Downlinkobjekte mittels setDownlinkOwner().
+\item [public~final~synchronized~void~setServer(Server~paramServer)]Setzt server
+und benachrichtigt das betroffene Serverobjekt mittels removeFromClientServantList()
+und addToClientServantList. setServer(null) bewirkt stopClientServant()
+\item [public~final~synchronized~void~setUser(User~paramUser)]Setzt user, benutzt
+user.setClientServant(). setUser(null) bewirkt ein stopClientServant().
+\item [public~final~synchronized~void~startClientServant()]Startet den ClientServant,
+danach ist er betriebsbereit und kann die Anfragen seines Clients bearbeiten.
+Erzeugt einen neuen Uplink und Downlink. Benutzt setDownlink(), uplink.startUplink()
+und downlink.startDownlink(). Fängt Fehler aus startUplink() und startDownlink()
+ab.
+\item [public~final~synchronized~void~stopClientServant()]Stoppt den ClientServant.
+Benutzt setDownlink(null) uplink.stopUplink(), setServer(null) und setUser(null).
+Sendet ein stopClientCommand() an den Client.
+\end{description}
+
+\subsubsection{AdminClientServant}
+
+Diese vom ClientServant abgeleitete Klasse kümmert sich um die Anfragen, die
+von einem Client an den Server gestellt werden. Wenn der Benutzer Administratorrechte
+hat, wird sein AdminClient von einem AdminClientServant statt von einem normalen
+ClientServant \char`\"{}bedient\char`\"{}. Ein AdminClientServant funktioniert
+genauso wie ein ClientServant, kann allerdings noch zusätzlich administrative
+Nachrichten des AdminClients verarbeiten.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~ChannelAdministration~channelAdministration]~
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server
+paramServer, ChannelAdministration paramChannelAdministration, UserAdministration
+paramUserAdministration, User paramUser) }
+
+Konstruktor, setzt die entsprechenden Attribute. Benutzt setDownlink(),setServer()
+und setUser(). \char`\"{}Entreisst\char`\"{} somit dem aufrufenden ClientServant
+die Objekte.
+
+
+\paragraph{public synchronized void addChannel(String paramName, boolean paramAllowedForGuests,
+Vector paramAllowedUserNames) }
+
+Fügt einen Channel hinzu. Erzeugt ein neues Channelobjekt und generiert für
+dieses Channelobjekt die Referenzen auf die erlaubten Benutzer mittels userAdministration.getFromUserListByName()
+und channel.addToAllowedUserList(). Bewirkt Aufruf von DataBaseIO.saveToDisk().
+
+
+\paragraph{public synchronized void addUser(String paramName, String paramPassword, boolean
+paramIsAdmin, Vector paramAllowedChannelNames) }
+
+Fügt einen Benutzer hinzu. Erzeugt ein neues Userobjekt mit den angegebenen
+Daten. Benutzt paramAllowedChannelNames und channelAdministration.getFromChannelListByName
+um mit user.addToAllowedChannelList die für den Benutzer erlaubten Channelobjekte
+zu referenzieren. Ruft schließlich userAdministration.addToUserList auf. Bewirkt
+Aufruf von DataBaseIO.saveToDisk().
+
+\begin{description}
+\item [public~synchronized~void~deleteChannel(String~channelName)]Löscht den Channel
+mit dem angegebenen Namen. Benutzt channelAdministration.getFromChannelListByName()
+und channelAdministration.removeFromChannelList(). Bewirkt Aufruf von DataBaseIO.saveToDisk()
+\item [public~synchronized~void~deleteUser(String~userName)]Löscht den Benutzer
+mit dem angegebenen Namen. Benutzt userAdministration.getFromUserListByName()
+und userAdministration.removeFromUserList(). Bewirkt Aufruf von DataBaseIO.saveToDisk().
+\end{description}
+
+\paragraph{public~synchronized~void~editChannel(String~oldName,~String~newName,~boolean
+paramAllowedForGuest, Vector allowedUserNames) }
+
+Verändert die Daten des angegebenen Channels. Erzeugt ein neues Channelobjekt
+mit den angegebenen Daten. Benutzt setAllowedUserList() um die erlaubten Benutzer
+des Channels einzutragen und ruft dann channelAdministration.editChannel() auf.
+Bewirkt Aufruf von DataBaseIO.saveToDisk() 
+
+
+\paragraph{public~synchronized~void~editUser(String~oldName,~String~newName,~String~newPassword,
+boolean paramIsAdmin, Vector allowedChannelNames) }
+
+Verändert die Daten des angegebenen Users. Erzeugt ein neues Userobjekt mit
+den angegebenen Daten. Benutzt setAllowedChannelList() um die erlaubten Channels
+des Benutzers einzutragen - benutzt dafür channelAdministration.getFromChannelListByName()
+und ruft dann userAdministration.editUser() auf. Bewirkt Aufruf von DataBaseIO.saveToDisk(). 
+
+\begin{description}
+\item [public~synchronized~void~sendChannel(String~channelName)]Sendet die Channeldaten
+des Channels mit dem angegebenen Namen. Erzeugt und versendet ein neues SetChannelDataCommand().
+Benutzt channelAdministration.getFromChannelListByName().
+\item [public~synchronized~void~sendChannelList()]Sendet eine Liste aller Channelnamen.
+Benutzt sendCommand() und erzeugt ein neues SetChannelListCommand - Objekt.
+Benutzt channelAdministration.getChannelNames(), um die Namensliste zu erzeugen.
+\item [public~synchronized~void~sendUser(String~userName)]Sendet die Benutzerdaten
+des Benutzers mit dem angegebenen Namen an den Client. Benutzt userAdministration.getFromUserListByName().
+Erzeugt und versendet ein entsprechendes SetUserDataCommand().
+\item [public~synchronized~void~sendUserList()]Sendet eine Liste aller Benutzernamen.
+Benutzt sendCommand und erzeugt ein neues SetUserListCommand-Objekt Benutzt
+userAdministration.getUserNames(), um die Namensliste zu erzeugen.
+\end{description}
+
+\subsubsection{ClientServantWatchDog}
+
+Beim ClientServantWatchDog handelt es sich um einen Thread, der dafür zuständig
+ist, ClientServants aus dem System zu entfernen, die seit einer bestimmten Zeitspanne
+keine Nachrichten mehr von ihrem Client empfangen haben.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Server~server]~
+\item [public~boolean~stop]~
+\end{description}
+Flag, welches angibt, ob der Thread beendet werden soll.
+
+\begin{description}
+\item [private~int~timeToLive]~
+\end{description}
+Zeit in Millisekunden, die angibt, wie lange eine ClientServant inaktiv sein
+darf.
+
+\begin{description}
+\item [private~int~updateDelay]~
+\end{description}
+Zeitspanne in Millisekunden, die vergeht, bis der ClientServantWatchDog erneut
+alle ClientServants überprüft.
+
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~ClientServantWatchDog(Server~paramServer)]~
+\end{description}
+Setzt das Server-Attribut.
+
+\begin{description}
+\item [public~void~run()]~
+\end{description}
+Die Runmethode enthält im Wesentlichen eine Schleife, die solange ausgeführt
+wird bis stop auf true gesetzt wird, und mittels servant.getClientServantEnum()
+die entsprechenden Clientservants überprüft. Für die Überprüfung wird ClientServant.getAliveStamp()
+und java.lang.System.currentTimeMillis() benutzt. ClientServants werden ggf.
+durch ClientServant.stopClientServant() entfernt. Zur Kontrolle der Schleifendurchläufe
+wird timeToLive und updateDelay benutzt
+
+
+\subsubsection{ChannelAdministration}
+
+Mit der Klasse ChannelAdministration werden Methoden bereitgestellt, um Channel
+im System zu verwalten. Die ChannelAdministration kann hier durch die Klasse
+\char`\"{}DataBaseIO\char`\"{} auf die Channeldatenbank zugreifen, um die Benutzerforen,
+deren Daten sich in der Klasse \char`\"{}Channel\char`\"{} befinden, laden,
+speichern oder löschen zu können.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~channelList]Liste der verfügbaren Channel.
+\item [private~DataBaseIO~dataBaseIO]\char`\"{}Datenbank\char`\"{}, in der die Channel-Daten
+gespeichert sind.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~synchronized~void~addToChannelList(Channel~paramChannel)]Fügt einen
+Channel hinzu, sofern er noch nicht existiert.
+\item [public~synchronized~void~editChannel(String~oldName,~Channel~newChannel)]Editiert
+den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem neuen
+Channelobjekt. Benutzt Channel.setName(),setAllowedForGuest() und setAllowedUserList().
+\item [public~Enumeration~getChannelEnum()]Gibt eine Aufzählung der existierenden
+Channel zurück.
+\item [public~Vector~getChannelNames()]Liefert eine Aufzählung der existierenden
+Channel. Benutzt getChannelEnum().
+\item [public~Enumeration~getFreeForGuestEnum()]Liefert eine Aufzählung der Channel,
+die für Gäste freigegeben sind. Benutzt getChannelEnum() und channel.isAllowedForGuests().
+\item [public~Channel~getFromChannelListByName(String~name)]Gibt den Channel mit
+dem angegebenen Namen zurück, falls er existiert. Ansonsten wird null zurückgegeben.
+Benutzt getChannelEnum().
+\item [public~synchronized~void~removeFromChannelList(Channel~paramChannel)]Entfernt
+einen Channel. Benachrichtigt den betroffenen Channel mittels Channel.removeYou().
+\item [public~synchronized~void~setChannelList(Enumeration~channelEnum)]Setzt
+ChannelList auf die in channelEnum übergebenen Werte. Benutzt addToChannelList()
+und removeFromChannelList().
+\item [public~void~setDataBaseIO(DataBaseIO~paramDataBaseIO)]Setzt dataBaseIO,
+benutzt DataBaseIO.setChannelAdministration.
+\end{description}
+
+\subsubsection{UserAdministration}
+
+Die Klasse UserAdministration stellt Methoden zur Verwaltung der Benutzer zur
+Verfügung. Neben der Abwicklung des User-Login und des Guest-Login, können User
+hinzugefügt, bearbeitet und gelöscht werden. Außerdem gibt es Methoden, um sich
+alle oder einzelne User anzeigen zu lassen, sowie einige Methoden, welche die
+Counter-Attribute für die angemeldeten User bzw. Gäste hoch/ runter zählen.
+Desweitern sind in dieser Klasse die jeweils maximalen Anzahlen für User und
+Gäste festgelegt.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~ChannelAdministration~channelAdministration]~
+\item [private~DataBaseIO~dataBaseIO]~
+\item [private~int~maxGuests]Maxmimale Anzahl von eingeloggten Gästen im System
+\item [private~int~maxUsers]Maximale Anzahl von eingeloggten Benutzern im System.
+\item [private~int~numCurrentGuests]Anzahl der Gäste im System
+\item [private~int~numCurrentUsers]Anzahl der eingeloggten Benutzer im System.
+\item [private~Vector~userList]Liste aller Benutzer im System.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~UserAdministration(ChannelAdministration~paramChannelAdministration)]Setzt
+channelAdministration.
+\item [public~synchronized~void~addToUserList(User~paramUser)]Fügt einen Benutzer
+mittels user.setUserAdministration() zur UserList hinzu.
+\item [public~synchronized~void~decNumCurrentGuests()]Verringert den Zähler numCurrentGuests
+um 1
+\item [public~synchronized~void~decNumCurrentUsers()]Verkleinert den Zähler numCurrentUsers
+um 1
+\item [public~synchronized~void~editUser(String~oldName,~User~newUser)]Mittles
+dieser Methode kann ein User-Objekt bearbeitet werden. Setzt die Daten des Userobjektes
+mit dem Namen oldName auf die in newUser enthaltenen Daten mittels user.setName(),setPassword(),setIsAdmin(),setAllowedChannelList().
+Benutzt getFromUserListByName().
+\item [public~User~getFromUserListByName(String~name)]Gibt den Benutzer mit dem
+angegebenen Namen zurück. Benutzt getUserEnum(), user.getName()
+\item [public~Enumeration~getUserEnum()]Gibt eine Aufzählung aller User zurück
+\item [public~Vector~getUserNames()]Liefert eine Namensliste aller User, die nicht
+Gäste sind. Benutzt getUserEnum().
+\item [public~synchronized~void~incNumCurrentGuests()]Erhöht den Zähler numCurrentGuests
+um 1
+\item [public~synchronized~void~incNumCurrentUsers()]Erhöht den Zähler numCurrentUsers
+um 1
+\item [public~synchronized~User~loginGuest(String~paramName)]Meldet einen Gast
+an und fügt ihn zur UserList hinzu, Mittels setAllowedChannelList() wird er
+zum Betreten der für Gäste freie Channels berechtigt. Legt ein neues Userobjekt
+an. Benutzt addToUserList und setIsLoggedIn(). Prüft mittels getFromUserListByName,
+ob der gewünschte Gastname noch frei ist Returns: den Benutzer, falls Authentifizierung
+klappt, sonst null
+\item [public~synchronized~User~loginUser(String~name,~String~password)]Meldet
+einen Benutzer an. Prüft, ob numCurrentUser < maxUsers, läßt Administratoren
+immer ins System, sonst, falls maximale Anzahl erreicht, return null. Benutzt
+getFromUserListByName(), user.getPassword(), isLoggedIn() und setIsLogged()
+Returns: den Benutzer, falls Authentifizierung klappt, sonst null
+\item [public~synchronized~void~removeFromUserList(User~paramUser)]Entfernt einen
+Benutzer mittels user.setUserAdministration() aus der UserList.
+\item [public~void~setDataBaseIO(DataBaseIO~paramDataBaseIO)]Setzt dataBaseIO und
+benachrichtigt das betroffene Objekt durch DataBaseIO.setUserAdministration
+\item [public~void~setUserList(Enumeration~userEnum)]Setzt userList auf die in
+userEnum enthaltenen Objekte von Typ User Benutzt addToUserList() und removeFromUserList().
+\end{description}
+
+\subsubsection{Channel}
+
+Die Klasse Channel hält Daten für die entsprechende Administrationsklasse bereit:
+Eine Instanz dieser Klasse kann wichtige Channeldaten wie z.B. berechtigte User
+oder im Channel befindliche User speichern. Außerdem stehen Methoden zur Verfügung,
+mit denen Listen der berechtigten bzw. im Raum befindlichen User abgefragt und
+übergeben werden können. Desweiteren können einzelne User zur CurrentUserList
+hinzugefügt bzw. wieder entfernt werden, wenn sie den Channel betreten bzw.
+verlassen.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~boolean~allowedForGuest]\char`\"{}Erlaubt-für-Gäste\char`\"{}-Flag.
+\item [private~Vector~allowedUserList]Gibt die Benutzer an, die den Channel betreten
+dürfen.
+\item [private~Vector~currentUserList]Gibt die Benutzer an, die sich momentan in
+dem Channel befinden. 
+\item [private~String~name]Der Name des Channels.
+\end{description}
+
+\paragraph{Methoden}
+
+\begin{description}
+\item [public~Channel(String~paramName,~boolean~paramAllowedForGuests)]Konstruktur,
+der die entsprechenden Attribute setzt.
+\item [public~synchronized~void~addToAllowedUserList(User~paramUser)]Fügt einen
+Benutzer zur Liste der berechtigten Benutzer hinzu. Benachrichtigt mittels User.addToAllowedChannelList()
+das entsprechende User-Objekt.
+\item [public~synchronized~void~addToCurrentUserList(User~paramUser)]Fügt einen
+User zu den im Channel befindlichen Usern hinzu. Benachrichtigt den User mittels
+User.setCurrentChannel(). Ruft dann informCurrentUsers() auf.
+\item [public~Enumeration~getAllowedUserEnum()]Gibt eine Aufzählung der aktuellen
+Benutzerobjekte im Channel zurück.
+\item [public~Vector~getAllowedUserNames()]Die Namensliste als Vector von Strings
+der berechtigten Benutzer wird zurückgegeben Benutzt getAllowedUserEnum() und
+User.getName().
+\item [public~Enumeration~getCurrentUserEnum()]Liefert eine Aufzählung der aktuellen
+Benutzer zurück.
+\item [public~Vector~getCurrentUserNames()]Eine Namensliste als Vector von Strings
+der aktuellen Benutzer wird zurückgegeben. Benutzt getCurrentUserEnum() und
+User.getName()
+\item [public~String~getName()]Gibt den Namen des Channels zurück.
+\item [public~synchronized~void~informCurrentUsers()]Informiert die Clients der
+aktuellen Benutzer im Channel über Veränderungen im Channel mittels getCurrentUserEnum(),
+User.getClientServant() und ClientServant.sendCurrentChannelData().
+\item [public~boolean~isAllowedForGuest()]Gibt an, ob der Channel von Gästen betreten
+werden darf.
+\item [public~synchronized~void~removeFromAllowedUserList(User~paramUser)]Entfernt
+einen Benutzer aus der Liste der berechtigten Benutzer. Benachrichtigt mittels
+User.removeFromAllowedChannelList() das entsprechende User-Objekt.
+\item [public~synchronized~void~removeFromCurrentUserList(User~paramUser)]Entfernt
+einen User aus den im Channel befindlichen Usern. Benachrichtigt den User mittels
+User.setCurrentChannel(null). Ruft dann informCurrentUsers() auf.
+\item [public~synchronized~void~removeYou()]Entfernt das Channelobjekt aus dem
+System. Benutzt setCurrentUserList(null) und setAllowedUserList(null).
+\item [public~void~setAllowedForGuest(boolean~b)]Setzt, ob Gäste den Channel betreten
+dürfen. Benachrichtig ggf. betroffene User mittels user.isGuest() und user.removeFromAllowedChannelList(this)
+\item [public~void~setAllowedUserList(Enumeration~enumAllowedUser)]Setzt allowedUserList
+auf die in enumAllowedUser übergebenen Werte Benutzt addToAllowedUserList()
+und removeFromAllowedUserList().
+\item [public~synchronized~void~setCurrentUserList(Enumeration~enumCurrentUser)]Setzt
+CurrentUserList auf die in enumCurrentUser übergebenen Werte. Benutzt addToCurrentUserList()
+und removeFromCurrentUserList().
+\item [public~synchronized~void~setName(String~paramName)]Setzt den Namen des
+Channels. Ruft informCurrentUsers() auf.
+\item [public~String~toString()]Dient dem debugging.
+\end{description}
+
+\subsubsection{User}
+
+Die Klasse User hält Daten für die entsprechende Administrationsklasse bereit:
+In der Klasse \char`\"{}User\char`\"{} werden die Informationen des Benutzers
+gespeichert. Informationen, wie zum Bespiel der Name, Status oder die Rechte,
+die den Benutzer entweder als Administrator oder normaler Benutzer kennzeichnen.
+Speziell während einer aktiven Verbindung mit dem Server werden darüberhinaus
+einige weitere Informationen gespeichert, etwa in welchem Channel der Benutzer
+sich befindet oder ob es sich bei ihm um einen Gast handelt. Die nötigen Daten
+können durch die \char`\"{}UserAdministration\char`\"{} aus der Benutzerdatenbank
+geladen werden.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~Vector~allowedChannelList]~
+\end{description}
+Gibt die Channels an, die der Benutzer betreten darf.
+
+\begin{description}
+\item [private~ClientServant~clientServant]~
+\end{description}
+Der für den Benutzer verantwortliche ClientServant.
+
+\begin{description}
+\item [private~Channel~currentChannel]~
+\end{description}
+Gibt den Channel an, in dem sich der Benutzer zur Zeit befindet.
+
+\begin{description}
+\item [private~boolean~isAdmin]~
+\end{description}
+Ist der User Administrator?
+
+\begin{description}
+\item [private~boolean~isGuest]~
+\end{description}
+Gaststatus des Benutzers.
+
+\begin{description}
+\item [private~boolean~loggedIn]~
+\end{description}
+Gibt an, ob der Benutzer momentan das System benutzt.
+
+\begin{description}
+\item [private~String~name]~
+\end{description}
+Der Name des Benutzers.
+
+\begin{description}
+\item [private~String~password]~
+\end{description}
+Das Passwort des Benutzers.
+
+\begin{description}
+\item [private~UserAdministration~userAdministration]~
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public~User(String~paramName,~String~paramPassword, boolean paramGuest,
+boolean paramAdmin, UserAdministration paramUserAdministration) }
+
+Setzt die entsprechenden Attribute, benutzt setUserAdministration().
+
+\begin{description}
+\item [public~synchronized~void~addToAllowedChannelList(Channel~paramChannel)]Fügt
+einen Channel zu der Liste der für den Benutzer erlaubten Channels hinzu, benutzt
+Channel.addToAllowedUserList(), falls der Benutzer kein Gast ist. Ruft informClient()
+auf.
+\item [public~Enumeration~getAllowedChannelEnum()]Gibt eine Aufzählung der Channels
+zurück, die der Benutzer betreten darf.
+\item [public~Vector~getAllowedChannelNames()]Gibt eine Liste der Namen der Channels
+zurück, die der Benutzer betreten darf.
+\item [public~ClientServant~getClientServant()]Gibt den dem User zugeordneten ClientServant
+zurück.
+\item [public~Channel~getCurrentChannel()]Gibt den Channel zurück, in dem sich der
+Benutzer momentan befindet.
+\item [public~Channel~getFromAllowedChannelByName(String~channelName)]Gibt einen
+Channel aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück.
+\item [public~String~getName()]Gibt den Namen des Benutzers zurück.
+\item [public~String~getPassword()]Gibt das Passwort zurück.
+\item [private~synchronized~void~informClient()]Informiert den Client des Benutzers
+bei Veränderungen der Userdaten mittels getClientServant() und ClientServant.sendCurrentUserData().
+\item [public~boolean~isAdmin()]Gibt true zurück, wenn der Benutzer Adminrechte
+hat.
+\item [public~boolean~isGuest()]Gibt true zurück, wenn der Benutzer ein Gast ist.
+\item [public~boolean~isLoggedIn()]Gibt an, ob sich der Benutzer im System eingeloggt
+hat.
+\item [public~synchronized~void~removeFromAllowedChannelList(Channel~paramChannel)]Entfernt
+einen Channel aus der Liste der erlaubten Channels, benutzt Channel.removeFromAllowedUserList(),
+falls der Benutzer kein Gast ist. Ruft informClient() auf.
+\item [public~synchronized~void~removeYou()]Entfernt das Benutzerobject aus dem
+System. Benutzt setIsLoggedIn(false), setAllowedChannelList(null) und UserAdministration.removeFromUserList(this)
+\item [public~synchronized~void~setAllowedChannelList(Enumeration~channelEnum)]Setzt
+die Liste der für den Benutzer erlaubten Channels mit addToAllowedChannelList()
+und removeFromAllowedChannelList().
+\item [public~synchronized~void~setClientServant(ClientServant~paramClientServant)]Setzt
+den zugeordneten ClientServant und benutzt ClientServant.setUser(). Ein setClientServant(null)
+bewirkt ein setIsLoggedIn(false).
+\item [public~synchronized~void~setCurrentChannel(Channel~paramChannel)]Setzt
+den Channel, in dem sich der Benutzer befindet. Benutzt Channel.removeFromCurrentUserList()
+und addToCurrentUserList().
+\item [public~synchronized~void~setIsAdmin(boolean~b)]Setzt das Adminflag, macht
+allerdings weiter nichts. D.h. ein Benutzer, der eingeloggt ist und Admin-Rechte
+bekommt muß sich mittels der AdminClient-Applikation neu einloggen, um diese
+nutzen zu können.
+\item [public~synchronized~void~setIsLoggedIn(boolean~paramLoggedIn)]Loggt den
+Benutzer ein oder aus, Benutzt userAdministration.incNumCurrentUsers(),decNumCurrentUsers(),
+(incNumCurrentGuests(),decNumCurrentGuests() bei Gästen, benutzt ggf. user.setCurrentChannel(null),setClientServant(null)
+(und userAdministration.removeFromUserList() bei Gästen, um den Gast aus dem
+System zu entfernen, da Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen).
+\item [public~synchronized~void~setName(String~paramName)]Setzt den Namen des
+Benutzers. Ruft ggf. informClient() und currentChannel.informCurrentUsers()
+auf.
+\item [public~synchronized~void~setPassword(String~paramPassword)]Setzt das Passwort.
+\item [public~synchronized~void~setUserAdministration(UserAdministration~paramUserAdministration)]Setzt
+die für den Benutzer verantwortliche UserAdministration. Benutzt UserAdministration.removeFromUserList()
+und addToUserList()
+\item [public~String~toString()]Dient dem debugging.
+\end{description}
+
+\subsubsection{DataBaseIO}
+
+Die Klasse DataBaseIO stellt Methoden bereit, um die Benutzer- und Channeldatenbank
+zu laden und zu speichern. Außerdem wird dafür gesorgt, daß für den Betrieb
+die relationalen Beziehungen zwischen den geladenen User- und Channelobjekten
+gesetzt werden.
+
+
+\paragraph{Attribute}
+
+\begin{description}
+\item [private~ChannelAdministration~channelAdministration]~
+\item [private~final~static~String~channelDBFile]Dateiname der Channeldatenbank.
+\item [private~UserAdministration~userAdministration]~
+\item [private~final~static~String~userDBFile]Dateiname der Benutzerdatenbank.
+\end{description}
+
+\paragraph{Methoden}
+
+
+\paragraph{public~DataBaseIO(UserAdministration paramUserAdministration, ChannelAdministration
+paramChannelAdministration) }
+
+Konstruktor, der die Attribute für die ChannelAdministration und UserAdministration
+setzt. Benutzt setChannelAdministration() und setUserAdministration().
+
+\begin{description}
+\item [private~String~channelToString(Channel~paramChannel)]Konvertiert den Namen
+und das isAllowedForGuests-Flag eines Channelobjekts in einen String, wird von
+saveToDisk() verwendet. Format des Strings: \char`\"{}name\#true\char`\"{}.
+\item [public~synchronized~void~loadFromDisk()~throws~java.io.FileNotFoundException,~java.io.IOException]Lädt
+die Benutzer- und Channeldaten aus userDBFile und channelDBFile mittels stringToUser(),stringToChannel,channelAdministration.setChannelList()
+und userAdministration.setUserList().
+\item [public~synchronized~void~saveToDisk()~throws~java.io.IOException]Speichert
+die Benutzer- und Channeldaten der aktuellen User- (keine Gäste) und Channelobjekte
+im System in userDBFile und channelDBFile mittels userToString(), channelToString().
+Benutzt channelAdministration.getChannelEnum() und userAdministration.getUserEnum()
+\item [public~void~setChannelAdministration(ChannelAdministration~paramChannelAdministration)]Setzt
+channelAdministration und benutzt channelAdministration.setDataBaseIO().
+\item [public~void~setUserAdministration(UserAdministration~paramUserAdministration)]~
+\item [private~Channel~stringToChannel(String~channelSet)]~
+\end{description}
+Konvertiert den von channelToString() erzeugten String in ein Channelobjekt.
+
+\begin{description}
+\item [private~User~stringToUser(String~userSet)]~
+\end{description}
+Konvertiert den von userToString() erzeugten String in ein Userobjekt. Setzt
+vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden. Benutzt
+channelAdministration.getFromChannelListByName() und user.setAllowedChannelList().
+
+\begin{description}
+\item [private~String~userToString(User~paramUser)]~
+\end{description}
+Konvertiert den Namen, das Password, das isAdmin-Flag und die Namen der für
+den Benutzer erlaubten Channels eines Userobjekts in einen String, wird von
+saveToDisk() verwendet. Format des Strings: \char`\"{}name\#password\#true\#channel1\#channel2\#channel3\char`\"{}.
+
+
+\newpage
+\section{Sequenzdiagramme}
+
+Die Sequenzdiagramme in diesem Kapitel verdeutlichen beispielhaft das Zusammenspiel
+der einzelnen Klassen. Gegenüber dem Entwurf wurden sie entsprechend verfeinert.
+
+
+\subsection{Command-Objekte}
+
+Die Command-Objekte als wichtigste Neuerung im Design sollen hier anhand der
+zwei Funktionsgruppen senden/empfangen gesondert vorgestellt werden.
+
+
+\subsubsection{Command-Objekte senden}
+
+Das Diagramm in Abbildung~\ref{sendCommand} zeigt allgemein, wie ein Command-Objekt
+verschickt wird. Dies können sowohl (Admin-)Client als auch ClientServant veranlassen.
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientsendcommand.eps}} \par}
+
+
+\caption{\label{sendCommand}Vorgang des Sendens von Command-Objekten}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Command-Objekte empfangen}
+
+Das Sequenzdiagramm in Abbildung~\ref{downlinkListen} zeigt, wie der Downlink
+nach seinem Start ein Command-Objekt empfängt und über die Methode processMsg()
+dessen Ausführung veranlasst.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/downlinklisten.eps}} \par}
+
+
+\caption{\label{downlinkListen}Vorgang des Empfangens von Command-Objekten}
+\end{figure}
+
+
+
+\newpage
+\subsection{ClientServant}
+
+Stellvertretend für ähnliche Funktionen verdeutlichen folgende Sequenzdiagramme
+die Abläufe im ClientServant.
+
+
+\subsubsection{Loginanfragen}
+
+Das Sequenzdiagramm in Abbildung~\ref{clientServant.loginUser} zeigt, wie
+ein ClientServant auf Anfragen der Clientapplikation reagiert. In diesem speziellen
+Beispiel verarbeitet der ClientServant eine Loginanfrage. Gegenüber dem themengleichen
+Diagramm im Entwurfsdokument wird hier das Detail des Designs deutlich.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/clientservantloginuser.eps}} \par}
+
+
+\caption{\label{clientServant.loginUser}Eine Benutzeranmeldung aus Sicht des ClientServants}
+\end{figure}
+
+
+
+\newpage
+\subsubsection{Textnachrichten an einen Channel}
+
+Im Sequenzdiagramm in Abbildung~\ref{clientServant.sendMsgToChannel} wird
+deutlich, mit welchen Schritten der ClientServant auf die Anfrage eines Clients
+reagiert, eine Nachricht an einen Channel zu versenden. Das Versenden einer
+Nachricht an nur einen Benutzer verläuft analog.
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{!}{0,85\textheight}{\rotatebox{90}{\includegraphics{eps/clientservantsendmsgtochannel.eps}}} \par}
+
+
+\caption{\label{clientServant.sendMsgToChannel}Nachrichtenverteilung durch den ClientServant}
+\end{figure}
+
+
+
+\newpage
+\section{Kollaborationsdiagramm {}``Channel löschen{}''}
+
+Das Kollaborationsdiagramm in Abbildung~\ref{adminClientServer.deleteChannel}
+zeigt die Zusammenarbeit zwischen den Klassen AdminClientServant, Uplink, Channel,
+ChannelAdministration, User, ClientServant und einem der neuen Commands am Beispiel
+der Funktionalität \char`\"{}Channel löschen\char`\"{}. 
+
+Ein AdminClientServant empfängt von seiner AdminClientapplikation den Aufruf,
+den Channel \char`\"{}foo\char`\"{} zu löschen. Der AdminClientServant ruft
+daraufhin bei der Klasse ChannelAdministration die entsprechende Funktion auf.
+Die ChannelAdministration löscht den Channel mittels removeYou(), woraufhin
+der Channel mittels der entsprechenden {},,Set{}``-Methoden die {},,allowance{}``-
+und {},,current~state{}``-Beziehungen zum User-Objekt angleicht. Dieses veranlaßt
+wiederum seinen ihm zugeordneten ClientServant, den Client mittels sendCurrentUserData()
+über den geänderten Userzustand zu informieren. 
+
+Dieses Kollaborationsdiagramm repräsentiert damit eine ganze Klasse von Funktionen,
+deren Interaktion mit anderen Klassen ähnlich verläuft (deleteUser, addChannel,
+editChannel etc.)
+
+
+\begin{figure}[!hp]
+{\par\centering \resizebox*{1\textwidth}{!}{\includegraphics{eps/deletechannelcollab.eps}} \par}
+
+
+\caption{\label{adminClientServer.deleteChannel}Die Funktion {}``Channel löschen{}''
+als Kollaborationsdiagramm}
+\end{figure}
+
+
+
+\newpage
+\section{Anhang}
+
+
+\subsection{Liste der Abbildungen}
+
+\listoffigures{}
+
+
+\subsection{Verwendete Abkürzungen, Fachbegriffe etc.}
+
+\begin{itemize}
+\item CASE: Computer Aided Software Engineering
+\item Channel: Konferenzraum, thematisch abgegrenzter Kommunikationsbereich
+\item Chat: Textbasierte Kommunikation über ein Netzwerk
+\item GUI: Graphical User Interface, eine grafische Oberfläche für den Benutzer
+\item JAVA: Objektorientierte Programmiersprache von SUN
+\item UML: Unified Modelling Language von der OMG (Object Management Group)\end{itemize}
+
+\end{document}

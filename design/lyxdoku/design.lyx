@@ -26,8 +26,8 @@
 \float_placement !hp
 \paperfontsize default
 \spacing single 
-\papersize a4paper
-\paperpackage a4
+\papersize Default
+\paperpackage widemarginsa4
 \use_geometry 0
 \use_amsmath 1
 \paperorientation portrait
@@ -69,12 +69,24 @@ vfill{}
 \layout Standard
 \added_space_top 0,3cm \added_space_bottom 0,3cm \align center \LyXTable
 multicol5
-2 3 0 0 -1 -1 -1 -1
+5 3 0 0 -1 -1 -1 -1
+1 1 0 0
+1 1 0 0
+1 1 0 0
 1 1 0 0
 1 1 0 0
 8 1 0 "" ""
 8 1 0 "" ""
 8 1 1 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
+0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
 0 8 1 0 0 0 0 "" ""
@@ -90,9 +102,27 @@ Autor
 \newline 
 0.1
 \newline 
-31.05.2001
+29.05.2001
 \newline 
 Andreas Büthe
+\newline 
+0.3
+\newline 
+29.05.2001
+\newline 
+Andreas Büthe
+\newline 
+0.6
+\newline 
+30.05.2001
+\newline 
+Fabian Rotte
+\newline 
+1.0
+\newline 
+31.05.2001
+\newline 
+Andreas Büthe, Fabian Rotte
 \layout Standard
 
 
@@ -114,191 +144,7 @@ newpage
 newpage
 \layout Section
 
-Auftraggeber
-\layout Standard
-
-
-\latex latex 
-
-\backslash 
-par
-\backslash 
-raggedright 
-\latex default 
-Norbert Schenk
-\newline 
- Institut für Computergrafik
-\newline 
- Rebenring 18
-\newline 
- 38106 Braunschweig
-\newline 
- Tel.: (0531) 391-21 04, -21 03
-\newline 
- E-Mail: n.schenk@tu-bs.de
-\newline 
- 
-\hfill 
-
-\newline 
- Marco Zens
-\newline 
- Institut für Computergrafik
-\newline 
- Rebenring 18
-\newline 
- 38106 Braunschweig
-\newline 
- Tel.: (0531) 391-2106, -2103
-\newline 
- E-Mail: m.zens@tu-bs.de
-\latex latex 
-
-\backslash 
-par{}
-\layout Section
-
-Auftragnehmer
-\layout Standard
-
-
-\latex latex 
-
-\backslash 
-par
-\backslash 
-raggedright 
-\latex default 
-Software Engineering Praktikum Gruppe 
-\begin_inset Quotes gld
-\end_inset 
-
-Worst Cases
-\begin_inset Quotes grd
-\end_inset 
-
-, SS 2001:
-\newline 
- 
-\hfill 
-
-\newline 
- Andreas Büthe
-\newline 
- Tel.: (0171) 7 96 38 17
-\newline 
- Mobil: (0531) 2 70 45 15
-\newline 
- E-Mail: a.buethe@gmx.de
-\newline 
- 
-\hfill 
-
-\newline 
- Jan-Henrik Grobe
-\newline 
- Mobil: (0172) 5 44 70 84
-\newline 
- E-Mail: j.grobe@gmx.de
-\newline 
- 
-\hfill 
-
-\newline 
- Frithjof Hummes
-\newline 
- Tel.: (0531) 2 60 10 08
-\newline 
- Mobil: (0177) 8 60 10 08
-\newline 
- E-Mail: fraidl@jazzholes.de
-\newline 
- 
-\hfill 
-
-\newline 
- Malte Knörr
-\newline 
- Tel.: (0531) 32 58 60
-\newline 
- E-Mail: malte@knoerr.escape.de
-\newline 
- 
-\hfill 
-
-\newline 
- Fabian Rotte
-\newline 
- Tel.: (0531) 2 50 76 65
-\newline 
- Mobil: (0173) 2 18 27 94
-\newline 
- E-Mail: mauper@gmx.net
-\newline 
- 
-\hfill 
-
-\newline 
- Quoc Thien Vu
-\newline 
- Tel.: (0531) 2 84 34 96
-\newline 
- E-Mail: thienvu@gmx.de
-\latex latex 
-
-\backslash 
-par{} 
-\backslash 
-newpage
-\layout Section
-
 Einleitung
-\layout Comment
-
-Das vorliegende Dokument ist die entwurfstechnische Umsetzung der im Pflichtenhe
-ft beschriebenen Funktionen und Anforderungen für das Programmpaket Virtuelle
- Konferenz.
- Ziel dieses Dokuments ist es, aufzuzeigen, dass die entworfene Struktur
- geeignet ist, die geforderte Funktionalität auf leicht verständliche und
- einfache Weise zu gewährleisten.
- Zudem wurde Wert auf eine Struktur gelegt, die offen für eventuelle Erweiterung
-en in der Design-Phase ist.
-\layout Comment
-
-Als Entwurfsbeschreibungssprache wird, wie auch im gesamten Projekt, die
- Unified Modelling Language (UML) verwendet.
- Um die Systemstruktur und entsprechende Zusammenhänge abzubilden, werden
- sowohl verschiedene Diagrammtypen als auch eine textuelle Beschreibung
- verwendet.
- 
-\layout Comment
-
-In einem einfachen Aktivitätsdiagramm werden informell Abläufe im System
- dargestellt, mit dem Ziel, einen Ausgangspunkt für den Entwurf der benötigten
- Struktur zu schaffen.
- Darauf aufbauend zeigen die Klassendiagramme aller Klassen im System die
- entstandene Struktur.
- Einerseits erfolgt dies im Überblick, um die Kommunikation zwischen den
- einzelnen Klassen deutlich zu machen, und andererseits sieht dieses Dokument
- eine detaillierte Beschreibung der einzelnen Klassen und ihrer wichtigsten
- Methoden vor.
- Zur formalen Verdeutlichung wichtiger Zusammenhänge wird -- wo angebracht
- -- auf Sequenz- bzw.
- Kollaborationsdiagramme zurückgegriffen.
-\layout Comment
-
-Für das zu Grunde liegende Protokoll wird im vorliegenden Entwurf nur festgeschr
-ieben, daß der Datenaustausch zwischen Server- und Clientpaket auf der Basis
- von Zeichenketten erfolgt.
- Eine genauere Spezifikation erfolgt in der Designphase.
-\layout Comment
-
-Nicht im Entwurf berücksichtig wurden die GUIs der Client- und AdminClient-Appli
-kation, da grafische Oberflächen i.A.
- nicht mit der UML entworfen werden und algorithmisch betrachtet trivial
- sind.
- Die vorhandenene Funktionalität wird aber anhand der Methoden von Client
- und Administrationsclient deutlich.
 \layout Standard
 
 Dieses Dokument präsentiert das UML-Design des Programmpakets 
@@ -310,26 +156,47 @@ Virtuelle Konferenz
 \end_inset 
 
 .
- Um unnötige Wiederholungen zu vermeiden, wird die Kenntnis des Entwurfs-Dokumen
-ts vorausgesetzt.
-\layout Standard
-
-In dieser Phase wurde der UML-Entwurf überarbeitet und weiter verfeinert,
+ In dieser Phase wurde der UML-Entwurf überarbeitet und weiter verfeinert,
  es wurden dabei jedoch keine grundlegenden Änderungen an der Architektur
  vorgenommen.
- Details des Designs sind der ausführlichen API-Dokumentation und den entspreche
-nden Diagrammen zu entnehmen.
- Es folgt hier nur noch eine Erläuterung der wichtigsten Änderungen in der
- Klassenstruktur gegenüber dem Entwurf.
+\layout Standard
+
+Als einer der wichtigsten Fortschritte in dieser Phase mag das Protokoll
+ gelten, das über 
+\begin_inset Quotes gld
+\end_inset 
+
+Command-Objekte
+\begin_inset Quotes grd
+\end_inset 
+
+ konzipiert wurde.
+ 
+\layout Standard
+
+Bei den durchgeführten Erweiterungen in allen Klassen und Methoden stellten
+ sich einige kleinere Mängel heraus, so wurden fehlende Klassen und Methoden
+ entsprechend ergänzt, z.B.
+ die Klassen ClientServantWatchDog und Downlinkowner.
+ Downlink und Uplink wurden in einem eigenen Package namens Util gekapselt,
+ da sie sowohl vom ClientServant als auch vom Client verwendet werden.
+\layout Standard
+
+Darüberhinaus wurde die Zusammenarbeit der Klassen mittels entsprechender
+ Get- und Set-Methoden realisiert.
+ 
 \layout Section
 
 Bemerkungen
-\layout Comment
+\layout Standard
 
-Um die sinnvolle Verwendung eines CASE-Tools (hier TogetherJ 4.2) nicht ad
- absurdum zu führen, beschränken wir uns in der Darstellung in diesem Dokument
- auf wichtige Details der entworfenen Struktur.
- Der komplette Umfang des Entwurfes wird aus den von TogetherJ erstellten
+Da in der Designphase im eigentlichen Sinne eine Anleitung für die Implementatio
+n erstellt werden soll und die TogetherJ-Projektdateien für uns eben diese
+ Funktion erfüllen, beschränken wir uns hier auf einen Überblick des Designs.
+ 
+\layout Standard
+
+Der komplette Umfang des Designs wird somit aus den von TogetherJ erstellten
  Dateien ersichtlich, die auf unserer Homepage 
 \begin_inset LatexCommand \url{http://www.tu-bs.de/~y0013570}
 
@@ -337,34 +204,149 @@ Um die sinnvolle Verwendung eines CASE-Tools (hier TogetherJ 4.2) nicht ad
 
  verlinkt werden.
  Diese Projektdateien haben darüberhinaus den Vorteil, daß sie neben der
- statischen auch eine dynamische, relationale Darstellung des Entwurfs ermöglich
-en, die zugleich navigierbar ist.
-\layout Comment
-
-TogetherJ in der Version 4.2 unterstützt keine bidirektionalen Assoziationen.
- Daher wurden nur dort zwei unidirektionale Assoziationen verwendet, wo
- sie explizit benötigt werden.
- Trotzdem sind in diesem Entwurf alle vorhandenen Assoziationen inhärent
- bidirektional.
+ statischen auch eine dynamische, relationale Darstellung des Designs ermögliche
+n, die zugleich navigierbar ist.
 \layout Section
 
-Neu im Design
+Klassenstruktur
 \layout Standard
 
-Im Laufe der Design-Phase sind die Packages Util.Commands und Util.Debug hinzugeko
-mmen, diese werden im Folgenden erläutert.
-\begin_float margin 
+In diesem Kapitel wird das für die Virtuelle Konferenz erforderliche System
+ vorgestellt.
+ Anhand erläuterter Klassendiagramme schildern wir die in der Designphase
+ erweiterte Klassenstruktur des Entwurfs ausgehend von den in Abbildung
+ 
+\begin_inset LatexCommand \ref{packageoverview}
+
+\end_inset 
+
+ gezeigten Paketen.
+ Neu im Design ist das Package Util, das ein Interface DownlinkOwner und
+ die Klassen Uplink und Downlink enthält, welche die aus dem Entwurf bekannten
+ Rollen übernehmen.
 \layout Standard
 
-Ausgliederung von Uplink/Downlink/-owner
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 476 279
+file eps/packagesoverview.eps
+width 3 80,00
+flags 9
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{packageoverview}
+
+\end_inset 
+
+Übersicht über die vorhandenen Pakete
 \end_float 
 \layout Subsection
+\pagebreak_top 
+Klassen des Clients
+\layout Standard
 
+Das UML-Klassendiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{ClientOverview}
+
+\end_inset 
+
+ zeigt die zwei Klassen des Clientpakets im Überblick.
+ 
+\layout Standard
+
+Sie enthalten die nötigen Methoden, die es dem Benutzer letztendlich ermöglichen
+, mit dem System zu interagieren.
+ Die Klasse AdminClient stellt zusätzlich zu den normalen Methoden der Klasse
+ Client noch Methoden zur Verfügung, mit denen Benutzer- bzw.
+ Channeldaten bearbeitet werden können.
+\layout Standard
+
+Die im Entwurf noch zum Package Client zugehörigen Klassen Uplink und Downlink
+ befinden sich jetzt im Package Util, und werden auch von ClientServants
+ mitbenutzt.
+ Sie stellen aber weiterhin dem Client die bekannte Funktionalität bereit.
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 480
+file eps/clientpackagesoverview.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{ClientOverview}
+
+\end_inset 
+
+Übersicht über das Package Client
+\end_float 
+\layout Subsection
+\pagebreak_top 
+Package Util
+\layout Standard
+
+Das neue Package Util enthält, wie in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{UtilOverview}
+
+\end_inset 
+
+ ersichtlich, die altbekannten Klassen Downlink und Uplink sowie das Interface
+ DownLinkOwner (und zwei Unterpakete Debug und Commands).
+\layout Standard
+
+Die Kommunikationsklassen Uplink und Downlink wurden hierdurch entkapselt
+ und können somit von Client.Client, Client.AdminClient und Server.ClientServant
+ gleichermaßen verwendet werden.
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 235
+file eps/utiloverview.eps
+width 3 100,00
+flags 9
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{UtilOverview}
+
+\end_inset 
+
+Übersicht über das Package Util
+\end_float 
+\layout Subsubsection
+\pagebreak_top 
 Package Util.Commands
 \layout Standard
 
-Dieses Package ist eine der wichtigsten Neuerungen gegenüber dem Entwurf,
- da hier das Kommunikationsprotokoll zwischen Server (bzw.
+Dieses Package (s.\SpecialChar ~
+Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{CommandsOverview}
+
+\end_inset 
+
+) ist eine der wichtigsten Neuerungen gegenüber dem Entwurf, da hier das
+ Kommunikationsprotokoll zwischen Server (bzw.
  ClientServant) und Client festgelegt wird.
 \layout Standard
 
@@ -388,929 +370,327 @@ Befehlsempfänger
 \begin_inset Quotes grd
 \end_inset 
 
-" ausgeführt werden.
+ ausgeführt werden.
 \layout Standard
 
 Diese Command-Objekte werden hier allerdings für den Transport über das
  Netzwerk erst serialisiert und anschließend wieder deserialisiert.
  Die Menge aller Klassen, die das Interface Command implementieren, stellt
- also das Protokoll dar:
+ also das Protokoll dar.
 \layout Standard
 
-\begin_float margin 
+\begin_float fig 
 \layout Standard
+\align center 
 
-Abbildung 1: Das Protokoll.
+\begin_inset Figure size 476 609
+file eps/commandsoverview.eps
+width 3 80,00
+flags 9
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{CommandsOverview}
+
+\end_inset 
+
+Übersicht über das Package Util.Commands
 \end_float 
- 
-\layout Standard
-
-Wenn der Client ein Command an seinen ClientServant senden möchte (um beispielsw
-eise den Benutzer in einen Channel eintreten zu lassen), erzeugt er ein
- entsprechendes Command-Objekt (im Beispiel eine Instanz der Klasse JoinChannelC
-ommand) und übergibt es an seinen Uplink.
- Dieser serialisiert das Command-Objekt und versendet es über das Netzwerk
- an seinen ClientServant, der es deserialisiert und ausführt.
-\layout Standard
-
-\begin_float margin 
-\layout Standard
-
-Abbildung 2: Versenden eines Command-Objekts.
-\end_float 
- 
-\layout Subsection
-
+\layout Subsubsection
+\pagebreak_top 
 Package Util.Debug
 \layout Standard
 
-Dieses Package enthält nur eine einfache Klasse, die zur Ausgabe von Debug-Nachr
-ichten dient.
+Dieses Package enthält bisher nur eine einfache Klasse, die zur Ausgabe
+ von Debug-Nachrichten dient.
  Sie spielt im eigentlichen Design keine Rolle.
 \layout Subsection
 
-Interface DownlinkOwner
+Klassen des Servers
 \layout Standard
 
-Neu im Package Util ist das Interface DownlinkOwner.
- Es muss von allen Klassen implementiert werden, die einen Downlink benutzen
- wollen.
- Einer der Gründe ist, dass der Downlink nach dem Empfang eines Command-Objekts
- eine Methode seines 
+Das Klassendiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{ServerOverview}
+
+\end_inset 
+
+ gibt einen Überblick über alle Klassen des Pakets Server mit sämtlichen
+ Assoziationen.
+ Gegenüber dem Entwurf haben sich hier folgende Änderungen ergeben: Eine
+ neue Assoziation von der UserAdministration zur ChannelAdministration (s.\SpecialChar ~
+Channel
+Administration.getFreeForGuestEnum() und UserAdministration.loginGuest())
+ und eine neue Klasse ClientServantWatchDog wurden erstellt.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 320
+file eps/serverpackageoverview.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{ServerOverview}
+
+\end_inset 
+
+Überblick über das Package Server
+\end_float 
+\layout Subsubsection
+\pagebreak_top 
+Struktur aus Sicht von Server und ClientServant
+\layout Standard
+
+Das Klassendiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{servercentric}
+
+\end_inset 
+
+ zeigt in allen Einzelheiten, mit welchen Klassen die Klassen Server und
+ ClientServant direkt zusammenarbeiten.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 618
+file eps/servercentric.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{servercentric}
+
+\end_inset 
+
+Klassendiagramm aus Sicht von Server und ClientServant
+\end_float 
+\layout Subsubsection
+\pagebreak_top 
+Struktur der Channel- und UserAdministration 
+\layout Standard
+
+Das UML-Klassendiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{channeluser}
+
+\end_inset 
+
+ gibt einen Überblick über die Klassen ChannelAdministration und UserAdministrat
+ion mit den dazugehörigen Klassen Channel und User.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 761
+file eps/userchannelcentric.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{channeluser}
+
+\end_inset 
+
+Übersicht über die Klassen der Channel- und UserAdministration
+\end_float 
+\layout Section
+\pagebreak_top 
+
+\begin_inset LatexCommand \label{get_set_methods}
+
+\end_inset 
+
+
 \begin_inset Quotes gld
 \end_inset 
 
-Besitzers
+Get
 \begin_inset Quotes grd
 \end_inset 
 
- aufrufen muss, die das Command-Objekt verarbeitet.
- Das Vorhandensein dieser Methode soll mit diesem Interface sichergestell
- werden: 
+- und 
+\begin_inset Quotes gld
+\end_inset 
+
+Set
+\begin_inset Quotes grd
+\end_inset 
+
+-Methoden
 \layout Standard
 
-\begin_float margin 
+Die einzelnen 
+\begin_inset Quotes gld
+\end_inset 
+
+Get
+\begin_inset Quotes grd
+\end_inset 
+
+- und 
+\begin_inset Quotes gld
+\end_inset 
+
+Set
+\begin_inset Quotes grd
+\end_inset 
+
+-Methoden sorgen dafür, daß die Beziehungen der Objekte untereinander bei
+ Veränderungen eines Objekts konsistent bleiben, und laufen immer nach demselben
+ Schema ab, welches am folgenden Codebeispiel der setIsLoggedIn()-Methode
+ der Klasse User beispielhaft erläutert wird:
+\layout LyX-Code
+
+public synchronized void setIsLoggedIn(boolean paramLoggedIn) { 
+\layout LyX-Code
+
+  if (this.isLoggedIn() != paramLoggedIn) { 
+\layout LyX-Code
+
+    boolean old = this.loggedIn; 
+\layout LyX-Code
+
+    this.loggedIn = paramLoggedIn; 
+\layout LyX-Code
+
+    if (paramLoggedIn) { 
+\layout LyX-Code
+
+      if(this.isGuest()){ 
+\layout LyX-Code
+
+        this.userAdministration.incNumCurrentGuests(); 
+\layout LyX-Code
+
+      } 
+\layout LyX-Code
+
+      else { 
+\layout LyX-Code
+
+        this.userAdministration.incNumCurrentUsers(); 
+\layout LyX-Code
+
+      } 
+\layout LyX-Code
+
+    } 
+\layout LyX-Code
+
+    else { 
+\layout LyX-Code
+
+      this.setCurrentChannel(null); 
+\layout LyX-Code
+
+      this.setClientServant(null); 
+\layout LyX-Code
+
+      if (this.isGuest()) { 
+\layout LyX-Code
+
+        this.userAdministration.decNumCurrentGuests(); 
+\layout LyX-Code
+
+        this.userAdministration.removeFromUserList(this);
+\layout LyX-Code
+
+      } 
+\layout LyX-Code
+
+      else { 
+\layout LyX-Code
+
+        this.userAdministration.decNumCurrentUsers(); 
+\layout LyX-Code
+
+      } 
+\layout LyX-Code
+
+    } 
+\layout LyX-Code
+
+  } 
+\layout LyX-Code
+
+}
 \layout Standard
 
-Abbildung 3: Das Interface DownlinkOwner im Package Util.
-\end_float 
- 
+Wie ersichtlich ist, erhält die Methode einerseits die bidirektionale Assoziatio
+n zwischen einem User-Objekt und seiner UserAdministration aufrecht und
+ andererseits bewirkt ein setIsLoggedIn(false) bei einem Gast, daß das 
+\begin_inset Quotes gld
+\end_inset 
+
+Gast
+\begin_inset Quotes grd
+\end_inset 
+
+-Objekt aus der UserAdministration entfernt wird, da Gäste nur temporär
+ ein User-Objekt zugewiesen bekommen.
 \layout Section
 
 Klassenbeschreibungen
-\begin_inset Info ab hier Stand des Entwurfsdokuments, gekürzt um die Diagramme
-\end_inset 
-
-
 \layout Standard
 
 Dieses Kapitel dient einer detaillierteren Beschreibung der entstandenen
  Struktur, indem sowohl die Klassen als auch ihre wichtigsten Attribute
  und Methoden vorgestellt werden.
- Die angegebenen Assoziationen verdeutlichen überdies auch in den Klassenbeschre
-ibungen noch einmal die Kommunikation der Klassen untereinander.
- 
-\begin_inset Quotes eld
+ Es sollte schnell ersichtlich werden, daß gegenüber dem Entwurf inhaltlich
+ entscheidende Fortschritte gemacht wurden.
+ Die jeweiligen 
+\begin_inset Quotes gld
 \end_inset 
 
 Get
-\begin_inset Quotes erd
+\begin_inset Quotes grd
 \end_inset 
 
- und 
-\begin_inset Quotes eld
+- und 
+\begin_inset Quotes gld
 \end_inset 
 
 Set
 \begin_inset Quotes erd
 \end_inset 
 
- Methoden sind implizit gegeben.
-\layout Subsection
-
-Das Package Server
-\layout Standard
-
-Im folgenden Abschnitt werden die Klassen des Serverpakets in ihren Einzelheiten
- geschildert.
-\layout Subsubsection
-
-Server
-\layout Standard
-
-Diese Klasse stellt die Hauptklasse des Chat-Servers dar.
- Nachdem er gestartet wurde, horcht der Server an einem bestimmten Port
- auf Verbindungswünsche von Clients.
- Sowie sich ein Client an diesem Port meldet, startet der Server einen ClientSer
-vant, der sich ab dann ausschließlich um diesen Client kümmert.
- Anschließend horcht der Server wieder an seinem Port und wartet auf Verbindungs
-wünsche von weiteren Clients.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-ChannelAdministration\SpecialChar ~
-channelAdministration
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-clientServantList Eine Liste der aktiven ClientServants des
- Servers.
-\layout Description
-
-private\SpecialChar ~
-DataBaseIO\SpecialChar ~
-dataBaseIO Die Datenbank, in der die Informationen über
- User und Channel gespeichert werden.
- Von dort werden sie beim Start des Servers ausgelesen.
-\layout Description
-
-private\SpecialChar ~
-final\SpecialChar ~
-static\SpecialChar ~
-int\SpecialChar ~
-LISTEN_QUEUE_LENGTH Die Länge der Warteschlange, in
- der Verbindungswünsche von Clients zwischengespeichert werden, die nicht
- sofort verarbeitet werden können.
- Verbindungswünsche, die nicht mehr in die Warteschlange passen, werden
- automatisch abgewiesen (siehe auch java.net.ServerSocket).
-\layout Description
-
-private\SpecialChar ~
-final\SpecialChar ~
-static\SpecialChar ~
-int\SpecialChar ~
-SERVER_PORT
-\lang american
- 
-\lang german
-Der Port, auf dem der Server sein ServerSocket öffnet und auf Anfragen der
- Clients horcht.
-\layout Description
-
-private\SpecialChar ~
-ServerSocket\SpecialChar ~
-serverSocket
-\layout Description
-
-private\SpecialChar ~
-UserAdministration\SpecialChar ~
-userAdministration
-\layout Paragraph
-
-Methoden
-\layout Paragraph
-
-public synchronized void addToClientServantList(ClientServant paramClientServant
-)
-\lang american
- 
-\layout Standard
-
-Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
-\layout Description
-
-private\SpecialChar ~
-void\SpecialChar ~
-listen() Wartet auf ankommendene Verbindungswünsche der Clients
- und leitet diese an jeweils einen neu instanziierten ClientServant weiter.
-\layout Paragraph
-
-public synchronized void removeFromClientServantList(ClientServant paramClientSe
-rvant)
-\layout Standard
-
-Stoppt und entfernt einen ClientServant aus der Liste der aktiven ClientServants.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-startServer()
-\lang american
- 
-\lang german
-Startet den Server, danach ist er vollständig betriebsbereit und kann Verbindung
-swünsche von Clients behandeln.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-stopServer()
-\lang american
- 
-\lang german
-Stoppt den Server, alle mit ihm verbundenen Clients werden abgemeldet.
-\layout Subsubsection
-
-ClientServant
-\layout Standard
-
-Diese Klasse kümmert sich um die Anfragen, die von einem Client an den Server
- gestellt werden.
- Der Server erzeugt für jeden Client eine Instanz dieser Klasse, die sich
- von da an nur noch um diesen Client kümmert und seine Anfragen bearbeitet.
- In dieser Klasse steckt die meiste Funktionalität des Servers.
-\layout Standard
-
-Alle Aktionen, die der Benutzer im Chat ausführen möchte, sendet der Client
- an seinen ClientServant weiter, der dann diese Nachricht überprüft und
- die entsprechende Methode ausführt.
- Möchte der Benutzer beispielsweise in einen bestimmten Channel wechseln,
- macht er im GUI der Clientapplikation die dazu nötige Eingabe, der Client
- leitet eine entsprechende Nachricht an seinen ClientServant weiter, der
- dann schlussendlich den Benutzer in den gewünschten Channel eintreten lässt.
- 
-\layout Paragraph
-
-Attribute
-\layout Description
-
-protected\SpecialChar ~
-Socket\SpecialChar ~
-socket
-\layout Description
-
-protected\SpecialChar ~
-Downlink\SpecialChar ~
-downlink
-\layout Description
-
-protected\SpecialChar ~
-Uplink\SpecialChar ~
-uplink
-\layout Description
-
-protected\SpecialChar ~
-User\SpecialChar ~
-user
-\layout Description
-
-protected\SpecialChar ~
-UserAdministration\SpecialChar ~
-useradministration
-\layout Paragraph
-
-Methoden
-\layout Paragraph
-
-public ClientServant(Socket socket, Server server, UserAdministration paramUsera
-dministration) 
-\layout Standard
-
-Konstruktor, der die entsprechenden Attribute setzt
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-becomeAdminClientServant() Wenn der angemeldete Benutzer Administrator
-rechte hat, dann wird aus dem ClientServant automatisch ein AdminClientServant
- mit erweiterter Funktionalität.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-joinChannel(String\SpecialChar ~
-name) Lässt den User in den Channel mit dem
- angegebenen Namen eintreten.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-leaveChannel() Lässt den User den Channel verlassen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-loginGuest(String\SpecialChar ~
-guestSet) Meldet einen Gast beim System an, benutzt
- dafür eine vom Client empfangene Zeichenkette mit Benutzerinformationen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-loginUser(String\SpecialChar ~
-userSet) Meldet den User beim System an, benutzt
- dafür eine vom Client empfangene Zeichenkette mit Benutzerinformationen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-logoutUser() Meldet den User vom System ab und stoppt den Servant.
-\layout Description
-
-public\SpecialChar ~
-synchronized\SpecialChar ~
-void\SpecialChar ~
-processMsg(String\SpecialChar ~
-msg) Prüft den Inhalt einer vom Client
- empfangenen Nachricht und entscheidet, welche Funktionalität des ClientServant
- aufgerufen werden muss, um den "Wunsch" des Clients zu erfüllen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendChannelData() Sendet die Daten des betretenen Channel an den
- Client.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendMsgFromChannel(String\SpecialChar ~
-msg) Sendet eine Nachricht, die in den
- besuchten Channel gesendet wurde, an den Client.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendMsgFromUser(String\SpecialChar ~
-msg) Sendet eine private Nachricht eines
- anderen Users an den Client.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendMsgToChannel(String\SpecialChar ~
-msg) Sendet eine Nachricht des Users an
- alle anderen User im Channel.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendMsgToUser(String\SpecialChar ~
-userName,\SpecialChar ~
-String\SpecialChar ~
-msg) Sendet eine private Nachricht
- des Users an einen anderen User.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendUserData() Sendet die Daten des Users an den Client.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-startClientServant() Startet den ClientServant, danach ist er
- betriebsbereit und kann die Anfragen seines Clients bearbeiten.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-stopClientServant() Stoppt den ClientServant.
-\layout Subsubsection
-
-AdminClientServant
-\layout Standard
-
-Diese vom ClientServant abgeleitete Klasse kümmert sich um die Anfragen,
- die von einem Client an den Server gestellt werden.
- Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
- AdminClientServant statt von einem normalen ClientServant "bedient".
- Ein AdminClientServant funktioniert genauso wie ein ClientServant, kann
- allerdings noch zusätzlich administrative Nachrichten des AdminClients
- verarbeiten.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-ChannelAdministration\SpecialChar ~
-channelAdministration
-\layout Paragraph
-
-Methoden
-\layout Paragraph
-
-public AdminClientServant(Socket socket, Server server, ChannelAdministration
- paramChannelAdministration, UserAdministration paramUserAdministration,User
- paramUser) 
-\layout Standard
-
-Konstruktor, setzt die entsprechenden Attribute.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-addChannel(String\SpecialChar ~
-channelSet) Fügt einen Channel hinzu.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-addUser(String\SpecialChar ~
-userSet) Fügt einen Benutzer hinzu.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-deleteChannel(String\SpecialChar ~
-channelName) Löscht den Channel mit dem angegebene
-n Namen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-deleteUser(String\SpecialChar ~
-userName) Löscht den Benutzer mit dem angegebenen
- Namen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-editChannel(String\SpecialChar ~
-channelName,String\SpecialChar ~
-newChannelSet) Verändert die
- Daten des angegebenen Channels.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-editUser(String\SpecialChar ~
-userName,String\SpecialChar ~
-newUserSet) Ändert die Benutzerdaten
- des Users mit dem angegebenen Namen.
- Setzt die neuen Daten des Users mit den Daten aus newUserSet.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-processMsg(String\SpecialChar ~
-msg) Prüft den Inhalt einer vom AdminClient empfangen
-en Nachricht und entscheidet, welche Methode aufgerufen werden muss, um
- den "Wunsch" des AdminClients zu erfüllen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendChannel(String\SpecialChar ~
-channelName) Sendet die Channeldaten des Channels
- mit dem angegebenen Namen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendChannelList() Sendet eine Liste aller Channelnamen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendUser(String\SpecialChar ~
-userName) Sendet die Benutzerdaten des Benutzers
- mit dem angegebenen Namen.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-sendUserList() Sendet eine Liste aller Benutzernamen.
-\layout Subsubsection
-
-Uplink
-\layout Standard
-
-Der Uplink ist eine dem ClientServant zugeordnete Klasse.
- Zu jedem ClientServant existiert auch ein Objekt der Klasse Uplink.
- Die Klasse Uplink ermöglicht dem ClientServant das Senden von Nachrichten
- an die Clientapplikation (siehe auch analog dazu Kap.\SpecialChar ~
-
-\begin_inset LatexCommand \ref{Client.Uplink}
+-Methoden sind im Gegensatz zum Entwurf jetzt explizit gegeben, und berücksichti
+gen die wechselseitigen Assoziationen (vgl.\SpecialChar ~
+Abschnitt\SpecialChar ~
+
+\begin_inset LatexCommand \ref{get_set_methods}
 
 \end_inset 
 
 ).
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-Uplink(Socket\SpecialChar ~
-paramSocket) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-send(String\SpecialChar ~
-msg) Sendet eine Nachricht zur Clientapplikation.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-startUplink() Startet den Stream, danach ist Uplink betriebsbereit.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-stopUplink() Schließt den Stream.
-\layout Subsubsection
-
-Downlink
-\layout Standard
-
-Der Downlink ist eine dem ClientServant zugeordnete Klasse.
- Sie dient dazu, Nachrichten vom Client für den ClientServant zu empfangen,
- wobei der Downlink als Thread im Hintergrund läuft.
- Pro Objekt der Klasse ClientServant gibt es also genau ein Objekt der Klasse
- Downlink, das genau für diesen ClientServant zuständig ist und an dem für
- den ClientServant bestimmten Socket horcht (siehe auch analog dazu Kap.\SpecialChar ~
-
-\begin_inset LatexCommand \ref{Client.Downlink}
-
-\end_inset 
-
-).
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-ClientServant\SpecialChar ~
-clientservant
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-Downlink(Socket\SpecialChar ~
-paramSocket,\SpecialChar ~
-ClientServant\SpecialChar ~
-paramClientServant) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-listen() Wartet auf ankommende Nachrichten und leitet diese an
- den ClientServant weiter.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-run() 
-\begin_inset Quotes eld
-\end_inset 
-
-Run
-\begin_inset Quotes erd
-\end_inset 
-
- Methode des Threads, wird im wesentlichen listen() ausführen
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-startDownlink() Öffnet den Stream, danach ist der Downlink betriebsber
-eit.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-stopDownlink() Schließt den Stream.
-\layout Subsubsection
-
-ChannelAdministration
-\layout Standard
-
-Mit der Klasse ChannelAdministration werden Methoden bereitgestellt, um
- Channel im System zu verwalten.
- Die ChannelAdministration kann hier durch die Klasse "DataBaseIO" auf die
- Channeldatenbank zugreifen, um die Benutzerforen, deren Daten sich in der
- Klasse "Channel" befinden, laden, speichern oder löschen zu können.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-channelList
-\layout Description
-
-private\SpecialChar ~
-DataBaseIO\SpecialChar ~
-dataBaseIO
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-ChannelAdministration(DataBaseIO\SpecialChar ~
-paramDataBaseIO) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-addToChannelList(Channel\SpecialChar ~
-paramChannel) Fügt einen Channel hinzu.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-editChannel(String\SpecialChar ~
-name,String\SpecialChar ~
-newChannelData) Ändert die Daten
- des Channels mit dem per 
-\emph on 
-String name
-\emph default 
- übergebenen Namen zu den neuen Daten aus dem 
-\emph on 
-String newChannelData
-\layout Description
-
-public\SpecialChar ~
-Channel\SpecialChar ~
-getByName(String\SpecialChar ~
-name) Gibt den Channel mit dem angegebenen
- Namen zurück.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-removeFromChannelList(Channel\SpecialChar ~
-paramChannel) Entfernt einen Channel.
-\layout Subsubsection
-
-UserAdministration
-\layout Standard
-
-Mit der Klasse UserAdministration werden Methoden bereitgestellt, um Benutzer
- im System zu verwalten.
- Die UserAdministration kann hier durch die Klasse "DataBaseIO" auf die
- Benutzerdatenbank zugreifen, um die Benutzer, deren Daten sich in der Klasse
- "User" befinden, laden, speichern oder löschen zu können.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-userList
-\layout Description
-
-private\SpecialChar ~
-DataBaseIO\SpecialChar ~
-dataBaseIO
-\layout Description
-
-private\SpecialChar ~
-int\SpecialChar ~
-maxUsers Maximale Anzahl von eingeloggten Benutzern im System.
-\layout Description
-
-private\SpecialChar ~
-int\SpecialChar ~
-numCurrentUsers Anzahl der eingeloggten Benutzer (registrierte
- und Gäste) im System.
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-UserAdministration(DataBaseIO\SpecialChar ~
-paramDataBaseIO) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-addToUserList(User\SpecialChar ~
-paramUser) Fügt einen Benutzer hinzu.
-\layout Description
-
-public\SpecialChar ~
-User\SpecialChar ~
-getFromUserListByName(String\SpecialChar ~
-name) Gibt den Benutzer mit dem angegebene
-n Namen zurück.
-\layout Description
-
-public\SpecialChar ~
-User\SpecialChar ~
-loginGuest(String\SpecialChar ~
-guestSet) Meldet einen Gast an, gibt den Benutzer
- zurück, falls Authentifizierung klappt, sonst null.
-\layout Description
-
-public\SpecialChar ~
-User\SpecialChar ~
-loginUser(String\SpecialChar ~
-userSet) Meldet einen Benutzer an, gibt den Benutzer
- zurück, falls Authentifizierung klappt, sonst null.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-removeFromUserList(User\SpecialChar ~
-paramUser) Entfernt einen Benutzer.
-\layout Subsubsection
-
-Channel
-\layout Standard
-
-Die Klasse Channel hält Daten für die entsprechende Administrationsklasse
- bereit: Eine Instanz dieser Klasse kann wichtige Channeldaten wie z.B.
- berechtigte User oder im Channel befindliche User speichern.
- Außerdem stehen Methoden zur Verfügung, mit denen Listen der berechtigten
- bzw.
- im Raum befindlichen User abgefragt und übergeben werden können.
- Desweiteren können einzelne User zur CurrentUserList hinzugefügt bzw.
- wieder entfernt werden, wenn sie den Channel betreten bzw.
- verlassen.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-allowedUserList Gibt die Benutzer an, die den Channel betreten
- dürfen.
-\layout Description
-
-private\SpecialChar ~
-ChannelAdministration\SpecialChar ~
-channelAdministration
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-currentUserList Gibt die Benutzer an, die sich momentan in
- dem Channel befinden.
-\layout Description
-
-private\SpecialChar ~
-boolean\SpecialChar ~
-modified Gibt an, ob der Datensatz seit dem letzten Laden
- verändert wurde - wird von DataBaseIO benötigt.
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-Channel(String\SpecialChar ~
-channelSet) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-addToCurrentUserList(User\SpecialChar ~
-paramUser) Fügt einen User zu den im
- Channel befindlichen Usern hinzu.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-removeFromCurrentUserList(User\SpecialChar ~
-paramUser) Entfernt einen User von
- den im Channel befindlichen Usern.
-\layout Subsubsection
-
-User
-\layout Standard
-
-Die Klasse User hält Daten für die entsprechende Administrationsklasse bereit:
- In der Klasse "User" werden die Informationen des Benutzers gespeichert.
- Informationen, wie zum Bespiel der Name, Status oder die Rechte, die den
- Benutzer entweder als Administrator oder normaler Benutzer kennzeichnen.
- Speziell während einer aktiven Verbindung mit dem Server werden darüberhinaus
- einige weitere Informationen gespeichert, etwa in welchem Channel der Benutzer
- sich befindet oder ob es sich bei ihm um einen Gast handelt.
- Die nötigen Daten können durch die "UserAdministration" aus der Benutzerdatenba
-nk geladen werden.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private_ClientServant_clientservant
-\layout Description
-
-private\SpecialChar ~
-UserAdministration\SpecialChar ~
-userAdministration
-\layout Description
-
-private\SpecialChar ~
-Vector\SpecialChar ~
-allowedChannelList Gibt die Channels an, die der Benutzer betreten
- darf.
-\layout Description
-
-private\SpecialChar ~
-Channel\SpecialChar ~
-currentChannel Gibt den Channel an, in dem sich der Benutzer
- zur Zeit befindet.
-\layout Description
-
-private\SpecialChar ~
-boolean\SpecialChar ~
-isAdmin Ist der Benutzer ein Administrator?
-\layout Description
-
-private\SpecialChar ~
-boolean\SpecialChar ~
-isGuest Ist der Benutzer ein Gast?
-\layout Description
-
-private\SpecialChar ~
-boolean\SpecialChar ~
-loggedIn Gibt an, ob der Benutzer momentan das System benutzt.
-\layout Description
-
-private\SpecialChar ~
-boolean\SpecialChar ~
-modified Gibt an, ob der Datensatz seit dem letzten Laden
- verändert wurde - wird von DataBaseIO benötigt.
-\layout Description
-
-private\SpecialChar ~
-String\SpecialChar ~
-name
-\layout Description
-
-private\SpecialChar ~
-String\SpecialChar ~
-password
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-User(String\SpecialChar ~
-userSet) Konstruktor
-\layout Description
-
-public\SpecialChar ~
-Channel\SpecialChar ~
-getFromAllowedChannelByName(String\SpecialChar ~
-channelName) Gibt einen Channel
- aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück
-\layout Subsubsection
-
-DataBaseIO
-\layout Standard
-
-Die Klasse DataBaseIO stellt Methoden bereit, um die Benutzer- und Channeldatenb
-ank zu laden und zu speichern.
- Außerdem wird dafür gesorgt, daß für den Betrieb die relationalen Beziehungen
- zwischen den geladenen User- und Channelobjekten gesetzt werden.
-\layout Paragraph
-
-Attribute
-\layout Description
-
-private\SpecialChar ~
-ChannelAdministration\SpecialChar ~
-channelAdministration
-\layout Description
-
-private\SpecialChar ~
-UserAdministration\SpecialChar ~
-userAdministration
-\layout Description
-
-private\SpecialChar ~
-final\SpecialChar ~
-static\SpecialChar ~
-String\SpecialChar ~
-userDBFile Dateiname der Benutzerdatenbank.
-\layout Description
-
-private\SpecialChar ~
-final\SpecialChar ~
-static\SpecialChar ~
-String\SpecialChar ~
-channelDBFile Dateiname der Channeldatenbank.
-\layout Paragraph
-
-Methoden
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-loadFromDisk() Lädt die Benutzer- und Channeldaten aus den angegebenen
- Dateien userDBFile und channelDBFile.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-saveToDisk() Speichert die Benutzer- und Channeldaten entsprechend
- in userDBFile und channelDBFile.
-\layout Description
-
-private\SpecialChar ~
-void\SpecialChar ~
-doLinks() Stellt die relationalen Beziehungen zwischen den User-
- und Channelobjekten her.
 \layout Subsection
 
 Das Package Client
@@ -1323,17 +703,11 @@ Im folgenden Abschnitt werden die Klassen des Clientpaketes näher vorgestellt.
 Client
 \layout Standard
 
-Die Klasse Client stellt alle notwendigen Methoden zur Verfügung, mit denen
- der Benutzer über das Graphical User Interface (GUI) mit dem Chat-Server
- interagieren kann.
- Hinter dem GUI steht sozusagen ein Objekt der Klasse Client.
- Wenn der Benutzer durch das GUI im Chat eine Aktion durchführt (z.B.
- einen Channel betritt), leitet der Client diese als Anfrage an seinen ClientSer
-vant weiter.
- Der Client erhält dann von seinem ClientServant Rückmeldung zu seinen Anfragen,
- die er meist an das GUI weiterleitet.
- Die Kommunikation zwischen Client und ClientServant findet über den Downlink
- und Uplink statt.
+Die Klasse Client stellt dem Benutzer alle nötigen Methoden zur Verfügung,
+ um an einer Virtuellen Konferenz, also einem Chat teilnehmen zu können.
+ Der Benutzer bedient den Client nicht direkt, sondern über ein GUI.
+ Der Client leitet alle Nachrichten und Aktionen des Benutzers an seinen
+ ClientServant weiter, und verarbeitet dessen Antworten.
 \layout Paragraph
 
 Attribute
@@ -1341,22 +715,34 @@ Attribute
 
 protected\SpecialChar ~
 Vector\SpecialChar ~
-availableChannelList Vector von Strings, repräsentiert die
- für den Benutzer freigegebenen Channels.
+channelMsgBuffer Speichert ankommende Nachrichten in einem
+ Channel.
+ Wird vom GUI benutzt und kann als Protokoll der Unterhaltung in dem Channel
+ dienen.
 \layout Description
 
 protected\SpecialChar ~
 Vector\SpecialChar ~
-channelMsgBuffer Speichert ankommende Nachrichten in einem
- Channel.
- Wird von der GUI benutzt und kann als Protokoll der Unterhaltung in dem
- Channel dienen.
+currentAllowedChannelNames Namensliste der Channel, die der
+ Benutzer betreten darf.
+\layout Description
+
+protected\SpecialChar ~
+String\SpecialChar ~
+currentChannelName Der Name des Channels, der momentan betreten
+ wurde.
+\layout Description
+
+protected\SpecialChar ~
+String\SpecialChar ~
+currentUserName Der Name des Benutzers des Clients.
 \layout Description
 
 protected\SpecialChar ~
 Vector\SpecialChar ~
 currentUserInChannelList Vector von Strings, repräsentiert
  die aktuellen Benutzer in einem Channel.
+ Wird im Client Window eingebunden.
 \layout Description
 
 protected\SpecialChar ~
@@ -1371,21 +757,6 @@ final\SpecialChar ~
 static\SpecialChar ~
 int\SpecialChar ~
 SERVER_PORT Der Port des Servers.
-\layout Description
-
-protected\SpecialChar ~
-Socket\SpecialChar ~
-socket
-\layout Description
-
-protected\SpecialChar ~
-Downlink\SpecialChar ~
-downlink
-\layout Description
-
-protected\SpecialChar ~
-Uplink\SpecialChar ~
-uplink
 \layout Paragraph
 
 Methoden
@@ -1395,6 +766,30 @@ public\SpecialChar ~
 void\SpecialChar ~
 joinChannel(String\SpecialChar ~
 name) Betritt den angegebenen Channel.
+ Das entsprechende Command mit dem Channelnamen wird an den ClientServant
+ gesendet und dort mit den entsprechenden Methoden verarbeitet.
+ Benutzt JoinChannelCommand().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+final\SpecialChar ~
+joinChannelError() Wird aufgerufen, falls beim Betreten
+ eines Channels ein Fehler auftritt und dieser an den Client gegeben wird.
+ Der Benutzer befindet sich nicht in dem Channel und kann durch die GUI
+ nicht interagieren.
+ Der Client und seine GUI werden in den Zustand zurückversetzt, der nach
+ dem Login des Users bestand.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+final\SpecialChar ~
+void\SpecialChar ~
+stopClient() Trennt die Verbindung des Clients
+ zum Server.
+ Dazu werden die Referenzen auf das Uplink- bzw.
+ Downlinkobjekt entfernt und eine entsprechende Meldung auf dem GUI ausgegeben.
 \layout Description
 
 public\SpecialChar ~
@@ -1444,7 +839,7 @@ name,\SpecialChar ~
 String\SpecialChar ~
 msg) Sendet eine Nachricht an einen
  Benutzer.
- 1 zu 1 Kommunikation
+ 1 zu 1 Kommunikation.
 \layout Description
 
 public\SpecialChar ~
@@ -1480,94 +875,209 @@ Attribute
 
 private\SpecialChar ~
 Vector\SpecialChar ~
-allChannelList Liste aller Channelnamen.
+channelList Liste aller Channelnamen.
 \layout Description
 
 private\SpecialChar ~
 Vector\SpecialChar ~
-allUserList Liste aller Benutzernamen.
+tmpAllowedChannelNames Userdaten: Liste der aktiven Channels,
+ zur Bearbeitung.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+tmpAllowedForGuests Channeldaten: Flag öffentlich ja/nein,
+ zur Bearbeitung.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+tmpAllowedUserNames Channeldaten: Liste der berechtigten Benutzer,
+ zur Bearbeitung.
 \layout Description
 
 private\SpecialChar ~
 String\SpecialChar ~
-channelSet Ein Channeldatensatz als String.
+tmpChannelName Channeldaten: Channelname, zur Bearbeitung.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+tmpIsAdmin Userdaten: Flag ist Admin ja/nein, zur Bearbeitung.
 \layout Description
 
 private\SpecialChar ~
 String\SpecialChar ~
-userSet Ein Benutzerdatensatz als String.
+tmpOldChannelName Channeldaten: alter Channelname (wird beim
+ Editieren benötigt).
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+tmpOldUserName Userdaten: alter Username (wird beim Editieren
+ benötigt).
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+tmpPassword Userdaten: Passwort, zur Bearbeitung.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+tmpUserName Userdaten: Username, zur Bearbeitung.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+userList Liste aller Benutzernamen.
 \layout Paragraph
 
 Methoden
-\layout Description
+\layout Paragraph
 
-public\SpecialChar ~
-void\SpecialChar ~
-addChannel(String\SpecialChar ~
-channel) Fügt einen Channel mit den Daten aus
- dem String channel hinzu.
- Hiermit läßt sich ein neuer Channel erzeugen.
-\layout Description
+public void addChannel(String paramName, boolean paramAllowedForGuests,
+ Vector paramAllowedUserNames) 
+\layout Standard
 
-public\SpecialChar ~
-void\SpecialChar ~
-addUser(String\SpecialChar ~
-user) Fügt den Benutzer mit den Daten aus user hinzu.
+Fügt einen Channel mit den (von der GUI) übergebenen Daten hinzu.
+ Benutzt sendCommand() und erzeugt ein neues AddChannelCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
+\layout Paragraph
+
+public void addUser(String paramName, String paramPassword, boolean paramIsAdmin
+, Vector paramAllowedChannelNames) 
+\layout Standard
+
+Fügt einen User mit den (von der GUI) übergebenen Daten hinzu.
+ Benutzt sendCommand() und erzeugt ein neues AddUserCommand - Objekt, welches
+ im AdminClientServant ausgeführt wird.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 deleteChannel(String\SpecialChar ~
-name) Löscht einen Channel.
+name) Löscht den Channel mit dem Namen name.
+ Benutzt sendCommand() und erzeugt ein neues DeleteChannelCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 deleteUser(String\SpecialChar ~
 name) Löscht den Benutzer mit dem Namen name.
+ Benutzt sendCommand() und erzeugt ein neues DeleteUserCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
+\layout Paragraph
+
+public void editChannel(String paramOldName, String paramName, boolean paramAllo
+wedForGuests, Vector paramAllowedUserNames) 
+\layout Standard
+
+Ändert einen Channel mit den (von der GUI) übergebenen Daten.
+ Benutzt sendCommand() und erzeugt ein neues EditChannelCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
+\layout Paragraph
+
+public void editUser(String paramOldName, String paramName, String paramPassword
+, boolean paramIsAdmin, Vector paramAllowedChannelNames) 
+\layout Standard
+
+Ändert einen User mit den (von der GUI) übergebenen Daten.
+ Benutzt sendCommand() und erzeugt ein neues EditUserCommand - Objekt, welches
+ im AdminClientServant ausgeführt wird.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-editChannel(String\SpecialChar ~
-name,\SpecialChar ~
-String\SpecialChar ~
-channel) Setzt den Channel mit dem
- angegebenen Namen auf den neuen Datensatz aus dem String channel.
- Diese Methode wird verwendet, um Channeldaten zu verändern.
+getChannelData(String\SpecialChar ~
+channelName) Fordert beim AdminClientServant
+ einen bestimmten Channeldatensatz an.
+ Benutzt sendCommand() und erzeugt ein neues GetChannelDataCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-editUser(String\SpecialChar ~
-name,\SpecialChar ~
-String\SpecialChar ~
-channel) Editiert einen Benutzer.
+getChannelList() Fordert beim AdminClientServant die komplette
+ Channelliste an.
+ Benutzt sendCommand() und erzeugt ein neues GetChannelListCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-processMsg(String\SpecialChar ~
-msg) Verarbeitet erweiterte Nachrichten, d.h.
- auch Nachrichten, die für die normalen Clients irrelevant sind, z.B.
- Änderungsmeldungen über Benutzer- und Channeldaten.
- Erweitert also Client.processMsg(String msg).
+getUserData(String\SpecialChar ~
+userName) Fordert beim AdminClientServant einen
+ bestimmten Userdatensatz an.
+ Benutzt sendCommand() und erzeugt ein neues GetUserDataCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+getUserList() Fordert beim AdminClientServant die komplette Userliste
+ an.
+ Benutzt sendCommand() und erzeugt ein neues GetUserListCommand - Objekt,
+ welches im AdminClientServant ausgeführt wird.
+\layout Paragraph
+
+public void setChannelData(String channelName, boolean isAllowedForGuest,
+ Vector userNames)
+\layout Standard
+
+Wird vom SetChannelDataCommand aufgerufen und setzt die Channeldaten auf
+ die entsprechenden Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setChannelList(Vector\SpecialChar ~
+list) Wird vom SetChannelListCommand aufgerufen
+ und setzt die Channelliste in channelList.
+\layout Paragraph
+
+public void setUserData(String userName, String password, boolean isAdmin,
+ Vector channelNames) 
+\layout Standard
+
+Wird vom SetUserDataCommand aufgerufen und setzt die Userdaten auf die entsprech
+enden Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setUserList(Vector\SpecialChar ~
+list) Wird vom SetUserListCommand aufgerufen
+ und setzt die Userliste in userList.
+\layout Subsection
+
+Das Package Util
+\layout Standard
+
+Im Package Util vereinigt finden sich die Kommunikationsklassen, die im
+ Entwurf noch redundant jeweils im Client- und Server-Package vorhanden
+ waren.
+ Zusätzlich dazu erfordert diese Änderung einen DownlinkOwner.
 \layout Subsubsection
 
 Uplink
-\begin_inset LatexCommand \label{Client.Uplink}
-
-\end_inset 
-
-
 \layout Standard
 
-Zu jedem Client existiert auch ein Objekt der Klasse Uplink.
- Die Klasse Uplink ist dafür zuständig, Daten vom Client an den Server zu
- übermitteln.
+Der Uplink versendet Nachrichten über einen Socket an einen Downlink.
+ Diese Klasse ist die sendende Hälfte eines Kommunikationskanals.
+ Die andere Hälfte, die das Empfangen von Nachrichten übernimmt, ist der
+ Downlink.
+ Diese Klasse wird z.B.
+ vom Client benutzt, um Nachrichten an seinen ClientServant zu senden.
 \layout Paragraph
 
 Attribute
+\layout Description
+
+private\SpecialChar ~
+ObjectOutputStream\SpecialChar ~
+objectOutputStream
 \layout Description
 
 private\SpecialChar ~
@@ -1580,41 +1090,63 @@ Methoden
 
 public\SpecialChar ~
 Uplink(Socket\SpecialChar ~
-socket) Konstruktor
+paramSocket) Konstruktor
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+(Command\SpecialChar ~
+msg)\SpecialChar ~
+throws\SpecialChar ~
+java.io.IOException Sendet ein Commandobje
+kt über den Socket.
+ Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
+ Benutzt objectOutputStream.writeObject()
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-sendMsg(String\SpecialChar ~
-msg) Sendet eine Nachricht an den Server.
+startUplink()\SpecialChar ~
+throws\SpecialChar ~
+java.io.IOException Öffnet den Output-Stream.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-startUplink() Startet den Stream.
-\layout Description
-
-public\SpecialChar ~
-void\SpecialChar ~
-stopUplink() Schließt den Stream.
+stopUplink() Schließt den Output-Stream.
 \layout Subsubsection
 
 Downlink
-\begin_inset LatexCommand \label{Client.Downlink}
-
-\end_inset 
-
-
 \layout Standard
 
-Die Klasse Downlink dient dazu, Nachrichten vom Server für den Client zu
- empfangen, wobei der Downlink als Thread im Hintergrund läuft.
- Pro Objekt der Klasse Client gibt es also genau ein Objekt der Klasse Downlink,
- das genau für diesen Client zuständig ist und an dem für den Client bestimmten
- Socket horcht.
+Der Downlink dient dazu, Nachrichten zu empfangen, wobei er als Thread im
+ Hintergrund läuft.
+ Er empfängt über einen Socket Nachrichten von einem Uplink und leitet sie
+ an den DownlinkOwner weiter.
+ Diese Klasse ist die empfangende Hälfte eines Kommunikationskanals.
+ Die andere Hälfte, die das Senden von Nachrichten übernimmt, ist der Uplink.
+ Diese Klasse wird z.B.
+ vom ClientServant benutzt, um Nachrichten von seinem Client zu empfangen.
 \layout Paragraph
 
 Attribute
+\layout Description
+
+private\SpecialChar ~
+DownlinkOwner\SpecialChar ~
+downlinkOwner
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+LISTEN_DELAY Zeit zwischen zwei Listen()-Schleifendurchläufen
+ in Millisekunden.
+\layout Description
+
+private\SpecialChar ~
+ObjectInputStream\SpecialChar ~
+objectInputStream
 \layout Description
 
 private\SpecialChar ~
@@ -1623,8 +1155,9 @@ socket
 \layout Description
 
 private\SpecialChar ~
-Client\SpecialChar ~
-client
+boolean\SpecialChar ~
+stop Wird auf true gesetzt, wenn der Thread beendet werden
+ soll.
 \layout Paragraph
 
 Methoden
@@ -1632,30 +1165,2931 @@ Methoden
 
 public\SpecialChar ~
 Downlink(Socket\SpecialChar ~
-socket) Konstruktor
+socket,\SpecialChar ~
+DownlinkOwner\SpecialChar ~
+owner) Konstruktor, der setDownlinkOwne
+r() benutzt.
+\layout Description
+
+public\SpecialChar ~
+DownlinkOwner\SpecialChar ~
+getDownlinkOwner() Gibt den DownlinkOwner zurück.
 \layout Description
 
 private\SpecialChar ~
 void\SpecialChar ~
-listen() Wartet auf ankommende Daten und leitet diese an den
- Client weiter.
+listen() Wartet auf ankommende Nachrichten mit objectInputStream.readO
+bject() und leitet sie an den Besitzer weiter.
+ Benutzt DownlinkOwner.downlinkError() und processMsg().
+ Wartet pro Schleifendurchlauf gemäß LISTEN_DELAY und beendet die Schleife,
+ falls stop=true;
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-run() Methode für den Thread.
+run() Startet den Thread.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-startDownlink() Startet den Stream.
+setDownlinkOwner(DownlinkOwner\SpecialChar ~
+paramDownlinkOwner) Aufruf von setDownli
+nkOwner(null) bewirkt stopDownlink().
+ Benachrichtigt die betroffenen Objekte mittels setDownlink().
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-stopDownlink() Schließt den Stream.
+startDownlink() Öffnet den Input - Stream, danach ist der Downlink
+ betriebsbereit.
+ Ruft this.start() auf.
+ Benutzt DownlinkOwner.downlinkError().
+\layout Description
+
+private\SpecialChar ~
+void\SpecialChar ~
+stopDownlink() Schließt den Input-Stream.
+ Benutzt setDownlinkOwner(null).
+\layout Subsubsection
+
+DownLinkOwner
+\layout Standard
+
+Neu im Package Util ist das Interface DownlinkOwner.
+ Es muss von allen Klassen implementiert werden, die einen Downlink benutzen
+ wollen.
+ Einer der Gründe ist, dass der Downlink nach dem Empfang eines Command-Objekts
+ eine Methode seines 
+\begin_inset Quotes gld
+\end_inset 
+
+Besitzers
+\begin_inset Quotes grd
+\end_inset 
+
+ aufrufen muss, die das Command-Objekt verarbeitet.
+ Das Vorhandensein dieser Methode soll mit diesem Interface sichergestell
+ werden: 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+downlinkError() Diese Methode wird vom Benutzer des Downlinks
+ aufgerufen, wenn ein Fehler im Zusammenhang mit dem Downlink auftritt.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+processMsg(Command\SpecialChar ~
+msg) Diese Methode wird vom Benutzer des Downlinks
+ aufgerufen, wenn er eine Nachricht erhält.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setDownlink(Downlink\SpecialChar ~
+paramDownlink) Diese Methode wird vom Benutzer
+ des Downlinks aufgerufen, um den Downlink zu setzen.
+\layout Subsection
+
+Das Package Util.Commands
+\layout Subsubsection
+
+Command
+\layout Standard
+
+Diese Klasse bildet das Interface für alle Befehle, die beispielsweise zwischen
+ Client und ClientServant ausgetauscht werden.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Diese Methode wird ausgeführt, sowie ein
+ Befehl (Command) bei seinem Empfänger ankommt.
+ Ein Befehl enthält die zu seiner Ausführung notwendigen Informationen.
+\layout Subsubsection
+
+AddChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient erzeugt, legt einen neuen Channel
+ an und ruft addChannel beim AdminClientServant auf.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+allowedForGuests Channel öffentlich oder nicht öffentlich?
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedUserNames Liste der Namen der User, die den Channel
+ betreten dürfen.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Name des Channels.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public AddChannelCommand(String paramName, boolean paramAllowedForGuests,
+ Vector paramAllowedUserNames) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt adminClientServant.addChannel() mit
+ den Attributen des Commands aus.
+\layout Subsubsection
+
+AddUserCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient erzeugt, legt einen neuen User
+ an ruft addUser beim AdminClientServant auf.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedChannelNames Liste der Namen der Channels, die der Benutzer
+ betreten darf.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isAdmin Admin-Status des Users.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Name des Users.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+password Passwort des Users.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public AddUserCommand(String paramName, String paramPassword, boolean paramIsAdm
+in, Vector paramAllowedChannelNames) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt adminClientServant.addUser() mit den
+ Attributen des Commands aus.
+\layout Subsubsection
+
+DeleteChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient erzeugt, löscht einen Channel,
+ indem deleteChannel() beim AdminClientServant ausgeführt wird.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Channelname.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+DeleteChannelCommand(String\SpecialChar ~
+paramName) Setzt den Namen.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim AdminClientServant deleteChannel()
+ auf.
+\layout Subsubsection
+
+DeleteUserCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient gesendet, löscht einen User.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Benutzername.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+DeleteUserCommand(String\SpecialChar ~
+paramName) Setzt den Namen.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim AdminClientServant deleteUser()
+ auf.
+\layout Subsubsection
+
+EditChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient erzeugt, ändert Channeldaten und
+ ruft editChannel beim AdminClientServant auf.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+allowedForGuests Channel öffentlich oder nicht öffentlich?
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedUserNames Liste der Namen der User, die den Channel
+ betreten dürfen.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Name des Channels.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+oldName Der alte Name des Channels.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public EditChannelCommand(String paramOldName, String paramName, boolean
+ paramAllowedForGuests, Vector paramAllowedUserNames) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt adminClientServant.editChannel() mit
+ den Attributen des Commands aus.
+\layout Subsubsection
+
+EditUserCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClient erzeugt, Ändert einen bestehenden
+ User und ruft editUser beim AdminClientServant auf.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedChannelNames Liste der Namen der Channels, die der Benutzer
+ betreten darf.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isAdmin Admin-Status des Users.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Name des Users.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+oldName Der alte Name des Users.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+password Passwort des Users.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public EditUserCommand(String paramOldName, String paramName, String paramPasswo
+rd, boolean paramIsAdmin, Vector paramAllowedChannelNames) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt adminClientServant.editUser() mit den
+ Attributen des Commands aus.
+\layout Subsubsection
+
+GetChannelDataCommand 
+\layout Standard
+
+Dieses Command fordert vom AdminClientServant einen Channeldatensatz an.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+channelName Der Channelname.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+GetChannelDataCommand(String\SpecialChar ~
+paramChannelName) Konstruktor, setzt die
+ Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt AdminClientServant.sendChannel() aus.
+\layout Subsubsection
+
+GetChannelListCommand 
+\layout Standard
+
+Dieses Command fordert vom AdminClientServant die komplette Channelliste
+ an.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt AdminClientServant.sendChannelList()
+ aus.
+\layout Subsubsection
+
+GetUserDataCommand 
+\layout Standard
+
+Dieses Command fordert vom AdminClientServant einen Userdatensatz an.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+userName Der Benutzername.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+GetUserDataCommand(String\SpecialChar ~
+paramUserName) Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt AdminClientServant.sendUser() aus.
+\layout Subsubsection
+
+GetUserListCommand 
+\layout Standard
+
+Dieses Command fordert vom AdminClientServant die komplette Userliste an.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt AdminClientServant.sendUserList() aus.
+\layout Subsubsection
+
+JoinChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem Client gesendet, user betritt damit einen
+ Channel.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Channelname.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+JoinChannelCommand(String\SpecialChar ~
+paramName) Konstruktor, setzt den Channelnamen.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim ClientServant joinChannel() auf.
+\layout Subsubsection
+
+JoinChannelErrorCommand 
+\layout Standard
+
+Dieses Command wird von einem ClientServant gesendet, falls ein joinChannel()
+ Aufruf fehlschlägt.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim Client joinChannelError() aus.
+\layout Subsubsection
+
+LeaveChannelCommand 
+\layout Standard
+
+Dieses Command fordert den ClientServant auf, den betretenen Channel zu
+ verlassen.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt ClientServant.leaveChannel() aus.
+\layout Subsubsection
+
+LoginCommand 
+\layout Standard
+
+Dieses Command wird von einem Client gesendet, um einen Benutzer anzumelden.
+\layout Paragraph
+
+Attribute 
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Benutzername.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+password Das Kennwort.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+LoginCommand(String\SpecialChar ~
+paramName,\SpecialChar ~
+String\SpecialChar ~
+paramPassword) Konstruktor.
+ Erzeugt einen Login-Befehl mit den zur Anmeldung eines Users am Server
+ benötigten Daten.
+ Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim ClientServant loginUser() auf.
+\layout Subsubsection
+
+LoginErrorCommand 
+\layout Standard
+
+Dieses Command wird von einem ClientServant gesendet, falls ein Login fehlschläg
+t.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim Client loginError() auf.
+\layout Subsubsection
+
+LoginGuestCommand 
+\layout Standard
+
+Dieses Command meldet einen Gast an, wird von einem Client gesendet.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Benutzername.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+LoginGuestCommand(String\SpecialChar ~
+paramName) Konstruktor.
+ Erzeugt einen Login-Befehl mit den zur Anmeldung eines Users am Server
+ benötigten Daten.
+ Dieser Befehl kann nur von einem ClientServant verarbeitet werden.
+ Parameters: name - der Benutzername.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim ClientServant loginAsGuest() auf.
+\layout Subsubsection
+
+LogoutCommand 
+\layout Standard
+
+Dieses Command fordert den ClientServant auf, einen Logout auszuführen.
+ 
+\layout Paragraph
+
+Methode
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim ClientServant setUser(null) aus.
+\layout Subsubsection
+
+SendMsgFromChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem ClientServant an einen Client geschickt, falls
+ eine neue Nachricht in dem besuchten Channel gesendet wurde.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+fromName Der Name des Benutzers, der diese Nachricht gesendet
+ hat.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+msg Die Nachricht.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SendMsgFromChannelCommand(String\SpecialChar ~
+paramFromName,\SpecialChar ~
+String\SpecialChar ~
+paramMsg) Konstruktor,
+ setzt die Nachricht und den Absender.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim Client sendMsgFromChannel() auf.
+\layout Subsubsection
+
+SendMsgFromUserCommand 
+\layout Standard
+
+Dieses Command wird gesendet von ClientServant, falls ein Benutzer eine
+ Privatnachricht verschicken möchte.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+msg Die Nachricht.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Benutzername des Absenders.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SendMsgFromUserCommand(String\SpecialChar ~
+fromName,\SpecialChar ~
+String\SpecialChar ~
+paramMsg) Konstruktor,
+ setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim Client sendMsgFromUser() auf.
+\layout Subsubsection
+
+SendMsgToChannelCommand 
+\layout Standard
+
+Dieses Command wird von einem Client gesendet, sendet eine Nachricht in
+ den besuchten Channel.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+msg Die Nachricht.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SendMsgToChannelCommand(String\SpecialChar ~
+paramMsg) Konstruktor
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim ClientServant sendMsgToChannel()
+ auf.
+\layout Subsubsection
+
+SendMsgToUserCommand 
+\layout Standard
+
+Dieses Command wird von einem Client gesendet, sendet eine Nachricht an
+ einen Benutzer.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+msg Die Nachricht.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Empfänger.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SendMsgToUserCommand(String\SpecialChar ~
+paramName,\SpecialChar ~
+String\SpecialChar ~
+paramMsg)
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim ClientServant sendMsgToUser()
+ auf.
+\layout Subsubsection
+
+SetChannelDataCommand 
+\layout Standard
+
+Dieses Command wird von einem AdminClientServant als Antwort auf ein GetChannelD
+ataRequestCommand() gesendet, enthält die Channeldaten des entsprechenden
+ Channels.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+channelName Der Channelname.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isAllowedForGuest Gäste zugelassen?
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+userNames Namen der Benutzer, die den Channel betreten dürfen.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public SetChannelDataCommand(String paramChannelName, boolean paramIsAllowedForG
+uest, Vector paramUserNames) 
+\layout Standard
+
+Konstruktor, setzt die entsprechenden Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt setChannelData beim AdminClient aus.
+\layout Subsubsection
+
+SetChannelListCommand 
+\layout Standard
+
+Dieses Command setzt beim AdminClient die Namensliste aller verfügbaren
+ Channels.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+channelNames Namensliste aller Channels.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SetChannelListCommand(Vector\SpecialChar ~
+list) Konstruktor, setzt das entsprechende
+ Attribut.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim AdminClient setChannelList()
+ aus.
+\layout Subsubsection
+
+SetCurrentChannelDataCommand 
+\layout Standard
+
+Dieses Command setzt bei einem Client Informationen über den momentan besuchten
+ Channel.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+channelName Der Channelname.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+userNames Die Namen derjenigen Benutzer, die sich momentan
+ im Channel aufhalten.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public SetCurrentChannelDataCommand(String paramChannelName, Vector paramUserNam
+es) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft Client.setCurrentChannelData() auf.
+\layout Subsubsection
+
+SetCurrentUserDataCommand 
+\layout Standard
+
+Dieses Command setzt bei einem Client Informationen über den aktuellen Benutzer.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+channelNames Liste der Channelnamen, die der Benutzer betreten
+ darf.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+userName Der Benutzername.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public SetCurrentUserDataCommand(String paramUserName, Vector paramChannelNames)
+ 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft Client.setCurrentUserData auf.
+\layout Subsubsection
+
+SetUserDataCommand 
+\layout Standard
+
+Dieses Command setzt bei einem AdminClient Informationen über einen angeforderte
+n User.
+ 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+channelNames Namensliste der Channels, die der Benutzer betreten
+ darf.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isAdmin Admin-Status.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+password Das Passwort.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+userName Der Benutzername.
+\layout Paragraph
+
+Methoden 
+\layout Paragraph
+
+public SetUserDataCommand(String paramUserName, String paramUserPassword,
+ boolean paramIsAdmin, Vector paramChannelNames) 
+\layout Standard
+
+Konstruktor, setzt die Attribute.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt AdminClient.setUserDataRequest() aus.
+\layout Subsubsection
+
+SetUserListCommand 
+\layout Standard
+
+Dieses Command setzt beim AdminClient eine Liste aller vorhandenen Usernamen.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+userNames List der Usernamen
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+SetUserListCommand(Vector\SpecialChar ~
+list) Konstruktor.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Führt beim AdminClient setUserList() aus
+\layout Subsubsection
+
+StopClientCommand 
+\layout Standard
+
+Dieses Command stoppt einen Client.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+execute(Object\SpecialChar ~
+target) Ruft beim Client stopClient() auf.
+\layout Subsection
+
+Das Package Util.Debug
+\layout Standard
+
+In diesem Paket werden Funktionen zur Qualitätssicherung, oder neudeutsch
+ zum 
+\begin_inset Quotes gld
+\end_inset 
+
+Debuggen
+\begin_inset Quotes grd
+\end_inset 
+
+, gesammelt.
+\layout Subsubsection
+
+Debug
+\layout Standard
+
+Bei Util.Debug.Debug handelt es sich um eine Klasse zur Ausgabe von Debug-Nachrich
+ten.
+ Gegenüber dem üblichen 
+\layout LyX-Code
+
+System.out.println("Wichtiger Fehler!");
+\layout Standard
+
+haben so ausgegebene Nachrichten u.a.
+ folgende Vorteile: 
+\layout Itemize
+
+sie können im Code bleiben, müssen nicht auskommentiert werden  
+\layout Itemize
+
+sie sind zur Laufzeit ein- und ausschaltbar 
+\layout Itemize
+
+verschiedene Prioritäten ermöglichen eine nach Debug-Level gefilterte Ausgabe
+ von Debug-Nachrichten 
+\layout Paragraph
+
+Attribute
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+final\SpecialChar ~
+int\SpecialChar ~
+OFF Stellt die Ausgabe von Debug-Nachrichten ab.
+ 
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+final\SpecialChar ~
+int\SpecialChar ~
+LOW Niedrige Priorität.
+ 
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+final\SpecialChar ~
+int\SpecialChar ~
+MEDIUM Mittlere Priorität.
+ 
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+final\SpecialChar ~
+int\SpecialChar ~
+HIGH Hohe Priorität.
+ 
+\layout Description
+
+private\SpecialChar ~
+static\SpecialChar ~
+int\SpecialChar ~
+level Debug-Level.
+ Je höher er ist, desto mehr und auch unwichtigere Debug-Nachrichten werden
+ ausgegeben.
+ Der Wert Debug.OFF stellt Debug-Nachrichten ab.
+ 
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+void\SpecialChar ~
+setLevel(int\SpecialChar ~
+newLevel) Stellt den Debug-Level ein.
+ 
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+void\SpecialChar ~
+println(java.lang.Object\SpecialChar ~
+msg) Löst eine Debug-Nachricht mit
+ normaler Priorität aus.
+ 
+\layout Description
+
+public\SpecialChar ~
+static\SpecialChar ~
+void\SpecialChar ~
+println(int\SpecialChar ~
+priority,\SpecialChar ~
+java.lang.Object\SpecialChar ~
+msg) Löst eine Debug-Nachricht
+ mit einer bestimmten Priorität aus.
+ 
+\layout Subsection
+
+Das Package Server
+\layout Standard
+
+Im folgenden Abschnitt werden die Klassen des Serverpakets in ihren Einzelheiten
+ geschildert.
+\layout Subsubsection
+
+Server
+\layout Standard
+
+Diese Klasse stellt die Hauptklasse des Chat-Servers dar.
+ Nachdem er gestartet wurde, horcht der Server an einem bestimmten Port
+ auf Verbindungswünsche von Clients.
+ Sowie sich ein Client an diesem Port meldet, startet der Server einen ClientSer
+vant, der sich ab dann ausschließlich um diesen Client kümmert.
+ Anschließend horcht der Server wieder an seinem Port und wartet auf Verbindungs
+wünsche von weiteren Clients.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+ChannelAdministration\SpecialChar ~
+channelAdministration
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+clientServantList Eine Liste der aktiven ClientServants des
+ Servers.
+\layout Description
+
+private\SpecialChar ~
+ClientServantWatchDog\SpecialChar ~
+clientServantWatchDog
+\layout Description
+
+private\SpecialChar ~
+DataBaseIO\SpecialChar ~
+dataBaseIO Die Datenbank, in der die Informationen über
+ User und Channel gespeichert werden.
+ Von dort werden sie beim Start des Servers ausgelesen.
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+LISTEN_QUEUE_LENGTH Die Länge der Warteschlange, in der Verbindungswün
+sche von Clients zwischengespeichert werden, die nicht sofort verarbeitet
+ werden können.
+ Verbindungswünsche, die nicht mehr in die Warteschlange passen, werden
+ automatisch abgewiesen (siehe auch java.net.ServerSocket).
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+SERVER_PORT Der Port, auf dem der Server sein ServerSocket öffnet
+ und auf Anfragen der Clients horcht.
+\layout Description
+
+private\SpecialChar ~
+ServerSocket\SpecialChar ~
+serverSocket
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+stop Flag, welches angibt, ob listen() weiter auf Verbindungen
+ warten soll.
+\layout Description
+
+private\SpecialChar ~
+UserAdministration\SpecialChar ~
+userAdministration
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToClientServantList(ClientServant\SpecialChar ~
+paramClientServant)
+ Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu.
+ Benutzt ClientServant.setServer().
+\layout Description
+
+public\SpecialChar ~
+ChannelAdministration\SpecialChar ~
+getChannelAdministration() Gibt die aktive ChannelAdm
+inistration zurück.
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getClientServantEnum() Gibt eine Aufzählung der aktiven
+ ClientServants zurück.
+\layout Description
+
+private\SpecialChar ~
+void\SpecialChar ~
+listen() In listen() wird zuerst ein neuer ServerSocket angelegt.
+ In einer Schleife werden, solange der Thread nicht gestoppt wurde, bei
+ ankommenden Verbindungenswünschen von Clients neue Clientservants erstellt,
+ diese zur Liste der Servants hinzugefügt und gestartet.
+ Nachdem der Thread beendet wurde, wird der ServerSocket geschlossen.
+ Falls die Zugriffe auf den ServerSocket nicht möglich sind, werden diese
+ durch try und catch abgefangen.
+ Schleifendurchlauf, solange stop==true.
+ Benutzt ClientServant.startClientServant() und addToClientServantList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromClientServantList(ClientServant\SpecialChar ~
+paramClientServan
+t) Entfernt den übergebenen ClientServant durch setServer(null) aus der
+ Liste der aktiven ClientServants.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+startServer()\SpecialChar ~
+throws\SpecialChar ~
+java.io.FileNotFoundException,\SpecialChar ~
+java.io.IOException
+ Diese Methode initialisiert den Server, indem neue Referenzen von channelAdmini
+stration, userAdministration, clientServantWatchDog und dataBaseIO erzeugt
+ werden.
+ Ausserdem werden die Benutzer- und Channeldaten geladen und ein ClientServantDo
+g gestartet, um inaktive Clients aus dem System zu entfernen.
+ Ruft listen() auf.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+stopServer() Stoppt den Server, indem die ClientServants durch
+ eine Schleife mit der Methode removeFromClientServant aus der ClientServantList
+ enfernt werden.
+ Setzt stop=true, um die Listen-Methode zu beenden.
+\layout Subsubsection
+
+ClientServant
+\layout Standard
+
+Diese Klasse kümmert sich um die Anfragen, die von einem Client an den Server
+ gestellt werden.
+ Der Server erzeugt für jeden Client eine Instanz dieser Klasse, die sich
+ von da an nur noch um diesen Client kümmert und seine Anfragen bearbeitet.
+ In dieser Klasse steckt die meiste Funktionalität des Servers.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+protected\SpecialChar ~
+long\SpecialChar ~
+aliveStamp Gibt den letzten Zeitpunkt an, an dem der ClientServant
+ eine Nachricht von seinem Client empfangen hat.
+\layout Description
+
+protected\SpecialChar ~
+Util.Downlink\SpecialChar ~
+downlink
+\layout Description
+
+protected\SpecialChar ~
+Server\SpecialChar ~
+server
+\layout Description
+
+protected\SpecialChar ~
+Socket\SpecialChar ~
+socket Über diesen Socket kommuniziert der ClientServant
+ mit seinem Client.
+\layout Description
+
+protected\SpecialChar ~
+Util.Uplink\SpecialChar ~
+uplink
+\layout Description
+
+protected\SpecialChar ~
+User\SpecialChar ~
+user
+\layout Description
+
+protected\SpecialChar ~
+UserAdministration\SpecialChar ~
+userAdministration
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+ClientServant() Standard-Konstruktor, notwendig, da der AdminClientServant
+ von dieser Klasse erbt.
+ Wird sonst nicht benutzt.
+\layout Paragraph
+
+public\SpecialChar ~
+ClientServant(Socket\SpecialChar ~
+paramSocket,\SpecialChar ~
+Server\SpecialChar ~
+paramServer, UserAdministration
+ paramUserAdministration) 
+\layout Standard
+
+Konstruktor, der die entsprechenden Attribute setzt.
+ Benutzt setServer(paramServer).
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+becomeAdminClientServant() Wenn der angemeldete
+ Benutzer Admin-Rechte hat, dann wird aus dem ClientServant automatisch
+ ein AdminClientServant mit erweiterter Funktionalität.
+ Benutzt den AdminClientServant-Konstruktor Setzt uplink=null und ruft dann
+ this.stopClientServant() auf.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+downlinkError() Wird vom Downlink aufgerufen,
+ falls beim Empfang von Nachrichten ein Fehler auftritt, enthält Fehlerbehandlun
+g.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+long\SpecialChar ~
+getAliveStamp() Gibt den aktuellen aliveStamp-Wert zurück.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+joinChannel(String\SpecialChar ~
+name) Lässt den User in den
+ Channel mit dem angegebenen Namen eintreten.
+ Benutzt user.setCurrentChannel() und user.getFromAllowedChannelByName() Falls
+ der gewünschte Channel nicht existiert wird ein JoinChannelErrorCommand
+ gesendet Falls der user nicht existiert, wird ein LoginErrorCommand gesendet.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+leaveChannel() Lässt den User den Channel verlassen.
+ Benutzt user.setCurrentChannel(null) Falls user nicht existent, wird LoginErrorC
+ommand() gesendet.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+loginAsGuest(String\SpecialChar ~
+name) Meldet einen Gast beim
+ System an.
+ Benutzt userAdministration.loginGuest() und setUser() Bei einem Loginfehler
+ wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen anschließend
+ beendet sich clientServant.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+loginUser(String\SpecialChar ~
+name,\SpecialChar ~
+String\SpecialChar ~
+password) Meldet den
+ Benutzer mit Namen name und mit Passwort password beim System an Benutzt
+ userAdministration.loginUser() um das Userobjekt zu holen und setUser()
+ um es zu setzen.
+ Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null)
+ aufgerufen, anschließend beendet sich clientServant.
+ Falls der User Admin-Rechte hat, so wird becomeAdminClient() aufgerufen.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+processMsg(Command\SpecialChar ~
+msg) Führt den empfangenen
+ Befehl einfach mittels msg.execute(this) aus.
+ Benutzt setAliveStamp().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendCommand(Command\SpecialChar ~
+paramCommand) Sendet das angegeben
+e CommandObjekt über den Uplink.
+ Benutzt uplink.sendMsg() Bei einem Fehler: Fehlerbehandlung.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendCurrentChannelData() Sendet die Daten des
+ betretenen Channel an den Client.
+ Sendet ein SetCurrentChannelDataCommand.
+ Benutzt getCurrentChannel().getName() und getCurrentChannel().getCurrentUserNames
+().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendCurrentUserData() Sendet die Daten des Users
+ an den Client.
+ Sendet ein SetCurrentUserDataCommand.
+ Benutzt user.getName() und user.getAllowedChannelNames().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendMsgFromChannel(String\SpecialChar ~
+fromName,\SpecialChar ~
+String\SpecialChar ~
+msg)
+ Sendet eine Nachricht, die in den besuchten Channel gesendet wurde, an
+ den Client (mit einem SendMsgFromChannelCommand).
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendMsgFromUser(String\SpecialChar ~
+fromName,\SpecialChar ~
+String\SpecialChar ~
+msg) Sendet
+ eine private Nachricht eines anderen Users an den Client.
+ Sendet ein SendMsgFromUserCommand.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendMsgToChannel(String\SpecialChar ~
+msg) Sendet eine Nachricht
+ des Users an alle anderen User im Channel.
+ Sendet ggf.
+ joinChannelError(),loginErrorCommand() Benutzt user.getCurrentChannel()
+ und Channel.getCurrentUserEnum(), getClientServant() um bei den verantwortlichen
+ ClientServants ein sendMsgFromChannel() aufzurufen.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendMsgToUser(String\SpecialChar ~
+userName,\SpecialChar ~
+String\SpecialChar ~
+msg) Sendet
+ eine private Nachricht des Users an einen anderen User.
+ Sendet ggf.
+ joinChannelErrorCommand, loginErrorCommand() Benutzt user.getCurrentChannel()
+ und Channel.getCurrentUserEnum(), getClientServant() um bei den verantwortlichen
+ ClientServants ein sendMsgFromChannel() aufzurufen.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setAliveStamp() Setzt aliveStamp auf die aktuelle
+ Zeit.
+ Benutzt java.lang.System.currentTimeMillis().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setDownlink(Downlink\SpecialChar ~
+paramDownlink) Setzt downlink,
+ benachrichtigt die betroffenen Downlinkobjekte mittels setDownlinkOwner().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setServer(Server\SpecialChar ~
+paramServer) Setzt server und
+ benachrichtigt das betroffene Serverobjekt mittels removeFromClientServantList(
+) und addToClientServantList.
+ setServer(null) bewirkt stopClientServant()
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setUser(User\SpecialChar ~
+paramUser) Setzt user, benutzt user.setCli
+entServant().
+ setUser(null) bewirkt ein stopClientServant().
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+startClientServant() Startet den ClientServant,
+ danach ist er betriebsbereit und kann die Anfragen seines Clients bearbeiten.
+ Erzeugt einen neuen Uplink und Downlink.
+ Benutzt setDownlink(), uplink.startUplink() und downlink.startDownlink().
+ Fängt Fehler aus startUplink() und startDownlink() ab.
+\layout Description
+
+public\SpecialChar ~
+final\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+stopClientServant() Stoppt den ClientServant.
+ Benutzt setDownlink(null) uplink.stopUplink(), setServer(null) und setUser(null).
+ Sendet ein stopClientCommand() an den Client.
+\layout Subsubsection
+
+AdminClientServant
+\layout Standard
+
+Diese vom ClientServant abgeleitete Klasse kümmert sich um die Anfragen,
+ die von einem Client an den Server gestellt werden.
+ Wenn der Benutzer Administratorrechte hat, wird sein AdminClient von einem
+ AdminClientServant statt von einem normalen ClientServant "bedient".
+ Ein AdminClientServant funktioniert genauso wie ein ClientServant, kann
+ allerdings noch zusätzlich administrative Nachrichten des AdminClients
+ verarbeiten.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+ChannelAdministration\SpecialChar ~
+channelAdministration
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public AdminClientServant(Uplink paramUplink, Downlink paramDownlink, Server
+ paramServer, ChannelAdministration paramChannelAdministration, UserAdministrati
+on paramUserAdministration, User paramUser) 
+\layout Standard
+
+Konstruktor, setzt die entsprechenden Attribute.
+ Benutzt setDownlink(),setServer() und setUser().
+ "Entreisst" somit dem aufrufenden ClientServant die Objekte.
+\layout Paragraph
+
+public synchronized void addChannel(String paramName, boolean paramAllowedForGue
+sts, Vector paramAllowedUserNames) 
+\layout Standard
+
+Fügt einen Channel hinzu.
+ Erzeugt ein neues Channelobjekt und generiert für dieses Channelobjekt
+ die Referenzen auf die erlaubten Benutzer mittels userAdministration.getFromUser
+ListByName() und channel.addToAllowedUserList().
+ Bewirkt Aufruf von DataBaseIO.saveToDisk().
+\layout Paragraph
+
+public synchronized void addUser(String paramName, String paramPassword,
+ boolean paramIsAdmin, Vector paramAllowedChannelNames) 
+\layout Standard
+
+Fügt einen Benutzer hinzu.
+ Erzeugt ein neues Userobjekt mit den angegebenen Daten.
+ Benutzt paramAllowedChannelNames und channelAdministration.getFromChannelListByN
+ame um mit user.addToAllowedChannelList die für den Benutzer erlaubten Channelobj
+ekte zu referenzieren.
+ Ruft schließlich userAdministration.addToUserList auf.
+ Bewirkt Aufruf von DataBaseIO.saveToDisk().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+deleteChannel(String\SpecialChar ~
+channelName) Löscht den Channel
+ mit dem angegebenen Namen.
+ Benutzt channelAdministration.getFromChannelListByName() und channelAdministrati
+on.removeFromChannelList().
+ Bewirkt Aufruf von DataBaseIO.saveToDisk()
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+deleteUser(String\SpecialChar ~
+userName) Löscht den Benutzer mit
+ dem angegebenen Namen.
+ Benutzt userAdministration.getFromUserListByName() und userAdministration.removeF
+romUserList().
+ Bewirkt Aufruf von DataBaseIO.saveToDisk().
+\layout Paragraph
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+editChannel(String\SpecialChar ~
+oldName,\SpecialChar ~
+String\SpecialChar ~
+newName,\SpecialChar ~
+boolean paramAllow
+edForGuest, Vector allowedUserNames) 
+\layout Standard
+
+Verändert die Daten des angegebenen Channels.
+ Erzeugt ein neues Channelobjekt mit den angegebenen Daten.
+ Benutzt setAllowedUserList() um die erlaubten Benutzer des Channels einzutragen
+ und ruft dann channelAdministration.editChannel() auf.
+ Bewirkt Aufruf von DataBaseIO.saveToDisk() 
+\layout Paragraph
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+editUser(String\SpecialChar ~
+oldName,\SpecialChar ~
+String\SpecialChar ~
+newName,\SpecialChar ~
+String\SpecialChar ~
+newPassword,
+ boolean paramIsAdmin, Vector allowedChannelNames) 
+\layout Standard
+
+Verändert die Daten des angegebenen Users.
+ Erzeugt ein neues Userobjekt mit den angegebenen Daten.
+ Benutzt setAllowedChannelList() um die erlaubten Channels des Benutzers
+ einzutragen - benutzt dafür channelAdministration.getFromChannelListByName()
+ und ruft dann userAdministration.editUser() auf.
+ Bewirkt Aufruf von DataBaseIO.saveToDisk().
+ 
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendChannel(String\SpecialChar ~
+channelName) Sendet die Channeldaten
+ des Channels mit dem angegebenen Namen.
+ Erzeugt und versendet ein neues SetChannelDataCommand().
+ Benutzt channelAdministration.getFromChannelListByName().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendChannelList() Sendet eine Liste aller Channelnamen.
+ Benutzt sendCommand() und erzeugt ein neues SetChannelListCommand - Objekt.
+ Benutzt channelAdministration.getChannelNames(), um die Namensliste zu erzeugen.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendUser(String\SpecialChar ~
+userName) Sendet die Benutzerdaten
+ des Benutzers mit dem angegebenen Namen an den Client.
+ Benutzt userAdministration.getFromUserListByName().
+ Erzeugt und versendet ein entsprechendes SetUserDataCommand().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+sendUserList() Sendet eine Liste aller Benutzernamen.
+ Benutzt sendCommand und erzeugt ein neues SetUserListCommand-Objekt Benutzt
+ userAdministration.getUserNames(), um die Namensliste zu erzeugen.
+\layout Subsubsection
+
+ClientServantWatchDog
+\layout Standard
+
+Beim ClientServantWatchDog handelt es sich um einen Thread, der dafür zuständig
+ ist, ClientServants aus dem System zu entfernen, die seit einer bestimmten
+ Zeitspanne keine Nachrichten mehr von ihrem Client empfangen haben.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Server\SpecialChar ~
+server
+\layout Description
+
+public\SpecialChar ~
+boolean\SpecialChar ~
+stop
+\layout Standard
+
+Flag, welches angibt, ob der Thread beendet werden soll.
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+timeToLive
+\layout Standard
+
+Zeit in Millisekunden, die angibt, wie lange eine ClientServant inaktiv
+ sein darf.
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+updateDelay
+\layout Standard
+
+Zeitspanne in Millisekunden, die vergeht, bis der ClientServantWatchDog
+ erneut alle ClientServants überprüft.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+ClientServantWatchDog(Server\SpecialChar ~
+paramServer)
+\layout Standard
+
+Setzt das Server-Attribut.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+run()
+\layout Standard
+
+Die Runmethode enthält im Wesentlichen eine Schleife, die solange ausgeführt
+ wird bis stop auf true gesetzt wird, und mittels servant.getClientServantEnum()
+ die entsprechenden Clientservants überprüft.
+ Für die Überprüfung wird ClientServant.getAliveStamp() und java.lang.System.current
+TimeMillis() benutzt.
+ ClientServants werden ggf.
+ durch ClientServant.stopClientServant() entfernt.
+ Zur Kontrolle der Schleifendurchläufe wird timeToLive und updateDelay benutzt
+\layout Subsubsection
+
+ChannelAdministration
+\layout Standard
+
+Mit der Klasse ChannelAdministration werden Methoden bereitgestellt, um
+ Channel im System zu verwalten.
+ Die ChannelAdministration kann hier durch die Klasse "DataBaseIO" auf die
+ Channeldatenbank zugreifen, um die Benutzerforen, deren Daten sich in der
+ Klasse "Channel" befinden, laden, speichern oder löschen zu können.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+channelList Liste der verfügbaren Channel.
+\layout Description
+
+private\SpecialChar ~
+DataBaseIO\SpecialChar ~
+dataBaseIO "Datenbank", in der die Channel-Daten gespeichert
+ sind.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToChannelList(Channel\SpecialChar ~
+paramChannel) Fügt einen Channel
+ hinzu, sofern er noch nicht existiert.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+editChannel(String\SpecialChar ~
+oldName,\SpecialChar ~
+Channel\SpecialChar ~
+newChannel) Editiert
+ den Channel mit dem angegebenen Namen mit einem neuen Datensatz aus einem
+ neuen Channelobjekt.
+ Benutzt Channel.setName(),setAllowedForGuest() und setAllowedUserList().
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getChannelEnum() Gibt eine Aufzählung der existierenden
+ Channel zurück.
+\layout Description
+
+public\SpecialChar ~
+Vector\SpecialChar ~
+getChannelNames() Liefert eine Aufzählung der existierenden
+ Channel.
+ Benutzt getChannelEnum().
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getFreeForGuestEnum() Liefert eine Aufzählung der Channel,
+ die für Gäste freigegeben sind.
+ Benutzt getChannelEnum() und channel.isAllowedForGuests().
+\layout Description
+
+public\SpecialChar ~
+Channel\SpecialChar ~
+getFromChannelListByName(String\SpecialChar ~
+name) Gibt den Channel mit dem
+ angegebenen Namen zurück, falls er existiert.
+ Ansonsten wird null zurückgegeben.
+ Benutzt getChannelEnum().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromChannelList(Channel\SpecialChar ~
+paramChannel) Entfernt
+ einen Channel.
+ Benachrichtigt den betroffenen Channel mittels Channel.removeYou().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setChannelList(Enumeration\SpecialChar ~
+channelEnum) Setzt ChannelList
+ auf die in channelEnum übergebenen Werte.
+ Benutzt addToChannelList() und removeFromChannelList().
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setDataBaseIO(DataBaseIO\SpecialChar ~
+paramDataBaseIO) Setzt dataBaseIO, benutzt
+ DataBaseIO.setChannelAdministration.
+\layout Subsubsection
+
+UserAdministration
+\layout Standard
+
+Die Klasse UserAdministration stellt Methoden zur Verwaltung der Benutzer
+ zur Verfügung.
+ Neben der Abwicklung des User-Login und des Guest-Login, können User hinzugefüg
+t, bearbeitet und gelöscht werden.
+ Außerdem gibt es Methoden, um sich alle oder einzelne User anzeigen zu
+ lassen, sowie einige Methoden, welche die Counter-Attribute für die angemeldete
+n User bzw.
+ Gäste hoch/ runter zählen.
+ Desweitern sind in dieser Klasse die jeweils maximalen Anzahlen für User
+ und Gäste festgelegt.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+ChannelAdministration\SpecialChar ~
+channelAdministration 
+\layout Description
+
+private\SpecialChar ~
+DataBaseIO\SpecialChar ~
+dataBaseIO
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+maxGuests Maxmimale Anzahl von eingeloggten Gästen im System
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+maxUsers Maximale Anzahl von eingeloggten Benutzern im System.
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+numCurrentGuests Anzahl der Gäste im System
+\layout Description
+
+private\SpecialChar ~
+int\SpecialChar ~
+numCurrentUsers Anzahl der eingeloggten Benutzer im System.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+userList Liste aller Benutzer im System.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+UserAdministration(ChannelAdministration\SpecialChar ~
+paramChannelAdministration)
+ Setzt channelAdministration.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToUserList(User\SpecialChar ~
+paramUser) Fügt einen Benutzer mittels
+ user.setUserAdministration() zur UserList hinzu.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+decNumCurrentGuests() Verringert den Zähler numCurrentGues
+ts um 1
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+decNumCurrentUsers() Verkleinert den Zähler numCurrentUser
+s um 1
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+editUser(String\SpecialChar ~
+oldName,\SpecialChar ~
+User\SpecialChar ~
+newUser) Mittles dieser
+ Methode kann ein User-Objekt bearbeitet werden.
+ Setzt die Daten des Userobjektes mit dem Namen oldName auf die in newUser
+ enthaltenen Daten mittels user.setName(),setPassword(),setIsAdmin(),setAllowedCh
+annelList().
+ Benutzt getFromUserListByName().
+\layout Description
+
+public\SpecialChar ~
+User\SpecialChar ~
+getFromUserListByName(String\SpecialChar ~
+name) Gibt den Benutzer mit dem angegebene
+n Namen zurück.
+ Benutzt getUserEnum(), user.getName()
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getUserEnum() Gibt eine Aufzählung aller User zurück
+\layout Description
+
+public\SpecialChar ~
+Vector\SpecialChar ~
+getUserNames() Liefert eine Namensliste aller User, die nicht
+ Gäste sind.
+ Benutzt getUserEnum().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+incNumCurrentGuests() Erhöht den Zähler numCurrentGuests
+ um 1
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+incNumCurrentUsers() Erhöht den Zähler numCurrentUsers
+ um 1
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+User\SpecialChar ~
+loginGuest(String\SpecialChar ~
+paramName) Meldet einen Gast an und
+ fügt ihn zur UserList hinzu, Mittels setAllowedChannelList() wird er zum
+ Betreten der für Gäste freie Channels berechtigt.
+ Legt ein neues Userobjekt an.
+ Benutzt addToUserList und setIsLoggedIn().
+ Prüft mittels getFromUserListByName, ob der gewünschte Gastname noch frei
+ ist Returns: den Benutzer, falls Authentifizierung klappt, sonst null
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+User\SpecialChar ~
+loginUser(String\SpecialChar ~
+name,\SpecialChar ~
+String\SpecialChar ~
+password) Meldet einen
+ Benutzer an.
+ Prüft, ob numCurrentUser < maxUsers, läßt Administratoren immer ins System,
+ sonst, falls maximale Anzahl erreicht, return null.
+ Benutzt getFromUserListByName(), user.getPassword(), isLoggedIn() und setIsLogge
+d() Returns: den Benutzer, falls Authentifizierung klappt, sonst null
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromUserList(User\SpecialChar ~
+paramUser) Entfernt einen Benutzer
+ mittels user.setUserAdministration() aus der UserList.
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setDataBaseIO(DataBaseIO\SpecialChar ~
+paramDataBaseIO) Setzt dataBaseIO und
+ benachrichtigt das betroffene Objekt durch DataBaseIO.setUserAdministration
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setUserList(Enumeration\SpecialChar ~
+userEnum) Setzt userList auf die in userEnum
+ enthaltenen Objekte von Typ User Benutzt addToUserList() und removeFromUserList
+().
+\layout Subsubsection
+
+Channel
+\layout Standard
+
+Die Klasse Channel hält Daten für die entsprechende Administrationsklasse
+ bereit: Eine Instanz dieser Klasse kann wichtige Channeldaten wie z.B.
+ berechtigte User oder im Channel befindliche User speichern.
+ Außerdem stehen Methoden zur Verfügung, mit denen Listen der berechtigten
+ bzw.
+ im Raum befindlichen User abgefragt und übergeben werden können.
+ Desweiteren können einzelne User zur CurrentUserList hinzugefügt bzw.
+ wieder entfernt werden, wenn sie den Channel betreten bzw.
+ verlassen.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+allowedForGuest "Erlaubt-für-Gäste"-Flag.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedUserList Gibt die Benutzer an, die den Channel betreten
+ dürfen.
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+currentUserList Gibt die Benutzer an, die sich momentan in
+ dem Channel befinden.
+ 
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name Der Name des Channels.
+\layout Paragraph
+
+Methoden
+\layout Description
+
+public\SpecialChar ~
+Channel(String\SpecialChar ~
+paramName,\SpecialChar ~
+boolean\SpecialChar ~
+paramAllowedForGuests) Konstruktur,
+ der die entsprechenden Attribute setzt.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToAllowedUserList(User\SpecialChar ~
+paramUser) Fügt einen Benutzer
+ zur Liste der berechtigten Benutzer hinzu.
+ Benachrichtigt mittels User.addToAllowedChannelList() das entsprechende
+ User-Objekt.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToCurrentUserList(User\SpecialChar ~
+paramUser) Fügt einen User
+ zu den im Channel befindlichen Usern hinzu.
+ Benachrichtigt den User mittels User.setCurrentChannel().
+ Ruft dann informCurrentUsers() auf.
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getAllowedUserEnum() Gibt eine Aufzählung der aktuellen
+ Benutzerobjekte im Channel zurück.
+\layout Description
+
+public\SpecialChar ~
+Vector\SpecialChar ~
+getAllowedUserNames() Die Namensliste als Vector von Strings
+ der berechtigten Benutzer wird zurückgegeben Benutzt getAllowedUserEnum()
+ und User.getName().
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getCurrentUserEnum() Liefert eine Aufzählung der aktuellen
+ Benutzer zurück.
+\layout Description
+
+public\SpecialChar ~
+Vector\SpecialChar ~
+getCurrentUserNames() Eine Namensliste als Vector von Strings
+ der aktuellen Benutzer wird zurückgegeben.
+ Benutzt getCurrentUserEnum() und User.getName()
+\layout Description
+
+public\SpecialChar ~
+String\SpecialChar ~
+getName() Gibt den Namen des Channels zurück.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+informCurrentUsers() Informiert die Clients der aktuellen
+ Benutzer im Channel über Veränderungen im Channel mittels getCurrentUserEnum(),
+ User.getClientServant() und ClientServant.sendCurrentChannelData().
+\layout Description
+
+public\SpecialChar ~
+boolean\SpecialChar ~
+isAllowedForGuest() Gibt an, ob der Channel von Gästen betreten
+ werden darf.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromAllowedUserList(User\SpecialChar ~
+paramUser) Entfernt
+ einen Benutzer aus der Liste der berechtigten Benutzer.
+ Benachrichtigt mittels User.removeFromAllowedChannelList() das entsprechende
+ User-Objekt.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromCurrentUserList(User\SpecialChar ~
+paramUser) Entfernt
+ einen User aus den im Channel befindlichen Usern.
+ Benachrichtigt den User mittels User.setCurrentChannel(null).
+ Ruft dann informCurrentUsers() auf.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeYou() Entfernt das Channelobjekt aus dem System.
+ Benutzt setCurrentUserList(null) und setAllowedUserList(null).
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setAllowedForGuest(boolean\SpecialChar ~
+b) Setzt, ob Gäste den Channel betreten
+ dürfen.
+ Benachrichtig ggf.
+ betroffene User mittels user.isGuest() und user.removeFromAllowedChannelList(this
+)
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setAllowedUserList(Enumeration\SpecialChar ~
+enumAllowedUser) Setzt allowedUserList
+ auf die in enumAllowedUser übergebenen Werte Benutzt addToAllowedUserList()
+ und removeFromAllowedUserList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setCurrentUserList(Enumeration\SpecialChar ~
+enumCurrentUser) Setzt
+ CurrentUserList auf die in enumCurrentUser übergebenen Werte.
+ Benutzt addToCurrentUserList() und removeFromCurrentUserList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setName(String\SpecialChar ~
+paramName) Setzt den Namen des Channels.
+ Ruft informCurrentUsers() auf.
+\layout Description
+
+public\SpecialChar ~
+String\SpecialChar ~
+toString() Dient dem debugging.
+\layout Subsubsection
+
+User
+\layout Standard
+
+Die Klasse User hält Daten für die entsprechende Administrationsklasse bereit:
+ In der Klasse "User" werden die Informationen des Benutzers gespeichert.
+ Informationen, wie zum Bespiel der Name, Status oder die Rechte, die den
+ Benutzer entweder als Administrator oder normaler Benutzer kennzeichnen.
+ Speziell während einer aktiven Verbindung mit dem Server werden darüberhinaus
+ einige weitere Informationen gespeichert, etwa in welchem Channel der Benutzer
+ sich befindet oder ob es sich bei ihm um einen Gast handelt.
+ Die nötigen Daten können durch die "UserAdministration" aus der Benutzerdatenba
+nk geladen werden.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+Vector\SpecialChar ~
+allowedChannelList
+\layout Standard
+
+Gibt die Channels an, die der Benutzer betreten darf.
+\layout Description
+
+private\SpecialChar ~
+ClientServant\SpecialChar ~
+clientServant
+\layout Standard
+
+Der für den Benutzer verantwortliche ClientServant.
+\layout Description
+
+private\SpecialChar ~
+Channel\SpecialChar ~
+currentChannel
+\layout Standard
+
+Gibt den Channel an, in dem sich der Benutzer zur Zeit befindet.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isAdmin
+\layout Standard
+
+Ist der User Administrator?
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+isGuest
+\layout Standard
+
+Gaststatus des Benutzers.
+\layout Description
+
+private\SpecialChar ~
+boolean\SpecialChar ~
+loggedIn
+\layout Standard
+
+Gibt an, ob der Benutzer momentan das System benutzt.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+name
+\layout Standard
+
+Der Name des Benutzers.
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+password
+\layout Standard
+
+Das Passwort des Benutzers.
+\layout Description
+
+private\SpecialChar ~
+UserAdministration\SpecialChar ~
+userAdministration
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public\SpecialChar ~
+User(String\SpecialChar ~
+paramName,\SpecialChar ~
+String\SpecialChar ~
+paramPassword, boolean paramGuest, boolean
+ paramAdmin, UserAdministration paramUserAdministration) 
+\layout Standard
+
+Setzt die entsprechenden Attribute, benutzt setUserAdministration().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+addToAllowedChannelList(Channel\SpecialChar ~
+paramChannel) Fügt
+ einen Channel zu der Liste der für den Benutzer erlaubten Channels hinzu,
+ benutzt Channel.addToAllowedUserList(), falls der Benutzer kein Gast ist.
+ Ruft informClient() auf.
+\layout Description
+
+public\SpecialChar ~
+Enumeration\SpecialChar ~
+getAllowedChannelEnum() Gibt eine Aufzählung der Channels
+ zurück, die der Benutzer betreten darf.
+\layout Description
+
+public\SpecialChar ~
+Vector\SpecialChar ~
+getAllowedChannelNames() Gibt eine Liste der Namen der Channels
+ zurück, die der Benutzer betreten darf.
+\layout Description
+
+public\SpecialChar ~
+ClientServant\SpecialChar ~
+getClientServant() Gibt den dem User zugeordneten ClientServa
+nt zurück.
+\layout Description
+
+public\SpecialChar ~
+Channel\SpecialChar ~
+getCurrentChannel() Gibt den Channel zurück, in dem sich der
+ Benutzer momentan befindet.
+\layout Description
+
+public\SpecialChar ~
+Channel\SpecialChar ~
+getFromAllowedChannelByName(String\SpecialChar ~
+channelName) Gibt einen Channel
+ aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück.
+\layout Description
+
+public\SpecialChar ~
+String\SpecialChar ~
+getName() Gibt den Namen des Benutzers zurück.
+\layout Description
+
+public\SpecialChar ~
+String\SpecialChar ~
+getPassword() Gibt das Passwort zurück.
+\layout Description
+
+private\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+informClient() Informiert den Client des Benutzers
+ bei Veränderungen der Userdaten mittels getClientServant() und ClientServant.sen
+dCurrentUserData().
+\layout Description
+
+public\SpecialChar ~
+boolean\SpecialChar ~
+isAdmin() Gibt true zurück, wenn der Benutzer Adminrechte hat.
+\layout Description
+
+public\SpecialChar ~
+boolean\SpecialChar ~
+isGuest() Gibt true zurück, wenn der Benutzer ein Gast ist.
+\layout Description
+
+public\SpecialChar ~
+boolean\SpecialChar ~
+isLoggedIn() Gibt an, ob sich der Benutzer im System eingeloggt
+ hat.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeFromAllowedChannelList(Channel\SpecialChar ~
+paramChannel)
+ Entfernt einen Channel aus der Liste der erlaubten Channels, benutzt Channel.rem
+oveFromAllowedUserList(), falls der Benutzer kein Gast ist.
+ Ruft informClient() auf.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+removeYou() Entfernt das Benutzerobject aus dem System.
+ Benutzt setIsLoggedIn(false), setAllowedChannelList(null) und UserAdministratio
+n.removeFromUserList(this)
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setAllowedChannelList(Enumeration\SpecialChar ~
+channelEnum) Setzt
+ die Liste der für den Benutzer erlaubten Channels mit addToAllowedChannelList()
+ und removeFromAllowedChannelList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setClientServant(ClientServant\SpecialChar ~
+paramClientServant)
+ Setzt den zugeordneten ClientServant und benutzt ClientServant.setUser().
+ Ein setClientServant(null) bewirkt ein setIsLoggedIn(false).
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setCurrentChannel(Channel\SpecialChar ~
+paramChannel) Setzt den Channel,
+ in dem sich der Benutzer befindet.
+ Benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setIsAdmin(boolean\SpecialChar ~
+b) Setzt das Adminflag, macht allerdings
+ weiter nichts.
+ D.h.
+ ein Benutzer, der eingeloggt ist und Admin-Rechte bekommt muß sich mittels
+ der AdminClient-Applikation neu einloggen, um diese nutzen zu können.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setIsLoggedIn(boolean\SpecialChar ~
+paramLoggedIn) Loggt den Benutzer
+ ein oder aus, Benutzt userAdministration.incNumCurrentUsers(),decNumCurrentUsers
+(), (incNumCurrentGuests(),decNumCurrentGuests() bei Gästen, benutzt ggf.
+ user.setCurrentChannel(null),setClientServant(null) (und userAdministration.remov
+eFromUserList() bei Gästen, um den Gast aus dem System zu entfernen, da
+ Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen).
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setName(String\SpecialChar ~
+paramName) Setzt den Namen des Benutzers.
+ Ruft ggf.
+ informClient() und currentChannel.informCurrentUsers() auf.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setPassword(String\SpecialChar ~
+paramPassword) Setzt das Passwort.
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+setUserAdministration(UserAdministration\SpecialChar ~
+paramUserAdministr
+ation) Setzt die für den Benutzer verantwortliche UserAdministration.
+ Benutzt UserAdministration.removeFromUserList() und addToUserList()
+\layout Description
+
+public\SpecialChar ~
+String\SpecialChar ~
+toString() Dient dem debugging.
+\layout Subsubsection
+
+DataBaseIO
+\layout Standard
+
+Die Klasse DataBaseIO stellt Methoden bereit, um die Benutzer- und Channeldatenb
+ank zu laden und zu speichern.
+ Außerdem wird dafür gesorgt, daß für den Betrieb die relationalen Beziehungen
+ zwischen den geladenen User- und Channelobjekten gesetzt werden.
+\layout Paragraph
+
+Attribute
+\layout Description
+
+private\SpecialChar ~
+ChannelAdministration\SpecialChar ~
+channelAdministration
+\layout Description
+
+private\SpecialChar ~
+final\SpecialChar ~
+static\SpecialChar ~
+String\SpecialChar ~
+channelDBFile Dateiname der Channeldatenbank.
+\layout Description
+
+private\SpecialChar ~
+UserAdministration\SpecialChar ~
+userAdministration
+\layout Description
+
+private\SpecialChar ~
+final\SpecialChar ~
+static\SpecialChar ~
+String\SpecialChar ~
+userDBFile Dateiname der Benutzerdatenbank.
+\layout Paragraph
+
+Methoden
+\layout Paragraph
+
+public\SpecialChar ~
+DataBaseIO(UserAdministration paramUserAdministration, ChannelAdministrati
+on paramChannelAdministration) 
+\layout Standard
+
+Konstruktor, der die Attribute für die ChannelAdministration und UserAdministrat
+ion setzt.
+ Benutzt setChannelAdministration() und setUserAdministration().
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+channelToString(Channel\SpecialChar ~
+paramChannel) Konvertiert den Namen
+ und das isAllowedForGuests-Flag eines Channelobjekts in einen String, wird
+ von saveToDisk() verwendet.
+ Format des Strings: "name#true".
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+loadFromDisk()\SpecialChar ~
+throws\SpecialChar ~
+java.io.FileNotFoundException,\SpecialChar ~
+java.io.IOEx
+ception Lädt die Benutzer- und Channeldaten aus userDBFile und channelDBFile
+ mittels stringToUser(),stringToChannel,channelAdministration.setChannelList()
+ und userAdministration.setUserList().
+\layout Description
+
+public\SpecialChar ~
+synchronized\SpecialChar ~
+void\SpecialChar ~
+saveToDisk()\SpecialChar ~
+throws\SpecialChar ~
+java.io.IOException Speichert die
+ Benutzer- und Channeldaten der aktuellen User- (keine Gäste) und Channelobjekte
+ im System in userDBFile und channelDBFile mittels userToString(), channelToStri
+ng().
+ Benutzt channelAdministration.getChannelEnum() und userAdministration.getUserEnum
+()
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setChannelAdministration(ChannelAdministration\SpecialChar ~
+paramChannelAdministrati
+on) Setzt channelAdministration und benutzt channelAdministration.setDataBaseIO().
+\layout Description
+
+public\SpecialChar ~
+void\SpecialChar ~
+setUserAdministration(UserAdministration\SpecialChar ~
+paramUserAdministration)
+\layout Description
+
+private\SpecialChar ~
+Channel\SpecialChar ~
+stringToChannel(String\SpecialChar ~
+channelSet)
+\layout Standard
+
+Konvertiert den von channelToString() erzeugten String in ein Channelobjekt.
+\layout Description
+
+private\SpecialChar ~
+User\SpecialChar ~
+stringToUser(String\SpecialChar ~
+userSet)
+\layout Standard
+
+Konvertiert den von userToString() erzeugten String in ein Userobjekt.
+ Setzt vorraus, daß die entsprechenden Channelobjekte bereits geladen wurden.
+ Benutzt channelAdministration.getFromChannelListByName() und user.setAllowedChann
+elList().
+\layout Description
+
+private\SpecialChar ~
+String\SpecialChar ~
+userToString(User\SpecialChar ~
+paramUser)
+\layout Standard
+
+Konvertiert den Namen, das Password, das isAdmin-Flag und die Namen der
+ für den Benutzer erlaubten Channels eines Userobjekts in einen String,
+ wird von saveToDisk() verwendet.
+ Format des Strings: "name#password#true#channel1#channel2#channel3".
 \layout Section
+\pagebreak_top 
+Sequenzdiagramme
+\layout Standard
 
+Die Sequenzdiagramme in diesem Kapitel verdeutlichen beispielhaft das Zusammensp
+iel der einzelnen Klassen.
+ Gegenüber dem Entwurf wurden sie entsprechend verfeinert.
+\layout Subsection
+
+Command-Objekte
+\layout Standard
+
+Die Command-Objekte als wichtigste Neuerung im Design sollen hier anhand
+ der zwei Funktionsgruppen senden/empfangen gesondert vorgestellt werden.
+\layout Subsubsection
+
+Command-Objekte senden
+\layout Standard
+
+Das Diagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{sendCommand}
+
+\end_inset 
+
+ zeigt allgemein, wie ein Command-Objekt verschickt wird.
+ Dies können sowohl (Admin-)Client als auch ClientServant veranlassen.
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 285
+file eps/clientsendcommand.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{sendCommand}
+
+\end_inset 
+
+Vorgang des Sendens von Command-Objekten
+\end_float 
+\layout Subsubsection
+\pagebreak_top 
+Command-Objekte empfangen
+\layout Standard
+
+Das Sequenzdiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{downlinkListen}
+
+\end_inset 
+
+ zeigt, wie der Downlink nach seinem Start ein Command-Objekt empfängt und
+ über die Methode processMsg() dessen Ausführung veranlasst.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 420
+file eps/downlinklisten.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{downlinkListen}
+
+\end_inset 
+
+Vorgang des Empfangens von Command-Objekten
+\end_float 
+\layout Subsection
+\pagebreak_top 
+ClientServant
+\layout Standard
+
+Stellvertretend für ähnliche Funktionen verdeutlichen folgende Sequenzdiagramme
+ die Abläufe im ClientServant.
+\layout Subsubsection
+
+Loginanfragen
+\layout Standard
+
+Das Sequenzdiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{clientServant.loginUser}
+
+\end_inset 
+
+ zeigt, wie ein ClientServant auf Anfragen der Clientapplikation reagiert.
+ In diesem speziellen Beispiel verarbeitet der ClientServant eine Loginanfrage.
+ Gegenüber dem themengleichen Diagramm im Entwurfsdokument wird hier das
+ Detail des Designs deutlich.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 550
+file eps/clientservantloginuser.eps
+width 3 100,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{clientServant.loginUser}
+
+\end_inset 
+
+Eine Benutzeranmeldung aus Sicht des ClientServants
+\end_float 
+\layout Subsubsection
+\pagebreak_top 
+Textnachrichten an einen Channel
+\layout Standard
+
+Im Sequenzdiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{clientServant.sendMsgToChannel}
+
+\end_inset 
+
+ wird deutlich, mit welchen Schritten der ClientServant auf die Anfrage
+ eines Clients reagiert, eine Nachricht an einen Channel zu versenden.
+ Das Versenden einer Nachricht an nur einen Benutzer verläuft analog.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 388 715
+file eps/clientservantsendmsgtochannel.eps
+height 3 85,00
+angle 90,00
+flags 11
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{clientServant.sendMsgToChannel}
+
+\end_inset 
+
+Nachrichtenverteilung durch den ClientServant
+\end_float 
+\layout Section
+\pagebreak_top 
+Kollaborationsdiagramm 
+\begin_inset Quotes eld
+\end_inset 
+
+Channel löschen
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Standard
+
+Das Kollaborationsdiagramm in Abbildung\SpecialChar ~
+
+\begin_inset LatexCommand \ref{adminClientServer.deleteChannel}
+
+\end_inset 
+
+ zeigt die Zusammenarbeit zwischen den Klassen AdminClientServant, Uplink,
+ Channel, ChannelAdministration, User, ClientServant und einem der neuen
+ Commands am Beispiel der Funktionalität "Channel löschen".
+ 
+\layout Standard
+
+Ein AdminClientServant empfängt von seiner AdminClientapplikation den Aufruf,
+ den Channel "foo" zu löschen.
+ Der AdminClientServant ruft daraufhin bei der Klasse ChannelAdministration
+ die entsprechende Funktion auf.
+ Die ChannelAdministration löscht den Channel mittels removeYou(), woraufhin
+ der Channel mittels der entsprechenden 
+\begin_inset Quotes gld
+\end_inset 
+
+Set
+\begin_inset Quotes grd
+\end_inset 
+
+-Methoden die 
+\begin_inset Quotes gld
+\end_inset 
+
+allowance
+\begin_inset Quotes grd
+\end_inset 
+
+- und 
+\begin_inset Quotes gld
+\end_inset 
+
+current\SpecialChar ~
+state
+\begin_inset Quotes grd
+\end_inset 
+
+-Beziehungen zum User-Objekt angleicht.
+ Dieses veranlaßt wiederum seinen ihm zugeordneten ClientServant, den Client
+ mittels sendCurrentUserData() über den geänderten Userzustand zu informieren.
+ 
+\layout Standard
+
+Dieses Kollaborationsdiagramm repräsentiert damit eine ganze Klasse von
+ Funktionen, deren Interaktion mit anderen Klassen ähnlich verläuft (deleteUser,
+ addChannel, editChannel etc.)
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+\align center 
+
+\begin_inset Figure size 595 393
+file eps/deletechannelcollab.eps
+width 3 100,00
+flags 9
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{adminClientServer.deleteChannel}
+
+\end_inset 
+
+Die Funktion 
+\begin_inset Quotes eld
+\end_inset 
+
+Channel löschen
+\begin_inset Quotes erd
+\end_inset 
+
+ als Kollaborationsdiagramm
+\end_float 
+\layout Section
+\pagebreak_top 
 Anhang
 \layout Subsection
 
