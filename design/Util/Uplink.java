@@ -23,6 +23,8 @@ public class Uplink {
 
     /** Über diesen Socket werden die Nachrichten versendet. */
     private Socket socket;
+
+    /**Output - Stream für Objekte*/
     private ObjectOutputStream objectOutputStream;
 
     /** Öffnet den Output-Stream. */
@@ -43,8 +45,9 @@ public class Uplink {
     }
 
     /**
-     * Sendet eine Nachricht über den Socket. Sie wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
-     * @param msg Die zu versendende Nachricht.
+     * Sendet ein Commandobjekt über den Socket. Es wird am anderen Ende des Kommunikationskanals von einem Downlink empfangen.
+     * Benutzt objectOutputStream.writeObject()
+     * @param msg Das zu versendende Commandobjekt.
      * @see Dowlink
      */
     public synchronized void sendMsg(Command msg) throws java.io.IOException {
