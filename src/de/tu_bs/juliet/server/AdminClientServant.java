@@ -245,7 +245,28 @@ public class AdminClientServant extends ClientServant
             .editChannel( oldName, newName, paramAllowedForGuest,
                           this.userAdministration.getUserEnum() );
         }
-
+	
+	//alle Benutzer benachrichtigen, dass sich ein Channel geändert hat
+	enum = this.userAdministration.getUserEnum();
+	
+	User tmpUser;
+	
+	ClientServant tmpClientServant;
+	
+	while (enum.hasMoreElements()){
+	
+	 tmpUser = (User)enum.nextElement();
+	 
+	 tmpClientServant = tmpUser.getClientServant();
+	 
+	 if(tmpClientServant!=null){
+	 
+	   tmpClientServant.sendCurrentUserData();
+	 
+	 }
+	 
+	}
+	
         this.dataBaseIO.saveToDisk();
     }
 
