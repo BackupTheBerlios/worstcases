@@ -46,18 +46,22 @@ public class Downlink extends Thread {
     private void listen() {
         Command tmpCommand;
         DownlinkOwner owner = this.downlinkOwner;
+        //horchen, bis stop==true (wird von außen gesetzt)
         while (!stop) {
             try {
                 tmpCommand = (Command)objectInputStream.readObject();
-                Debug.println(this + " received: " + tmpCommand);
+                Debug.println(Debug.MEDIUM, this + ": received: " + tmpCommand);
+                //owner aktualisieren
                 owner = this.downlinkOwner;
+                //beim owner das Command ausführen
                 if (owner != null) {
                     owner.processMsg(tmpCommand);
                 }
+                //pausieren
                 this.sleep(this.LISTEN_DELAY);
             }
             catch (Exception e) {
-                Debug.println(this + ": error while listening :" + e);
+                Debug.println(Debug.HIGH, this + ": error while listening :" + e);
                 if (owner != null) {
                     owner.downlinkError();
                 }
@@ -73,10 +77,10 @@ public class Downlink extends Thread {
         try {
             this.objectInputStream = new ObjectInputStream(this.socket.getInputStream());
             this.start();
-            Debug.println(this + " started");
+            Debug.println(Debug.LOW, this + ": started");
         }
         catch (java.io.IOException e) {
-            Debug.println(this + ":error starting downlink:" + e);
+            Debug.println(Debug.HIGH, this + ":error starting downlink:" + e);
             this.downlinkOwner.downlinkError();
         }
     }
@@ -88,14 +92,15 @@ public class Downlink extends Thread {
 
     /** Schließt den Input-Stream. Benutzt setDownlinkOwner(null). */
     public void stopDownlink() {
+        //setzen, um listen() zu stoppen
         this.stop = true;
         try {
             this.objectInputStream.close();
         }
         catch (java.io.IOException e) {
-            Debug.println(this + ": error while stopping " + e);
+            Debug.println(Debug.HIGH, this + ": error while stopping: " + e);
         }
-        Debug.println(this + " stopped");
+        Debug.println(Debug.LOW, this + ": stopped");
         this.setDownlinkOwner(null);
     }
 

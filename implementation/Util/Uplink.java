@@ -31,17 +31,17 @@ public class Uplink {
     /** ÷ffnet den Output-Stream. */
     public void startUplink() throws java.io.IOException {
         this.objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
-        Debug.println(this + " started");
+        Debug.println(Debug.LOW, this + ": started");
     }
 
     /** Schlieﬂt den Output-Stream. */
     public void stopUplink() {
         try {
             this.objectOutputStream.close();
-            Debug.println(this + " stopped");
+            Debug.println(Debug.LOW, this + ": stopped");
         }
         catch (java.io.IOException e) {
-            Debug.println(this + ":error stopping:" + e);
+            Debug.println(Debug.HIGH, this + ":error stopping:" + e);
         }
     }
 
@@ -52,7 +52,7 @@ public class Uplink {
      * @see Downlink
      */
     public synchronized void sendMsg(Command msg) throws java.io.IOException {
-        Debug.println(this + ": sending " + msg);
+        Debug.println(Debug.MEDIUM, this + ": sending " + msg);
         objectOutputStream.writeObject(msg);
         objectOutputStream.flush();
     }
