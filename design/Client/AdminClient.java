@@ -10,38 +10,38 @@ import Util.Commands.*;
  *  Benutzer und Channels anzulegen, zu editieren und zu löschen. */
 public class AdminClient extends Client {
 
-    /** Liste aller Channelnamen */
+    /** Liste aller Channelnamen. */
     private Vector channelList;
 
-    /** Channeldaten: alter Channelname (wird beim Editieren benötigt)*/
+    /** Channeldaten: alter Channelname (wird beim Editieren benötigt).*/
     private String tmpOldChannelName;
 
-    /** Channeldaten: Channelname, zur Bearbeitung*/
+    /** Channeldaten: Channelname, zur Bearbeitung.*/
     private String tmpChannelName;
 
-    /** Channeldaten: Flag öffentlich ja/nein, zur Bearbeitung*/
+    /** Channeldaten: Flag öffentlich ja/nein, zur Bearbeitung.*/
     private boolean tmpAllowedForGuests;
 
-    /** Channeldaten: Liste der berechtigten Benutzer, zur Bearbeitung*/
+    /** Channeldaten: Liste der berechtigten Benutzer, zur Bearbeitung.*/
     private Vector tmpAllowedUserNames;
 
 
-    /** Liste aller Benutzernamen */
+    /** Liste aller Benutzernamen. */
     private Vector userList;
 
-    /** Userdaten: alter Username (wird beim Editieren benötigt)*/
+    /** Userdaten: alter Username (wird beim Editieren benötigt).*/
     private String tmpOldUserName;
 
-    /** Userdaten: Username, zur Bearbeitung*/
+    /** Userdaten: Username, zur Bearbeitung.*/
     private String tmpUserName;
 
-    /** Userdaten: Passwort, zur Bearbeitung*/
+    /** Userdaten: Passwort, zur Bearbeitung.*/
     private String tmpPassword;
 
-    /** Userdaten: Flag ist Admin ja/nein, zur Bearbeitung*/
+    /** Userdaten: Flag ist Admin ja/nein, zur Bearbeitung.*/
     private boolean tmpIsAdmin;
 
-    /** Userdaten: Liste der aktiven Channels, zur Bearbeitung*/
+    /** Userdaten: Liste der aktiven Channels, zur Bearbeitung.*/
     private Vector tmpAllowedChannelNames;
 
 

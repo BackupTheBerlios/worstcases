@@ -1,5 +1,8 @@
 package Client;
 
+/**
+ * Dient dem Testen der Klasse Client.
+ */
 public class Testclient {
 
   public static void main(String[] args) {
