@@ -29,13 +29,13 @@ public class Uplink {
     private ObjectOutputStream objectOutputStream;
 
     /** ÷ffnet den Output-Stream. */
-    public synchronized void startUplink() throws java.io.IOException {
+    public void startUplink() throws java.io.IOException {
         this.objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
         Debug.println(this+" started");
     }
 
     /** Schlieﬂt den Output-Stream. */
-    public synchronized void stopUplink() {
+    public void stopUplink() {
         try{
         this.objectOutputStream.close();
         Debug.println(this+" stopped");

@@ -43,23 +43,23 @@ public class Downlink extends Thread {
      * Benutzt DownlinkOwner.downlinkError() und processMsg(). Wartet pro Schleifendurchlauf gemäß LISTEN_DELAY und beendet
      * die Schleife, falls stop=true;
      */
-    private synchronized void listen() {
+    private void listen() {
         Command tmpCommand;
-        DownlinkOwner owner;
+        DownlinkOwner owner = this.downlinkOwner;
         while (!stop) {
-            owner=this.downlinkOwner;
             try {
                 tmpCommand = (Command)objectInputStream.readObject();
-                Debug.println(this+" received: " + tmpCommand);
-                if(owner!=null){
-                owner.processMsg(tmpCommand);
+                Debug.println(this + " received: " + tmpCommand);
+                owner = this.downlinkOwner;
+                if (owner != null) {
+                    owner.processMsg(tmpCommand);
                 }
                 this.sleep(this.LISTEN_DELAY);
             }
             catch (Exception e) {
-                Debug.println(this+": error while listening :" + e);
-                if(owner!=null){
-                 owner.downlinkError();
+                Debug.println(this + ": error while listening :" + e);
+                if (owner != null) {
+                    owner.downlinkError();
                 }
             }
         }
@@ -69,14 +69,14 @@ public class Downlink extends Thread {
      * Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. Ruft this.start() auf.
      * Benutzt DownlinkOwner.downlinkError().
      */
-    public synchronized void startDownlink() {
+    public void startDownlink() {
         try {
             this.objectInputStream = new ObjectInputStream(this.socket.getInputStream());
             this.start();
-            Debug.println(this+" started");
+            Debug.println(this + " started");
         }
         catch (java.io.IOException e) {
-            Debug.println(this+":error starting downlink:" + e);
+            Debug.println(this + ":error starting downlink:" + e);
             this.downlinkOwner.downlinkError();
         }
     }
@@ -87,17 +87,16 @@ public class Downlink extends Thread {
     }
 
     /** Schließt den Input-Stream. Benutzt setDownlinkOwner(null). */
-    public synchronized void stopDownlink() {
+    public void stopDownlink() {
         this.stop = true;
         try {
-          this.objectInputStream.close();
+            this.objectInputStream.close();
         }
         catch (java.io.IOException e) {
-            Debug.println(this+": error while stopping "+e);
+            Debug.println(this + ": error while stopping " + e);
         }
-        Debug.println(this+" stopped");
+        Debug.println(this + " stopped");
         this.setDownlinkOwner(null);
-
     }
 
     /** Gibt den DownlinkOwner zurück. */
@@ -109,7 +108,7 @@ public class Downlink extends Thread {
      * Benachrichtigt die betroffenen Objekte mittels setDownlink().
      * Hat der Downlink keinen DownlinkOwner mehr, so wird stopDownlink() aufgerufen
      */
-    public synchronized void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
+    public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
         if (this.downlinkOwner != paramDownlinkOwner) {
             if (this.downlinkOwner != null) {
                 DownlinkOwner old = this.downlinkOwner;
@@ -117,7 +116,7 @@ public class Downlink extends Thread {
                 old.setDownlink(null);
             }
             this.downlinkOwner = paramDownlinkOwner;
-            Debug.println(this+" setDownlinkOwner to "+this.downlinkOwner);
+            Debug.println(this + " setDownlinkOwner to " + this.downlinkOwner);
             if (paramDownlinkOwner != null) {
                 paramDownlinkOwner.setDownlink(this);
             }
