@@ -17,7 +17,7 @@ import Util.Debug.Debug;
 public class Downlink extends Thread {
 
   /** Zeit zwischen zwei Listen()-Schleifendurchläufen in Millisekunden. */
-  private int LISTEN_DELAY = 100;
+  private static int LISTEN_DELAY = 100;
 
   /**
    * Konstruktor, der setDownlinkOwner() benutzt.
