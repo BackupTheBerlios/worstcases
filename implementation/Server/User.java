@@ -141,7 +141,7 @@ class User {
           this.userAdministration.incNumCurrentUsers();
         }
 
-        Debug.println(Debug.MEDIUM, this + ": logged in");
+        Debug.println(Debug.MEDIUM, "User: logged in");
       }
 
       // User wird ausgeloggt
@@ -162,7 +162,7 @@ class User {
           this.userAdministration.decNumCurrentUsers();
         }
 
-        Debug.println(Debug.MEDIUM, this + ": logged out");
+        Debug.println(Debug.MEDIUM, "User: logged out");
       }
     }
   }
@@ -319,7 +319,7 @@ class User {
 
       this.informClient();
       Debug.println(Debug.LOW,
-                    this.getName() + ": setCurrentChannel to: "
+                    "User: " + this.getName() + ": setCurrentChannel to: "
                     + paramChannel);
     }
   }

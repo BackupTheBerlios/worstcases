@@ -38,7 +38,7 @@ class ClientServantWatchDog extends Thread {
     ClientServant tmpClientServant;
 
     Debug.println(Debug.MEDIUM,
-                  this + ": watching: timeToLive: " + this.timeToLive
+                  "ClientServantWatchDog: watching: timeToLive: " + this.timeToLive
                   + " updateDelay: " + this.updateDelay);
 
     while (!stop) {
@@ -51,17 +51,17 @@ class ClientServantWatchDog extends Thread {
                 - tmpClientServant.getAliveStamp()) > timeToLive) {
           tmpClientServant.stopClientServant();
           Debug.println(Debug.MEDIUM,
-                        this + ": " + tmpClientServant + ": stopped");
+                        "ClientServantWatchDog: " + tmpClientServant + ": stopped");
         }
       }
 
       try {
         sleep(updateDelay);
       } catch (java.lang.InterruptedException e) {
-        Debug.println(Debug.HIGH, this + ": interrupted: " + e);
+        Debug.println(Debug.HIGH, "ClientServantWatchDog: interrupted: " + e);
       }
     }
 
-    Debug.println(Debug.MEDIUM, this + ": stopped");
+    Debug.println(Debug.MEDIUM, "ClientServantWatchDog: stopped");
   }
 }

@@ -36,7 +36,7 @@ class UserAdministration {
       if (tmpUser == null) {
 
         // Eine Fehlermeldung wird ausgegeben, falls der User nicht existiert,
-        Debug.println(Debug.MEDIUM, "login User" + name + " failed");
+        Debug.println(Debug.MEDIUM, "UserAdministration: login User" + name + " failed");
 
         return null;  // und die Methode wird ohne Rückgabewert beendet.
       } else {
@@ -48,7 +48,7 @@ class UserAdministration {
 
             // wenn maxUser erreicht ist und es sich nicht um einen Admin handelt,
             Debug.println(Debug.MEDIUM,
-                          this + ": maxusers reached: " + maxUsers);
+                          "UserAdministration: maxusers reached: " + maxUsers);
 
             return null;  // wird die Methode ohne Rückgabewert beendet.
           } else {
@@ -60,7 +60,7 @@ class UserAdministration {
           }
         } else {
           Debug.println(Debug.MEDIUM,
-                        this + ": password wrong or user already logged in: "
+                        "UserAdministration: password wrong or user already logged in: "
                         + name);
 
           return null;
@@ -107,7 +107,7 @@ class UserAdministration {
         // Es existiert bereits ein User mit diesem Namen, oder die maximale Useranzahl
         // wurde erreicht:
         Debug.println(Debug.MEDIUM,
-                      this + ": guestname " + paramName + " login failed");  // Fehlermeldung!
+                      "UserAdministration: guestname " + paramName + " login failed");  // Fehlermeldung!
 
         return null;
       }
@@ -147,7 +147,7 @@ class UserAdministration {
       User tmpUser = this.getFromUserListByName(oldName);
 
       // Das "alte" Userobjekt wird geladen.
-      Debug.println(Debug.MEDIUM, this + ": changing: " + tmpUser);
+      Debug.println(Debug.MEDIUM, "UserAdministration: changing: " + tmpUser);
 
       if (tmpUser != null) {  // Wenn das Userobjekt existiert, dann
         tmpUser.setName(newUser.getName());  // werden die alten Attribute
@@ -157,7 +157,7 @@ class UserAdministration {
       }
 
       newUser.removeYou();  // Das newUser-Objekt löst sich selber auf.
-      Debug.println(Debug.MEDIUM, this + ": changed: " + tmpUser);
+      Debug.println(Debug.MEDIUM, "UserAdministration: changed: " + tmpUser);
     }
   }
 
@@ -170,7 +170,7 @@ class UserAdministration {
       // Wenn ein Userobjekt übergeben wurde, das nicht in der UserList steht...
       this.userList.addElement(paramUser);  // Dann wird es zur userList hinzugefügt.
       paramUser.setUserAdministration(this);
-      Debug.println(Debug.LOW, this + ": added: " + paramUser);
+      Debug.println(Debug.LOW, "UserAdministration: added: " + paramUser);
     }
   }
 
@@ -179,7 +179,7 @@ class UserAdministration {
 
     if (this.userList.removeElement(paramUser)) {
       paramUser.removeYou();
-      Debug.println(Debug.LOW, this + ": removed: " + paramUser);
+      Debug.println(Debug.LOW, "UserAdministration: removed: " + paramUser);
     }
   }
 
@@ -268,7 +268,7 @@ class UserAdministration {
 
     this.numCurrentUsers++;
 
-    Debug.println(Debug.MEDIUM, "#User:" + this.numCurrentUsers);
+    Debug.println(Debug.MEDIUM, "UserAdministration: #User:" + this.numCurrentUsers);
   }
 
   /** Verkleinert den Zähler numCurrentUsers um 1 */
@@ -276,7 +276,7 @@ class UserAdministration {
 
     this.numCurrentUsers--;
 
-    Debug.println(Debug.MEDIUM, "#User:" + this.numCurrentUsers);
+    Debug.println(Debug.MEDIUM, "UserAdministration: #User:" + this.numCurrentUsers);
   }
 
   /** Erhöht den Zähler numCurrentGuests um 1 */
@@ -284,7 +284,7 @@ class UserAdministration {
 
     this.numCurrentGuests++;
 
-    Debug.println(Debug.MEDIUM, "#Guest:" + this.numCurrentGuests);
+    Debug.println(Debug.MEDIUM, "UserAdministration: #Guest:" + this.numCurrentGuests);
   }
 
   /** Verringert den Zähler numCurrentGuests um 1 */
@@ -292,7 +292,7 @@ class UserAdministration {
 
     this.numCurrentGuests--;
 
-    Debug.println(Debug.MEDIUM, "#guest:" + this.numCurrentGuests);
+    Debug.println(Debug.MEDIUM, "UserAdministration: #guest:" + this.numCurrentGuests);
   }
 
   /** Setzt dataBaseIO und benachrichtigt das betroffene Objekt durch DataBaseIO.setUserAdministration */

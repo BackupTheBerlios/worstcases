@@ -114,7 +114,7 @@ class ChannelAdministration {
       }
 	  //wird dieser aus der ChannelList entfernt und
       //mittels removeYou gelöscht.
-      Debug.println(Debug.LOW, this + ": removed: " + paramChannel);
+      Debug.println(Debug.LOW, "ChannelAdministration: removed: " + paramChannel);
     }
   }
 
@@ -129,7 +129,7 @@ class ChannelAdministration {
       	//Wenn dieser Channel noch nicht existiert...
         this.channelList.addElement(paramChannel);
         //wird er zur channelList hinzugefügt.
-        Debug.println(Debug.LOW, this + ": added: " + paramChannel);
+        Debug.println(Debug.LOW, "ChannelAdministration: added: " + paramChannel);
       }
     }
   }
@@ -148,7 +148,7 @@ class ChannelAdministration {
     	//Wenn oldName und newChannel nicht leer übergeben wurden...
       Channel tmpChannel = this.getFromChannelListByName(oldName);
 		//...wird der zu verändernde Channel geladen.
-      Debug.println(Debug.MEDIUM, this + ": changing: " + tmpChannel);
+      Debug.println(Debug.MEDIUM, "ChannelAdministration: changing: " + tmpChannel);
 
       if (tmpChannel != null) {//Wenn der Channel gefunden wurde...
         tmpChannel.setName(newChannel.getName());
@@ -160,7 +160,7 @@ class ChannelAdministration {
       }
       newChannel.removeYou();
       //Das nun unnötige newChannel-Objekt wird gelöscht.
-      Debug.println(Debug.MEDIUM, this + ": changed: " + tmpChannel);
+      Debug.println(Debug.MEDIUM, "ChannelAdministration: changed: " + tmpChannel);
     }
   }
 

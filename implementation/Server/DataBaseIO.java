@@ -158,7 +158,7 @@ class DataBaseIO {
     // die Channeliste wird durch die ChannelAdministration gesetzt
     this.channelAdministration.setChannelList(tmpList.elements());
     tmpBufferedReader.close();
-    Debug.println(Debug.MEDIUM, "channeldb loaded");
+    Debug.println(Debug.MEDIUM, "DataBaseIO: channeldb loaded");
 
     // zweiter Vector für die User wird erstellt
     Vector tmpList2 = new Vector();
@@ -179,8 +179,8 @@ class DataBaseIO {
     // die User werden durch die userAdministration gesetzt
     this.userAdministration.setUserList(tmpList2.elements());
     tmpBufferedReader.close();
-    Debug.println(Debug.MEDIUM, "userdb loaded");
-    Debug.println(Debug.LOW, this + ": loaded the following data: ");
+    Debug.println(Debug.MEDIUM, "DataBaseIO: userdb loaded");
+    Debug.println(Debug.LOW, "DataBaseIO: loaded the following data: ");
     Debug.println(Debug.LOW, tmpList);
     Debug.println(Debug.LOW, tmpList2);
   }
@@ -212,7 +212,7 @@ class DataBaseIO {
       }
 
       tmpBufferedWriter.close();
-      Debug.println("channel data written to disk");
+      Debug.println("DataBaseIO: channel data written to disk");
 
       // Dateizugriff für UserDBFile wird initialisiert
       tmpBufferedWriter =
@@ -234,9 +234,9 @@ class DataBaseIO {
       }
 
       tmpBufferedWriter.close();
-      Debug.println("user data written to disk");
+      Debug.println("DataBaseIO: user data written to disk");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, "error while saving data: " + e);
+      Debug.println(Debug.HIGH, "DataBaseIO: error while saving data: " + e);
     }
   }
 

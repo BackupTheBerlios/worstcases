@@ -69,7 +69,7 @@ public class ClientServant implements Util.DownlinkOwner {
    * @see Util.DownlinkOwner
    */
   public final void downlinkError() {
-    Debug.println(Debug.HIGH, this + ": downlink error");
+    Debug.println(Debug.HIGH, "ClientServant: downlink error");
     this.stopClientServant();
   }
 
@@ -116,11 +116,11 @@ public class ClientServant implements Util.DownlinkOwner {
 
     // bei einem Fehler (aus uplink.startUplink()) stopClientServant()
     catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + " error starting uplink:" + e);
+      Debug.println(Debug.HIGH, "ClientServant: error starting uplink:" + e);
       this.stopClientServant();
     }
 
-    Debug.println(Debug.MEDIUM, this + " started");
+    Debug.println(Debug.MEDIUM, "ClientServant: started");
   }
 
   /**
@@ -136,12 +136,12 @@ public class ClientServant implements Util.DownlinkOwner {
 
     // Versuch, ein StopClientCommand() zu senden
     if (old != null) {
-      Debug.println(Debug.MEDIUM, this + ": stopping");
+      Debug.println(Debug.MEDIUM, "ClientServant: stopping");
 
       try {
         old.sendMsg(new StopClientCommand());
       } catch (java.io.IOException e) {
-        Debug.println(Debug.HIGH, this + " error sending stopClient:" + e);
+        Debug.println(Debug.HIGH, "ClientServant: error sending stopClient:" + e);
       }
 
       old.stopUplink();
@@ -172,7 +172,7 @@ public class ClientServant implements Util.DownlinkOwner {
         old.sendMsg(paramCommand);
       }
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ": error while sending:" + e);
+      Debug.println(Debug.HIGH, "ClientServant: error while sending:" + e);
       this.stopClientServant();
     }
   }
@@ -242,7 +242,7 @@ public class ClientServant implements Util.DownlinkOwner {
    */
   public final void becomeAdminClientServant() {
 
-    Debug.println(Debug.MEDIUM, this + ": becoming AdminClientServant");
+    Debug.println(Debug.MEDIUM, "ClientServant: becoming AdminClientServant");
 
     Uplink oldUplink = this.uplink;
     Downlink oldDownlink = this.downlink;
