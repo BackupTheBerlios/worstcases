@@ -7,30 +7,6 @@ import Util.Debug.Debug;
 
 /** Klasse mit Hilfsalgorithmen. */
 public class Helper {
-    /** Bricht den String s nach rowLength Zeichen unter Beachtung von Wörtern um */
-    public static String wordWrap(String s, int rowLength) {
-        Vector tmpVector = new Vector();
-        String tmpString = new String();
-        String tmpToken = new String();
-        String tmpRow = new String();
-        StringTokenizer stringTokenizer = new StringTokenizer(s, " ");
-        while (stringTokenizer.hasMoreTokens()) {
-            tmpVector.addElement(stringTokenizer.nextElement());
-        }
-        while (!tmpVector.isEmpty()) {
-            tmpToken = (String)tmpVector.firstElement();
-            tmpVector.removeElementAt(0);
-            if ((tmpRow.length() + tmpToken.length() + 1) <= rowLength) {
-								tmpRow = tmpRow  + tmpToken+ " ";
-            }
-            else {
-								tmpString = tmpString  + tmpRow +"\n";
-								tmpRow = tmpToken+" ";
-            }
-        }
-				tmpString = tmpString + tmpRow;
-        return tmpString;
-    }
 
     /** Hilfsmethode für quicksort(). */
     private static Vector quicksortHelp(Vector list, int l, int m) {

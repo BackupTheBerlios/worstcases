@@ -140,12 +140,12 @@ public class ChatGui extends java.applet.Applet {
     }
 
     public synchronized void sendMsgFromChannel(String fromName, String msg) {
-        this.chatText.append(Util.Helper.wordWrap(fromName + ": " + msg + "\n", chatText.getColumns()));
+        this.chatText.append(fromName + ": " + msg + "\n");
         this.chatText.setCaretPosition(this.chatText.getText().length());
     }
 
     public synchronized void sendMsgFromUser(String fromName, String msg) {
-        this.chatText.append(Util.Helper.wordWrap(fromName + " flüstert: " + msg + "\n", chatText.getColumns()));
+        this.chatText.append(fromName + " flüstert: " + msg + "\n");
         this.chatText.setCaretPosition(this.chatText.getText().length());
     }
 
@@ -201,7 +201,7 @@ public class ChatGui extends java.applet.Applet {
         isGuest = new java.awt.Checkbox();
         login = new java.awt.Button();
         chatpanel = new java.awt.Panel();
-        chatText = new java.awt.TextArea();
+        chatText = new java.awt.TextArea("",70,20,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY); //FIXME: nur zum testen
         msg = new java.awt.TextField();
         sendMsg = new java.awt.Button();
         channelChoice = new java.awt.Choice();
@@ -217,7 +217,7 @@ public class ChatGui extends java.applet.Applet {
         java.awt.GridBagConstraints gridBagConstraints1;
         mainpanel.setLayout(this.cardLayout);
         mainpanel.setFont(
-            new java.awt.Font("Arial", 0, 10));
+            new java.awt.Font("SansSerif", 0, 11));
         mainpanel.setName("mainpanel");
         mainpanel.setBackground(
             new java.awt.Color(204, 204, 204));
@@ -226,10 +226,10 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.GridBagLayout());
         java.awt.GridBagConstraints gridBagConstraints2;
         loginpanel.setFont(
-            new java.awt.Font("Dialog", 0, 11));
+            new java.awt.Font("SansSerif", 0, 11));
         loginpanel.setName("loginpanel");
         loginpanel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         loginpanel.setForeground(java.awt.Color.black);
         loginName.setBackground(java.awt.Color.white);
         loginName.setName("loginName");
@@ -273,7 +273,7 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         loginNameLabel.setName("loginNameLabel");
         loginNameLabel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         loginNameLabel.setForeground(java.awt.Color.black);
         loginNameLabel.setText("Benutzername:");
         gridBagConstraints2 = new java.awt.GridBagConstraints();
@@ -285,7 +285,7 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         passwordLabel.setName("passwordLabel");
         passwordLabel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         passwordLabel.setForeground(java.awt.Color.black);
         passwordLabel.setText("Kennwort:");
         gridBagConstraints2 = new java.awt.GridBagConstraints();
@@ -294,7 +294,7 @@ public class ChatGui extends java.applet.Applet {
         gridBagConstraints2.insets = new java.awt.Insets(10, 0, 0, 0);
         loginpanel.add(passwordLabel, gridBagConstraints2);
         isGuest.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         isGuest.setName("isGuest");
         isGuest.setFont(
             new java.awt.Font("SansSerif", 0, 11));
@@ -352,16 +352,14 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         chatpanel.setName("chatpanel");
         chatpanel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         chatpanel.setForeground(java.awt.Color.black);
         chatText.setBackground(java.awt.Color.lightGray);
         chatText.setName("chatText");
         chatText.setEditable(false);
         chatText.setFont(
             new java.awt.Font("SansSerif", 0, 11));
-        chatText.setColumns(70);
         chatText.setForeground(java.awt.Color.black);
-        chatText.setRows(20);
         gridBagConstraints3 = new java.awt.GridBagConstraints();
         gridBagConstraints3.gridx = 0;
         gridBagConstraints3.gridy = 1;
@@ -429,7 +427,7 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         channelChoiceLabel.setName("channelChoiceLabel");
         channelChoiceLabel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         channelChoiceLabel.setForeground(java.awt.Color.black);
         channelChoiceLabel.setText("Channel:");
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -454,7 +452,7 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         userListLabel.setName("userListLabel");
         userListLabel.setBackground(
-            new java.awt.Color(153, 153, 153));
+            new java.awt.Color(204, 204, 204));
         userListLabel.setForeground(java.awt.Color.black);
         userListLabel.setText("Empf\u00e4nger:");
         gridBagConstraints3 = new java.awt.GridBagConstraints();
@@ -590,7 +588,7 @@ public class ChatGui extends java.applet.Applet {
         }
         else {
             this.adminClient.sendMsgToUser(this.userList.getSelectedItem(), this.msg.getText());
-            this.chatText.append(Util.Helper.wordWrap("Flüstern an " + this.userList.getSelectedItem() + ": " + this.msg.getText() + "\n", chatText.getColumns()));
+            this.chatText.append("Flüstern an " + this.userList.getSelectedItem() + ": " + this.msg.getText() + "\n");
             this.userList.select(0);
         }
         this.msg.setText("");

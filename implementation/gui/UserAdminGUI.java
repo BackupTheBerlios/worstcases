@@ -62,6 +62,7 @@ public class UserAdminGUI extends java.awt.Frame {
         setFont(
             new java.awt.Font("SansSerif", 0, 12));
         setTitle(gui.ChatGui.PRODUCT_NAME + " - UserAdministration");
+        setBackground(new java.awt.Color(204, 204, 204));
         passwordLabel.setFont(
             new java.awt.Font("SansSerif", 0, 11));
         passwordLabel.setName("passwordLabel");
