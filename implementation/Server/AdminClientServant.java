@@ -1,11 +1,9 @@
 package Server;
 
-import java.net.Socket;
 import java.util.Vector;
 import java.util.Enumeration;
 import Util.*;
 import Util.Commands.*;
-import Util.Debug.Debug;
 
 /** Verarbeitet die Anfragen eines AdminClients. */
 public class AdminClientServant extends ClientServant implements DownlinkOwner {
@@ -23,7 +21,6 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
             this.userAdministration = paramUserAdministration;
             this.setUser(paramUser);
             this.dataBaseIO = paramDataBaseIO;
-            Debug.println("AdminClient started");
     }
 
     /**
@@ -53,30 +50,37 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * @param paramAllowedUserNames Vector von Strings - die Namen der Userobjekte, die den Channel betreten dürfen
      */
     public void addChannel(String paramName, boolean paramAllowedForGuests, Vector paramAllowedUserNames) {
-        Channel tmpChannel = new Channel(paramName, paramAllowedForGuests);
-        Enumeration enum;
-        if (!paramAllowedForGuests) {
-            if (paramAllowedUserNames != null) {
-                enum = paramAllowedUserNames.elements();
+        //"faule" Auswertung!
+        if (paramName != null && paramName != "") {
+            Channel tmpChannel = new Channel(paramName, paramAllowedForGuests);
+            Enumeration enum;
+            //wenn der Channel nicht für Gäste freigegeben ist, dann benutze paramAllowedUserNames
+            if (!paramAllowedForGuests) {
+                if (paramAllowedUserNames != null) {
+                    enum = paramAllowedUserNames.elements();
+                }
+                else {
+                    enum = (
+                        new Vector()).elements();
+                }
             }
+            //Channel ist für Gäste freigegeben, erlaube alle Benutzer
             else {
-                enum = (
-                    new Vector()).elements();
+                enum = this.userAdministration.getUserEnum();
             }
+            //füge die Benutzerobjekte hinzu
+            while (enum.hasMoreElements()) {
+                tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
+            }
+            this.channelAdministration.addToChannelList(tmpChannel);
+            this.dataBaseIO.saveToDisk();
         }
-        else {
-            enum = this.userAdministration.getUserEnum();
-        }
-        while (enum.hasMoreElements()) {
-            tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
-        }
-        this.channelAdministration.addToChannelList(tmpChannel);
-        this.dataBaseIO.saveToDisk();
     }
 
     /**
      * Löscht den Channel mit dem angegebenen Namen. Benutzt channelAdministration.getFromChannelListByName()
      * und channelAdministration.removeFromChannelList(). Bewirkt Aufruf von DataBaseIO.saveToDisk()
+     * Ignoriert deleteChannel(FOYERNAME)
      */
     public void deleteChannel(String channelName) {
         if (channelName != null) {
@@ -92,17 +96,18 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Verändert die Daten des angegebenen Channels. Erzeugt ein neues Channelobjekt mit den angegebenen Daten.
      * Benutzt setAllowedUserList() um die erlaubten Benutzer des Channels einzutragen
      * und ruft dann channelAdministration.editChannel() auf. Bewirkt Aufruf von DataBaseIO.saveToDisk()
+     * Ignoriert editChannel(FOYER, ...)
      * @param oldName alter Name des Channels
      * @param newName neuer Name des Channels
      * @param paramAllowedForGuest Flag - ob Gäste den Channel betreten dürfen
      * @param allowedUserNames Vector von Strings - Liste der Usernamen, die den Channel betreten dürfen
      */
     public void editChannel(String oldName, String newName, boolean paramAllowedForGuest, Vector allowedUserNames) {
-        if (oldName != null && newName != null) {
+        if (oldName != null && newName != null && newName != "") {
             if (oldName.compareTo(this.channelAdministration.FOYERNAME) != 0) {
                 Channel tmpChannel = new Channel(newName, paramAllowedForGuest);
                 Enumeration enum;
-                Vector tmpList = new Vector();
+                //Channel ist nicht für Gäste, benutze allowedUserNames
                 if (!paramAllowedForGuest) {
                     if (allowedUserNames != null) {
                         enum = allowedUserNames.elements();
@@ -111,10 +116,12 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                         enum = (
                             new Vector()).elements();
                     }
+                    //füge die berechtigten Benutzer hinzu
                     while (enum.hasMoreElements()) {
                         tmpChannel.addToAllowedUserList(this.userAdministration.getFromUserListByName((String)enum.nextElement()));
                     }
                 }
+                //Channel ist für Gäste freigegeben, füge alle Benutzer hinzu
                 else {
                     tmpChannel.setAllowedUserList(this.userAdministration.getUserEnum());
                 }
@@ -131,7 +138,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * Ruft schließlich userAdministration.addToUserList auf. Bewirkt Aufruf von DataBaseIO.saveToDisk().
      */
     public void addUser(String paramName, String paramPassword, boolean paramIsAdmin, Vector paramAllowedChannelNames) {
-        if (paramName != null && paramPassword != null) {
+        //"faule" Auswertung!
+        if (paramName != null && paramPassword != null && paramName != "" && paramPassword != "") {
             User tmpUser = new User(paramName, paramPassword, false, paramIsAdmin, this.userAdministration);
             //gewährt Zugriff auf alle Channel, die für Gäste freigegeben sind
             tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
@@ -143,6 +151,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                 enum = (
                     new Vector()).elements();
             }
+            //zusätzlich zu den Gastchannels die Channel aus paramAllowedChannelNames hinzufügen
             while (enum.hasMoreElements()) {
                 tmpUser.addToAllowedChannelList(this.channelAdministration.getFromChannelListByName((String)enum.nextElement()));
             }
@@ -156,11 +165,9 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      * userAdministration.removeFromUserList(). Bewirkt Aufruf von DataBaseIO.saveToDisk().
      */
     public void deleteUser(String userName) {
-        if (userName != null) {
-            User tmpUser = this.userAdministration.getFromUserListByName(userName);
-            this.userAdministration.removeFromUserList(tmpUser);
-            this.dataBaseIO.saveToDisk();
-        }
+        User tmpUser = this.userAdministration.getFromUserListByName(userName);
+        this.userAdministration.removeFromUserList(tmpUser);
+        this.dataBaseIO.saveToDisk();
     }
 
     /**
@@ -176,7 +183,8 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
      */
     public void editUser(String oldName, String newName, String newPassword, boolean paramIsAdmin,
         Vector allowedChannelNames) {
-            if (oldName != null && newName != null) {
+            //"faule" Auswertung!
+            if (newName != null && newPassword != null && newName != "" && newPassword != "") {
                 User tmpUser = new User(newName, newPassword, false, paramIsAdmin, this.userAdministration);
                 //gewährt Zugriff auf alle Channel, die für Gäste freigegeben sind
                 tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
@@ -188,6 +196,7 @@ public class AdminClientServant extends ClientServant implements DownlinkOwner {
                     enum = (
                         new Vector()).elements();
                 }
+                //weitere Channel aus allowedChannelNames hinzufügen
                 while (enum.hasMoreElements()) {
                     tmpUser.addToAllowedChannelList(this.channelAdministration.getFromChannelListByName((String)enum.nextElement()));
                 }
