@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+  <title>SEP 2001: Design "Virtuelle Konferenz", Gruppe WorstCases</title>
+</head>
+<body bgcolor="white" text="black">
+<div align="center">
+<h1>Design<br><br>
+Softwareentwicklungspraktikum SS 2001<br>
+Gruppe<br>
+<img src="logo.jpg" alt="WorstCases" width=487 height=160 border=0><br>
+Virtuelle Konferenz
+</h1>
+<table cellpadding=3 border="1">
+<tr>
+<td align="CENTER">Version</td>
+<td align="CENTER">Datum</td>
+<td align="LEFT">Autor</td>
+</tr>
+<tr>
+<td align="CENTER">1.0</td>
+<td align="CENTER">31.5.2001</td>
+<td align="LEFT">Malte Knörr</td>
+</tr>
+</table>
+</div>
+
+<h1>1 Auftraggeber</h1>
+<p> Norbert Schenk <br>
+Institut für Computergrafik <br>
+Rebenring 18 <br>
+38106 Braunschweig <br>
+Tel.: (0531) 391-21 04, -21 03 <br>
+E-Mail: n.schenk@tu-bs.de <br>
+</p>
+<p>
+Marco Zens <br>
+Institut für Computergrafik <br>
+Rebenring 18 <br>
+38106 Braunschweig <br>
+Tel.: (0531) 391-2106, -2103 <br>
+E-Mail: m.zens@tu-bs.de
+</p>
+
+<h1>2 Auftragnehmer</h1>
+<p>Die SEP-Gruppe "Worst Cases", SS 2001: <br>
+<br>
+Andreas Büthe <br>
+Tel.: (0171) 7 96 38 17 <br>
+Mobil: (0531) 2 70 45 15 <br>
+E-Mail: a.buethe@gmx.de <br>
+<br>
+Jan-Henrik Grobe <br>
+Mobil: (0172) 5 44 70 84 <br>
+E-Mail: j.grobe@gmx.de <br>
+<br>
+Frithjof Hummes <br>
+Tel.: (0531) 2 60 10 08 <br>
+Mobil: (0177) 8 60 10 08 <br>
+E-Mail: fraidl@jazzholes.de <br>
+<br>
+Malte Knörr <br>
+Tel.: (0531) 32 58 60 <br>
+E-Mail: malte@knoerr.escape.de <br>
+<br>
+Fabian Rotte <br>
+Tel.: (0531) 2 50 76 65 <br>
+Mobil: (0173) 2 18 27 94 <br>
+E-Mail: mauper@gmx.net <br>
+<br>
+Quoc Thien Vu <br>
+Tel.: (0531) 2 84 34 96 <br>
+E-Mail: thienvu@gmx.de
+
+<h1>3 Einleitung</h1>
+<p>Dieses Dokument präsentiert das UML-Design des Programmpakets "Virtuelle
+Konferenz". Um unnötige Widerholungen zu vermeiden, wird die Kenntnis des
+Entwurfs-Dokuments vorausgesetzt.</p>
+
+<p>In dieser Phase wurde der UML-Entwurf überarbeitet und weiter verfeinert, es
+wurden dabei jedoch keine grundlegenden Änderungen an der Architektur
+vorgenommen. Details des Designs sind der ausführlichen
+<a href="api/index.html">API-Dokumentation</a> und den entsprechenden Diagrammen
+zu entnehmen. Es folgt hier nur noch eine Erläuterung der wichtigsten
+Änderungen in der Klassenstruktur gegenüber dem Entwurf.</p>
+
+<h1>4 Neu im Design</h1>
+<p>Im Laufe der Design-Phase sind die Packages Util.Commands und Util.Debug
+hinzugekommen, diese werden im Folgenden erläutert.</p>
+
+<h2>4.1 Package Util.Commands</h2>
+<p>Dieses Package ist eine der wichtigsten Neuerungen gegenüber dem Entwurf, da
+hier das Kommunikationsprotokoll zwischen Server (bzw. ClientServant)
+und Client festgelegt wird.</p>
+
+<p>Die Kommunikation zwischen den Komponenten Server bzw. ClientServant und
+Client lehnt sich an das Design Pattern "Command" an (vgl. Gamma, Helm, Johnson
+& Vlissides 1994). Dabei tauschen die Komponenten untereinander Nachrichten
+in Form von Command-Objekten aus, die dann jeweils beim "Befehlsempfänger"
+ausgeführt werden.</p>
+
+<p>Diese Command-Objekte werden hier allerdings für den Transport über das
+Netzwerk erst serialisiert und anschließend wieder deserialisiert. Die Menge
+aller Klassen, die das Interface Command implementieren, stellen also das
+Protokoll dar:</p>
+
+<p>
+<img src="gif/commandsoverview.gif" width=625 height=800 border=0><br>
+<i>Abbildung 1: Das Protokoll.</i>
+</p>
+
+<p>Wenn der Client ein Command an seinen ClientServant senden möchte (um
+beispielsweise den Benutzer in einen Channel eintreten zu lassen), erzeugt er
+ein entsprechendes Command-Objekt (im Beispiel eine Instanz der Klasse
+JoinChannelCommand) und übergibt es an seinen Uplink. Dieser serialisiert das
+Command-Objekt und versendet es über das Netzwerk an seinen ClientServant, der
+es deserialisiert und ausführt.</p>
+
+<p>
+<img src="gif/clientsendcommand.gif" width=679 height=325 border=0><br>
+<i>Abbildung 2: Versenden eines Command-Objekts.</i>
+</p>
+
+<h2>4.2 Package Util.Debug</h2>
+<p>Dieses Package enthält nur eine einfache Klasse, die zur Ausgabe von
+Debug-Nachrichten dient. Sie spielt im eigentlichen Design keine Rolle.</p>
+
+<h2>4.3 Interface DownlinkOwner</h2>
+Neu im Package Util ist das Interface DownlinkOwner. Es muss von allen Klassen
+implementiert werden, die einen Downlink benutzen wollen. Einer der Gründe ist,
+dass der Downlink nach dem Empfang eines Command-Objekts eine Methode seines
+"Besitzers" aufrufen muss, die das Command-Objekt verarbeitet. Das
+Vorhandensein dieser Methode soll mit diesem Interface sichergestell werden:
+
+<p>
+<img src="gif/utiloverview.gif" width=814 height=321 border=0>
+<i>Abbildung 3: Das Interface DownlinkOwner im Package Util.</i>
+</p>
+
+<p>Details des Designs sind der ausführlichen
+<a href="api/index.html">API-Dokumentation</a> und den entsprechenden Diagrammen
+zu entnehmen.</p>
+
+</body>
+</html>
