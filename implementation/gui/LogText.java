@@ -27,6 +27,7 @@ public class LogText extends java.awt.Frame {
         logTextArea = new java.awt.TextArea();
         setLayout(
             new java.awt.GridBagLayout());
+        setTitle(ChatGui.PRODUCT_NAME + " - Protokoll");
         java.awt.GridBagConstraints gridBagConstraints1;
         addWindowListener(
             new java.awt.event.WindowAdapter() {

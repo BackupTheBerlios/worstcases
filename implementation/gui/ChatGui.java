@@ -267,7 +267,7 @@ public class ChatGui extends java.applet.Applet {
         loginNameLabel.setBackground(
             new java.awt.Color(153, 153, 153));
         loginNameLabel.setForeground(java.awt.Color.black);
-        loginNameLabel.setText("Loginname:");
+        loginNameLabel.setText("Benutzername:");
         gridBagConstraints2 = new java.awt.GridBagConstraints();
         gridBagConstraints2.gridx = 0;
         gridBagConstraints2.gridy = 0;
@@ -279,7 +279,7 @@ public class ChatGui extends java.applet.Applet {
         passwordLabel.setBackground(
             new java.awt.Color(153, 153, 153));
         passwordLabel.setForeground(java.awt.Color.black);
-        passwordLabel.setText("Passwort:");
+        passwordLabel.setText("Kennwort:");
         gridBagConstraints2 = new java.awt.GridBagConstraints();
         gridBagConstraints2.gridx = 0;
         gridBagConstraints2.gridy = 1;
@@ -313,7 +313,7 @@ public class ChatGui extends java.applet.Applet {
         loginpanel.add(isGuest, gridBagConstraints2);
         login.setFont(
             new java.awt.Font("SansSerif", 0, 11));
-        login.setLabel("Login");
+        login.setLabel("Anmelden");
         login.setName("login");
         login.setBackground(java.awt.Color.lightGray);
         login.setForeground(java.awt.Color.black);
@@ -474,7 +474,7 @@ public class ChatGui extends java.applet.Applet {
         chatpanel.add(logout, gridBagConstraints3);
         channelMsgBuffer.setFont(
             new java.awt.Font("SansSerif", 0, 11));
-        channelMsgBuffer.setLabel("Log");
+        channelMsgBuffer.setLabel("Protokoll");
         channelMsgBuffer.setName("channelMsgBuffer");
         channelMsgBuffer.setBackground(java.awt.Color.lightGray);
         channelMsgBuffer.setForeground(java.awt.Color.black);
