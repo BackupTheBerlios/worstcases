@@ -53,6 +53,10 @@ public class AdminClient extends Client {
     public String getTmpOldChannelName() {
      return this.tmpOldChannelName;
     }
+    
+    public String getTmpOldUserName() {
+     return this.tmpOldUserName;
+    }
 
     /** Wird vom SetUserDataCommand aufgerufen und setzt die Userdaten auf die entsprechenden Attribute. */
     public void setUserData(String userName, String password, boolean isAdmin, Vector channelNames) {
@@ -91,7 +95,7 @@ public class AdminClient extends Client {
         this.gui.setChannelData(channelName, isAllowedForGuest, Util.Sort.quicksort(userNames), Util.Sort.quicksort(tmpUserDiffList));
     }
 
-    /** Wird vom SetUserListCommand aufgerufen und setzt die Userliste in allUserList. */
+    /** Wird vom SetUserListCommand aufgerufen und setzt die Userliste in userList. */
     public void setUserList(Vector list) {
         if(list!=null){
         this.userList = list;
@@ -104,7 +108,7 @@ public class AdminClient extends Client {
         }
     }
 
-    /** Wird vom SetChannelListCommand aufgerufen und setzt die Channelliste in allChannelList. */
+    /** Wird vom SetChannelListCommand aufgerufen und setzt die Channelliste in channelList. */
     public void setChannelList(Vector list) {
         if(list!=null){
         this.channelList = list;
