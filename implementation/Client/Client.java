@@ -36,11 +36,11 @@ public class Client implements Util.DownlinkOwner {
      * entfernt und eine entsprechende Meldung auf dem GUI ausgegeben.
      */
     public synchronized final void stopClient() {
-        this.setDownlink(null);
         if (uplink != null) {
             this.uplink.stopUplink();
             this.uplink = null;
         }
+        this.setDownlink(null);
     }
 
     /** Der Name des Benutzers des Clients. */
@@ -212,7 +212,7 @@ public class Client implements Util.DownlinkOwner {
      * Benutzt setDownlink, downlink.startDownlink() und uplink.startUplink().
      */
     public synchronized final void startClient() {
-        Debug.println("Client: starting client");
+        Debug.println(Debug.MEDIUM,this+": starting");
         try {
             socket = new Socket(SERVER_IP, SERVER_PORT);
             uplink = new Util.Uplink(socket);
@@ -221,7 +221,7 @@ public class Client implements Util.DownlinkOwner {
             uplink.startUplink();
             downlink.startDownlink();
         } catch (java.io.IOException e) {
-            Debug.println(Debug.HIGH, e);
+            Debug.println(Debug.HIGH, this+": error starting: "+e);
             this.stopClient();
         }
     }
