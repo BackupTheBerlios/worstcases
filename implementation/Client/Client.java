@@ -54,22 +54,23 @@ public class Client implements Util.DownlinkOwner {
     protected String currentChannelName;
 
     public Vector getChannelMsgBuffer() {
-       return this.channelMsgBuffer;
+        return this.channelMsgBuffer;
     }
-
 
     /**
      * Wird gebraucht, um die Channels, die der Benutzer betreten darf
      * auf der GUI auszugeben. Dazu werden die entsprechenden Daten via Downlink vom Server geholt und auf dem GUI ausgegeben.
      * Setzt currentUserName und currentAllowedChannelNames.
      */
-    public synchronized final void setCurrentUserData(String userName, boolean isAdmin, Vector channelNames) {
-        this.currentUserName = userName;
-        this.currentUserIsAdmin = isAdmin;
-        this.currentAllowedChannelNames = Util.Helper.quicksort(channelNames);
-        if (this.gui != null) {
-            gui.setCurrentUserData(userName, isAdmin, this.currentAllowedChannelNames);
-        }
+    public synchronized final void setCurrentUserData(String userName, boolean isAdmin, Vector channelNames,
+        String paramCurrentChannelName) {
+            this.currentUserName = userName;
+            this.currentUserIsAdmin = isAdmin;
+            this.currentAllowedChannelNames = Util.Helper.quicksort(channelNames);
+            this.currentChannelName = paramCurrentChannelName;
+            if (this.gui != null) {
+                gui.setCurrentUserData(userName, isAdmin, this.currentAllowedChannelNames, this.currentChannelName);
+            }
     }
 
     /**
@@ -285,6 +286,5 @@ public class Client implements Util.DownlinkOwner {
 
     /** Vector von Strings, repräsentiert die aktuellen Benutzer in einem Wird im Client Window eingebunden. */
     protected Vector currentUsersInChannelList;
-
     public gui.GUI gui;
 }

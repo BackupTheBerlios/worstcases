@@ -54,7 +54,6 @@ class ClientServantWatchDog extends Thread {
         Enumeration enum;
         ClientServant tmpClientServant;
         while (!stop) {
-            System.out.println("watching ClientServants");
             enum = this.server.getClientServantEnum();
             while (enum.hasMoreElements()) {
                 tmpClientServant = (ClientServant)enum.nextElement();
@@ -62,7 +61,7 @@ class ClientServantWatchDog extends Thread {
 
 
                     tmpClientServant.stopClientServant();
-                    System.out.println("clientservant stopped by watchdog");  
+                    System.out.println(tmpClientServant+": stopped by watchdog");  
                 }
             }
             try{

@@ -31,15 +31,16 @@ public class ChatGui extends java.applet.Applet implements GUI {
     }
 
     public static Vector stringToVector(String[] arr) {
-        if (arr!=null) {
-          Vector tmpVector = new Vector();
-          for (int i=0;i<arr.length;i++) {
-           tmpVector.addElement(arr[i]);
-          }
-          return tmpVector;
+        if (arr != null) {
+            Vector tmpVector = new Vector();
+            for (int i = 0; i < arr.length; i++) {
+                tmpVector.addElement(arr[i]);
+            }
+            return tmpVector;
         }
         else {
-          return (new Vector());
+            return (
+                new Vector());
         }
     }
 
@@ -115,7 +116,6 @@ public class ChatGui extends java.applet.Applet implements GUI {
             while (enum2.hasMoreElements()) {
                 this.userAdminGUI.passiveChannels.add((String)enum2.nextElement());
             }
-
     }
 
     public synchronized void sendMsgFromChannel(String fromName, String msg) {
@@ -128,7 +128,7 @@ public class ChatGui extends java.applet.Applet implements GUI {
         this.chatText.setCaretPosition(this.chatText.getText().length());
     }
 
-    public synchronized void setCurrentUserData(String name, boolean isAdmin, Vector channelNames) {
+    public synchronized void setCurrentUserData(String name, boolean isAdmin, Vector channelNames, String currentChannelName) {
         Enumeration enum;
         String tmpName;
         this.channelChoice.removeAll();
@@ -153,6 +153,12 @@ public class ChatGui extends java.applet.Applet implements GUI {
         else {
             this.channelAdmin.setEnabled(false);
             this.userAdmin.setEnabled(false);
+        }
+        if (currentChannelName != null) {
+            this.channelChoice.select(currentChannelName);
+        }
+        else {
+            this.adminClient.joinChannel("Foyer");
         }
     }
 
@@ -523,7 +529,6 @@ public class ChatGui extends java.applet.Applet implements GUI {
         else {
             this.adminClient.login(this.loginName.getText(), this.password.getText());
         }
-        this.adminClient.joinChannel("Foyer");
         cardLayout.next(mainpanel);
     } //GEN-LAST:event_loginMouseClicked
 

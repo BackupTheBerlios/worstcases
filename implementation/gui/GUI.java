@@ -3,7 +3,7 @@ package gui;
 import java.util.Vector;
 
 public interface GUI {
-    public void setCurrentUserData(String userName, boolean isAdmin, Vector channelNames);
+    public void setCurrentUserData(String userName, boolean isAdmin, Vector channelNames,String currentChannelName);
 
     public void setCurrentChannelData(String channelName, Vector userNames);
 

@@ -2,6 +2,8 @@ package Server;
 
 import java.util.Vector;
 import java.util.Enumeration;
+import Util.Helper;
+import Util.Debug.Debug;
 
 /**
  * Stellt Methoden zur Administration der Channel zur Verfügung.
@@ -10,19 +12,24 @@ import java.util.Enumeration;
 class ChannelAdministration {
     /** Gibt eine Aufzählung der existierenden Channel zurück. */
     public Enumeration getChannelEnum() {
-        return this.channelList.elements();
+        return Helper.vectorCopy(this.channelList).elements();
     }
 
     /** Setzt ChannelList auf die in channelEnum übergebenen Werte.  Benutzt addToChannelList() und removeFromChannelList(). */
     public synchronized void setChannelList(Enumeration channelEnum) {
+        Enumeration enum = channelEnum;
+        if (enum == null) {
+            enum = (
+                new Vector()).elements();
+        }
         Vector tmpList = new Vector();
         Channel tmpChannel;
-        while (channelEnum.hasMoreElements()) {
+        while (enum.hasMoreElements()) {
             tmpChannel = (Channel)channelEnum.nextElement();
             tmpList.addElement(tmpChannel);
             this.addToChannelList(tmpChannel);
         }
-        Enumeration enum = this.getChannelEnum();
+        enum = this.getChannelEnum();
         while (enum.hasMoreElements()) {
             tmpChannel = (Channel)enum.nextElement();
             if (!tmpList.contains(tmpChannel)) {
@@ -64,10 +71,12 @@ class ChannelAdministration {
      * Entfernt einen Channel. Benachrichtigt den betroffenen Channel mittels Channel.removeYou().
      * @param paramChannel das Channelobjekt, das gelöscht werden soll
      */
-    public synchronized void removeFromChannelList(Channel paramChannel) {
-        if(paramChannel!=null)
-        if (this.channelList.removeElement(paramChannel)) {
-            paramChannel.removeYou();
+    public void removeFromChannelList(Channel paramChannel) {
+        if (paramChannel != null) {
+            if (this.channelList.removeElement(paramChannel)) {
+                paramChannel.removeYou();
+            }
+            Debug.println(Debug.LOW, this + ": removed: " + paramChannel);
         }
     }
 
@@ -75,9 +84,12 @@ class ChannelAdministration {
      * Fügt einen Channel hinzu, sofern er noch nicht existiert.
      * @param paramChannel das Channelobjekt, das hinzugefügt werden soll
      */
-    public synchronized void addToChannelList(Channel paramChannel) {
-        if (paramChannel!=null && this.getFromChannelListByName(paramChannel.getName()) == null) {
-            this.channelList.addElement(paramChannel);
+    public void addToChannelList(Channel paramChannel) {
+        if (paramChannel != null) {
+            if (this.getFromChannelListByName(paramChannel.getName()) == null) {
+                this.channelList.addElement(paramChannel);
+                Debug.println(Debug.LOW, this + ": added: " + paramChannel);
+            }
         }
     }
 
@@ -88,13 +100,17 @@ class ChannelAdministration {
      * @param newChannel neues Channelobjekt, das die neuen Daten des Channels enthält
      */
     public synchronized void editChannel(String oldName, Channel newChannel) {
-        Channel tmpChannel = this.getFromChannelListByName(oldName);
-        if (tmpChannel != null) {
-            tmpChannel.setName(newChannel.getName());
-            tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
-            tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
+        if (oldName != null && newChannel != null) {
+            Channel tmpChannel = this.getFromChannelListByName(oldName);
+            Debug.println(Debug.MEDIUM, this + ": changing: " + tmpChannel);
+            if (tmpChannel != null) {
+                tmpChannel.setName(newChannel.getName());
+                tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
+                tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
+            }
+            newChannel.removeYou();
+            Debug.println(Debug.MEDIUM, this + ": changed: " + tmpChannel);
         }
-        newChannel.removeYou();
     }
 
     /**
@@ -122,8 +138,7 @@ class ChannelAdministration {
      * @supplierCardinality 0..
      */
     private Vector channelList = new Vector();
-
-    public static final String FOYERNAME="Foyer";
+    public static final String FOYERNAME = "Foyer";
 
     /**
      * "Datenbank", in der die Channel-Daten gespeichert sind.

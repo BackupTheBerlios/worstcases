@@ -4,7 +4,7 @@ import java.net.Socket;
 import Util.*;
 import Util.Debug.Debug;
 import Util.Commands.*;
-import java.util.StringTokenizer;
+import Util.Helper;
 import java.util.Enumeration;
 
 /**
@@ -21,7 +21,7 @@ public class ClientServant implements Util.DownlinkOwner {
         this.socket = paramSocket;
         this.setServer(paramServer);
         this.userAdministration = paramUserAdministration;
-        Debug.println(this + " initialized");
+        Debug.println(Debug.LOW, this + ": initialized");
     }
 
     /** Gibt den aktuellen aliveStamp-Wert zurück. */
@@ -32,7 +32,7 @@ public class ClientServant implements Util.DownlinkOwner {
     /** Setzt aliveStamp auf die aktuelle Zeit. Benutzt java.lang.System.currentTimeMillis(). */
     public final synchronized void setAliveStamp() {
         this.aliveStamp = java.lang.System.currentTimeMillis();
-        Debug.println(this + " timestamp set to :" + aliveStamp);
+        Debug.println(Debug.LOW, this + " timestamp set to :" + aliveStamp);
     }
 
     /**
@@ -97,8 +97,6 @@ public class ClientServant implements Util.DownlinkOwner {
     // FIXME: stopClientServant() ?
     public final void startClientServant() {
         this.uplink = new Uplink(this.socket);
-        this.setDownlink(
-            new Downlink(this.socket, this));
         try {
             this.uplink.startUplink();
         }
@@ -106,8 +104,10 @@ public class ClientServant implements Util.DownlinkOwner {
             Debug.println(Debug.HIGH, this + " error starting uplink:" + e);
             this.stopClientServant();
         }
+        this.setDownlink(
+            new Downlink(this.socket, this));
         this.downlink.startDownlink();
-        Debug.println(this + " started");
+        Debug.println(Debug.MEDIUM, this + " started");
     }
 
     /**
@@ -162,7 +162,6 @@ public class ClientServant implements Util.DownlinkOwner {
      * clientServant. Falls der User Admin-Rechte hat, so wird becomeAdminClient() aufgerufen.
      */
     public final void loginUser(String name, String password) {
-        Debug.println(this + " trying to log in user " + name);
         UserAdministration tmpUserAdministration = this.userAdministration;
         if (tmpUserAdministration != null) {
             User tmpUser = tmpUserAdministration.loginUser(name, password);
@@ -186,18 +185,15 @@ public class ClientServant implements Util.DownlinkOwner {
      * beendet sich clientServant.
      */
     public final void loginAsGuest(String name) {
-        Debug.println(this + " trying to login guest " + name);
         UserAdministration tmpUserAdministration = this.userAdministration;
         User tmpUser = tmpUserAdministration.loginGuest(name);
         if (tmpUser == null) {
-            Debug.println("login guest " + name + " failed");
             this.sendCommand(
                 new Util.Commands.LoginErrorCommand());
         }
         else {
             this.setUser(tmpUser);
             this.sendCurrentUserData();
-            Debug.println("Guest " + this.user.getName() + " logged in");
         }
     }
 
@@ -207,7 +203,7 @@ public class ClientServant implements Util.DownlinkOwner {
      * Setzt uplink=null und ruft dann this.stopClientServant() auf.
      */
     public final void becomeAdminClientServant() {
-        Debug.println(this + " becoming AdminClientServant");
+        Debug.println(Debug.MEDIUM, this + ": becoming AdminClientServant");
         Uplink oldUplink = this.uplink;
         //notwendig, damit stopClientServant() nicht den uplink stoppt
         this.uplink = null;
@@ -223,7 +219,6 @@ public class ClientServant implements Util.DownlinkOwner {
      * Falls der user nicht existiert, wird ein LoginErrorCommand gesendet.
      */
     public final void joinChannel(String name) {
-        Debug.println(this + " joining channel:" + name);
         User old = this.user;
         if (old != null) {
             Channel tmpChannel = old.getFromAllowedChannelByName(name);
@@ -269,17 +264,12 @@ public class ClientServant implements Util.DownlinkOwner {
                 Enumeration enum = oldChannel.getCurrentUserEnum();
                 User tmpUser;
                 ClientServant tmpClientServant;
-                try {
-                    while (enum.hasMoreElements()) {
-                        tmpUser = (User)enum.nextElement();
-                        tmpClientServant = tmpUser.getClientServant();
-                        if (tmpClientServant != null) {
-                            tmpClientServant.sendMsgFromChannel(oldUser.getName(), msg);
-                        }
+                while (enum.hasMoreElements()) {
+                    tmpUser = (User)enum.nextElement();
+                    tmpClientServant = tmpUser.getClientServant();
+                    if (tmpClientServant != null) {
+                        tmpClientServant.sendMsgFromChannel(oldUser.getName(), msg);
                     }
-                }
-                catch (java.util.NoSuchElementException e) {
-                    Debug.println(Debug.HIGH, this + " " + " error while sendMsgToChannel " + e);
                 }
             }
             else {
@@ -326,19 +316,14 @@ public class ClientServant implements Util.DownlinkOwner {
             if (currentChannel != null) {
                 Enumeration enum = currentChannel.getCurrentUserEnum();
                 User tmpUser;
-                try {
-                    while (enum.hasMoreElements()) {
-                        tmpUser = (User)enum.nextElement();
-                        if (tmpUser.getName().compareTo(userName) == 0) {
-                            ClientServant tmpClientServant = tmpUser.getClientServant();
-                            if (tmpClientServant != null) {
-                                tmpClientServant.sendMsgFromUser(old.getName(), msg);
-                            }
+                while (enum.hasMoreElements()) {
+                    tmpUser = (User)enum.nextElement();
+                    if (tmpUser.getName().compareTo(userName) == 0) {
+                        ClientServant tmpClientServant = tmpUser.getClientServant();
+                        if (tmpClientServant != null) {
+                            tmpClientServant.sendMsgFromUser(old.getName(), msg);
                         }
                     }
-                }
-                catch (java.util.NoSuchElementException e) {
-                    Debug.println(this + " " + " error while sendMsgToUser " + e);
                 }
             }
             else {
@@ -374,9 +359,17 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public final void sendCurrentUserData() {
         User old = this.user;
+        String currentChannelName;
+        Channel tmpChannel = old.getCurrentChannel();
+        if (tmpChannel != null) {
+            currentChannelName = tmpChannel.getName();
+        }
+        else {
+            currentChannelName = null;
+        }
         if (old != null) {
             this.sendCommand(
-                new Util.Commands.SetCurrentUserDataCommand(old.getName(), old.isAdmin(), old.getAllowedChannelNames()));
+                new Util.Commands.SetCurrentUserDataCommand(old.getName(), old.isAdmin(), old.getAllowedChannelNames(), currentChannelName));
         }
     }
 

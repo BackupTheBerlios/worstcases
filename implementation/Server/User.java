@@ -210,7 +210,7 @@ class User {
          * der tmpChannelList, also in channelEnum stehen
          */
 
-        enum = tmpChannelList.elements();
+        enum = this.getAllowedChannelEnum();
         while (enum.hasMoreElements()) {
             tmpChannel = (Channel)enum.nextElement();
             if (!tmpChannelList.contains(tmpChannel)) {
@@ -261,7 +261,7 @@ class User {
 
     /**
      *Setzt den Channel, in dem sich der Benutzer befindet.
-     * Benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList().
+     * Benutzt Channel.removeFromCurrentUserList() und addToCurrentUserList(). benutzt informClient()
      */
     public void setCurrentChannel(Channel paramChannel) {
         if (this.currentChannel != paramChannel) {
@@ -274,6 +274,7 @@ class User {
             if (paramChannel != null) {
                 paramChannel.addToCurrentUserList(this);
             }
+            this.informClient();
             Debug.println(Debug.LOW, this.getName() + ": setCurrentChannel to: " + paramChannel);
         }
     }
@@ -340,8 +341,8 @@ class User {
 
     /** Dient dem debugging. */
     public String toString() {
-        String tmpString = "Name:" + this.getName() + " isAdmin:" + this.isAdmin() + " isGuest:" + this.isGuest() +
-            " currentChannel:" + this.getCurrentChannel() + " allowedChannelEnum: ";
+        String tmpString = "Name:" + this.getName() + " password:" + this.getPassword() + " isAdmin:" + this.isAdmin() +
+            " isGuest:" + this.isGuest() + " currentChannel:" + this.getCurrentChannel() + " allowedChannelEnum: ";
         Enumeration enum = this.getAllowedChannelEnum();
         while (enum.hasMoreElements()) {
             tmpString = tmpString + ((Channel)(enum.nextElement())).getName() + " ";

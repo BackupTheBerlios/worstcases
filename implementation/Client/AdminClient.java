@@ -47,15 +47,15 @@ public class AdminClient extends Client {
     private Vector tmpAllowedChannelNames = new Vector();
 
     public Vector getUserListAttribute() {
-     return this.userList;
+        return this.userList;
     }
 
     public String getTmpOldChannelName() {
-     return this.tmpOldChannelName;
+        return this.tmpOldChannelName;
     }
-    
+
     public String getTmpOldUserName() {
-     return this.tmpOldUserName;
+        return this.tmpOldUserName;
     }
 
     /** Wird vom SetUserDataCommand aufgerufen und setzt die Userdaten auf die entsprechenden Attribute. */
@@ -71,10 +71,11 @@ public class AdminClient extends Client {
         while (enum.hasMoreElements()) {
             tmpChannelName = (String)enum.nextElement();
             if (!channelNames.contains(tmpChannelName)) {
-              tmpChannelDiffList.addElement(tmpChannelName);
+                tmpChannelDiffList.addElement(tmpChannelName);
             }
         }
-        this.gui.setUserData(userName, password, isAdmin, Util.Helper.quicksort(channelNames), Util.Helper.quicksort(tmpChannelDiffList));
+        this.gui.setUserData(userName, password, isAdmin, Util.Helper.quicksort(channelNames),
+            Util.Helper.quicksort(tmpChannelDiffList));
     }
 
     /** Wird vom SetChannelDataCommand aufgerufen und setzt die Channeldaten auf die entsprechenden Attribute. */
@@ -89,19 +90,20 @@ public class AdminClient extends Client {
         while (enum.hasMoreElements()) {
             tmpUserName = (String)enum.nextElement();
             if (!userNames.contains(tmpUserName)) {
-              tmpUserDiffList.addElement(tmpUserName);
+                tmpUserDiffList.addElement(tmpUserName);
             }
         }
-        this.gui.setChannelData(channelName, isAllowedForGuest, Util.Helper.quicksort(userNames), Util.Helper.quicksort(tmpUserDiffList));
+        this.gui.setChannelData(channelName, isAllowedForGuest, Util.Helper.quicksort(userNames),
+            Util.Helper.quicksort(tmpUserDiffList));
     }
 
     /** Wird vom SetUserListCommand aufgerufen und setzt die Userliste in userList. */
     public void setUserList(Vector list) {
-        if(list!=null){
-        this.userList = list;
+        if (list != null) {
+            this.userList = list;
         }
-        else{
-         this.userList=new Vector();
+        else {
+            this.userList = new Vector();
         }
         if (this.gui != null) {
             this.gui.setUserList(Util.Helper.quicksort(list));
@@ -110,12 +112,11 @@ public class AdminClient extends Client {
 
     /** Wird vom SetChannelListCommand aufgerufen und setzt die Channelliste in channelList. */
     public void setChannelList(Vector list) {
-        if(list!=null){
-        this.channelList = list;
+        if (list != null) {
+            this.channelList = list;
         }
-        else{
-
-         this.channelList= new Vector();
+        else {
+            this.channelList = new Vector();
         }
         if (this.gui != null) {
             this.gui.setChannelList(Util.Helper.quicksort(list));
