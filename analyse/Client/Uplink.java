@@ -13,13 +13,13 @@ public class Uplink {
     private Socket socket;
 
     /**
-     * Startet den Output - Stream
+     * Startet den Output-Stream.
      */
     public void startUplink() {
     }
 
     /**
-     * Schließt den Output - Stream 
+     * Schließt den Output-Stream.
      */
     public void stopUplink() {
     }
