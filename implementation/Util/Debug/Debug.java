@@ -66,10 +66,7 @@ public class Debug {
    * Beispiele.
    */
   public static void main(String args[]) {
-    /*
-     * Der unwichtige Fehler wird nicht ausgegeben, weil
-     * der Debug-Level standardm‰ﬂig auf MEDIUM steht. 
-     */
+    Debug.setLevel(Debug.LOW);
     Debug.println(Debug.LOW, "Unwichtiger Fehler!");
     Debug.println("Normaler Fehler!");
     Debug.println(Debug.HIGH, "Wichtiger Fehler!");
