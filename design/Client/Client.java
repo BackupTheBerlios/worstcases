@@ -78,6 +78,8 @@ public class Client implements Util.DownlinkOwner {
   public void processMsg(String msg) {
     this.setAvailableChannelList(
       "Mensachat, Virtuelle Konferenz, tubs intern");
+   this.channelMsgBuffer=    this.channelMsgBuffer.concat(msg+"\n");  
+      
   }
 
   public void startClient() {
@@ -117,8 +119,13 @@ public class Client implements Util.DownlinkOwner {
 
   /**
    * die IP - Adresse des Servers
+<<<<<<< Client.java
+  */
+  protected final static String SERVER_IP = "localhost" ;
+=======
    */
   protected final static String SERVER_IP = "134.169.8.196";
+>>>>>>> 1.4
 
   /**
    * Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels
@@ -130,7 +137,7 @@ public class Client implements Util.DownlinkOwner {
    * Wird von der GUI benutzt und kann als
    * Protokoll der Unterhaltung in dem Channel dienen.
    */
-  protected Vector channelMsgBuffer;
+  public String channelMsgBuffer=new String();
   protected Socket socket;
 
   /**
