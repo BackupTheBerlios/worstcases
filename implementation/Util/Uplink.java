@@ -36,7 +36,7 @@ public class Uplink {
     this.objectOutputStream =
       new ObjectOutputStream(this.socket.getOutputStream());
 
-    Debug.println(Debug.LOW, this + ": started");
+    Debug.println(Debug.LOW, "Uplink: started");
   }
 
   /** Schlieﬂt den Output-Stream. */
@@ -44,9 +44,9 @@ public class Uplink {
 
     try {
       this.objectOutputStream.close();
-      Debug.println(Debug.LOW, this + ": stopped");
+      Debug.println(Debug.LOW, "Uplink: stopped");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ":error stopping:" + e);
+      Debug.println(Debug.HIGH, "Uplink: error stopping:" + e);
     }
   }
 
@@ -58,7 +58,7 @@ public class Uplink {
    */
   public synchronized void sendMsg(Command msg) throws java.io.IOException {
 
-    Debug.println(Debug.MEDIUM, this + ": sending " + msg);
+    Debug.println(Debug.MEDIUM, "Uplink: sending " + msg);
     objectOutputStream.writeObject(msg);
     objectOutputStream.flush();
   }

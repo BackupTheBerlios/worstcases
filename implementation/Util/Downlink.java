@@ -49,7 +49,7 @@ public class Downlink extends Thread {
    */
   private void listen() {
 
-    Debug.println(this + ": starting...");
+    Debug.println("Downlink: starting...");
     
     Command tmpCommand;
     DownlinkOwner owner = this.downlinkOwner;
@@ -59,7 +59,7 @@ public class Downlink extends Thread {
       try {
         tmpCommand = (Command) objectInputStream.readObject();
 
-        Debug.println(Debug.MEDIUM, this + ": received: " + tmpCommand);
+        Debug.println(Debug.MEDIUM, "Downlink: received: " + tmpCommand);
 
         // owner aktualisieren
         owner = this.downlinkOwner;
@@ -72,7 +72,7 @@ public class Downlink extends Thread {
         // pausieren
         this.sleep(this.LISTEN_DELAY);
       } catch (Exception e) {
-        Debug.println(Debug.HIGH, this + ": error while listening :" + e);
+        Debug.println(Debug.HIGH, "Downlink: error while listening :" + e);
         e.printStackTrace();
 
         if (owner != null) {
@@ -118,10 +118,10 @@ public class Downlink extends Thread {
     try {
       this.objectInputStream.close();
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ": error while stopping: " + e);
+      Debug.println(Debug.HIGH, "Downlink: error while stopping: " + e);
     }
 
-    Debug.println(Debug.LOW, this + ": stopped");
+    Debug.println(Debug.LOW, "Downlink: stopped");
     this.setDownlinkOwner(null);
   }
 
@@ -147,7 +147,7 @@ public class Downlink extends Thread {
 
       this.downlinkOwner = paramDownlinkOwner;
 
-      Debug.println(this + " setDownlinkOwner to " + this.downlinkOwner);
+      Debug.println("Downlink: setDownlinkOwner to " + this.downlinkOwner);
 
       if (paramDownlinkOwner != null) {
         paramDownlinkOwner.setDownlink(this);
