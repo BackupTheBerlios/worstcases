@@ -464,7 +464,7 @@ public class UserAdminGUI extends java.awt.Frame {
                 new Vector());
             this.chatGui.adminClient.getUserList();
         } else {
-            chatGui.displayError("Passwort und Wiederholung stimmen nicht überein. \n Die Daten wurden nicht gespeichert.");
+            chatGui.displayError("Passwort und Wiederholung stimmen nicht überein.\nDie Daten wurden nicht gespeichert.");
             this.passwordVerify.requestFocus();
         }
     }

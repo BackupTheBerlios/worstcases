@@ -407,10 +407,14 @@ public class ChannelAdminGUI extends java.awt.Frame {
      * Hierzu werden die Felder auf ihre Default-Werte gesetzt und isNewChannel gesetzt.
      */
     private void newChannelMouseClicked(java.awt.event.MouseEvent evt) { //GEN-FIRST:event_newChannelMouseClicked
+      newChannel();
+    } //GEN-LAST:event_newChannelMouseClicked
+
+    private void newChannel() {
       isNewChannel=true;
       Vector tmpVector = this.chatGui.stringToVector( this.chatGui.userAdminGUI.userList.getItems());
       this.chatGui.setChannelData("",false,new Vector(),tmpVector);
-    } //GEN-LAST:event_newChannelMouseClicked
+    }
 
     /** Schlieﬂen des Applikationsframes */
     private void exitForm(java.awt.event.WindowEvent evt) {

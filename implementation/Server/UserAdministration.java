@@ -87,7 +87,7 @@ class UserAdministration {
 
       // wenn ein Name eingegeben wurde...
       if ((this.getFromUserListByName(paramName) == null)
-              && (this.numCurrentUsers < this.maxUsers)) {
+              && (this.numCurrentGuests < this.maxGuests)) {
 
         // wenn es den User noch nicht gibt und maxUsers noch nicht erreicht wurde,
         User tmpUser = new User(paramName, "guest", true, false, this);
@@ -255,7 +255,7 @@ class UserAdministration {
   private int numCurrentUsers = 0;
 
   /** Maximale Anzahl von eingeloggten Benutzern im System. */
-  private int maxUsers = 90;
+  private int maxUsers = 100;
 
   /** Anzahl der Gäste im System */
   private int numCurrentGuests = 0;

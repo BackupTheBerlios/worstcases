@@ -26,7 +26,7 @@ public class ErrorMessage extends java.awt.Frame {
         messageArea = new java.awt.TextArea();
         setLayout(new java.awt.GridBagLayout());
         java.awt.GridBagConstraints gridBagConstraints1;
-        setResizable(true);
+        setResizable(false);
         setFont(new java.awt.Font ("SansSerif", 0, 12));
         setTitle(gui.ChatGui.PRODUCT_NAME + " - Fehler aufgetreten");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -37,7 +37,7 @@ public class ErrorMessage extends java.awt.Frame {
         );
 
         okButton.setFont(new java.awt.Font ("SansSerif", 0, 11));
-        okButton.setLabel("Weiter");
+        okButton.setLabel("OK");
         okButton.setName("okButton");
         okButton.setBackground(new java.awt.Color (204, 204, 204));
         okButton.setForeground(java.awt.Color.black);

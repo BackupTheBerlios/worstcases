@@ -36,6 +36,7 @@ public class ChatGui extends java.applet.Applet {
 
 
     public synchronized void loginError() {
+        displayError("Das Anmelden ist fehlgeschlagen.\nBitte versuchen Sie es erneut.");
         this.cardLayout.first(mainpanel);
     }
 
@@ -171,6 +172,10 @@ public class ChatGui extends java.applet.Applet {
         }
         else {
             this.adminClient.joinChannel("Foyer");
+        }
+        if (!cardFlipped) {
+          this.cardFlipped = true;
+          this.cardLayout.next(mainpanel);
         }
     }
 
@@ -529,7 +534,8 @@ public class ChatGui extends java.applet.Applet {
     } //GEN-END:initComponents
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_logoutMouseClicked
-        this.adminClient.logout(); // Methode funzt noch nicht
+        this.adminClient.logout(); // FIXME: Methode funzt noch nicht
+        cardFlipped = false;
         cardLayout.first(mainpanel);
     } //GEN-LAST:event_logoutMouseClicked
 
@@ -572,6 +578,7 @@ public class ChatGui extends java.applet.Applet {
         }
         else {
             this.adminClient.sendMsgToUser(this.userList.getSelectedItem(), this.msg.getText());
+            this.chatText.append("Flüstern an" + this.userList.getSelectedItem() + ": " + this.msg.getText()); //FIXME: tut nicht.
             this.userList.select(0);
         }
         this.msg.setText("");
@@ -586,16 +593,11 @@ public class ChatGui extends java.applet.Applet {
         else {
             this.adminClient.login(this.loginName.getText(), this.password.getText());
         }
-        cardLayout.next(mainpanel);
     }
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_loginMouseClicked
         this.login();
     } //GEN-LAST:event_loginMouseClicked
-
-    private void loginPanelKeyTyped(java.awt.event.KeyEvent evt) {
-        System.out.println("key: " + evt.getKeyCode());
-    }
 
     private void isGuestItemStateChanged(java.awt.event.ItemEvent evt) { //GEN-FIRST:event_isGuestItemStateChanged
         if (isGuest.getState()) {
@@ -634,4 +636,5 @@ public class ChatGui extends java.applet.Applet {
     UserAdminGUI userAdminGUI = new UserAdminGUI(this);
     private LogText logText = new LogText();
     public static final String PRODUCT_NAME = "jConvention";
+    private boolean cardFlipped = false;
 }
