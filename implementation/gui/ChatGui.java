@@ -201,7 +201,7 @@ public class ChatGui extends java.applet.Applet {
         isGuest = new java.awt.Checkbox();
         login = new java.awt.Button();
         chatpanel = new java.awt.Panel();
-        chatText = new java.awt.TextArea("",70,20,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY); //FIXME: nur zum testen
+        chatText = new java.awt.TextArea("",20,70,java.awt.TextArea.SCROLLBARS_VERTICAL_ONLY); //FIXME: nur zum testen
         msg = new java.awt.TextField();
         sendMsg = new java.awt.Button();
         channelChoice = new java.awt.Choice();

@@ -121,12 +121,6 @@ public class UserAdminGUI extends java.awt.Frame {
         userList.setName("userList");
         userList.setBackground(java.awt.Color.white);
         userList.setForeground(java.awt.Color.black);
-        userList.addItemListener( //FIXME: zum Testen, sollte imo in der final nicht mehr gehen
-            new java.awt.event.ItemListener() {
-                public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                 editUser();
-                }
-            });
         gridBagConstraints1 = new java.awt.GridBagConstraints();
         gridBagConstraints1.gridx = 0;
         gridBagConstraints1.gridy = 2;
