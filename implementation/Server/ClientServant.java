@@ -178,7 +178,6 @@ public class ClientServant implements Util.DownlinkOwner {
 
             else {
                 this.setUser(tmpUser);
-                this.joinChannel(this.server.getChannelAdministration().FOYERNAME);
                 this.sendCurrentUserData();
                 if (tmpUser.isAdmin()) {
                     this.becomeAdminClientServant();
@@ -204,7 +203,6 @@ public class ClientServant implements Util.DownlinkOwner {
         //Anmeldung erfolgreich, Foyer betreten, Client benachrichtigen
         else {
             this.setUser(tmpUser);
-            this.joinChannel(this.server.getChannelAdministration().FOYERNAME);
             this.sendCurrentUserData();
         }
     }
