@@ -59,8 +59,6 @@ flags 11
 
 \newline 
  Virtuelle Konferenz
-\lang american
-1616
 \layout Standard
 
 
@@ -2042,5 +2040,6 @@ GUI: Graphical User Interface: eine grafische Oberfläche für den Benutzer
 JAVA: eine objektorientierte Programmiersprache von SUN
 \layout Itemize
 
-UML: Unified Modelling Language, entworfen von der OMG
+UML: Unified Modelling Language, entworfen von der OMG (Object Management
+ Group)
 \the_end
