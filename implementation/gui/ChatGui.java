@@ -353,7 +353,7 @@ public class ChatGui extends java.applet.Applet {
             new java.awt.Font("SansSerif", 0, 11));
         chatText.setColumns(70);
         chatText.setForeground(java.awt.Color.black);
-        chatText.setRows(30);
+        chatText.setRows(20);
         gridBagConstraints3 = new java.awt.GridBagConstraints();
         gridBagConstraints3.gridx = 0;
         gridBagConstraints3.gridy = 1;
