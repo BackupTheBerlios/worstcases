@@ -33,7 +33,7 @@ class Downlink extends Thread {
 
     String msg = "foo";
 
-    listen(); //FIXME: Das steht hier wohl nur wegen der Sequenzdiagramme?
+    listen(); //FIXME: Rekursion, besser while.
   }
 
   public String getMsg() {
