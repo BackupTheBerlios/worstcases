@@ -42,16 +42,19 @@ class Downlink extends Thread {
 
     String msg = "foo";
 
-    /* Wenn der Besitzer dieses Downlinks ein Client (oder ein
-     * davon abgeleiteter ClientServant) ist, werden empfangene Nachrichten
+    /* Wenn der Besitzer dieses Downlinks ein Client oder ein
+     * ClientServant ist, werden empfangene Nachrichten
      * an seine Methode processMsg() übergeben.
      *
      * Das ist eigentlich übler Missbrauch des Reflection-APIs (siehe
      * http://www.artima.com/designtechniques/rtci.html).
      */
     if (owner instanceof Client) { //XXX
-      Client client = (Client) owner; // Performance-Problem?
-      client.processMsg(msg);
+      Client myClient = (Client) owner; // Performance-Problem?
+      myClient.processMsg(msg);
+    } else if (owner instanceof ClientServant) {
+      ClientServant myClientServant = (ClientServant) owner;
+      myClientServant.processMsg(msg);
     }
     listen(); //FIXME: Rekursion (-> StackOverflowError?), besser while.
   }
