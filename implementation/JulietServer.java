@@ -2,7 +2,7 @@ import Server.*;
 import Util.Debug.Debug;
 
 
-class Servertest {
+class JulietServer {
 
   public static void main(String[] args) {
 
