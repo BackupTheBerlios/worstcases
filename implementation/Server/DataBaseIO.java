@@ -302,8 +302,8 @@ class DataBaseIO {
   private ChannelAdministration channelAdministration;
 
   /** Dateiname der Channeldatenbank. */
-  private final static String channelDBFile = "channel.db";
+  private String channelDBFile = "channel.db";
 
   /** Dateiname der Benutzerdatenbank. */
-  private final static String userDBFile = "user.db";
+  private String userDBFile = "user.db";
 }
