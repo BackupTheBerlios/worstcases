@@ -4,7 +4,7 @@ import Server.ClientServant;
 
 /**
 * Wird von einem Client gesendet,
-* user betritt damit betritt einen Channel.
+* user betritt damit einen Channel.
 */
 
 public class JoinChannelCommand implements Command {
