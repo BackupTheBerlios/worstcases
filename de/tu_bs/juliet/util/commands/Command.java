@@ -5,7 +5,7 @@
              (C) 2001 Malte Knörr <m.knoerr@tu-bs.de>
 	     (C) 2001 Fabian Rotte <f.rotte@tu-bs.de>
 	     (C) 2001 Quoc Thien Vu <q.vu@tu-bs.de>
-   
+
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -25,15 +25,21 @@ package de.tu_bs.juliet.util.Commands;
 
 import java.io.Serializable;
 
-
 /**
- * Interface für alle Befehle, die beispielsweise  zwischen Client und 
- * ClientServant ausgetauscht werden.
+ * Das Interface für alle Befehle, die beispielsweise zwischen Client und
+ * ClientServant ausgetauscht werden. Die Kommunikation zwischen den Komponenten
+ * des Chat-Systems findet nach dem Design Pattern "Command"[1] statt, mit der
+ * Besonderheit, dass die Command-Objekte serialisert und über das Netzwerk
+ * verschickt werden.
+ *
+ * [1] Gamma; Helm; Johnson; Vlissides:
+ * Design Patterns
+ * Addison-Wesley
  */
 public interface Command extends Serializable {
 
   /**
-   * Diese Methode wird ausgeführt, sowie ein Befehl (Command) bei seinem 
+   * Diese Methode wird ausgeführt, sowie ein Befehl (Command) bei seinem
    * Empfänger ankommt. Ein Befehl enthält die zu seiner Ausführung notwendigen
    * Informationen.
    * @param target ist das Objekt, bei dem der Befehl ausgeführt wird.
