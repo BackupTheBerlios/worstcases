@@ -152,9 +152,9 @@ class User {
    * Loggt den Benutzer ein oder aus, Benutzt
    * userAdministration.incNumCurrentUsers(),decNumCurrentUsers(),
    * (incNumCurrentGuests(),decNumCurrentGuests() bei Gästen, benutzt ggf.
-   * user.setCurrentChannel(null),setClientServant(null) (und removeYou() bei
-   * Gästen, um den Gast aus dem System zu entfernen, da Gäste nur temporär ein
-   * Benutzerobjekt zugewiesen bekommen).
+   * user.setCurrentChannel(null),setClientServant(null) 
+   * (und removeYou() bei Gästen, um den Gast aus dem System zu entfernen, 
+   * da Gäste nur temporär ein Benutzerobjekt zugewiesen bekommen).
    */
    public synchronized void setIsLoggedIn(boolean paramLoggedIn) {
 
@@ -182,7 +182,8 @@ class User {
         this.setCurrentChannel(null);
         this.setClientServant(null);
 
-        // falls Gast, Objekt aus der Userliste entfernen, Gastzähler erniedrigen
+        /* falls Gast, Objekt aus der Userliste entfernen, 
+         * Gastzähler erniedrigen*/
         if (this.isGuest()) {
           this.userAdministration.decNumCurrentGuests();
           this.removeYou();
@@ -199,8 +200,8 @@ class User {
   }
 
   /**
-   * Gibt eine Liste der Namen der Channels zurück, die der Benutzer betreten
-   *darf.
+   * Gibt eine Liste der Namen der Channels zurück, 
+   * die der Benutzer betreten darf.
    */
   public Vector getAllowedChannelNames() {
 
@@ -215,7 +216,8 @@ class User {
     return tmpVector;
   }
 
-  /** Gibt eine Aufzählung der Channels zurück, die der Benutzer betreten darf. */
+  /** Gibt eine Aufzählung der Channels zurück, 
+    * die der Benutzer betreten darf. */
   public Enumeration getAllowedChannelEnum() {
     return Helper.vectorCopy(allowedChannelList).elements();
   }
@@ -481,8 +483,8 @@ class User {
   }
 
   /**
-   * Informiert den Client des Benutzers bei Veränderungen der Userdaten mittels
-   * getClientServant() und ClientServant.sendCurrentUserData().
+   * Informiert den Client des Benutzers bei Veränderungen der Userdaten 
+   * mittels getClientServant() und ClientServant.sendCurrentUserData().
    */
   private void informClient() {
 
