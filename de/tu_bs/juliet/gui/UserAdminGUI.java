@@ -69,7 +69,7 @@ public class UserAdminGUI extends java.awt.Frame {
    * und fügt einen WindowListener hinzu, der das Schließen des Frames
    * ermöglicht.
    */
-  public UserAdminGUI(gui.ChatGui paramChatGui) {
+  public UserAdminGUI(ChatGui paramChatGui) {
 
     this.chatGui = paramChatGui;
 
