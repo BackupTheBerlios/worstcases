@@ -42,7 +42,7 @@ codesense.java.delay=1
 [print]
 diagram=current
 preview.autoupdate=true
-preview.scale=1
+preview.scale=4
 [genHTML]
 folder=C:\\Programme\\togethaj\\out\\webpublish\\VirtuelleKonferenz
 include.deprecated=true
@@ -62,3 +62,5 @@ javadoc=false
 launchBrowser=true
 navigationTree=true
 updatedependencies=true
+[newDiagramExpert]
+includeInCurrentDiagram=false

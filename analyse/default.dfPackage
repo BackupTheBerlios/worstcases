@@ -32,6 +32,12 @@ class link {
 @automatic 
 */
 class link1 {
+}/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:design#Class#id2bqf6cmt6jj8ycmt6wj9k.diagram:oiref><oihard> 
+*/
+class link36 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
