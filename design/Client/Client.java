@@ -51,13 +51,13 @@ public class Client implements Util.DownlinkOwner {
     }
 
     /**Der Name des Benutzers des Clients.*/
-    String currentUserName;
+    protected String currentUserName;
 
     /**Namensliste der Channels, die der Benutzer betreten darf.*/
-    Vector currentAllowedChannelNames;
+    protected Vector currentAllowedChannelNames;
 
     /**Der Name des Channels, der momentan betreten wurde.*/
-    String currentChannelName;
+    protected String currentChannelName;
 
 
     /**
