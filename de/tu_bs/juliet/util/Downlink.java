@@ -185,7 +185,11 @@ public class Downlink extends Thread {
       this.objectInputStream.close();
     } catch (java.io.IOException e) {
       Debug.println(Debug.HIGH, "Downlink: error while stopping: " + e);
+    } catch (NullPointerException e) {
+	Debug.println(Debug.HIGH, "Downlink: no InputStream available to close (" +
+            e + "). Perhaps somebody tried to telnet the server.");
     }
+    
 
     Debug.println(Debug.LOW, "Downlink: stopped");
     this.setDownlinkOwner(null);
