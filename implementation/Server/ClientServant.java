@@ -21,7 +21,6 @@ public class ClientServant implements Util.DownlinkOwner {
         this.socket = paramSocket;
         this.setServer(paramServer);
         this.userAdministration = paramUserAdministration;
-        Debug.println(Debug.LOW, this + ": initialized");
     }
 
     /** Gibt den aktuellen aliveStamp-Wert zurück. */
@@ -32,7 +31,6 @@ public class ClientServant implements Util.DownlinkOwner {
     /** Setzt aliveStamp auf die aktuelle Zeit. Benutzt java.lang.System.currentTimeMillis(). */
     public final synchronized void setAliveStamp() {
         this.aliveStamp = java.lang.System.currentTimeMillis();
-        Debug.println(Debug.LOW, this + " timestamp set to :" + aliveStamp);
     }
 
     /**
@@ -47,7 +45,6 @@ public class ClientServant implements Util.DownlinkOwner {
                 old.setDownlinkOwner(null);
             }
             this.downlink = paramDownlink;
-            Debug.println(this + " setDownlink to " + this.downlink);
             if (paramDownlink != null) {
                 paramDownlink.setDownlinkOwner(this);
             }
@@ -61,9 +58,8 @@ public class ClientServant implements Util.DownlinkOwner {
      * Wird vom Downlink aufgerufen, falls beim Empfang von Nachrichten ein Fehler auftritt, enthält Fehlerbehandlung.
      * @see Util.DownlinkOwner
      */
-    // FIXME: Sinnvolle Möglichkeiten außer stopClientServant() ?
     public final void downlinkError() {
-        Debug.println(Debug.HIGH, this + " downlink error");
+        Debug.println(Debug.HIGH, this + ": downlink error");
         this.stopClientServant();
     }
 
@@ -79,7 +75,6 @@ public class ClientServant implements Util.DownlinkOwner {
                 old.setClientServant(null);
             }
             this.user = paramUser;
-            Debug.println(this + " setUser to " + this.user);
             if (paramUser != null) {
                 paramUser.setClientServant(this);
             }
@@ -92,21 +87,22 @@ public class ClientServant implements Util.DownlinkOwner {
     /**
      * Startet den ClientServant, danach ist er betriebsbereit und kann die Anfragen seines Clients bearbeiten.
      * Erzeugt einen neuen Uplink und Downlink. Benutzt setDownlink(), uplink.startUplink() und downlink.startDownlink().
-     * Fängt Fehler aus startUplink() und startDownlink() ab.
+     * Fängt Fehler aus startUplink() und startDownlink() ab. Bei Fehlern wird stopClientServant() aufgerufen.
      */
-    // FIXME: stopClientServant() ?
     public final void startClientServant() {
-        this.uplink = new Uplink(this.socket);
+        //uplink und downlink starten
         try {
+            this.uplink = new Uplink(this.socket);
             this.uplink.startUplink();
+            this.setDownlink(
+                new Downlink(this.socket, this));
+            this.downlink.startDownlink();
         }
+        //bei einem Fehler (aus uplink.startUplink()) stopClientServant()
         catch (java.io.IOException e) {
             Debug.println(Debug.HIGH, this + " error starting uplink:" + e);
             this.stopClientServant();
         }
-        this.setDownlink(
-            new Downlink(this.socket, this));
-        this.downlink.startDownlink();
         Debug.println(Debug.MEDIUM, this + " started");
     }
 
@@ -116,20 +112,24 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public final void stopClientServant() {
         Uplink old = this.uplink;
+        //verhindert, daß stopClientServant mehrmals läuft
         this.uplink = null;
+        //Versuch, ein StopClientCommand() zu senden
         if (old != null) {
             try {
                 old.sendMsg(
                     new StopClientCommand());
             }
             catch (java.io.IOException e) {
-                Debug.println(this + " error sending stopClient:" + e);
+                Debug.println(Debug.HIGH, this + " error sending stopClient:" + e);
             }
             old.stopUplink();
         }
+        //assocs lösen
         this.setDownlink(null);
         this.setServer(null);
         this.setUser(null);
+        Debug.println(Debug.MEDIUM, this + ": stopped");
     }
 
     /** Führt den empfangenen Befehl einfach mittels msg.execute(this) aus. Benutzt setAliveStamp(). */
@@ -141,7 +141,6 @@ public class ClientServant implements Util.DownlinkOwner {
     }
 
     /** Sendet das angegebene CommandObjekt über den Uplink. Benutzt uplink.sendMsg() Bei einem Fehler: Fehlerbehandlung. */
-    // FIXME: stopClientServant() ?
     public final void sendCommand(Command paramCommand) {
         try {
             Uplink old = this.uplink;
@@ -150,7 +149,7 @@ public class ClientServant implements Util.DownlinkOwner {
             }
         }
         catch (java.io.IOException e) {
-            Debug.println(this + " error while sending:" + e);
+            Debug.println(Debug.HIGH, this + ": error while sending:" + e);
             this.stopClientServant();
         }
     }
@@ -160,17 +159,26 @@ public class ClientServant implements Util.DownlinkOwner {
      * Benutzt userAdministration.loginUser() um das Userobjekt zu holen und setUser() um es zu setzen.
      * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen, anschließend beendet sich
      * clientServant. Falls der User Admin-Rechte hat, so wird becomeAdminClient() aufgerufen.
+     * Ruft nach erfolgreicher Anmeldung sendCurrentUserData und joinChannel(FOYER) auf.
      */
     public final void loginUser(String name, String password) {
         UserAdministration tmpUserAdministration = this.userAdministration;
         if (tmpUserAdministration != null) {
             User tmpUser = tmpUserAdministration.loginUser(name, password);
+            //User mit diesen Daten nicht vorhanden,LoginErrorCommand senden,setUser(null)
             if (tmpUser == null) {
                 this.sendCommand(
                     new Util.Commands.LoginErrorCommand());
+                this.setUser(null);
             }
+
+           /*User vorhanden, Foyer betreten und Client informieren, evtl. zum
+            * AdminClientServant werden
+            */
+
             else {
                 this.setUser(tmpUser);
+                this.joinChannel(this.server.getChannelAdministration().FOYERNAME);
                 this.sendCurrentUserData();
                 if (tmpUser.isAdmin()) {
                     this.becomeAdminClientServant();
@@ -182,17 +190,21 @@ public class ClientServant implements Util.DownlinkOwner {
     /**
      * Meldet einen Gast beim System an. Benutzt userAdministration.loginGuest() und setUser()
      * Bei einem Loginfehler wird ein LoginErrorCommand gesendet und setUser(null) aufgerufen anschließend
-     * beendet sich clientServant.
+     * beendet sich clientServant. Ruft nach erfolgreicher Anmeldung sendCurrentUserData und joinChannel(FOYER) auf.
      */
     public final void loginAsGuest(String name) {
         UserAdministration tmpUserAdministration = this.userAdministration;
         User tmpUser = tmpUserAdministration.loginGuest(name);
+        //Gastanmeldung nicht gelungen, Fehler senden
         if (tmpUser == null) {
             this.sendCommand(
                 new Util.Commands.LoginErrorCommand());
+            this.setUser(null);
         }
+        //Anmeldung erfolgreich, Foyer betreten, Client benachrichtigen
         else {
             this.setUser(tmpUser);
+            this.joinChannel(this.server.getChannelAdministration().FOYERNAME);
             this.sendCurrentUserData();
         }
     }
@@ -207,6 +219,11 @@ public class ClientServant implements Util.DownlinkOwner {
         Uplink oldUplink = this.uplink;
         //notwendig, damit stopClientServant() nicht den uplink stoppt
         this.uplink = null;
+
+        /*der AdminClientServant - Konstruktor bewirkt über setMethoden, daß dieser
+         *ClientServant beendet wird
+         */
+
         AdminClientServant tmpAdminClientServant =
             new AdminClientServant(oldUplink, this.downlink, this.server, this.server.getChannelAdministration(),
             this.userAdministration, this.user, this.server.getDataBaseIO());
@@ -220,16 +237,20 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public final void joinChannel(String name) {
         User old = this.user;
+        //User vorhanden
         if (old != null) {
             Channel tmpChannel = old.getFromAllowedChannelByName(name);
+            //Channel existent
             if (tmpChannel != null) {
                 old.setCurrentChannel(tmpChannel);
             }
+            //Channel nicht existent
             else {
                 this.sendCommand(
                     new JoinChannelErrorCommand());
             }
         }
+        //User nicht vorhanden
         else {
             this.sendCommand(
                 new LoginErrorCommand());
@@ -260,10 +281,12 @@ public class ClientServant implements Util.DownlinkOwner {
         User oldUser = this.user;
         if (oldUser != null) {
             Channel oldChannel = oldUser.getCurrentChannel();
+            //currentChannel vorhanden
             if (oldChannel != null) {
                 Enumeration enum = oldChannel.getCurrentUserEnum();
                 User tmpUser;
                 ClientServant tmpClientServant;
+                //alle ClientServants der User im Channel zu einem sendMsgFromChannel veranlassen
                 while (enum.hasMoreElements()) {
                     tmpUser = (User)enum.nextElement();
                     tmpClientServant = tmpUser.getClientServant();
@@ -272,11 +295,13 @@ public class ClientServant implements Util.DownlinkOwner {
                     }
                 }
             }
+            //kein currentChannel vorhanden
             else {
                 this.sendCommand(
                     new JoinChannelErrorCommand());
             }
         }
+        //Userobjekt nicht vorhanden
         else {
             this.sendCommand(
                 new LoginErrorCommand());
@@ -311,26 +336,33 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public final void sendMsgToUser(String userName, String msg) {
         User old = this.user;
+        //Userobjekt vorhanden
         if (old != null) {
             Channel currentChannel = old.getCurrentChannel();
+            //currentChannel vorhanden
             if (currentChannel != null) {
                 Enumeration enum = currentChannel.getCurrentUserEnum();
                 User tmpUser;
+                //User mit userName in den Userobjekten des currentChannel suchen
                 while (enum.hasMoreElements()) {
                     tmpUser = (User)enum.nextElement();
+                    //User hat den richtigen Namen
                     if (tmpUser.getName().compareTo(userName) == 0) {
                         ClientServant tmpClientServant = tmpUser.getClientServant();
+                        //die Nachricht über den verantwortlichen ClientServant absetzen
                         if (tmpClientServant != null) {
                             tmpClientServant.sendMsgFromUser(old.getName(), msg);
                         }
                     }
                 }
             }
+            //kein currentChannel
             else {
                 this.sendCommand(
                     new JoinChannelErrorCommand());
             }
         }
+        //kein Userobjekt
         else {
             this.sendCommand(
                 new LoginErrorCommand());
