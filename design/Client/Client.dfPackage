@@ -16,6 +16,11 @@ class reference {
 @__modelType reference 
 */
 class reference9 {
+}/**
+@__ref <oiref:java#Class#Client.Testclient:oiref><oihard>
+@__modelType reference 
+*/
+class reference10 {
 }}/**
 @__tags
 @shapeType ClassDiagram 

@@ -1,14 +1,15 @@
 setMethoden bewirken die Wechselseitige Benachrichtigung aller betroffenen Objekte:
 Beispiel: Ein AdminClient löscht den Channel "foo":
 dies bewirkt, daß bei der ChannelAdministration "removeFromChannelList("foo")" aufgerufen wird
-diese Methoden entfernt den Channel aus der Liste der Channels und ruft beim Channel foo "removeYou()" auf
+diese Methode entfernt den Channel aus der Liste der Channels und ruft beim Channel foo "removeYou()" auf
 removeYou() bewirkt u.a.: foo.setCurrentUserList(null)
-setCurrentUserList(null) ruft bei den betroffenen Userobjekten setCurrentChannel(null) auf, was zur folge hat, 
-daß betroffene ClientServants "leaveChannel()" ausführen
+setCurrentUserList(null) ruft bei den betroffenen Userobjekten setCurrentChannel(null) auf, 
+
 
 
 Bemerkungen zur DataBaseIO: 
-doLinks() entfällt: DataBaseIO erzeugt zunächst beim Laden die Channelobjekte ohne Userreferenzen, danach erzeugt es die Userobjekte
+doLinks() entfällt: DataBaseIO erzeugt zunächst beim Laden die Channelobjekte ohne Userreferenzen, danach 
+erzeugt es die Userobjekte
 und ruft die Methode setAllowedChannelList() auf, welche die wechselseitige "allowance - relation" herstellt
 -user.db enthält entsprechend die für den Benutzer zulässigen Channels
 -channel.db enthält nur den Namen des Channels und das freeForGuest - Flag
