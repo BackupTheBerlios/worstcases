@@ -74,7 +74,7 @@ public class AdminClient extends Client {
               tmpChannelDiffList.addElement(tmpChannelName);
             }
         }
-        this.gui.setUserData(userName, password, isAdmin, Util.Sort.quicksort(channelNames), Util.Sort.quicksort(tmpChannelDiffList));
+        this.gui.setUserData(userName, password, isAdmin, Util.Helper.quicksort(channelNames), Util.Helper.quicksort(tmpChannelDiffList));
     }
 
     /** Wird vom SetChannelDataCommand aufgerufen und setzt die Channeldaten auf die entsprechenden Attribute. */
@@ -92,7 +92,7 @@ public class AdminClient extends Client {
               tmpUserDiffList.addElement(tmpUserName);
             }
         }
-        this.gui.setChannelData(channelName, isAllowedForGuest, Util.Sort.quicksort(userNames), Util.Sort.quicksort(tmpUserDiffList));
+        this.gui.setChannelData(channelName, isAllowedForGuest, Util.Helper.quicksort(userNames), Util.Helper.quicksort(tmpUserDiffList));
     }
 
     /** Wird vom SetUserListCommand aufgerufen und setzt die Userliste in userList. */
@@ -104,7 +104,7 @@ public class AdminClient extends Client {
          this.userList=new Vector();
         }
         if (this.gui != null) {
-            this.gui.setUserList(Util.Sort.quicksort(list));
+            this.gui.setUserList(Util.Helper.quicksort(list));
         }
     }
 
@@ -118,7 +118,7 @@ public class AdminClient extends Client {
          this.channelList= new Vector();
         }
         if (this.gui != null) {
-            this.gui.setChannelList(Util.Sort.quicksort(list));
+            this.gui.setChannelList(Util.Helper.quicksort(list));
         }
     }
 

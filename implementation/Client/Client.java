@@ -66,7 +66,7 @@ public class Client implements Util.DownlinkOwner {
     public synchronized final void setCurrentUserData(String userName, boolean isAdmin, Vector channelNames) {
         this.currentUserName = userName;
         this.currentUserIsAdmin = isAdmin;
-        this.currentAllowedChannelNames = Util.Sort.quicksort(channelNames);
+        this.currentAllowedChannelNames = Util.Helper.quicksort(channelNames);
         if (this.gui != null) {
             gui.setCurrentUserData(userName, isAdmin, this.currentAllowedChannelNames);
         }
@@ -80,7 +80,7 @@ public class Client implements Util.DownlinkOwner {
      */
     public synchronized final void setCurrentChannelData(String paramName, Vector userNames) {
         this.currentChannelName = paramName;
-        this.currentUsersInChannelList = Util.Sort.quicksort(userNames);
+        this.currentUsersInChannelList = Util.Helper.quicksort(userNames);
         if (this.gui != null) {
             this.gui.setCurrentChannelData(this.currentChannelName, this.currentUsersInChannelList);
         }
