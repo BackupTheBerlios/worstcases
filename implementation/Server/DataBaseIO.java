@@ -34,7 +34,7 @@ class DataBaseIO {
   private String userToString(User paramUser) {
 
     // in tmpString wird Name, Paßwort und IsAdmin gespeichert
-    String tmpString = paramUser.getName() + "#" + paramUser.getPassword()
+		String tmpString = paramUser.getName().replace('#',' ') + "#" + paramUser.getPassword().replace('#',' ')
                        + "#" + paramUser.isAdmin();
 
     // Anzahl der Channels
@@ -43,7 +43,7 @@ class DataBaseIO {
     // mittels einer Schleife werden die Channels tmpString hinzugefügt
     while (enum.hasMoreElements()) {
       tmpString = tmpString + "#"
-                  + ((Channel) (enum.nextElement())).getName();
+									+ ((Channel) (enum.nextElement())).getName().replace('#',' ');
     }
 
     return tmpString;
@@ -97,7 +97,7 @@ class DataBaseIO {
    */
   private String channelToString(Channel paramChannel) {
 
-    String tmpString = paramChannel.getName() + "#"
+		String tmpString = paramChannel.getName().replace('#',' ') + "#"
                        + paramChannel.isAllowedForGuest();
 
     return tmpString;
@@ -302,8 +302,8 @@ class DataBaseIO {
   private ChannelAdministration channelAdministration;
 
   /** Dateiname der Channeldatenbank. */
-  private String channelDBFile = "channel.db";
+  private final static String channelDBFile = "channel.db";
 
   /** Dateiname der Benutzerdatenbank. */
-  private String userDBFile = "user.db";
+  private final static String userDBFile = "user.db";
 }
