@@ -4,10 +4,11 @@ package Util;
 import java.net.Socket;
 
 /**
- * Versendet Nachrichten über einen Socket. Diese Klasse ist die sendende
- * Hälfte eines Kommunikationskanals. Die andere Hälfte, die das Empfangen 
- * von Nachrichten übernimmt, ist der Downlink.
- * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten zu senden.
+ * Versendet Nachrichten über einen Socket an einen Downlink. 
+ * Diese Klasse ist die sendende Hälfte eines Kommunikationskanals. Die andere
+ * Hälfte, die das Empfangen von Nachrichten übernimmt, ist der Downlink.
+ * Diese Klasse wird z.B. vom Client benutzt, um Nachrichten an seinen
+ * ClientServant zu senden.
  *
  * @see Util.Downlink
  * @see Client.Client
@@ -23,7 +24,7 @@ public class Uplink {
     }
 
     /**
-     * Über diesen Socket sendet der Uplink Nachrichten.
+     * Über diesen Socket werden die Nachrichten versendet.
      */
     private Socket socket;
 
