@@ -18,16 +18,9 @@ class ChannelAdministration {
         return null;
     }
 
-    public Vector getCurrentUserNames(){
-        Vector tmpVector=new Vector();
-        Enumeration enum=this.getFreeForGuestEnum();
-        while(enum.hasMoreElements()){
-         tmpVector.addElement(((User)enum.nextElement()).getName());
-
-        }
-        return tmpVector;
-
+    public Vector getChannelNames(){
     }
+
 
     /** Entfernt einen Channel. */
     public void removeFromChannelList(Channel paramChannel) {

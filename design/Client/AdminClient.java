@@ -11,16 +11,20 @@ public class AdminClient extends Client {
     private boolean tmpAllowedForGuests;
     private Vector tmpAllowedUserNames;
 
+    private String tmpUserName;
+    private String tmpUserPassword;
+    private boolean tmpIsAdmin;
+    private Vector tmpAllowedChannelNames;
+
 
     /** fügt einen Channel mit den Daten aus dem String channel hinzu. Hiermit läßt sich ein neuer Channel erzeugen. */
-    public void addChannel(String channel) {
-     this.sendCommand(new NewChannelCommand(tmpChannelName,tmpAllowedForGuests,tmpAllowedUserNames));
+    public void addChannel(String paramName,boolean paramAllowedForGuests,Vector tmpAllowedUserList) {
+
 
     }
 
     /** löscht einen Channel */
     public void deleteChannel(String paramName) {
-        this.sendCommand(new Util.Commands.DeleteChannelCommand(paramName));
     }
 
     /**

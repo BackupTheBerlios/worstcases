@@ -13,6 +13,12 @@ public class Client implements Util.DownlinkOwner {
             new JoinChannelCommand(name));
     }
 
+    public void joinChannelError(){
+    }
+
+    public void stopClient(){
+    }
+
     public void setUserData(String userName,Vector channelNames){
     }
 
@@ -27,8 +33,15 @@ public class Client implements Util.DownlinkOwner {
 
     public void downlinkError() { };
 
-    public void loginError(String msg) {
-        System.out.println("login failed: " + msg);
+    public void loginError() {
+        System.out.println("login failed: ");
+    }
+
+
+    public void sendMsgToChannelError(){
+    }
+
+    public void sendMsgToUserError(){
     }
 
     protected void sendCommand(Command paramCommand) {

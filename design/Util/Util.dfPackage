@@ -1,4 +1,4 @@
-package id2iy11cmwzp7iecmwzptms;
+package id1dw3v2cn8ls92acn8mkl2n;
 
 /**
 @version 2.0
@@ -7,20 +7,26 @@ package id2iy11cmwzp7iecmwzptms;
 */
 class diagram {
 /**
-@__ref <oiref:java#Class#Util.Downlink:oiref><oihard>
-@__modelType reference 
-*/
-class reference3 {
-}/**
 @__ref <oiref:java#Class#Util.Uplink:oiref><oihard>
 @__modelType reference 
 */
-class reference4 {
+class reference {
 }/**
 @__ref <oiref:java#Class#Util.DownlinkOwner:oiref><oihard>
 @__modelType reference 
 */
-class reference5 {
+class reference6 {
+}/**
+@__ref <oiref:design#Class#idfsn8gncn7o854rcn7o9cix.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Util.Commands:oiref> 
+*/
+class reference7 {
+}/**
+@__ref <oiref:java#Class#Util.Downlink:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -31,10 +37,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:java#Class#Util.DownlinkOwner:oiref>=14,0,184,80,1:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#Util.Downlink#downlinkOwner:oiref>=106,130,106,80:oigroup>
-<oigroup:<oiref:java#Class#Util.Uplink:oiref>=233,10,182,147,1:oigroup>
-<oigroup:<oiref:java#Class#Util.Downlink:oiref>=10,130,203,260,1:oigroup>
+@__positions 
 */
 class __positions {
 }

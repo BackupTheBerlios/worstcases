@@ -24,6 +24,9 @@ class UserAdministration {
         }
     }
 
+    public Vector getUserNames(){
+    }
+
     /**
      * Meldet einen Gast an.
      * @param guestSet die vom Client empfangenen Gastdaten

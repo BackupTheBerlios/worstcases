@@ -1,4 +1,4 @@
-package idjtz438cn35ebbrcn35h6am;
+package id311h61cn8opmokcn8oq8pl;
 
 /**
 @version 2.0
@@ -6,7 +6,17 @@ package idjtz438cn35ebbrcn35h6am;
 @__modelType diagram 
 */
 class diagram {
+/**
+@__ref <oiref:java#Class#Client.AdminClient:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
 }/**
+@__ref <oiref:java#Class#Client.Client:oiref><oihard>
+@__modelType reference 
+*/
+class reference9 {
+}}/**
 @__tags
 @shapeType ClassDiagram 
 */
@@ -16,7 +26,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:java#Class#Client.AdminClient:oiref>=18,576,203,339,1:oigroup>
+<oigroup:<oiref:java#Class#Client.Client:oiref>=10,10,219,574,1:oigroup>
+<oigroup:<oiref:java#Extends#Client.AdminClient#Client.Client:oiref>=221,616,224,584:oigroup> 
 */
 class __positions {
 }

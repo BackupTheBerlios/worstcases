@@ -65,14 +65,9 @@ public class Downlink extends Thread {
     }
 
     /** ÷ffnet den Input - Stream, danach ist der Downlink betriebsbereit. */
-    public void startDownlink() {
-        try {
+    public void startDownlink() throws java.io.IOException{
             this.objectInputStream = new ObjectInputStream(this.socket.getInputStream());
             System.out.println("downlink started");
-        } catch (Exception e) {
-            System.out.println(e);
-            this.stopDownlink();
-        }
     }
 
     /** Startet den Thread. */
@@ -81,7 +76,7 @@ public class Downlink extends Thread {
     }
 
     /** Schlieﬂt den Input - Stream */
-    public void stopDownlink() {
+    private void stopDownlink() {
         this.stop = true;
     }
 
