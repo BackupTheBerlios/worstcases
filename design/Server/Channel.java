@@ -12,82 +12,134 @@ import java.util.Enumeration;
  * wieder entfernt werden, wenn sie den Channel betreten bzw. verlassen.
  */
 class Channel {
-    public Channel(String paramName, boolean paramAllowedForGuests, Vector paramAllowedUserStringList) {
+    public Channel(String paramName, boolean paramAllowedForGuests) {
         this.name = paramName;
         this.allowedForGuest = paramAllowedForGuests;
-        this.allowedUserStringList = paramAllowedUserStringList;
     }
 
-    public Channel() { }
-    ;
+    public Vector getCurrentUserNames(){
+     Vector tmpVector=new Vector();
+     Enumeration enum=this.getCurrentUserEnum();
+     while(enum.hasMoreElements()){
+      tmpVector.addElement(((User)enum.nextElement()).getName());
 
-    public Vector getCurrentUserList() {
-        return currentUserList;
+     }
+     return tmpVector;
     }
 
-    public void setCurrentUserList(Vector currentUserList) {
-        this.currentUserList = currentUserList;
+    public void addToAllowedUserList(User paramUser) {
+        if (!this.allowedUserList.contains(paramUser)) {
+            this.allowedUserList.addElement(paramUser);
+            paramUser.addToAllowedChannelList(this);
+        }
+    }
+
+    public void removeFromAllowedUserList(User paramUser) {
+        if (this.allowedUserList.removeElement(paramUser)) {
+            paramUser.removeFromAllowedChannelList(this);
+        }
+    }
+
+    public void removeYou() {
+        this.setCurrentUserList(null);
+        this.setAllowedUserList(null);
+    }
+
+    public Enumeration getCurrentUserEnum() {
+        return currentUserList.elements();
+    }
+
+    public void setCurrentUserList(Enumeration EnumCurrentUser) {
+        Vector tmpList = new Vector();
+        User tmpUser;
+        while (EnumCurrentUser.hasMoreElements()) {
+            tmpUser = (User)EnumCurrentUser.nextElement();
+            tmpList.addElement(tmpUser);
+            this.addToCurrentUserList(tmpUser);
+        }
+        Enumeration enum = this.getCurrentUserEnum();
+        while (enum.hasMoreElements()) {
+            tmpUser = (User)enum.nextElement();
+            if (!tmpList.contains(tmpUser)) {
+                this.removeFromCurrentUserList(tmpUser);
+            }
+        }
     }
 
     /** Fügt einen User zu den im Channel befindlichen Usern hinzu. */
     public void addToCurrentUserList(User paramUser) {
-        this.currentUserList.addElement(paramUser);
-        Enumeration enum = this.currentUserList.elements();
-        while (enum.hasMoreElements()) {
-            User tmpUser = (User)(enum.nextElement());
-            ClientServant tmpClientServant = tmpUser.getClientServant();
-            tmpClientServant.sendNewUserEnteredChannel(paramUser.getName());
+        if (!this.currentUserList.contains(paramUser)) {
+            this.currentUserList.addElement(paramUser);
+            paramUser.setCurrentChannel(this);
         }
     }
 
     /** Entfernt einen User von den im Channel befindlichen Usern. */
     public void removeFromCurrentUserList(User paramUser) {
-        int pos = 0;
-        this.currentUserList.removeElement(paramUser);
-        User tmpUser = (User)(this.currentUserList.elementAt(pos));
-        ClientServant tmpClientServant = tmpUser.getClientServant();
-        tmpClientServant.sendChannelData();
+        if (this.currentUserList.removeElement(paramUser)) {
+            paramUser.setCurrentChannel(null);
+        }
     }
 
-    public Vector getAllowedUserList() {
-        return allowedUserList;
+    public void setName(String paramName){
+     this.name=paramName;
     }
 
-    public void setAllowedUser(Vector allowedUser) {
-        this.allowedUserList = allowedUserList;
+    public void setAllowedUserList(Enumeration enumAllowedUser) {
+        Vector tmpList = new Vector();
+        User tmpUser;
+        while (enumAllowedUser.hasMoreElements()) {
+            tmpUser = (User)enumAllowedUser.nextElement();
+            tmpList.addElement(tmpUser);
+            this.addToAllowedUserList(tmpUser);
+        }
+        Enumeration enum = this.getAllowedUserEnum();
+        while (enum.hasMoreElements()) {
+            tmpUser = (User)enum.nextElement();
+            if (!tmpList.contains(tmpUser)) {
+                this.removeFromAllowedUserList(tmpUser);
+            }
+        }
+    }
+
+    public Enumeration getAllowedUserEnum() {
+        return this.allowedUserList.elements();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String toString() {
         String tmpString = "Name:" + name + " allowed for guests:" + this.allowedForGuest + " allowed user:";
-        Enumeration enum = this.getAllowedUserList().elements();
+        Enumeration enum = this.getAllowedUserEnum();
         while (enum.hasMoreElements()) {
             tmpString = tmpString + ((User)enum.nextElement()).getName() + " ";
         }
         return tmpString;
     }
 
-    public Vector getAllowedUserStringList() {
-        return allowedUserStringList;
-    }
-
-    public void setAllowedUserStringList(Vector allowedUserStringList) {
-        this.allowedUserStringList = allowedUserStringList;
-    }
-
     public boolean isAllowedForGuest() {
         return allowedForGuest;
     }
 
-    public void setAllowedForGuest(boolean allowedForGuest) {
-        this.allowedForGuest = allowedForGuest;
+    public void setAllowedForGuest(boolean b) {
+        boolean old = this.isAllowedForGuest();
+        this.allowedForGuest = b;
+        if (old != b) {
+            if (old) {
+                Enumeration enum = this.getCurrentUserEnum();
+
+                User tmpUser;
+                while (enum.hasMoreElements()) {
+                    tmpUser = (User)enum.nextElement();
+                    if(tmpUser.isGuest()){
+                     tmpUser.removeFromAllowedChannelList(this);
+                     tmpUser.setCurrentChannel(null);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -113,14 +165,6 @@ class Channel {
     private Vector allowedUserList = new Vector();
 
     /** Gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt. */
-    private boolean modified;
-
-    /**
-     * @supplierCardinality 0..
-     * @clientCardinality 0..
-     */
-    private ChannelAdministration channelAdministration;
     private String name;
-    private boolean allowedForGuest = true;
-    private Vector allowedUserStringList = new Vector();
+    private boolean allowedForGuest = false;
 }

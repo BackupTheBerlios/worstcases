@@ -15,23 +15,51 @@ public class ClientServant implements Util.DownlinkOwner {
     /** Konstruktor, der die entsprechenden Attribute setzt. */
     public ClientServant(Socket paramSocket, Server paramServer, UserAdministration paramUserAdministration) {
         this.socket = paramSocket;
-        this.server = paramServer;
+        this.setServer(paramServer);
         this.userAdministration = paramUserAdministration;
     }
 
-    public void sendNewUserEnteredChannel(String paramName){
-      this.sendCommand(new NewUserInChannelCommand(paramName));
+    public void setDownlink(Downlink paramDownlink) {
+        if (this.downlink != paramDownlink) {
+            if (this.downlink != null) {
+                Downlink old = this.downlink;
+                this.downlink = null;
+                old.setDownlinkOwner(null);
+            }
+            this.downlink = paramDownlink;
+            if (paramDownlink != null) {
+                paramDownlink.setDownlinkOwner(this);
+            }
+        }
+    }
+
+    public void setUser(User paramUser) {
+        if (this.user != paramUser) {
+            if (this.user != null) {
+                User old = this.user;
+                this.user = null;
+                old.setClientServant(null);
+            }
+            this.user = paramUser;
+            if (paramUser != null) {
+                paramUser.setClientServant(this);
+            }
+            else {
+                this.stopClientServant();
+            }
+        }
     }
 
     public ClientServant() { }
-    public void stopOwner(){
-     this.stopClientServant();
+
+    public void downlinkError() {
+        this.stopClientServant();
     }
 
     /** Startet den ClientObserver, danach ist er betriebsbereit und kann die Anfragen seines Clients bearbeiten. */
     public void startClientServant() {
-        this.uplink = new Util.Uplink(this.socket);
-        this.downlink = new Util.Downlink(this.socket, this);
+        this.uplink = new Uplink(this.socket);
+        this.downlink = new Downlink(this.socket, this);
         try {
             this.uplink.startUplink();
             this.downlink.startDownlink();
@@ -39,35 +67,17 @@ public class ClientServant implements Util.DownlinkOwner {
         catch (java.io.IOException e) {
             System.out.println(e);
         }
-        this.downlink.start();
         System.out.println("ClientServant started");
     }
 
     /** Stoppt den ClientServant. */
-    public synchronized void stopClientServant() {
-        if (this.user != null) {
-            if (this.user.getCurrentChannel() != null) {
-                this.leaveChannel();
-            }
-            if (this.user.isLoggedIn()) {
-                this.user.setLoggedIn(false);
-            }
-            this.user.setClientServant(null);
-        }
-        if (this.downlink != null) {
-            this.downlink.stopDownlink();
-            this.downlink=null;
-        }
+    protected synchronized void stopClientServant() {
+        this.setDownlink(null);
         if (this.uplink != null) {
             this.uplink.stopUplink();
-            this.uplink=null;
         }
-	if (this.server !=null){
-        this.server.removeFromClientServantList(this);
-        this.server=null;
-	}
-	        System.out.println("ClientServant stopped");
-
+        this.setUser(null);
+        System.out.println("ClientServant stopped");
     }
 
     /** Verarbeitet eine empfangene Nachricht, bzw. führt den empfangenen Befehl einfach aus. */
@@ -81,6 +91,7 @@ public class ClientServant implements Util.DownlinkOwner {
         }
         catch (java.io.IOException e) {
             System.out.println(e);
+            this.stopClientServant();
         }
     }
 
@@ -95,11 +106,10 @@ public class ClientServant implements Util.DownlinkOwner {
         }
         else {
             System.out.println("User " + this.user.getName() + " logged in");
-            System.out.println(this.user.getAllowedChannelList());
             this.user.setClientServant(this);
             if (this.user.isAdmin()) {
+                System.out.println("becoming AdminClientServant");
                 this.becomeAdminClientServant();
-		System.out.println("becoming AdminClientServant");
             }
         }
     }
@@ -115,7 +125,6 @@ public class ClientServant implements Util.DownlinkOwner {
         else {
             System.out.println("Guest " + this.user.getName() + " logged in");
             this.user.setClientServant(this);
-            System.out.println(this.user.getAllowedChannelList());
         }
     }
 
@@ -125,18 +134,15 @@ public class ClientServant implements Util.DownlinkOwner {
      */
     public void becomeAdminClientServant() {
         AdminClientServant tmpAdminClientServant =
-            new AdminClientServant(this.socket, this.server, this.server.getChannelAdministration(),
+            new AdminClientServant(this.uplink, this.downlink, this.server, this.server.getChannelAdministration(),
             this.userAdministration, this.user);
-            this.user.setClientServant(tmpAdminClientServant);
-        this.downlink.setDownlinkOwner(tmpAdminClientServant);
-        this.server.addToClientServantList(tmpAdminClientServant);
-        this.server.removeFromClientServantList(this);
+            this.uplink = null;
+        this.stopClientServant();
     }
 
     /** Meldet den Benutzer vom System ab und stoppt den Observer. */
     public void logoutUser() {
         this.user.setLoggedIn(false);
-        this.stopClientServant();
     }
 
     /** Lässt den User in den Channel mit dem angegebenen Namen eintreten. */
@@ -152,38 +158,53 @@ public class ClientServant implements Util.DownlinkOwner {
 
     /** Sendet eine Nachricht des Users an alle anderen User im Channel. */
     public void sendMsgToChannel(String msg) {
-        Enumeration enum = this.user.getCurrentChannel().getCurrentUserList().elements();
-        while (enum.hasMoreElements()) {
-            User tmpUser = (User)(enum.nextElement());
-            ClientServant tmpClientServant = tmpUser.getClientServant();
-            tmpClientServant.sendMsgFromChannel(this.user.getName() + " sayz: " + msg);
+        if (this.user.getCurrentChannel() != null) {
+            Enumeration enum = this.user.getCurrentChannel().getCurrentUserEnum();
+            User tmpUser;
+            while (enum.hasMoreElements()) {
+                tmpUser = (User)enum.nextElement();
+                tmpUser.getClientServant().sendMsgFromChannel(this.user.getName(), msg);
+            }
         }
     }
 
     /** Sendet eine Nachricht, die in den besuchten Channel gesendet wurde, an den Client. */
-    public void sendMsgFromChannel(String msg) {
+    public void sendMsgFromChannel(String fromName, String msg) {
+        this.sendCommand(
+            new Util.Commands.SendMsgFromChannelCommand(fromName, msg));
     }
 
     /** Sendet eine private Nachricht eines anderen Users an den Client. */
-    public void sendMsgFromUser(String msg) {
+    public void sendMsgFromUser(String fromName, String msg) {
+        this.sendCommand(
+            new Util.Commands.SendMsgFromUserCommand(fromName, msg));
     }
 
     /** Sendet eine private Nachricht des Users an einen anderen User. */
     public void sendMsgToUser(String userName, String msg) {
-        int pos = 0;
-        Channel tmpChannel = this.user.getCurrentChannel();
-        User tmpUser = (User)(tmpChannel.getCurrentUserList().elementAt(pos));
-        ClientServant tmpClientServant = tmpUser.getClientServant();
+        if (this.user.getCurrentChannel() != null) {
+            Enumeration enum = this.user.getCurrentChannel().getCurrentUserEnum();
+            User tmpUser;
+            while (enum.hasMoreElements()) {
+                tmpUser = (User)enum.nextElement();
+                if (tmpUser.getName().compareTo(userName) == 0) {
+                    tmpUser.getClientServant().sendMsgFromUser(this.user.getName(), msg);
+                }
+            }
+        }
     }
 
     /** Sendet die Daten des betretenen Channel an den Client. */
-    public void sendChannelData() {
-        Channel tmpChannel = this.user.getCurrentChannel();
+    public void sendCurrentChannelData() {
+        this.sendCommand(
+            new Util.Commands.CurrentChannelDataCommand(this.user.getCurrentChannel().getName(),
+            this.user.getCurrentChannel().getCurrentUserNames()));
     }
 
     /** Sendet die Daten des Users an den Client. */
     public void sendUserData() {
-        String tmpUserSet = this.user.toString();
+        this.sendCommand(new Util.Commands.UserDataCommand(this.user.getName(),this.user.getAllowedChannelNames()));
+
     }
 
     /**
@@ -218,5 +239,19 @@ public class ClientServant implements Util.DownlinkOwner {
      * @clientCardinality 0..
      * @supplierCardinality 1
      */
-    private Server server;
+    protected Server server;
+
+    public void setServer(Server paramServer) {
+        if (this.server != paramServer) {
+            if (this.server != null) {
+                Server oldServer = this.server;
+                this.server = null;
+                oldServer.removeFromClientServantList(this);
+            }
+            this.server = paramServer;
+            if (paramServer != null) {
+                paramServer.addToClientServantList(this);
+            }
+        }
+    }
 }

@@ -14,13 +14,34 @@ import java.util.Enumeration;
 public class Server {
     /** Startet den Server, danach ist er vollständig betriebsbereit und kann Verbindungswünsche von Clients behandeln. */
     public void startServer() throws java.io.FileNotFoundException, java.io.IOException {
-        this.clientServantList = new Vector();
-        this.dataBaseIO = new DataBaseIO();
-        this.channelAdministration = new ChannelAdministration(this.dataBaseIO);
-        this.userAdministration = new UserAdministration(this.dataBaseIO, this.channelAdministration);
-        this.dataBaseIO.setUserAdministration(this.userAdministration);
-        this.dataBaseIO.setChannelAdministration(this.channelAdministration);
+        this.channelAdministration = new ChannelAdministration();
+        this.userAdministration = new UserAdministration();
+        this.dataBaseIO = new DataBaseIO(this.userAdministration, this.channelAdministration);
         this.dataBaseIO.loadFromDisk();
+        this.listen();
+    }
+
+    /** Stoppt den Server, alle mit ihm verbundenen Clients werden abgemeldet. */
+    public void stopServer() {
+        this.stop=true;
+        Enumeration enum = this.clientServantList.elements();
+        while (enum.hasMoreElements()) {
+          this.removeFromClientServantList((ClientServant)enum.nextElement());
+        }
+        System.out.println("Server stopped");
+    }
+
+    /** entfernt einen ClientServant aus der Liste der aktiven ClientServants. */
+    public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
+        if (this.clientServantList.removeElement(paramClientServant)) {
+            paramClientServant.setServer(null);
+            System.out.println("removed ClientServant");
+            System.out.println(this.clientServantList.size() + " ClientServants active");
+        }
+    }
+
+    /** Wartet auf ankommendene Verbindungswünsche der Clients und leitet diese jeweils an einen neuen ClientObserver weiter. */
+    private void listen() {
         try {
             this.serverSocket = new ServerSocket(this.SERVER_PORT, this.LISTEN_QUEUE_LENGTH);
             System.out.println("Server started on " + this.serverSocket.getInetAddress() + ":" +
@@ -28,48 +49,35 @@ public class Server {
         } catch (java.io.IOException e) {
             System.out.println(e);
         }
-        System.out.println("free for guests: "+this.channelAdministration.getFreeForGuestList());
-        this.listen();
-    }
-
-    /** Stoppt den Server, alle mit ihm verbundenen Clients werden abgemeldet. */
-    public void stopServer() throws java.io.IOException {
-        this.serverSocket.close();
-        Enumeration enum = this.clientServantList.elements();
-        while (enum.hasMoreElements()) {
-            ((ClientServant)(enum.nextElement())).stopClientServant();
-        }
-    }
-
-    /** Stoppt und entfernt einen ClientServant aus der Liste der aktiven ClientServants. */
-    public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
-        if(this.clientServantList.removeElement(paramClientServant)){
-                paramClientServant.stopClientServant();
-                System.out.println("removed ClientServant");
-                System.out.println(this.clientServantList.size()+" ClientServants active");
-        }
-
-    }
-
-    /** Wartet auf ankommendene Verbindungswünsche der Clients und leitet diese jeweils an einen neuen ClientObserver weiter. */
-    private void listen() {
-        while (true) {
+        while (!stop) {
             try {
                 Socket tmpSocket = serverSocket.accept();
                 System.out.println("incoming connection from " + tmpSocket.getInetAddress() + ":" + tmpSocket.getPort());
                 ClientServant tmpClientServant = new ClientServant(tmpSocket, this, userAdministration);
-                this.clientServantList.addElement(tmpClientServant);
+                this.addToClientServantList(tmpClientServant);
                 tmpClientServant.startClientServant();
-                System.out.println(this.clientServantList.size() + " ClientServants active");
             } catch (java.io.IOException e) {
                 System.out.println(e);
             }
         }
+
+                try {
+                    this.serverSocket.close();
+                    System.out.println("ServerSocket closed");
+        } catch (java.io.IOException e) {
+            System.out.println(e);
+        }
+
     }
 
     /** Fügt einen ClientServant zu der Liste aktiver ClientServants hinzu. */
     public synchronized void addToClientServantList(ClientServant paramClientServant) {
-        this.clientServantList.addElement(paramClientServant);
+        if (!this.clientServantList.contains(paramClientServant)) {
+            this.clientServantList.addElement(paramClientServant);
+            paramClientServant.setServer(this);
+            System.out.println("added ClientServant");
+            System.out.println(this.clientServantList.size() + " ClientServants active");
+        }
     }
 
     public ChannelAdministration getChannelAdministration() {
@@ -83,10 +91,10 @@ public class Server {
      * @clientCardinality 1
      * @supplierCardinality 0..
      */
-    private Vector clientServantList;
+    private Vector clientServantList = new Vector();
 
     /** Der Port, auf dem der Server sein ServerSocket öffnet und auf Anfragen der Clients horcht. */
-    private final static int SERVER_PORT = 1500;
+    private int SERVER_PORT = 1500;
 
     /**
      * Die Länge der Warteschlange, in der Verbindungswünsche von Clients
@@ -94,8 +102,9 @@ public class Server {
      * Verbindungswünsche, die nicht mehr in die Warteschlange  passen, werden
      * automatisch abgewiesen (siehe auch java.net.ServerSocket).
      */
-    private final static int LISTEN_QUEUE_LENGTH = 10;
+    private int LISTEN_QUEUE_LENGTH = 10;
     private ServerSocket serverSocket;
+    private boolean stop=false;
 
     /**
      * Die Datenbank, in der die Informationen über User und Channel gespeichert

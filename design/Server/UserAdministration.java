@@ -5,10 +5,6 @@ import java.util.Enumeration;
 
 /** Verwaltet die Benutzer */
 class UserAdministration {
-    public UserAdministration(DataBaseIO paramDataBaseIO, ChannelAdministration paramChannelAdministration) {
-        this.channelAdministration = paramChannelAdministration;
-    }
-
     /**
      * Meldet einen Benutzer an.
      * @param userSet die vom Client empfangenen Benutzerdaten
@@ -34,31 +30,49 @@ class UserAdministration {
      * @return den Benutzer, falls Authentifizierung klappt, sonst null
      */
     public synchronized User loginGuest(String paramName) {
-        if (this.getFromUserListByName(paramName) == null) {
-            User tmpUser = new User(paramName, "guest", true, false, null,this);
-	    tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestList());
+        if ((this.getFromUserListByName(paramName) == null) && (this.numCurrentUsers < this.maxUsers)) {
+            User tmpUser = new User(paramName, "guest", true, false, this);
+            tmpUser.setAllowedChannelList(this.channelAdministration.getFreeForGuestEnum());
             tmpUser.setLoggedIn(true);
-            this.userList.addElement(tmpUser);
+            this.addToUserList(tmpUser);
             return tmpUser;
         }
         else {
-        System.out.println("guestname "+paramName+" not free");return null;
+            System.out.println("guestname " + paramName + " login failed");
+            return null;
         }
-
     }
 
     /** Fügt einen Benutzer hinzu. */
-    public void addToUserList(User paramUser) { }
+    public void addToUserList(User paramUser) {
+        if (!this.userList.contains(paramUser)) {
+            this.userList.addElement(paramUser);
+            paramUser.setUserAdministration(this);
+            try {
+                this.dataBaseIO.saveToDisk();
+            }
+            catch (java.io.IOException e) {
+                System.out.println(e);
+            }
+        }
+    }
 
     /** Entfernt einen Benutzer. */
     public void removeFromUserList(User paramUser) {
-        paramUser.getClientServant().stopClientServant();
-        this.userList.removeElement(paramUser);
+        if (this.userList.removeElement(paramUser)) {
+            paramUser.setUserAdministration(null);
+            try {
+                this.dataBaseIO.saveToDisk();
+            }
+            catch (java.io.IOException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     /** Gibt den Benutzer mit dem angegebenen Namen zurück. */
     public User getFromUserListByName(String name) {
-        Enumeration enum = this.userList.elements();
+        Enumeration enum = this.getUserEnum();
         User tmpUser;
         while (enum.hasMoreElements()) {
             tmpUser = (User)(enum.nextElement());
@@ -69,12 +83,25 @@ class UserAdministration {
         return null;
     }
 
-    public java.util.Vector getUserList() {
-        return userList;
+    public Enumeration getUserEnum() {
+        return userList.elements();
     }
 
-    public void setUserList(Vector userList) {
-        this.userList = userList;
+    public void setUserList(Enumeration userEnum) {
+        Vector tmpUserList = new Vector();
+        User tmpUser;
+        while (userEnum.hasMoreElements()) {
+            tmpUser = (User)userEnum.nextElement();
+            tmpUserList.addElement(tmpUser);
+            this.addToUserList(tmpUser);
+        }
+        Enumeration enum = tmpUserList.elements();
+        while (enum.hasMoreElements()) {
+            tmpUser = (User)enum.nextElement();
+            if (!tmpUserList.contains(tmpUser)) {
+                this.removeFromUserList(tmpUser);
+            }
+        }
     }
 
     /**
@@ -86,15 +113,38 @@ class UserAdministration {
     private Vector userList;
 
     /** Anzahl der eingeloggten Benutzer(registrierte und Gäste) im System. */
-    private int numCurrentUsers;
+    private int numCurrentUsers = 0;
 
     /** Maximale Anzahl von eingeloggten Benutzern im System. */
-    private int maxUsers;
+    private int maxUsers = 100;
+
+    public synchronized void incNumCurrentUsers() {
+        this.numCurrentUsers++;
+    }
+
+    public synchronized void decNumCurrentUsers() {
+        this.numCurrentUsers--;
+    }
 
     /**
      * @clientCardinality 1
      * @supplierCardinality 1
      */
     private DataBaseIO dataBaseIO;
+
+    public void setDataBaseIO(DataBaseIO paramDataBaseIO) {
+        if (this.dataBaseIO != paramDataBaseIO) {
+            if (this.dataBaseIO != null) {
+                DataBaseIO old = this.dataBaseIO;
+                this.dataBaseIO = null;
+                old.setUserAdministration(null);
+            }
+            this.dataBaseIO = paramDataBaseIO;
+            if (paramDataBaseIO != null) {
+                paramDataBaseIO.setUserAdministration(this);
+            }
+        }
+    }
+
     private ChannelAdministration channelAdministration;
 }

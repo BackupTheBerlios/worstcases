@@ -13,11 +13,19 @@ public class Client implements Util.DownlinkOwner {
             new JoinChannelCommand(name));
     }
 
-    public void newUserInChannel(String paramName){
-     System.out.println(paramName+" joined channel");
+    public void setUserData(String userName,Vector channelNames){
     }
 
-    public void stopOwner(){};
+    public void setChannelData(String paramName,Vector userNames){
+    }
+
+    public void newUserInChannel(String paramName) {
+        System.out.println(paramName + " joined channel");
+    }
+
+    public void setDownlink(Util.Downlink paramDownlink) { };
+
+    public void downlinkError() { };
 
     public void loginError(String msg) {
         System.out.println("login failed: " + msg);
@@ -100,7 +108,11 @@ public class Client implements Util.DownlinkOwner {
         }
     }
 
-    public void sendMsgFromChannel(String msg) {
+    public void sendMsgFromChannel(String fromName, String msg) {
+        System.out.println(fromName + " sayz:" + msg);
+    }
+
+    public void sendMsgFromUser(String fromName,String msg){
     }
 
     /**

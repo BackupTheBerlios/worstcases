@@ -6,16 +6,17 @@ public class LoginGuestCommand implements Command {
   
   /**
    * Konstruktor. Erzeugt einen Login-Befehl mit den zur Anmeldung eines
-   * Gasts am Server benötigten Daten. Dieser Befehl kann nur von einem
+   * Users am Server benötigten Daten. Dieser Befehl kann nur von einem
    * ClientServant verarbeitet werden.
    *
    * @param name der Benutzername.
+   * @param password das Kennwort.
    */
-  public LoginGuestCommand(String name) {
-   this.name = name;
+  public LoginGuestCommand(String paramName) {
+   this.name=paramName;
   }
 
-  /** Der Name des Gasts. */
+  /** Der Benutzername. */
   String name;
    
   public void execute(Object target) {

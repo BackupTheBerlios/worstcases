@@ -17,6 +17,6 @@ public interface Command extends Serializable {
    * @exception CommandException falls der Befehl beim Empfänger nicht
    * ausgeführt werden kann.
    */
-  void execute(Object target) /* throws CommandException*/;
+  public void execute(Object target) /* throws CommandException*/;
   // FIXME: Ausnahme-Behandlung muss noch implementiert werden.
 }

@@ -21,7 +21,7 @@ public class Downlink extends Thread {
      */
     public Downlink(Socket socket, DownlinkOwner owner) {
         this.socket = socket;
-        this.downlinkOwner = owner;
+        this.setDownlinkOwner(owner);
     }
 
     /** Über diesen Socket werden die Nachrichten empfangen. */
@@ -38,9 +38,15 @@ public class Downlink extends Thread {
         Command tmpCommand;
         while (!stop) {
             try {
-                tmpCommand = (Command)objectInputStream.readObject(); // FIXME: Dummy
-                downlinkOwner.processMsg(tmpCommand);
+                tmpCommand = (Command)objectInputStream.readObject();
                 System.out.println("received " + tmpCommand);
+                downlinkOwner.processMsg(tmpCommand);
+                try {
+                    this.sleep(this.LISTEN_DELAY);
+                }
+                catch (java.lang.InterruptedException e) {
+                    System.out.println(e);
+                }
             } catch (java.io.IOException e) {
                 System.out.println(e);
                 this.stopDownlink();
@@ -49,15 +55,13 @@ public class Downlink extends Thread {
                 System.out.println(e);
             }
         }
-        try{
-        this.objectInputStream.close();
+        try {
+            this.objectInputStream.close();
         }
-        catch(java.io.IOException e){
-         System.out.println(e);
+        catch (java.io.IOException e) {
+            System.out.println(e);
         }
-                this.downlinkOwner.stopOwner();
         System.out.println("downlink stopped");
-
     }
 
     /** Öffnet den Input - Stream, danach ist der Downlink betriebsbereit. */
@@ -85,7 +89,17 @@ public class Downlink extends Thread {
         return downlinkOwner;
     }
 
-    public void setDownlinkOwner(DownlinkOwner downlinkOwner) {
-        this.downlinkOwner = downlinkOwner;
+    public void setDownlinkOwner(DownlinkOwner paramDownlinkOwner) {
+        if (this.downlinkOwner != paramDownlinkOwner) {
+            if (this.downlinkOwner != null) {
+                DownlinkOwner old = this.downlinkOwner;
+                this.downlinkOwner = null;
+                old.setDownlink(null);
+            }
+            this.downlinkOwner = paramDownlinkOwner;
+            if (paramDownlinkOwner != null) {
+                paramDownlinkOwner.setDownlink(this);
+            }
+        }
     }
 }
