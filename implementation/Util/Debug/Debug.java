@@ -2,7 +2,7 @@ package Util.Debug;
 
 /**
  * Klasse zur Ausgabe von Debug-Nachrichten. Gegenüber dem üblichen
- * <pre>System.out.println("Wichtiger Fehler!");</pre> 
+ * <pre>Debug.println("Wichtiger Fehler!");</pre> 
  * haben so ausgegebene Nachrichten u.a. folgende Vorteile:
  * <ul>
  * <li>sie können im Code bleiben, müssen nicht auskommentiert werden</li>

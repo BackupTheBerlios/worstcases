@@ -51,7 +51,7 @@ public class Server {
         while (enum.hasMoreElements()) {
           this.removeFromClientServantList((ClientServant)enum.nextElement());
         }
-        System.out.println("Server stopped");
+        Debug.println("Server stopped");
     }
 
     /**
@@ -60,8 +60,8 @@ public class Server {
     public synchronized void removeFromClientServantList(ClientServant paramClientServant) {
         if (this.clientServantList.removeElement(paramClientServant)) {
             paramClientServant.setServer(null);
-            System.out.println("removed ClientServant");
-            System.out.println(this.clientServantList.size() + " ClientServants active");
+            Debug.println("removed ClientServant");
+            Debug.println(this.clientServantList.size() + " ClientServants active");
         }
     }
 
@@ -85,28 +85,28 @@ public class Server {
     private void listen() {
         try {
             this.serverSocket = new ServerSocket(this.SERVER_PORT, this.LISTEN_QUEUE_LENGTH);
-            System.out.println("Server started on " + this.serverSocket.getInetAddress() + ":" +
+            Debug.println("Server started on " + this.serverSocket.getInetAddress() + ":" +
                 this.serverSocket.getLocalPort());
         } catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(e);
         }
         while (!stop) {
             try {
                 Socket tmpSocket = serverSocket.accept();
-                System.out.println("incoming connection from " + tmpSocket.getInetAddress() + ":" + tmpSocket.getPort());
+                Debug.println("incoming connection from " + tmpSocket.getInetAddress() + ":" + tmpSocket.getPort());
                 ClientServant tmpClientServant = new ClientServant(tmpSocket, this, userAdministration);
                 this.addToClientServantList(tmpClientServant);
                 tmpClientServant.startClientServant();
             } catch (java.io.IOException e) {
-                System.out.println(e);
+                Debug.println(e);
             }
         }
 
                 try {
                     this.serverSocket.close();
-                    System.out.println("ServerSocket closed");
+                    Debug.println("ServerSocket closed");
         } catch (java.io.IOException e) {
-            System.out.println(e);
+            Debug.println(e);
         }
 
     }
@@ -118,8 +118,8 @@ public class Server {
         if (!this.clientServantList.contains(paramClientServant)) {
             this.clientServantList.addElement(paramClientServant);
             paramClientServant.setServer(this);
-            System.out.println("added ClientServant");
-            System.out.println(this.clientServantList.size() + " ClientServants active");
+            Debug.println("added ClientServant");
+            Debug.println(this.clientServantList.size() + " ClientServants active");
         }
     }
 

@@ -2,6 +2,7 @@ package Server;
 
 import java.util.Vector;
 import java.util.Enumeration;
+import Util.Debug.Debug;
 
 /** Ein Benutzerdatensatz. Enthält alle Informationen über einen Benutzer
  wie beispielsweise die Zugriffsrechte.*/
@@ -119,7 +120,7 @@ class User {
                 else{
                  this.userAdministration.incNumCurrentUsers();
                 }
-                System.out.println(this.getName() + " logged in");
+                Debug.println(this.getName() + " logged in");
             }
             else {
                 this.setCurrentChannel(null);

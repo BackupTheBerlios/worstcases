@@ -33,7 +33,7 @@ class DataBaseIO {
         while (enum.hasMoreElements()) {
             tmpString = tmpString + "#" + ((Channel)(enum.nextElement())).getName();
         }
-        System.out.println(tmpString);
+        Debug.println(tmpString);
         return tmpString;
     }
 
@@ -55,7 +55,7 @@ class DataBaseIO {
         }
         User tmpUser = new User(name, password, false, isAdmin,this.userAdministration);
         tmpUser.setAllowedChannelList(tmpChannelList.elements());
-        System.out.println(tmpUser);
+        Debug.println(tmpUser);
         return tmpUser;
     }
 
@@ -77,7 +77,7 @@ class DataBaseIO {
         boolean allowedForGuests = (
             new Boolean(tmpTokenizer.nextToken())).booleanValue();
         Channel tmpChannel = new Channel(name, allowedForGuests);
-        System.out.println(tmpChannel);
+        Debug.println(tmpChannel);
         return tmpChannel;
     }
 
@@ -100,7 +100,7 @@ class DataBaseIO {
         this.channelAdministration.setChannelList(tmpList.elements());
         tmpBufferedReader.close();
 
-        System.out.println("channeldb loaded");
+        Debug.println("channeldb loaded");
 
         tmpList = new Vector();
         tmpBufferedReader = new BufferedReader(
@@ -114,7 +114,7 @@ class DataBaseIO {
         this.userAdministration.setUserList(tmpList.elements());
         tmpBufferedReader.close();
 
-        System.out.println("userdb loaded");
+        Debug.println("userdb loaded");
     }
 
     /**
@@ -132,7 +132,7 @@ class DataBaseIO {
             tmpBufferedWriter.write(this.channelToString((Channel)(enum.nextElement())) + "\r\n");
         }
         tmpBufferedWriter.close();
-        System.out.println("channel data written to disk");
+        Debug.println("channel data written to disk");
 
         tmpBufferedWriter = new BufferedWriter(
             new FileWriter(
@@ -146,7 +146,7 @@ class DataBaseIO {
             }
         }
         tmpBufferedWriter.close();
-        System.out.println("user data written to disk");
+        Debug.println("user data written to disk");
         }
         catch(java.io.IOException e){
          Debug.println(Debug.HIGH,"error while saving data: "+e);

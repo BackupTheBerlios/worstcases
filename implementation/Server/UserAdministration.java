@@ -2,6 +2,7 @@ package Server;
 
 import java.util.Vector;
 import java.util.Enumeration;
+import Util.Debug.Debug;
 
 
 /** 
@@ -30,7 +31,7 @@ class UserAdministration {
     public synchronized User loginUser(String name, String password) {
         User tmpUser = this.getFromUserListByName(name);
         if (tmpUser == null) {
-            System.out.println("login User" + name +" failed");
+            Debug.println("login User" + name +" failed");
             return null;
         }
         else {
@@ -65,7 +66,7 @@ class UserAdministration {
             return tmpUser;
         }
         else {
-            System.out.println("guestname " + paramName + " login failed");
+            Debug.println("guestname " + paramName + " login failed");
             return null;
         }
     }
@@ -195,7 +196,7 @@ class UserAdministration {
     /** Erhöht den Zähler numCurrentUsers um 1 */
     public synchronized void incNumCurrentUsers() {
         this.numCurrentUsers++;
-        System.out.println("#User:"+this.numCurrentUsers);
+        Debug.println("#User:"+this.numCurrentUsers);
 
     }
 
@@ -203,20 +204,20 @@ class UserAdministration {
 	/** Verkleinert den Zähler numCurrentUsers um 1*/
     public synchronized void decNumCurrentUsers() {
         this.numCurrentUsers--;
-        System.out.println("#User:"+this.numCurrentUsers);
+        Debug.println("#User:"+this.numCurrentUsers);
 
     }
 
 	/** Erhöht den Zähler numCurrentGuests um 1*/
     public synchronized void incNumCurrentGuests() {
       this.numCurrentGuests++;
-        System.out.println("#User:"+this.numCurrentGuests);
+        Debug.println("#User:"+this.numCurrentGuests);
 	}
 
 	/** Verringert den Zähler numCurrentGuests um 1*/
     public synchronized void decNumCurrentGuests() {
       this.numCurrentGuests--;
-        System.out.println("#User:"+this.numCurrentGuests);
+        Debug.println("#User:"+this.numCurrentGuests);
 
     }
 
