@@ -10,6 +10,7 @@ import Util.Commands.*;
  *  Benutzer und Channels anzulegen, zu editieren und zu löschen. */
 public class AdminClient extends Client {
 
+
     /** Liste aller Channelnamen. */
     private Vector channelList;
 
@@ -65,11 +66,18 @@ public class AdminClient extends Client {
     /** Wird vom SetUserListCommand aufgerufen und setzt die Userliste in allUserList. */
     public void setUserList(Vector list) {
       this.userList=list;
+      if(this.gui!=null){
+       this.gui.setUserList(Util.Sort.quicksort(list));
+      }
     }
 
     /** Wird vom SetChannelListCommand aufgerufen und setzt die Channelliste in allChannelList. */
     public void setChannelList(Vector list) {
       this.channelList=list;
+      if(this.gui!=null){
+       this.gui.setChannelList(Util.Sort.quicksort(list));
+
+      }
     }
 
     /** Fordert beim AdminClientServant einen bestimmten Userdatensatz an.

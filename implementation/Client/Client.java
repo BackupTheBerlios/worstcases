@@ -5,7 +5,7 @@ import java.net.Socket;
 import Util.*;
 import Util.Commands.*;
 import Util.Debug.Debug;
-import GUI.*;
+
 
 /**
  * Die Klasse Client stellt dem Benutzer alle nötigen Methoden zur
@@ -54,6 +54,8 @@ public class Client implements Util.DownlinkOwner {
     /**Der Name des Benutzers des Clients.*/
     protected String currentUserName;
 
+    protected boolean currentUserIsAdmin=false;
+
     /**Namensliste der Channels, die der Benutzer betreten darf.*/
     protected Vector currentAllowedChannelNames;
 
@@ -66,11 +68,12 @@ public class Client implements Util.DownlinkOwner {
      * auf der GUI auszugeben. Dazu werden die entsprechenden Daten via Downlink vom Server geholt und auf dem GUI ausgegeben.
      * Setzt currentUserName und currentAllowedChannelNames.
      */
-    public  synchronized final void setCurrentUserData(String userName, Vector channelNames) {
+    public  synchronized final void setCurrentUserData(String userName, boolean isAdmin,Vector channelNames) {
       this.currentUserName=userName;
-      this.currentAllowedChannelNames=channelNames;
+      this.currentUserIsAdmin=isAdmin;
+      this.currentAllowedChannelNames=Util.Sort.quicksort(channelNames);
       if(this.gui!=null){
-       gui.setCurrentUserData(userName,channelNames);
+       gui.setCurrentUserData(userName,isAdmin,this.currentAllowedChannelNames);
       }
     }
 
@@ -82,9 +85,9 @@ public class Client implements Util.DownlinkOwner {
      */
     public synchronized final  void setCurrentChannelData(String paramName, Vector userNames) {
       this.currentChannelName=paramName;
-      this.currentUsersInChannelList=userNames;
+      this.currentUsersInChannelList=Util.Sort.quicksort(userNames);
       if(this.gui!=null){
-       this.gui.setCurrentChannelData(paramName,userNames);
+       this.gui.setCurrentChannelData(this.currentChannelName,this.currentUsersInChannelList);
 
       }
     }
@@ -291,5 +294,5 @@ public class Client implements Util.DownlinkOwner {
     /** Vector von Strings, repräsentiert die aktuellen Benutzer in einem Wird im Client Window eingebunden. */
     protected Vector currentUsersInChannelList;
 
-    public GUI gui;
+    public gui.GUI gui;
 }
