@@ -38,7 +38,7 @@ public class Debug {
   /**
    * Löst eine Debug-Nachricht mit normaler Priorität aus.
    */
-  public static void println(String msg) {
+  public static void println(Object msg) {
     println(MEDIUM, msg);
   }
   
@@ -49,7 +49,7 @@ public class Debug {
    * wie z.B. Debug.MEDIUM verwenden).
    * @param msg die Debug-Nachricht.
    */
-  public static void println(int priority, String msg) {
+  public static void println(int priority, Object msg) {
     if ((HIGH - level) < priority) { //XXX
       System.err.println(msg);
     }
@@ -64,7 +64,7 @@ public class Debug {
      * der Debug-Level standardmäßig auf MEDIUM steht. 
      */
     Debug.println(Debug.LOW, "Unwichtiger Fehler!");
-    Debug.println(Debug.MEDIUM, "Normaler Fehler!");
+    Debug.println("Normaler Fehler!");
     Debug.println(Debug.HIGH, "Wichtiger Fehler!");
   }
 }
