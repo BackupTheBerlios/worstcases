@@ -1,6 +1,7 @@
 package Server;
 
 import java.util.Vector;
+import java.util.Enumeration;
 
 
 /**
@@ -13,7 +14,16 @@ class ChannelAdministration {
   /**
    * gibt den Channel mit dem angegebenen Namen zurück
    */
-  public Channel getByName(String name) {
+  public Channel getFromChannelListByName(String name) {
+    Enumeration enum=this.channelList.elements();
+    Channel tmpChannel;
+    while (enum.hasMoreElements()){
+     tmpChannel=(Channel)(enum.nextElement());
+     if(tmpChannel.getName().compareTo(name)==0){
+      return tmpChannel;
+     }
+
+    }
     return null;
   }
 
@@ -49,7 +59,16 @@ class ChannelAdministration {
   public void editChannel(String name, String newChannelData) {}
 
   public Vector getFreeForGuestList() {
-    return this.channelList;
+    Vector tmpVector=new Vector();
+    Channel tmpChannel;
+    Enumeration enum=this.getChannelList().elements();
+    while (enum.hasMoreElements()){
+      tmpChannel=(Channel)enum.nextElement();
+      if(tmpChannel.isAllowedForGuest()){
+        tmpVector.addElement(tmpChannel);
+      }
+    }
+    return tmpVector;
   }
 
   /**

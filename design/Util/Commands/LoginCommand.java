@@ -12,7 +12,9 @@ public class LoginCommand implements Command {
    * @param name der Benutzername.
    * @param password das Kennwort.
    */
-  public LoginCommand(String name, String password) {
+  public LoginCommand(String paramName, String paramPassword) {
+   this.name=paramName;
+   this.password=paramPassword;
   }
 
   /** Der Benutzername. */

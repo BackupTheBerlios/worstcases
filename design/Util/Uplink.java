@@ -35,27 +35,17 @@ public class Uplink {
   /**
    * Öffnet den Output-Stream.
    */
-  public void startUplink() {
-
-    try {
+  public void startUplink() throws java.io.IOException{
       this.objectOutputStream =
         new ObjectOutputStream(
           this.socket.getOutputStream());
-    } catch (java.io.IOException e) {
-      System.out.println(e);
-    }
   }
 
   /**
    * Schließt den Output-Stream.
    */
-  public void stopUplink() {
-
-    try {
+  public void stopUplink() throws java.io.IOException{
       this.objectOutputStream.close();
-    } catch (java.io.IOException e) {
-      System.out.println(e);
-    }
   }
 
   /**
@@ -65,19 +55,9 @@ public class Uplink {
    * @param msg Die zu versendende Nachricht.
    * @see Dowlink
    */
-  public void sendMsg(Command msg) {
-    try {
-      /* Muss wg. Command überarbeitet werden (Serialisierung).
-      this.bufferedWriter.write(msg + "\n");
-      this.bufferedWriter.flush();
-      System.out.println("#" + msg + "# sent!");
-    } catch (java.io.IOException e) {
-      System.out.println(e);
-      */
+  public void sendMsg(Command msg) throws java.io.IOException{
+      System.out.println("sending "+msg);
       objectOutputStream.writeObject(msg); // FIXME: Dummy
-    }
-    catch(Exception e){
-     System.out.println(e);
-    }
+      objectOutputStream.flush();
   }
 }

@@ -1,18 +1,24 @@
 package Server;
 
 import java.util.Vector;
+import java.util.Enumeration;
 
 
 /**
  * Ein Benutzerdatensatz
  */
-class User {
+public class User{
 
   /**
    * @param userSet Benutzerdaten als String
    */
-  public User(String userSet) {
-    this.name = userSet;
+  public User(String paramName,String paramPassword,boolean paramGuest,
+              boolean paramAdmin,Vector paramAllowedChannelStringList) {
+    this.name = paramName;
+    this.password = paramPassword;
+    this.isAdmin=paramAdmin;
+    this.isGuest=paramGuest;
+    this.allowedChannelStringList=paramAllowedChannelStringList;
   }
 
   public boolean isAdmin() {
@@ -60,7 +66,16 @@ class User {
   }
 
   public String toString() {
-    return this.name;
+
+        String tmpString="Name:"+name +" password:"+this.password+" is admin:"+
+            this.isAdmin+" is guest:"+this.isGuest+" allowed channel:";
+    Enumeration enum = this.getAllowedChannelList().elements();
+    while(enum.hasMoreElements()){
+     tmpString=tmpString +((Channel)enum.nextElement()).getName()+" ";
+    }
+    return tmpString;
+
+
   }
 
   public boolean isGuest() {
@@ -83,6 +98,22 @@ class User {
     return name;
   }
 
+  public Vector getAllowedChannelStringList(){
+          return allowedChannelStringList;
+      }
+
+  public void setAllowedChannelStringList(Vector allowedChannelStringList){
+          this.allowedChannelStringList = allowedChannelStringList;
+      }
+
+  public String getPassword(){
+          return password;
+      }
+
+  public void setPassword(String password){
+          this.password = password;
+      }
+
   /**
    * Gibt den Channel an, in dem sich der Benutzer zur Zeit befindet.
    * @supplierCardinality 0..1
@@ -96,24 +127,24 @@ class User {
    * @clientCardinality 0..
    * @supplierCardinality 0..*
    */
-  private Vector allowedChannelList;
+  private Vector allowedChannelList=new Vector();
 
   /**
    * Gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt.
    */
-  private boolean modified;
+  private boolean modified=false;
   private String name;
   private String password;
 
   /**
    * Gibt an, ob der Benutzer momentan das System benutzt.
    */
-  private boolean loggedIn;
+  private boolean loggedIn=false;
 
   /**
    * Ist der User Administrator?
    */
-  private boolean isAdmin;
+  private boolean isAdmin=false;
 
   /**
    * @clientCardinality 1
@@ -126,5 +157,6 @@ class User {
    * @clientCardinality 0..
    */
   private UserAdministration userAdministration;
-  private boolean isGuest;
+  private boolean isGuest=false;
+  private Vector allowedChannelStringList=new Vector();
 }

@@ -8,7 +8,7 @@ import Util.Commands.*;
 /**
  * Verarbeitet die Anfragen eines AdminClients.
  */
-class AdminClientServant extends ClientServant implements DownlinkOwner {
+public class AdminClientServant extends ClientServant implements DownlinkOwner {
 
   /**
    * Konstruktor, setzt die entsprechenden Attribute.
@@ -41,9 +41,6 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
    */
   public void addChannel(String channelSet) {
 
-    Channel tmpChannel = new Channel(channelSet);
-
-    this.channelAdministration.addToChannelList(tmpChannel);
   }
 
   /**
@@ -51,7 +48,7 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
    */
   public void deleteChannel(String channelName) {
 
-    Channel tmpChannel = this.channelAdministration.getByName(channelName);
+    Channel tmpChannel = this.channelAdministration.getFromChannelListByName(channelName);
 
     this.channelAdministration.removeFromChannelList(tmpChannel);
   }
@@ -66,11 +63,8 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
   /**
    * Fügt einen Benutzer hinzu.
    */
-  public void addUser(String userSet) {
-
-    User tmpUser = new User(userSet);
-
-    this.userAdministration.addToUserList(tmpUser);
+  public void addUser(User paramUser) {
+    this.userAdministration.addToUserList(paramUser);
   }
 
   /**
@@ -89,9 +83,9 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
    * Setzt die neuen Daten des Benutzers mit den
    * Daten aus newUserSet.
    */
-  public void editUser(String userName, String newUserSet) {
-    this.deleteUser(userName);
-    this.addUser(newUserSet);
+  public void editUser(String oldName, User paramUser) {
+    this.deleteUser(oldName);
+    this.addUser(paramUser);
   }
 
   /**
@@ -112,7 +106,7 @@ class AdminClientServant extends ClientServant implements DownlinkOwner {
   public void sendChannel(String channelName) {
 
     String tmpChannelSet =
-      this.channelAdministration.getByName(channelName).toString();
+      this.channelAdministration.getFromChannelListByName(channelName).toString();
 
   }
 

@@ -58,6 +58,7 @@ public class Downlink extends Thread {
 	        */
         tmpCommand = (Command) objectInputStream.readObject(); // FIXME: Dummy
         downlinkOwner.processMsg(tmpCommand);
+        System.out.println("received "+tmpCommand);
 
       } catch (Exception e) {
       }

@@ -15,8 +15,10 @@ import java.util.Enumeration;
  */
 class Channel {
 
-  public Channel(String channelSet) {
-    this.name = channelSet;
+  public Channel(String paramName,boolean paramAllowedForGuests,Vector paramAllowedUserStringList) {
+    this.name = paramName;
+    this.allowedForGuest=paramAllowedForGuests;
+    this.allowedUserStringList=paramAllowedUserStringList;
   }
 
   public Channel() {}
@@ -78,6 +80,31 @@ class Channel {
     this.name = name;
   }
 
+  public String toString() {
+    String tmpString="Name:"+name +" allowed for guests:"+this.allowedForGuest+" allowed user:";
+    Enumeration enum = this.getAllowedUserList().elements();
+    while(enum.hasMoreElements()){
+     tmpString=tmpString +((User)enum.nextElement()).getName()+" ";
+    }
+    return tmpString;
+  }
+
+  public Vector getAllowedUserStringList(){
+          return allowedUserStringList;
+      }
+
+  public void setAllowedUserStringList(Vector allowedUserStringList){
+          this.allowedUserStringList = allowedUserStringList;
+      }
+
+  public boolean isAllowedForGuest(){
+          return allowedForGuest;
+      }
+
+  public void setAllowedForGuest(boolean allowedForGuest){
+          this.allowedForGuest = allowedForGuest;
+      }
+
   /**
    * Gibt die Benutzer an, die sich momentan in dem Channel befinden.
    * @associates <{User}>
@@ -98,7 +125,7 @@ class Channel {
    * @clientRole allowedChannel
    * @label allowance relation
    */
-  private Vector allowedUserList;
+  private Vector allowedUserList=new Vector();
 
   /**
    * Gibt an, ob der Datensatz seit dem letzten Laden verändert wurde - wird von DataBaseIO benötigt.
@@ -112,4 +139,5 @@ class Channel {
   private ChannelAdministration channelAdministration;
   private String name;
   private boolean allowedForGuest = true;
+  private Vector allowedUserStringList = new Vector();
 }

@@ -18,7 +18,7 @@ public class Server {
    * Startet den Server, danach ist er vollständig betriebsbereit und kann
    * Verbindungswünsche von Clients behandeln.
    */
-  public void startServer() {
+  public void startServer() throws java.io.FileNotFoundException,java.io.IOException{
 
     this.clientServantList = new Vector();
     this.dataBaseIO = new DataBaseIO();
@@ -74,9 +74,11 @@ public class Server {
    * diese jeweils an einen neuen ClientObserver weiter.
    */
   private void listen() {
-
     try {
       Socket tmpSocket = serverSocket.accept();
+      System.out.println("incoming connection from "+
+        tmpSocket.getInetAddress()+":"+tmpSocket.getPort());
+
       ClientServant tmpClientServant = new ClientServant(tmpSocket, this,
                                          userAdministration);
 

@@ -35,11 +35,15 @@ public class ClientServant implements Util.DownlinkOwner {
    */
   public void startClientServant() {
 
-    this.uplink = new Uplink(this.socket);
+    this.uplink = new Util.Uplink(this.socket);
     this.downlink = new Util.Downlink(this.socket, this);
-
+    try{
     this.uplink.startUplink();
     this.downlink.startDownlink();
+    }
+    catch(java.io.IOException e){
+      System.out.println(e);
+    }
     this.downlink.start();
   }
 
@@ -56,20 +60,36 @@ public class ClientServant implements Util.DownlinkOwner {
     msg.execute(this);
   }
 
+  public void sendCommand(Command paramCommand){
+    try{
+    this.uplink.sendMsg(paramCommand);
+    }
+    catch(java.io.IOException e){
+     System.out.println(e);
+    }
+
+  }
+
   /**
    * Meldet den Benutzer beim System an, benutzt dafür eine vom Client
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
-  public void loginUser(String name, String password) { 
+  public void loginUser(String name, String password) {
     // FIXME: an LoginCommand anpassen:
     this.user = this.userAdministration.loginUser(name,password);
+    if(this.user==null){
+      System.out.println("login user "+name+" failed");
+      this.sendCommand(new Util.Commands.LoginErrorCommand("login failed"));
 
+    }
+    else{
+      System.out.println("User "+this.user.getName()+" logged in");
+      System.out.println(this.user.getAllowedChannelList());
     this.user.setClientServant(this);
-
     if (this.user.isAdmin()) {
       this.becomeAdminClientServant();
     }
-
+    }
   }
 
   /**
@@ -77,10 +97,16 @@ public class ClientServant implements Util.DownlinkOwner {
    * empfangene Zeichenkette mit Benutzerinformationen.
    */
   public void loginAsGuest(String name) {
-
     this.user = this.userAdministration.loginGuest(name);
-
-    this.user.setClientServant(this);
+    if(this.user==null){
+      System.out.println("login guest "+name+" failed");
+      this.sendCommand(new Util.Commands.LoginErrorCommand("login failed"));
+    }
+    else{
+      System.out.println("Guest "+this.user.getName()+" logged in");
+      this.user.setClientServant(this);
+      System.out.println(this.user.getAllowedChannelList());
+    }
   }
 
   /**
@@ -192,7 +218,7 @@ public class ClientServant implements Util.DownlinkOwner {
    * @clientCardinality 1
    * @supplierCardinality 1
    */
-  protected Uplink uplink;
+  protected Util.Uplink uplink;
 
   /**
    * @link aggregationByValue

@@ -15,8 +15,21 @@ public class Client implements Util.DownlinkOwner {
    * betritt den angegebenen Channel
    */
   public void joinChannel(String name) {
-    uplink.sendMsg(new JoinChannelCommand(name));
+    this.sendCommand(new JoinChannelCommand(name));
   }
+
+  public void loginError(String msg){
+   System.out.println("login failed: "+msg);
+  }
+  
+  protected void sendCommand(Command paramCommand){
+   try{
+   this.uplink.sendMsg(paramCommand);
+   }
+   catch(java.io.IOException e){
+    System.out.println(e);
+   }
+   }
 
   /**
    * verl‰ﬂt den Channel
@@ -27,13 +40,15 @@ public class Client implements Util.DownlinkOwner {
    * meldet den Benutzer an
    */
   public void login(String name, String password) {
-    uplink.sendMsg(new LoginCommand(name, password));
+    this.sendCommand(new LoginCommand(name, password));
   }
 
   /**
    * meldet einen Gast an
    */
   public void loginAsGuest(String name) {
+    System.out.println("loginGuest "+name);
+    this.sendCommand(new LoginGuestCommand(name));
   }
 
   /**
@@ -66,7 +81,7 @@ public class Client implements Util.DownlinkOwner {
    * Channel empfangen.
    */
   public void sendMsgToChannel(String  msg) {
-    uplink.sendMsg(new SendMsgToChannelCommand(msg));
+    this.sendCommand(new SendMsgToChannelCommand(msg));
   }
 
   /**
@@ -85,19 +100,25 @@ public class Client implements Util.DownlinkOwner {
   }
 
   public void startClient() {
+    System.out.println("starting client");
 
     try {
       socket = new Socket(Client.SERVER_IP, Client.SERVER_PORT);
+    uplink = new Util.Uplink(socket);
+    downlink = new Util.Downlink(socket, this);
+    uplink.startUplink();
+    downlink.startDownlink();
+    downlink.start();
+
+
+
     } catch (java.io.IOException e) {
       System.out.println(e);
     }
 
-    uplink = new Uplink(socket);
-    downlink = new Downlink(socket, this);
+  }
 
-    uplink.startUplink();
-    downlink.startDownlink();
-    downlink.start();
+  public void sendMsgFromChannel(String msg) {
   }
 
   /**
@@ -105,14 +126,14 @@ public class Client implements Util.DownlinkOwner {
    * @clientCardinality 1
    * @supplierCardinality 1
    */
-  protected Uplink uplink;
+  protected Util.Uplink uplink;
 
   /**
    * @directed
    * @supplierCardinality 1
    * @clientCardinality 1
    */
-  protected Downlink downlink;
+  protected Util.Downlink downlink;
 
   /**
    * der Port des Servers
