@@ -166,7 +166,7 @@ public class Client implements Util.DownlinkOwner {
     try {
       this.uplink.sendMsg(paramCommand);
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, e);
+      Debug.println(Debug.HIGH, "Client: " + e);
       this.stopClient();
     }
   }
@@ -242,7 +242,7 @@ public class Client implements Util.DownlinkOwner {
    */
   public synchronized final void startClient() {
 
-    Debug.println(Debug.MEDIUM, this + ": starting");
+    Debug.println(Debug.MEDIUM, "Client: starting");
 
     try {
       socket = new Socket(SERVER_IP, SERVER_PORT);
@@ -254,7 +254,7 @@ public class Client implements Util.DownlinkOwner {
       downlink.startDownlink();
       Debug.println("Client: Downlink started.");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ": error starting: " + e);
+      Debug.println(Debug.HIGH, "Client: error starting: " + e);
       this.stopClient();
     }
   }
@@ -286,7 +286,7 @@ public class Client implements Util.DownlinkOwner {
   public synchronized final void sendMsgFromUser(String fromName,
           String msg) {
 
-    Debug.println(fromName + " whispers: " + msg);
+    Debug.println("Client: " + fromName + " whispers: " + msg);
     this.channelMsgBuffer.addElement(fromName + " flüstert: " + msg);
 
     if (this.gui != null) {

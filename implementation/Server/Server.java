@@ -25,7 +25,7 @@ public class Server {
    */
   public void startServer() {
 
-    Debug.println(Debug.LOW, this + ": starting server");
+    Debug.println(Debug.LOW, "Server : starting server");
 
     // eine neue Instanz der Channeladministration wird erstellt
     this.channelAdministration = new ChannelAdministration();
@@ -52,10 +52,10 @@ public class Server {
     // Fehlerausgabe
     catch (java.io.FileNotFoundException e) {
       Debug.println(Debug.HIGH,
-                    this + ": DataBase IO could not load database:" + e);
+                    "Server: DataBase IO could not load database:" + e);
     } catch (java.io.IOException e) {
       Debug.println(Debug.HIGH,
-                    this + ": DataBase IO could not load database:" + e);
+                    "Server: DataBase IO could not load database:" + e);
     }
   }
 
@@ -80,7 +80,7 @@ public class Server {
       this.removeFromClientServantList((ClientServant) enum.nextElement());
     }
 
-    Debug.println(Debug.LOW, this + ": Server stopped");
+    Debug.println(Debug.LOW, "Server: Server stopped");
   }
 
   /**
@@ -96,7 +96,7 @@ public class Server {
 
         paramClientServant.setServer(null);
         Debug.println(Debug.MEDIUM,
-                      this + ": " + this.clientServantList.size()
+                      "Server: " + this.clientServantList.size()
                       + " ClientServants active");
       }
     }
@@ -131,7 +131,7 @@ public class Server {
                                            this.LISTEN_QUEUE_LENGTH);
 
       Debug.println(Debug.MEDIUM,
-                    this + ": Server started on "
+                    "Server: Server started on "
                     + this.serverSocket.getInetAddress() + ":"
                     + this.serverSocket.getLocalPort());
 
@@ -143,10 +143,10 @@ public class Server {
 	  
 	  // horcht an Port für eine Verbindung mit einem Client
           Socket tmpSocket = serverSocket.accept(); 
-	  Debug.println("Server: new tmpSocket instantiated.");
+	  Debug.println(Debug.LOW, "Server: new tmpSocket instantiated.");
 
 	  Debug.println(Debug.MEDIUM,
-                        this + ": incoming connection from "
+                        "Server: incoming connection from "
                         + tmpSocket.getInetAddress() + ":"
                         + tmpSocket.getPort());
 
@@ -154,33 +154,33 @@ public class Server {
           ClientServant tmpClientServant = new ClientServant(tmpSocket, this,
                                              userAdministration);
 
-          Debug.println(this + ": new ClientServant");
+          Debug.println(Debug.LOW, "Server: new ClientServant");
 	  
 	  // neuer ClientServant wird in die Liste hinzugefügt
           this.addToClientServantList(tmpClientServant);
 
-          Debug.println(this + ": ClientServant added to list");
+          Debug.println(Debug.LOW, "Server: ClientServant added to list");
 	  
 	  // der neue Clientservant wird gestartet
           tmpClientServant.startClientServant();
 
-          Debug.println(this + ": ClientServant started");
+          Debug.println(Debug.LOW, "Server: ClientServant started");
 	  
 	  // Fehler beim horchen werden abgefangen
         } catch (java.io.IOException e) {
-          Debug.println(this + ": error while listening: " + e);
+          Debug.println(Debug.HIGH, "Server: error while listening: " + e);
         }
       }
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ": error opening socket:" + e);
+      Debug.println(Debug.HIGH, "Server: error opening socket:" + e);
     }
 
     // Socket wird geschlossen
     try {
       this.serverSocket.close();
-      Debug.println(Debug.LOW, this + ": ServerSocket closed");
+      Debug.println(Debug.LOW, "Server: ServerSocket closed");
     } catch (java.io.IOException e) {
-      Debug.println(Debug.HIGH, this + ": error closing serverSocket: " + e);
+      Debug.println(Debug.HIGH, "Server: error closing serverSocket: " + e);
     }
   }
 
@@ -200,7 +200,7 @@ public class Server {
         this.clientServantList.addElement(paramClientServant);
         paramClientServant.setServer(this);
         Debug.println(Debug.MEDIUM,
-                      this + ": " + this.clientServantList.size()
+                      "Server: " + this.clientServantList.size()
                       + " ClientServants active");
       }
     }
