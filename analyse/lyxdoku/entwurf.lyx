@@ -59,6 +59,8 @@ flags 11
 
 \newline 
  Virtuelle Konferenz
+\lang american
+16
 \layout Standard
 
 
@@ -973,8 +975,8 @@ Methoden
 
 public\SpecialChar ~
 void\SpecialChar ~
-listen() wartet auf ankommende Nachrichten und leitet diese an
- den ClientServant weiter
+listen() Wartet auf ankommende Nachrichten und leitet diese an
+ den ClientServant weiter.
 \layout Description
 
 public\SpecialChar ~
@@ -989,13 +991,13 @@ start()
 
 public\SpecialChar ~
 void\SpecialChar ~
-startDownlink() öffnet den Stream, danach ist der Downlink betriebsber
-eit
+startDownlink() Öffnet den Stream, danach ist der Downlink betriebsber
+eit.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-stopDownlink() schließt den Stream
+stopDownlink() Schließt den Stream.
 \layout Paragraph
 
 Assoziationen
@@ -1041,7 +1043,7 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 addToChannelList(Channel\SpecialChar ~
-paramChannel) Fügt einen Channel hinzu
+paramChannel) Fügt einen Channel hinzu.
 \layout Description
 
 public\SpecialChar ~
@@ -1057,8 +1059,8 @@ newChannelData) Editiert den Channel
 public\SpecialChar ~
 Channel\SpecialChar ~
 getByName(String\SpecialChar ~
-name) gibt den Channel mit dem angegebenen
- Namen zurück
+name) Gibt den Channel mit dem angegebenen
+ Namen zurück.
 \layout Description
 
 public\SpecialChar ~
@@ -1082,13 +1084,13 @@ Attribute
 
 private\SpecialChar ~
 int\SpecialChar ~
-maxUsers maximale Anzahl von eingeloggten Benutzern im System
+maxUsers Maximale Anzahl von eingeloggten Benutzern im System.
 \layout Description
 
 private\SpecialChar ~
 int\SpecialChar ~
 numCurrentUsers Anzahl der eingeloggten Benutzer(registrierte
- und Gäste) im System
+ und Gäste) im System.
 \layout Description
 
 private\SpecialChar ~
@@ -1102,14 +1104,14 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 addToUserList(User\SpecialChar ~
-paramUser) fügt einen Benutzer hinzu
+paramUser) Fügt einen Benutzer hinzu.
 \layout Description
 
 public\SpecialChar ~
 User\SpecialChar ~
 getFromUserListByName(String\SpecialChar ~
-name) gibt den Benutzer mit dem angegebene
-n Namen zurück
+name) Gibt den Benutzer mit dem angegebene
+n Namen zurück.
 \layout Description
 
 public\SpecialChar ~
@@ -1126,14 +1128,14 @@ guestSet)
 public\SpecialChar ~
 User\SpecialChar ~
 loginUser(String\SpecialChar ~
-userSet) meldet einen Benutzer an, gibt den Benutzer
- zurück, falls Authentifizierung klappt, sonst null
+userSet) Meldet einen Benutzer an, gibt den Benutzer
+ zurück, falls Authentifizierung klappt, sonst null.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 removeFromUserList(User\SpecialChar ~
-paramUser) entfernt einen Benutzer
+paramUser) Entfernt einen Benutzer.
 \layout Subsubsection
 
 Channel
@@ -1228,35 +1230,35 @@ Attribute
 
 private\SpecialChar ~
 Vector\SpecialChar ~
-allowedChannelList gibt die Channels an, die der Benutzer betreten
- darf
+allowedChannelList Gibt die Channels an, die der Benutzer betreten
+ darf.
 \layout Description
 
 private\SpecialChar ~
 Channel\SpecialChar ~
-currentChannel gibt den Channel an, in dem sich der Benutzer
- zur Zeit befindet
+currentChannel Gibt den Channel an, in dem sich der Benutzer
+ zur Zeit befindet.
 \layout Description
 
 private\SpecialChar ~
 boolean\SpecialChar ~
-isAdmin ist der Benutzer ein Administrator?
+isAdmin Ist der Benutzer ein Administrator?
 \layout Description
 
 private\SpecialChar ~
 boolean\SpecialChar ~
-isGuest ist der Benutzer ein Gast?
+isGuest Ist der Benutzer ein Gast?
 \layout Description
 
 private\SpecialChar ~
 boolean\SpecialChar ~
-loggedIn gibt an, ob der Benutzer momentan das System benutzt
+loggedIn Gibt an, ob der Benutzer momentan das System benutzt.
 \layout Description
 
 private\SpecialChar ~
 boolean\SpecialChar ~
-modified gibt an, ob der Datensatz seit dem letzten Laden
- verändert wurde - wird von DataBaseIO benötigt
+modified Gibt an, ob der Datensatz seit dem letzten Laden
+ verändert wurde - wird von DataBaseIO benötigt.
 \layout Description
 
 private\SpecialChar ~
@@ -1275,7 +1277,7 @@ Methoden
 public\SpecialChar ~
 Channel\SpecialChar ~
 getFromAllowedChannelByName(String\SpecialChar ~
-channelName) gibt einen Channel
+channelName) Gibt einen Channel
  aus der Liste der erlaubten Channels mit dem angegebenen Namen zurück
 \layout Standard
 
@@ -1300,14 +1302,14 @@ private\SpecialChar ~
 final\SpecialChar ~
 static\SpecialChar ~
 String\SpecialChar ~
-userDBFile Dateiname der Benutzerdatenbank
+userDBFile Dateiname der Benutzerdatenbank.
 \layout Description
 
 private\SpecialChar ~
 final\SpecialChar ~
 static\SpecialChar ~
 String\SpecialChar ~
-channelDBFile Dateiname der Channeldatenbank
+channelDBFile Dateiname der Channeldatenbank.
 \layout Paragraph
 
 Methoden
@@ -1315,20 +1317,20 @@ Methoden
 
 public\SpecialChar ~
 void\SpecialChar ~
-loadFromDisk() lädt die Benutzer- und Channeldaten aus den angegebenen
- Dateien userDBFile und channelDBFile
+loadFromDisk() Lädt die Benutzer- und Channeldaten aus den angegebenen
+ Dateien userDBFile und channelDBFile.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-saveToDisk() speichert die Benutzer- und Channeldaten entsprechend
- in userDBFile und channelDBFile
+saveToDisk() Speichert die Benutzer- und Channeldaten entsprechend
+ in userDBFile und channelDBFile.
 \layout Description
 
 private\SpecialChar ~
 void\SpecialChar ~
-doLinks() stellt die relationalen Beziehungen zwischen den User-
- und Channeldatensätzen her
+doLinks() Stellt die relationalen Beziehungen zwischen den User-
+ und Channeldatensätzen her.
 \layout Subsection
 
 Das Package Client
@@ -1360,12 +1362,12 @@ Attribute
 protected\SpecialChar ~
 Vector\SpecialChar ~
 availableChannelList Vector von Strings, repräsentiert die
- für den Benutzer freigegebenen Channels
+ für den Benutzer freigegebenen Channels.
 \layout Description
 
 protected\SpecialChar ~
 Vector\SpecialChar ~
-channelMsgBuffer speichert ankommende Nachrichten in einem
+channelMsgBuffer Speichert ankommende Nachrichten in einem
  Channel.
  Wird von der GUI benutzt und kann als Protokoll der Unterhaltung in dem
  Channel dienen.
@@ -1374,21 +1376,21 @@ channelMsgBuffer speichert ankommende Nachrichten in einem
 protected\SpecialChar ~
 Vector\SpecialChar ~
 currentUserInChannelList Vector von Strings, repräsentiert
- die aktuellen Benutzer in einem Channel
+ die aktuellen Benutzer in einem Channel.
 \layout Description
 
 protected\SpecialChar ~
 final\SpecialChar ~
 static\SpecialChar ~
 String\SpecialChar ~
-SERVER_IP die IP - Adresse des Servers
+SERVER_IP Die IP - Adresse des Servers.
 \layout Description
 
 protected\SpecialChar ~
 final\SpecialChar ~
 static\SpecialChar ~
 int\SpecialChar ~
-SERVER_PORT der Port des Servers
+SERVER_PORT Der Port des Servers.
 \layout Description
 
 protected\SpecialChar ~
@@ -1402,12 +1404,12 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 joinChannel(String\SpecialChar ~
-name) betritt den angegebenen Channel
+name) Betritt den angegebenen Channel.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-leaveChannel() verläßt den Channel
+leaveChannel() Verläßt den Channel.
 \layout Description
 
 public\SpecialChar ~
@@ -1415,24 +1417,24 @@ void\SpecialChar ~
 login(String\SpecialChar ~
 name,\SpecialChar ~
 String\SpecialChar ~
-password) meldet den Benutzer an
+password) Meldet den Benutzer an.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 loginAsGuest(String\SpecialChar ~
-name) meldet einen Gast an
+name) Meldet einen Gast an.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-logout() meldet den Benutzer ab
+logout() Meldet den Benutzer ab.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 processMsg(String\SpecialChar ~
-msg) verarbeitet eine empfangene Nachricht, entscheid
+msg) Verarbeitet eine empfangene Nachricht, entscheid
 et, welche Funktionalität aufgerufen werden muß.
  Nachrichten vom Server, die durch den Downlink empfangen werden, werden
  hier als Parameter eingesetzt.
@@ -1441,7 +1443,7 @@ et, welche Funktionalität aufgerufen werden muß.
 public\SpecialChar ~
 void\SpecialChar ~
 sendMsgToChannel(String\SpecialChar ~
-msg) sendet eine Nachricht in einen Channel.
+msg) Sendet eine Nachricht in einen Channel.
  Diese wird dann von allen Teilnehmern im Channel empfangen.
 \layout Description
 
@@ -1450,7 +1452,7 @@ void\SpecialChar ~
 sendMsgToUser(String\SpecialChar ~
 name,\SpecialChar ~
 String\SpecialChar ~
-msg) sendet eine Nachricht an einen
+msg) Sendet eine Nachricht an einen
  Benutzer.
  1 zu 1 Kommunikation
 \layout Description
@@ -1458,7 +1460,7 @@ msg) sendet eine Nachricht an einen
 public\SpecialChar ~
 void\SpecialChar ~
 setAvailableChannelList(String\SpecialChar ~
-channelSet) setzt availableChannels
+channelSet) Setzt availableChannels
  mit den Daten aus dem String channelSet.
  Der Client erhält die für den Benutzer zugänglichen Channels.
 \layout Description
@@ -1466,7 +1468,7 @@ channelSet) setzt availableChannels
 public\SpecialChar ~
 void\SpecialChar ~
 setCurrentUserInChannelList(String\SpecialChar ~
-userSet) setzt currentUsers
+userSet) Setzt currentUsers
  mit den Daten aus dem String userSet.
  Der Client erhält die Liste der aktuellen Benutzer in dem betretenen Channel.
 \layout Paragraph
@@ -1483,19 +1485,19 @@ zur Klasse Client.Downlink
 zur Klasse java.lang.String
 \layout Standard
 
-die IP - Adresse des Servers
+Die IP - Adresse des Servers.
 \layout Subparagraph
 
 zur Klasse java.util.Vector
 \layout Standard
 
-Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels
+Vector von Strings, repräsentiert die für den Benutzer freigegebenen Channels.
 \layout Subparagraph
 
 zur Klasse java.util.Vector
 \layout Standard
 
-speichert ankommende Nachrichten in einem Channel.
+Speichert ankommende Nachrichten in einem Channel.
  Wird von der GUI benutzt und kann als Protokoll der Unterhaltung in dem
  Channel dienen.
 \layout Subparagraph
@@ -1506,7 +1508,7 @@ zur Klasse java.net.Socket
 zur Klasse java.util.Vector
 \layout Standard
 
-Vector von Strings, repräsentiert die aktuellen Benutzer in einem Channel
+Vector von Strings, repräsentiert die aktuellen Benutzer in einem Channel.
 \layout Subsubsection
 
 AdminClient
@@ -1526,22 +1528,22 @@ Attribute
 
 private\SpecialChar ~
 Vector\SpecialChar ~
-allChannelList Liste aller Channelnamen
+allChannelList Liste aller Channelnamen.
 \layout Description
 
 private\SpecialChar ~
 Vector\SpecialChar ~
-allUserList Liste aller Benutzernamen
+allUserList Liste aller Benutzernamen.
 \layout Description
 
 private\SpecialChar ~
 String\SpecialChar ~
-channelSet ein Channeldatensatz als String
+channelSet Ein Channeldatensatz als String.
 \layout Description
 
 private\SpecialChar ~
 String\SpecialChar ~
-userSet ein Benutzerdatensatz als String
+userSet Ein Benutzerdatensatz als String.
 \layout Paragraph
 
 Methoden
@@ -1550,7 +1552,7 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 addChannel(String\SpecialChar ~
-channel) fügt einen Channel mit den Daten aus
+channel) Fügt einen Channel mit den Daten aus
  dem String channel hinzu.
  Hiermit läßt sich ein neuer Channel erzeugen.
 \layout Description
@@ -1558,19 +1560,19 @@ channel) fügt einen Channel mit den Daten aus
 public\SpecialChar ~
 void\SpecialChar ~
 addUser(String\SpecialChar ~
-user) fügt den Benutzer mit den Daten aus user hinzu
+user) Fügt den Benutzer mit den Daten aus user hinzu.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 deleteChannel(String\SpecialChar ~
-name) löscht einen Channel
+name) Löscht einen Channel.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 deleteUser(String\SpecialChar ~
-name) löscht den Benutzer mit dem Namen name
+name) Löscht den Benutzer mit dem Namen name.
 \layout Description
 
 public\SpecialChar ~
@@ -1578,7 +1580,7 @@ void\SpecialChar ~
 editChannel(String\SpecialChar ~
 name,\SpecialChar ~
 String\SpecialChar ~
-channel) setzt den Channel mit dem
+channel) Setzt den Channel mit dem
  angegebenen Namen auf den neuen Datensatz aus dem String channel.
  Diese Methode wird verwendet, um Channeldaten zu verändern.
 \layout Description
@@ -1588,16 +1590,16 @@ void\SpecialChar ~
 editUser(String\SpecialChar ~
 name,\SpecialChar ~
 String\SpecialChar ~
-channel) editiert einen Benutzer
+channel) Editiert einen Benutzer.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
 processMsg(String\SpecialChar ~
-msg) verarbeitet erweiterte Nachrichten, d.h.
+msg) Verarbeitet erweiterte Nachrichten, d.h.
  auch Nachrichten, die für die normalen Clients irrelevant sind, z.B.
  Änderungsmeldungen über Benutzer- und Channeldaten.
- Erweitert also Client.processMsg(String msg)
+ Erweitert also Client.processMsg(String msg).
 \layout Paragraph
 
 Assoziationen
@@ -1606,25 +1608,25 @@ Assoziationen
 zur Klasse java.lang.String
 \layout Standard
 
-ein Benutzerdatensatz als String
+Ein Benutzerdatensatz als String.
 \layout Subparagraph
 
 zur Klasse java.lang.String
 \layout Standard
 
-ein Channeldatensatz als String
+Ein Channeldatensatz als String.
 \layout Subparagraph
 
 zur Klasse java.util.Vector
 \layout Standard
 
-Liste aller Benutzernamen
+Liste aller Benutzernamen.
 \layout Subparagraph
 
 zur Klasse java.util.Vector
 \layout Standard
 
-Liste aller Channelnamen
+Liste aller Channelnamen.
 \layout Subsubsection
 
 Uplink
@@ -1654,17 +1656,17 @@ Methoden
 public\SpecialChar ~
 void\SpecialChar ~
 sendMsg(String\SpecialChar ~
-msg) sendet eine Nachricht an den Server
+msg) Sendet eine Nachricht an den Server.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-startUplink() startet den Stream
+startUplink() Startet den Stream.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-stopUplink() schließt den Stream
+stopUplink() Schließt den Stream.
 \layout Paragraph
 
 Assoziationen
@@ -1701,23 +1703,23 @@ Methoden
 
 private\SpecialChar ~
 void\SpecialChar ~
-listen() wartet auf ankommende Daten und leitet diese an den
- Client weiter
+listen() Wartet auf ankommende Daten und leitet diese an den
+ Client weiter.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-run() Methode für den Thread
+run() Methode für den Thread.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-startDownlink() startet den Stream
+startDownlink() Startet den Stream.
 \layout Description
 
 public\SpecialChar ~
 void\SpecialChar ~
-stopDownlink() schließt den Stream
+stopDownlink() Schließt den Stream.
 \layout Paragraph
 
 Assoziationen
