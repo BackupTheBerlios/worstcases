@@ -19,7 +19,7 @@ class Downlink extends Thread {
    * @param socket der zu benutzende Socket.
    * @param owner der Besitzer des Downlinks.
    */
-  public Downlink(Socket socket, Object owner) {
+  public Downlink(Socket socket, DownlinkOwner owner) {
     this.socket = socket;
     this.owner = owner;
   }
@@ -33,7 +33,7 @@ class Downlink extends Thread {
    * Der Besitzer des Downlinks, an den die ankommenden Nachrichten
    * weitergeleitet werden sollen.
    */
-  private Object owner;
+  private DownlinkOwner owner;
 
   /**
    * Wartet auf ankommende Nachrichten und leitet sie an den Besitzer weiter. 
@@ -42,20 +42,7 @@ class Downlink extends Thread {
 
     String msg = "foo";
 
-    /* Wenn der Besitzer dieses Downlinks ein Client oder ein
-     * ClientServant ist, werden empfangene Nachrichten
-     * an seine Methode processMsg() übergeben.
-     *
-     * Das ist eigentlich übler Missbrauch des Reflection-APIs (siehe
-     * http://www.artima.com/designtechniques/rtci.html).
-     */
-    if (owner instanceof Client) { //XXX
-      Client myClient = (Client) owner; // Performance-Problem?
-      myClient.processMsg(msg);
-    } else if (owner instanceof ClientServant) {
-      ClientServant myClientServant = (ClientServant) owner;
-      myClientServant.processMsg(msg);
-    }
+    owner.processMsg(msg);
     listen(); //FIXME: Rekursion (-> StackOverflowError?), besser while.
   }
 
