@@ -10,7 +10,7 @@ public class SpawnClient extends Thread {
         AdminClient[] arr = new AdminClient[numClients];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = new AdminClient();
-            arr[i].SERVER_IP = "134.169.8.196";
+            arr[i].setServerIP("134.169.8.196");
             arr[i].startClient();
             arr[i].loginAsGuest("guest_spawn_"+i);
             arr[i].joinChannel("Foyer");

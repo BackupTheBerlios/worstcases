@@ -153,11 +153,11 @@ class ChannelAdministration {
       if (tmpChannel != null) {//Wenn der Channel gefunden wurde...
         tmpChannel.setName(newChannel.getName());
         //...wird sein Name aktualisiert.
-        tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
-        //...wird sein AllowedForGuest-Status aktualisiert.
         tmpChannel.setAllowedUserList(newChannel.getAllowedUserEnum());
         //...wird seine AllowedUserList aktualisiert.
-      }
+				tmpChannel.setAllowedForGuest(newChannel.isAllowedForGuest());
+        //...wird sein AllowedForGuest-Status aktualisiert.
+			}
       newChannel.removeYou();
       //Das nun unnötige newChannel-Objekt wird gelöscht.
       Debug.println(Debug.MEDIUM, "ChannelAdministration: changed: " + tmpChannel);

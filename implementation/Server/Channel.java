@@ -5,8 +5,7 @@ import java.util.Enumeration;
 import Util.Helper;
 
 /**
- * Ein Channeldatensatz. Eine Instanz dieser Klasse kann
- * wichtige Channeldaten wie beispielsweise
+ * Ein Channeldatensatz. Eine Instanz dieser Klasse kann wichtige Channeldaten wie beispielsweise
  * berechtigte User oder im Channel befindliche User speichern.
  * Außerdem stehen Methoden zur Verfügung, mit denen Listen der berechtigten
  * bzw. im Raum befindlichen User abgefragt und übergeben werden können.
@@ -41,12 +40,11 @@ class Channel {
     }
 
     /**
-		 * Setzt, ob Gäste den Channel betreten dürfen.
-		 * Benachrichtig ggf. betroffene User mittels user.isGuest() und
+     * Setzt, ob Gäste den Channel betreten dürfen. Benachrichtig ggf. betroffene User mittels user.isGuest() und
      * user.removeFromAllowedChannelList(this)
      */
-		public synchronized void setAllowedForGuest(boolean b) {
-				ClientServant tmpClientServant;
+    public synchronized void setAllowedForGuest(boolean b) {
+        ClientServant tmpClientServant;
         boolean oldValue = this.isAllowedForGuest();
         this.allowedForGuest = b;
         if (oldValue != b) {
@@ -58,12 +56,11 @@ class Channel {
                 while (enum.hasMoreElements()) {
                     tmpUser = (User)enum.nextElement();
                     if (tmpUser.isGuest()) {
-												tmpUser.removeFromAllowedChannelList(this);
-												tmpClientServant=tmpUser.getClientServant();
-												if(tmpClientServant!=null){
-                         tmpClientServant.sendErrorMsg("Channel "+this.getName()+" nicht mehr für Gäste freigegeben!");
-												}
-
+                        tmpUser.removeFromAllowedChannelList(this);
+                        tmpClientServant = tmpUser.getClientServant();
+                        if (tmpClientServant != null) {
+                            tmpClientServant.sendErrorMsg("Channel " + this.getName() + " nicht mehr für Gäste freigegeben!");
+                        }
                     }
                 }
             }
@@ -71,23 +68,24 @@ class Channel {
     }
 
     /**
-		 * Die Namensliste als Vector von Strings der berechtigten Benutzer
-		 * wird zurückgegeben
-		 * Benutzt getAllowedUserEnum() und User.getName().
+     * Die Namensliste als Vector von Strings der berechtigten Benutzer wird zurückgegeben (keine Gäste)
+     * Benutzt getAllowedUserEnum() und User.getName().
      */
     public Vector getAllowedUserNames() {
         Vector tmpVector = new Vector();
         Enumeration enum = this.getAllowedUserEnum();
+        User tmpUser;
         // alle Namen zu tmpVector hinzufügen
         while (enum.hasMoreElements()) {
-            tmpVector.addElement(((User)enum.nextElement()).getName());
+            tmpUser = (User)enum.nextElement();
+            if (!tmpUser.isGuest()) {
+                tmpVector.addElement(tmpUser.getName());
+            }
         }
         return tmpVector;
     }
 
-		/** Gibt eine Aufzählung der aktuellen Benutzerobjekte im Channel zurück.
-			* Benutzt Helper.vectorCopy()
-		  */
+    /** Gibt eine Aufzählung der aktuellen Benutzerobjekte im Channel zurück. Benutzt Helper.vectorCopy() */
     public Enumeration getAllowedUserEnum() {
         return Helper.vectorCopy(this.allowedUserList).elements();
     }
@@ -105,7 +103,7 @@ class Channel {
         }
         Vector tmpList = new Vector();
         User tmpUser;
-				// alle User aus enum hinzufügen, diese zusätzlich in tmpList speichern
+        // alle User aus enum hinzufügen, diese zusätzlich in tmpList speichern
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             tmpList.addElement(tmpUser);
@@ -117,6 +115,7 @@ class Channel {
 		 * alle Benutzer aus allowedUserList entfernen, die nicht in
 		 * enumAllowedUser (also tmpList) stehen
 		 */
+
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             if (!tmpList.contains(tmpUser)) {
@@ -126,8 +125,7 @@ class Channel {
     }
 
     /**
-		 * Fügt einen Benutzer zur Liste der berechtigten Benutzer hinzu.
-		 * Benachrichtigt mittels User.addToAllowedChannelList()
+     * Fügt einen Benutzer zur Liste der berechtigten Benutzer hinzu. Benachrichtigt mittels User.addToAllowedChannelList()
      * das entsprechende User-Objekt.
      */
     public void addToAllowedUserList(User paramUser) {
@@ -141,8 +139,7 @@ class Channel {
 
     /**
      * Entfernt einen Benutzer aus der Liste der berechtigten Benutzer.
-		 * Benachrichtigt mittels User.removeFromAllowedChannelList() das
-		 * entsprechende User-Objekt.
+     * Benachrichtigt mittels User.removeFromAllowedChannelList() das entsprechende User-Objekt.
      */
     public void removeFromAllowedUserList(User paramUser) {
         if (paramUser != null) {
@@ -154,8 +151,7 @@ class Channel {
     }
 
     /**
-		 * Eine Namensliste als Vector von Strings
-		 * der aktuellen Benutzer wird zurückgegeben. Benutzt
+     * Eine Namensliste als Vector von Strings der aktuellen Benutzer wird zurückgegeben. Benutzt
      * getCurrentUserEnum() und User.getName()
      */
     public Vector getCurrentUserNames() {
@@ -167,9 +163,7 @@ class Channel {
         return tmpVector;
     }
 
-		/** Liefert eine Aufzählung der aktuellen Benutzer zurück.
-			* Benutzt Helper.vectorCopy()
-		  */
+    /** Liefert eine Aufzählung der aktuellen Benutzer zurück. Benutzt Helper.vectorCopy() */
     public Enumeration getCurrentUserEnum() {
         return Helper.vectorCopy(currentUserList).elements();
     }
@@ -194,9 +188,11 @@ class Channel {
             this.addToCurrentUserList(tmpUser);
         }
         enum = this.getCurrentUserEnum();
+
 				/* alle Benutzer, die nicht in tmpList, also in enumCurrentUser,
 				*stehen aus der Liste entfernen
 				*/
+
         while (enum.hasMoreElements()) {
             tmpUser = (User)enum.nextElement();
             if (!tmpList.contains(tmpUser)) {
@@ -206,8 +202,7 @@ class Channel {
     }
 
     /**
-		 * Fügt einen User zu den im Channel befindlichen Usern hinzu.
-		 * Benachrichtigt den User mittels User.setCurrentChannel().
+     * Fügt einen User zu den im Channel befindlichen Usern hinzu. Benachrichtigt den User mittels User.setCurrentChannel().
      * Ruft dann informCurrentUsers() auf.
      */
     public void addToCurrentUserList(User paramUser) {
@@ -221,8 +216,7 @@ class Channel {
     }
 
     /**
-		 * Entfernt einen User aus den im Channel befindlichen Usern.
-		 * Benachrichtigt den User mittels User.setCurrentChannel(null).
+     * Entfernt einen User aus den im Channel befindlichen Usern. Benachrichtigt den User mittels User.setCurrentChannel(null).
      * Ruft dann informCurrentUsers() auf.
      */
     public void removeFromCurrentUserList(User paramUser) {
@@ -233,8 +227,7 @@ class Channel {
         }
     }
 
-		/** Entfernt das Channelobjekt aus dem System. Benutzt
-		  * setCurrentUserList(null) und setAllowedUserList(null). */
+    /** Entfernt das Channelobjekt aus dem System. Benutzt setCurrentUserList(null) und setAllowedUserList(null). */
     public void removeYou() {
         this.setCurrentUserList(null);
         this.setAllowedUserList(null);
@@ -251,8 +244,7 @@ class Channel {
     }
 
     /**
-		 * Informiert die Clients der aktuellen Benutzer im Channel über
-		 * Veränderungen im Channel mittels getCurrentUserEnum(),
+     * Informiert die Clients der aktuellen Benutzer im Channel über Veränderungen im Channel mittels getCurrentUserEnum(),
      * User.getClientServant() und ClientServant.sendCurrentChannelData().
      */
     public void informCurrentUsers() {
